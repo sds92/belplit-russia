@@ -48,14 +48,18 @@ export default function NavSM() {
       </List>
       <Divider />
       <List>
-        {Object.values(app.contacts).map((phone, index) => (
-          <ListItem button key={`PHONE${index}`}>
+          <ListItem button key={`PHONE1`}>
             <ListItemIcon>
               {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
             </ListItemIcon>
-            <ListItemText primary={phone} />
+            <ListItemText primary={app.contacts.phone1} />
           </ListItem>
-        ))}
+          <ListItem button key={`PHONE1`}>
+            <ListItemIcon>
+              {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
+            </ListItemIcon>
+            <ListItemText primary={app.contacts.phone2} />
+          </ListItem>
       </List>
       <Divider />
       <div>{app.title}</div>

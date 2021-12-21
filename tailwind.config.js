@@ -8,21 +8,23 @@ fontFamily["sans"] = [
 ];
 
 module.exports = {
-  content: ["./src/**/*.{html,js,jsx}"],
+  content: ['./components/**/*.js'],
   presets: [],
   darkMode: "media", // or 'class'
   safelist: [
-    "text-2xl",
-    "text-3xl",
-    "border-opacity-0",
-    "bg-opacity-20",
-    "border-opacity-100",
-    "max-w-xl",
-    "max-w-7xl",
-    "max-w-lg",
-    "max-w-md",
-    "indent-8",
     {
+      safelist: [
+        'text-2xl',
+        'text-3xl',
+        'border-opacity-0',
+        'bg-opacity-20',
+        'border-opacity-100',
+        'max-w-xl',
+        'max-w-7xl',
+        'max-w-lg',
+        'max-w-md',
+        'indent-8',
+      ],
       pattern:
         /(bg|text|)-(red|green|blue|zinc|slate)-(100|200|300|400|500|600|700|800|900)/,
     },
