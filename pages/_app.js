@@ -1,7 +1,6 @@
 import { SizeMe } from 'react-sizeme';
 import { Header } from '../components/complicated';
 import { Footer } from '../components/complicated';
-import '../styles/globals.css';
 import '../styles/tailwind.css';
 
 function MyApp({ Component, pageProps, size }) {
@@ -21,7 +20,7 @@ function MyApp({ Component, pageProps, size }) {
         };
         return (
           <div>
-            <div className={`flex flex-col min-h-screen justify-between`}>
+            <div className={`flex flex-col w-screen min-h-screen justify-between`}>
               <Header lgView={newProps.lgView} />
               <Component {...newProps} />
               <Footer lgView={newProps.lgView >= 900} />

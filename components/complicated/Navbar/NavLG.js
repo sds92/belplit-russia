@@ -1,44 +1,56 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Link from 'next/link';
 
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
 // etc
+import { Icons } from '../../complicated';
 import { useClickOut } from '../../../utils/hooks/useClickOut';
 import { menu } from '../../../configs/menu';
 import { app } from '../../../configs/app';
 
 export default function NavLG() {
-  const [show, setShow] = React.useState(false);
+  const [show, setShow] = React.useState({ active: null });
   const ref = React.useRef(null);
-  useClickOut(ref, () => setShow(false));
+  useClickOut(ref, show, () => setShow({ active: null }));
+
+  function handleClick(e) {
+    console.log('🚀 ~ file: NavLG.js ~ line 18 ~ handleClick ~ e', e);
+  }
+
+  React.useEffect(() => {
+    console.log(show);
+  }, [show]);
 
   return (
     <div>
       <Box sx={{ width: '100%' }}>
-        <div className={`flex flex-row flex-nowrap justify-center`}>
+        <div ref={ref} className={`flex flex-row flex-nowrap justify-center`}>
           {menu.map((item, index) => (
-            <>
+            <React.Fragment key={`NAVLG${index}`}>
               {item.show && (
-                <div className={`flex items-center mx-1 relative`} key={`NAVLG${index}`}>
+                <div id={`navlg${index}`} className={`flex items-center mx-1 relative`} key={`navlg${index}`}>
                   {item.active ? (
                     <Link href={`/${item.name}`}>
                       <a>{item.title}</a>
                     </Link>
                   ) : (
-                    <div>{item.title}</div>
+                    <div className={`cursor-pointer`} onClick={() => setShow({ active: index })}>
+                      {item.title}
+                    </div>
                   )}
                   {item.items.filter((item) => item.show).length !== 0 && (
                     <>
-                      <div onClick={() => setShow(!show)}>!!</div>
-                      {show && (
+                      <Icons.ChevronDown
+                        stroke={'#5d5e75'}
+                        extraClasses={`${
+                          show.active === index && `rotate-180`
+                        } w-6 h-6 cursor-pointer active:border rounded-full transition-all`}
+                        onClick={() => setShow({ active: index })}
+                      />
+                      {show.active === index && (
                         <div
-                          ref={ref}
-                          style={{ bottom: '-10px', marginBottom: '-100%' }}
+                          style={{ bottom: '0px', marginBottom: '-100%' }}
                           className={`absolute rounded-md bg-gray-100 py-1 w-max z-50`}
                         >
                           {item.items.map((innerItem, innerIndex) => {
@@ -58,7 +70,7 @@ export default function NavLG() {
                   )}
                 </div>
               )}
-            </>
+            </React.Fragment>
           ))}
         </div>
       </Box>

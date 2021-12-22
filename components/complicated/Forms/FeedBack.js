@@ -3,6 +3,7 @@ import FormControl from '@mui/material/FormControl';
 import { Box, TextField } from '@mui/material';
 
 import { Text } from '../../lib';
+import { app } from '../../../configs/app';
 
 export default function FeedBack({ lgView }) {
   const [formState, setFormState] = React.useState({
@@ -17,67 +18,71 @@ export default function FeedBack({ lgView }) {
   }, [formState]);
 
   return (
-    <Box component='form'>
-      <form>
-        <div className={`flex flex-col`}>
-          <div className={`flex flex-col sm:flex-row`}>
-            <TextField
-              required
-              id='ClientName'
-              placeholder='Имя'
-              onChange={(e) =>
-                setFormState((state) => {
-                  return { ...state, clientName: e.target.value };
-                })
-              }
-            />
-            <TextField
-              required
-              id='outlined-basic'
-              placeholder='Телефон'
-              onChange={(e) =>
-                setFormState((state) => {
-                  return { ...state, clientPhone: e.target.value };
-                })
-              }
-            />
-          </div>
-          <TextField
-            id='outlined-textarea'
-            label='Сообщение'
-            placeholder='Сообщение'
-            rows={4}
-            multiline
-            onChange={(e) =>
-              setFormState((state) => {
-                return { ...state, body: e.target.value };
-              })
-            }
-          />
-        </div>
-        <div className={`flex flex-col sm:flex-row`}>
-          <TextField
+    <form>
+      <div className={`flex flex-col w-full relative`}>
+        <Text tw={'bold'} ts={'xl'}>
+          {app.contacts.meta.field1}
+        </Text>
+        <div className={`flex flex-col sm:flex-row w-full relative`}>
+          <input
+            className={'w-full sm:max-w-md border rounded-md'}
             required
-            id='outlined-basic'
-            placeholder='E-mail'
+            id='FeedBackFormClientName'
+            placeholder='Имя'
             onChange={(e) =>
               setFormState((state) => {
-                return { ...state, clientEmail: e.target.value };
+                return { ...state, clientName: e.target.value };
               })
             }
           />
-
-          <Text
-            py={2}
-            px={2}
-            my={'auto'}
-            ta={'center'}
-            extraClasses={`bg-green-500 rounded-md cursor-pointer`}
-          >
-            Отправить
-          </Text>
+          <input
+            className={'w-full sm:max-w-md border rounded-md'}
+            required
+            id='FeedBackFormClientPhone'
+            placeholder='Телефон'
+            onChange={(e) =>
+              setFormState((state) => {
+                return { ...state, clientPhone: e.target.value };
+              })
+            }
+          />
         </div>
-      </form>
-    </Box>
+        <textarea
+          className={'w-full max-w-4xl border rounded-md'}
+          required
+          id='FeedBackFormBody'
+          placeholder='Сообщение'
+          rows={4}
+          onChange={(e) =>
+            setFormState((state) => {
+              return { ...state, body: e.target.value };
+            })
+          }
+        />
+      </div>
+      <div className={`flex flex-col sm:flex-row`}>
+        <input
+          className={'w-full sm:max-w-md border rounded-md'}
+          required
+          id='FeedBackFormClientEmail'
+          placeholder='E-mail'
+          onChange={(e) =>
+            setFormState((state) => {
+              return { ...state, clientEmail: e.target.value };
+            })
+          }
+        />
+
+        <Text
+          py={2}
+          px={2}
+          my={'auto'}
+          ta={'center'}
+          extraClasses={`bg-green-500 rounded-md cursor-pointer sm:max-w-md sm:w-1/2`}
+        >
+          Отправить
+        </Text>
+      </div>
+    </form>
   );
 }
