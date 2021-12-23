@@ -2,6 +2,9 @@ export const app = {
   title: 'БЕЛТЕРМО',
   copyright: ['© 2021 Сайт создан с помощью <a href="https://roboweb.site/"><strong>RoboWeb</strong></a>'],
   pages: {
+    main: {
+      title: ['<strong class="text-white">БЕЛТЕРМО</strong> <br/> <p class="ml-2 border-l text-white">Экологичный утеплитель и звукоизоляция для всех типов домов</p>'],
+    },
     cooperation: {
       title: 'Сотрудничество',
       content: {
@@ -11,8 +14,16 @@ export const app = {
       },
     },
     catalog: {
-      title: 'Каталог'
-    }
+      title: 'Каталог',
+    },
+    info: {
+      sertificates: {
+        title: 'Сертификаты',
+      },
+      objects: {
+        title: 'Объекты',
+      },
+    },
   },
   contacts: {
     title: 'Контакты',

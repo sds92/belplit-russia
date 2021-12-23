@@ -28,6 +28,9 @@ module.exports = {
     'text-white',
     'shadow-md',
     'ordinal',
+    'border-l',
+    'ml-2',
+    'text-justify',
     {
       pattern: /(mx|my|px|py|p|m)-(0|1|2|3|4|5|6)/,
     },

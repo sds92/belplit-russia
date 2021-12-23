@@ -1,85 +1,54 @@
 // react
-import React from "react";
-// MUI
-import Box from "@mui/material/Box";
-import Drawer from "@mui/material/Drawer";
-import Button from "@mui/material/Button";
-import List from "@mui/material/List";
-import Divider from "@mui/material/Divider";
-import ListItem from "@mui/material/ListItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
+import React from 'react';
+import Link from 'next/link';
+
+// react-menu
+import { Menu, MenuItem, MenuButton, SubMenu } from '@szhsin/react-menu';
+import '@szhsin/react-menu/dist/index.css';
+
 // etc
-import { menu } from "../../../configs/menu";
-import { app } from "../../../configs/app";
+import { Icons } from '../';
+import { Text } from '../../lib';
+import { menu } from '../../../configs/menu';
+import { app } from '../../../configs/app';
 
 export default function NavSM() {
-  const [state, setState] = React.useState({
-    left: false,
-  });
-
-  const toggleDrawer = (anchor, open) => (event) => {
-    if (
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
-    ) {
-      return;
-    }
-
-    setState({ ...state, [anchor]: open });
-  };
-
-  const list = (anchor) => (
-    <Box
-      sx={250}
-      role="presentation"
-      onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
-    >
-      <List>
-        {menu.map(({ name, title }, index) => (
-          <ListItem button key={name}>
-            <ListItemIcon>
-              {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-            </ListItemIcon>
-            <ListItemText primary={title} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-          <ListItem button key={`PHONE1`}>
-            <ListItemIcon>
-              {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-            </ListItemIcon>
-            <ListItemText primary={app.contacts.phone1} />
-          </ListItem>
-          <ListItem button key={`PHONE1`}>
-            <ListItemIcon>
-              {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-            </ListItemIcon>
-            <ListItemText primary={app.contacts.phone2} />
-          </ListItem>
-      </List>
-      <Divider />
-      <div>{app.title}</div>
-    </Box>
-  );
-
   return (
-    <div>
-      {["left"].map((anchor) => (
-        <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
-          <Drawer
-            anchor={anchor}
-            open={state[anchor]}
-            onClose={toggleDrawer(anchor, false)}
-          >
-            {list(anchor)}
-          </Drawer>
-        </React.Fragment>
+    <Menu
+      menuButton={
+        <MenuButton>
+          <Icons.Menu
+            stroke={'#5d5e75'}
+            extraClasses={`w-10 h-10 cursor-pointer active:border rounded-md transition-all`}
+          />
+        </MenuButton>
+      }
+    >
+      {menu.map(({ show, activeLink, title, items, name }, index) => (
+        <>
+          {show && activeLink && <MenuItem key={`NAVSM${index}`}>{title}</MenuItem>}
+          {items.filter((item) => item.show).length !== 0 && (
+            <>
+              {show && !activeLink && (
+                <SubMenu label={title}>
+                  {items.map((innerItem, index) => (
+                    <MenuItem key={`NAVSMINNER${index}`}>
+                      <Link href={`/${name}/${innerItem.name}`}>
+                        <a>{innerItem.title}</a>
+                      </Link>
+                    </MenuItem>
+                  ))}
+                </SubMenu>
+              )}
+            </>
+          )}
+        </>
       ))}
-    </div>
+      <hr />
+      <MenuItem>{app.contacts.phone1}</MenuItem>
+      <MenuItem>{app.contacts.phone2}</MenuItem>
+      <hr />
+      <MenuItem>{app.title}</MenuItem>
+    </Menu>
   );
 }

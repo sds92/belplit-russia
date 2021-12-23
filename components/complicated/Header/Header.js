@@ -26,7 +26,7 @@ export default function Header(props) {
           </Text>
         )}
       </div>
-      <Navbar />
+      <Navbar lgView={lgView}/>
     </header>
   );
 }

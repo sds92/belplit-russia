@@ -1,20 +1,13 @@
 // react
-import React from "react";
+import React from 'react';
 // components
-import NavSM from "./NavSM";
-import NavLG from "./NavLG";
-// etc
-import { withSize } from "react-sizeme";
+import NavSM from './NavSM';
+import NavLG from './NavLG';
 
 function Navbar(props) {
-  const { width } = props.size;
+  const { lgView } = props;
 
-  return (
-    <>
-      {width >= 900 && <NavLG/>}
-      {width < 900 && <NavSM/>}
-    </>
-  );
+  return <>{lgView ? <NavLG /> : <NavSM />}</>;
 }
 
-export default withSize()(Navbar);
+export default Navbar;

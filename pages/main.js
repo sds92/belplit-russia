@@ -1,9 +1,11 @@
-import React from 'react'
+import React from 'react';
+import { Main } from '../components/complicated';
+
 
 export default function main() {
-    return (
-        <div>
-            
-        </div>
-    )
+  return (
+    <div>
+      <Main />
+    </div>
+  );
 }

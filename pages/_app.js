@@ -20,7 +20,7 @@ function MyApp({ Component, pageProps, size }) {
         };
         return (
           <div>
-            <div className={`flex flex-col w-screen min-h-screen justify-between`}>
+            <div className={`flex flex-col w-full min-h-screen justify-between`}>
               <Header lgView={newProps.lgView} />
               <Component {...newProps} />
               <Footer lgView={newProps.lgView >= 900} />

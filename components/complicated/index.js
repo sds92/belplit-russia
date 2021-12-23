@@ -6,3 +6,4 @@ export { default as ProductCardSM } from './Product/ProductCardSM';
 export { default as ProductCardLG } from './Product/ProductCardLG';
 export { default as PopUp } from './PopUp/PopUp';
 export { default as Icons } from './Svg/Icons';
+export { default as Main } from './Main/Main';
