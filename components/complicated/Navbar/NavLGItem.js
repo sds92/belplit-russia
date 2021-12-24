@@ -1,17 +1,18 @@
+// react
 import React from 'react';
 import Link from 'next/link';
-import NavPopUpItems from './NavPopUpItems';
-import { Icons } from '../../complicated';
 
 // react-menu
 import { Menu, MenuItem, MenuButton, SubMenu } from '@szhsin/react-menu';
 import '@szhsin/react-menu/dist/index.css';
 
+import { Icons } from '../../complicated';
 export default function NavLGItem(props) {
   const {
     item: { show, activeLink, name, title, items },
-    i,
   } = props;
+
+  const [open, setOpen] = React.useState(false);
 
   return (
     <div className={`relative`}>
@@ -22,27 +23,31 @@ export default function NavLGItem(props) {
           </Link>
         )}
         {items.filter((item) => item.show).length !== 0 && (
-          <>
-          <Menu
-      menuButton={
-        <MenuButton>
-          <Icons.Menu
-            stroke={'#5d5e75'}
-            extraClasses={`w-10 h-10 cursor-pointer active:border rounded-md transition-all`}
-          />
-        </MenuButton>
-      }
-    >
-      
-    </Menu>
-          </>
-          // <>
-          //   {show && !activeLink && (
-          //     <NavPopUpItems path={name} items={items}>
-          //       {title}
-          //     </NavPopUpItems>
-          //   )}
-          // </>
+          <div onClick={() => setOpen(!open)}>
+            <Menu
+              menuButton={
+                <MenuButton>
+                  <div className={`flex`}>
+                    {title}
+                    <Icons.ChevronDown
+                      stroke={'#5d5e75'}
+                      extraClasses={`
+                  ${open ? `rotate-180` : ''}
+                  w-6 h-6 cursor-pointer active:border rounded-full transition-all`}
+                    />
+                  </div>
+                </MenuButton>
+              }
+            >
+              {items.map((innerItem, index) => (
+                <MenuItem key={`NAVLGINNER${index}`}>
+                  <Link href={`/${name}/${innerItem.name}`}>
+                    <a>{innerItem.title}</a>
+                  </Link>
+                </MenuItem>
+              ))}
+            </Menu>
+          </div>
         )}
       </div>
     </div>

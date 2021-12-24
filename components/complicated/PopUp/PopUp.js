@@ -20,7 +20,7 @@ export default function PopUp(props) {
       }
       {children && children}
       {arr && (
-        <div className={`${!show ? 'max-h-0' : 'max-h-96'} overflow-hidden transition-all`}>
+        <div className={`${!show ? 'max-h-0' : 'max-h-96'} ml-2 overflow-hidden transition-all`}>
           {arr.map((item) => (
             <Text key={Math.random().toString(36)}>{`> ${item}`}</Text>
           ))}

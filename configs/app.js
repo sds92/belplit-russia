@@ -3,7 +3,7 @@ export const app = {
   copyright: ['© 2021 Сайт создан с помощью <a href="https://roboweb.site/"><strong>RoboWeb</strong></a>'],
   pages: {
     main: {
-      title: ['<strong class="text-white">БЕЛТЕРМО</strong> <br/> <p class="ml-2 border-l text-white">Экологичный утеплитель и звукоизоляция для всех типов домов</p>'],
+      title: ['<p style="color: ##38a000;" class="font-bold">БЕЛТЕРМО</p> <p class="ml-2 border-l text-white">Экологичный утеплитель и звукоизоляция для всех типов домов</p>'],
     },
     cooperation: {
       title: 'Сотрудничество',
@@ -48,7 +48,7 @@ export const app = {
   },
   workingHoars: {
     title: 'Время работы',
-    value: ['Ежедневно: <span class="footer-working-hoars">8:00–20:00</span>'],
+    value: ['Ежедневно: 8:00–20:00'],
   },
   address: 'Россия, Московская область, Одинцово, улица Молодежная, 46',
 };

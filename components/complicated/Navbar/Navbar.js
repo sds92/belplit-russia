@@ -5,9 +5,14 @@ import NavSM from './NavSM';
 import NavLG from './NavLG';
 
 function Navbar(props) {
-  const { lgView } = props;
+  const { lgView, children } = props;
 
-  return <>{lgView ? <NavLG /> : <NavSM />}</>;
+  return (
+    <div className={`p-1 ${!lgView ? `flex justify-between items-center` : ``}`}>
+      {lgView ? <NavLG /> : <NavSM />}
+      {children}
+    </div>
+  );
 }
 
 export default Navbar;

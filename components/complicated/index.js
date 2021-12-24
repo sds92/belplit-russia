@@ -7,3 +7,4 @@ export { default as ProductCardLG } from './Product/ProductCardLG';
 export { default as PopUp } from './PopUp/PopUp';
 export { default as Icons } from './Svg/Icons';
 export { default as Main } from './Main/Main';
+export { default as Modal } from './Modal/Modal';

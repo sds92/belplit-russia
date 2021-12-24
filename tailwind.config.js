@@ -31,6 +31,10 @@ module.exports = {
     'border-l',
     'ml-2',
     'text-justify',
+    'text-xs',
+    'p-0.5',
+    'm-0.5',
+
     {
       pattern: /(mx|my|px|py|p|m)-(0|1|2|3|4|5|6)/,
     },
@@ -57,6 +61,7 @@ module.exports = {
       '2xl': '1536px',
     },
     colors: ({ colors }) => ({
+      'belplit': '#38a000',
       inherit: colors.inherit,
       current: colors.current,
       transparent: colors.transparent,
