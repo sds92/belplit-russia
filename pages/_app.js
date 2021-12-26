@@ -4,12 +4,6 @@ import { Footer } from '../components/complicated';
 import '../styles/tailwind.css';
 
 function MyApp({ Component, pageProps, size }) {
-  const { width } = size || 900;
-  let newProps = {
-    lgView: width >= 900,
-    ...pageProps,
-  };
-
   return (
     <SizeMe>
       {({ size }) => {
@@ -23,7 +17,7 @@ function MyApp({ Component, pageProps, size }) {
             <div className={`flex flex-col w-full min-h-screen justify-between`}>
               <Header lgView={newProps.lgView} />
               <Component {...newProps} />
-              <Footer lgView={newProps.lgView >= 900} />
+              <Footer lgView={newProps.lgView} />
             </div>
           </div>
         );

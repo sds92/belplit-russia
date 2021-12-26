@@ -68,6 +68,7 @@ export default function FeedBack(props) {
     try {
       props.onFulfilled('pending');
     } catch (err) {}
+    
     fetch('/api/sendform', {
       method: 'POST',
       headers: {

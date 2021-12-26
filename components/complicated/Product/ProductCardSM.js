@@ -8,10 +8,10 @@ export default function ProductCardSM(props) {
 
   return (
     <div className={`w-1/2 max-w-xs relative rounded-md shadow-md m-2 p-2 bg-slate-100`}>
-      <Link href={`/catalog/${id}`}>
-        <>
-          <Text ta={'center'}>{title}</Text>
-          <div className={`h-32 relative`}>
+      <Link href={`/catalog/${id}`} passHref>
+        <div>
+          <Text ta={'center'} ts={'lg'}>{title}</Text>
+          <div className={`relative w-full h-44 cursor-pointer`}>
             <Image
               src={`/images/products/sm/${files.avatarSM}`}
               alt={`${title} logo`}
@@ -22,17 +22,19 @@ export default function ProductCardSM(props) {
           <a>
             <Text
               ts={'md'}
-              mx={'2'}
+              mx={'6'}
               py={2}
               tw={'normal'}
               ta={'center'}
               extraClasses={`bg-belplit max-w-xs cursor-pointer`}
               tc={'slate-200'}
+              my={'2'}
+              
             >
               Подробнее
             </Text>
           </a>
-        </>
+        </div>
       </Link>
     </div>
   );
