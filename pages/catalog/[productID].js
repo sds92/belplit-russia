@@ -1,10 +1,24 @@
 import React from 'react';
+import Head from 'next/head';
 import { ProductCardLG } from '../../components/complicated';
 import { products } from '../../configs/products';
 
+import meta from '../../data/meta.json';
+
 export default function Product(props) {
   const { product } = props;
-  return <ProductCardLG product={product}/>;
+  const head = meta.find((item) => item.pageName === `catalog/${product.id}`).head;
+  return (
+    <div>
+      <Head>
+        <title>{head.title}</title>
+        {head.meta.map((item, index) => (
+          <meta name={item.name} content={item.content} key={`METAMAIN${index}`} />
+        ))}
+      </Head>
+      <ProductCardLG product={product} />;
+    </div>
+  );
 }
 
 export async function getStaticProps({ params }) {

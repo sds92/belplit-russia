@@ -7,32 +7,22 @@ export default function ProductCardSM(props) {
   const { title, files, id } = props.product;
 
   return (
-    <div className={`w-1/2 max-w-xs relative rounded-md shadow-md m-2 p-2 bg-slate-100`}>
+    <div className={`product-card relative rounded-md shadow-md m-2 p-2 bg-slate-50`}>
       <Link href={`/catalog/${id}`} passHref>
-        <div>
-          <Text ta={'center'} ts={'lg'}>{title}</Text>
+        <div className={`flex flex-col justify-between items-center mx-auto max-w-xs h-full`}>
+          <Text tw={'bold'} ta={'center'} ts={'lg'} extraClasses={`h-14`} my={2}>
+            {title}
+          </Text>
           <div className={`relative w-full h-44 cursor-pointer`}>
             <Image
               src={`/images/products/sm/${files.avatarSM}`}
               alt={`${title} logo`}
               layout='fill'
-              objectFit='contain'
+              objectFit='cover'
             />
           </div>
           <a>
-            <Text
-              ts={'md'}
-              mx={'6'}
-              py={2}
-              tw={'normal'}
-              ta={'center'}
-              extraClasses={`bg-belplit max-w-xs cursor-pointer`}
-              tc={'slate-200'}
-              my={'2'}
-              
-            >
-              Подробнее
-            </Text>
+            <div className={`bg-belplit w-full cursor-pointer mx-auto py-2 px-4 text-center text-slate-100 mt-2 rounded-md`}>Подробнее</div>
           </a>
         </div>
       </Link>

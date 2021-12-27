@@ -1,9 +1,13 @@
 import React from 'react';
+import Head from 'next/head';
 import ImageViewer from 'react-simple-image-viewer';
 
 import { Text } from '../../components/lib';
 import { app } from '../../configs/app';
+import meta from '../../data/meta.json';
+
 export default function Objects() {
+  const head = meta.find((item) => item.pageName === 'objects').head;
   const [currentImage, setCurrentImage] = React.useState(0);
   const [isViewerOpen, setIsViewerOpen] = React.useState(false);
 
@@ -73,13 +77,19 @@ export default function Objects() {
 
   return (
     <div className={`flex flex-col`}>
-      <Text ta={'center'} ts={'3xl'} tw={'bold'}>
+      <Head>
+        <title>{head.title}</title>
+        {head.meta.map((item, index) => (
+          <meta name={item.name} content={item.content} key={`METAMAIN${index}`} />
+        ))}
+      </Head>
+      <Text ta={'center'} ts={'3xl'} tw={'bold'} my={4} >
         {app.pages.info.objects.title}
       </Text>
-      <Text ta={'center'} ts={'xl'}>МДВП Белтермо применяются в самых разных областях строительства, для самых разных целей.</Text>
-      <div className={`flex flex-wrap justify-center mx-20`}>
+      <p className={`bg-belplit text-center py-2 text-slate-100`}>МДВП Белтермо применяются в самых разных областях строительства, для самых разных целей.</p>
+      <div className={`flex flex-wrap justify-center sm:mx-20`}>
         {imagesSM.map((src, index) => (
-          <div className={`m-5 shadow-xl cursor-pointer`} key={`SERTSM${index}`}>
+          <div className={`m-5 shadow-md cursor-pointer`} key={`SERTSM${index}`}>
             <img src={src} onClick={() => openImageViewer(index)} alt='' />
           </div>
         ))}

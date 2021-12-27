@@ -1,9 +1,11 @@
 import React from 'react';
+import Head from 'next/head';
 // import Image from 'next/image';
 import ImageViewer from 'react-simple-image-viewer';
 
 import { Text } from '../../components/lib';
 import { app } from '../../configs/app';
+import meta from '../../data/meta.json';
 
 // import sert1sm from '../../public/images/sertificates/1sm.jpg';
 // import sert2sm from '../../public/images/sertificates/2sm.jpg';
@@ -18,6 +20,7 @@ import { app } from '../../configs/app';
 // import sert5 from '../../public/images/sertificates/5.jpg';
 
 export default function Sertificates() {
+  const head = meta.find((item) => item.pageName === 'sertificates').head;
   const [currentImage, setCurrentImage] = React.useState(0);
   const [isViewerOpen, setIsViewerOpen] = React.useState(false);
 
@@ -48,7 +51,13 @@ export default function Sertificates() {
 
   return (
     <div className={`flex flex-col`}>
-      <Text ta={'center'} ts={'3xl'} tw={'bold'}>
+       <Head>
+        <title>{head.title}</title>
+        {head.meta.map((item, index) => (
+          <meta name={item.name} content={item.content} key={`METAMAIN${index}`} />
+        ))}
+      </Head>
+      <Text ta={'center'} ts={'3xl'} tw={'bold'} my={4}>
         {app.pages.info.sertificates.title}
       </Text>
       <div className={`flex flex-wrap justify-center mx-20`}>

@@ -26,15 +26,21 @@ export default function NavSM() {
     >
       {menu.map(({ show, activeLink, title, items, name }, index) => (
         <>
-          {show && activeLink && <MenuItem key={`NAVSM${index}`}>{title}</MenuItem>}
+          {show && activeLink && (
+            <MenuItem key={`NAVSM${index}`} className={`menuItem`}>
+              <Link href={`/${name}`}>
+                <a className='menuItemTitle w-full'>{title}</a>
+              </Link>
+            </MenuItem>
+          )}
           {items.filter((item) => item.show).length !== 0 && (
             <>
               {show && !activeLink && (
                 <SubMenu label={title}>
                   {items.map((innerItem, index) => (
-                    <MenuItem key={`NAVSMINNER${index}`}>
+                    <MenuItem className={`menuItem`} key={`NAVSMINNER${index}`}>
                       <Link href={`/${name}/${innerItem.name}`}>
-                        <a>{innerItem.title}</a>
+                        <a className='menuItemTitle w-full'>{innerItem.title}</a>
                       </Link>
                     </MenuItem>
                   ))}
@@ -45,10 +51,17 @@ export default function NavSM() {
         </>
       ))}
       <hr />
-      <MenuItem>{app.contacts.phone1}</MenuItem>
-      <MenuItem>{app.contacts.phone2}</MenuItem>
+      <MenuItem>
+        <div>
+          <a href='tel:88005337881'>{app.contacts.phone1}</a>
+        </div>
+      </MenuItem>
+      <MenuItem>
+        <div>
+          <a href='tel:88005337881'>{app.contacts.phone2}</a>
+        </div>
+      </MenuItem>
       <hr />
-      <MenuItem>{app.title}</MenuItem>
     </Menu>
   );
 }

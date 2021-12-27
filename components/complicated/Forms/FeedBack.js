@@ -68,7 +68,7 @@ export default function FeedBack(props) {
     try {
       props.onFulfilled('pending');
     } catch (err) {}
-    
+
     fetch('/api/sendform', {
       method: 'POST',
       headers: {
@@ -100,27 +100,21 @@ export default function FeedBack(props) {
         }, 3000);
       });
   }
-  React.useEffect(() => {
-    console.log(formState);
-  }, [formState]);
 
   return (
-    <>
+    <div>
       {formStatus === 'show' && (
         <form>
-          <div className={`flex flex-col w-full relative`}>
-            <Text tw={'bold'} ts={'xl'}>
-              {app.contacts.meta.field1}
-            </Text>
-            <div className={`flex flex-col sm:flex-row w-full relative`}>
-              <div className={`w-full sm:max-w-md relative`}>
+          <div className={`flex flex-col w-full relative items-center justify-center`}>
+            <div className={`flex flex-col sm:flex-row w-full relative items-center justify-center`}>
+              <div className={`w-full flex sm:max-w-md relative`}>
                 {checkFormStatus[0] && (
-                  <Text ts={'xs'} tc={'red-600'} mx={'1'} extraClasses={'absolute right-0 top-0'}>
-                    Должно быть от 3 до 50 символов
-                  </Text>
+                  <p className={`form-text-alert text-red-600 absolute right-4 top-2`}>3 - 50 символов</p>
                 )}
                 <input
-                  className={`w-full ${checkFormStatus[0] ? `border border-red-600` : ``}`}
+                  className={`w-full px-2 mx-2 sm:mr-2 my-2 pt-2 border-b ${
+                    checkFormStatus[0] ? `rounded-md border border-red-600` : ``
+                  }`}
                   required
                   id='FeedBackFormClientName'
                   placeholder='Имя'
@@ -132,15 +126,15 @@ export default function FeedBack(props) {
                   }
                 />
               </div>
-              <div className={`w-full sm:max-w-md relative`}>
+              <div className={`w-full flex sm:max-w-md relative`}>
                 {checkFormStatus[1] && (
-                  <Text ts={'xs'} tc={'red-600'} mx={'1'} extraClasses={'absolute right-0 top-0'}>
-                    Введите корректный номер в международном формате
-                  </Text>
+                  <p className={`form-text-alert text-red-600 absolute right-4 top-2`}>Не верный номер</p>
                 )}
 
                 <input
-                  className={`w-full ${checkFormStatus[1] ? `border border-red-600` : ``}`}
+                  className={`w-full px-2 mx-2 sm:ml-2 my-2 border-b pt-2 ${
+                    checkFormStatus[1] ? `rounded-md border border-red-600` : ``
+                  }`}
                   required
                   id='FeedBackFormClientPhone'
                   placeholder='Телефон'
@@ -153,62 +147,68 @@ export default function FeedBack(props) {
                 />
               </div>
             </div>
-            <div className={`w-full sm:max-w-md relative`}>
-              {checkFormStatus[2] && (
-                <Text ts={'xs'} tc={'red-600'} mx={'1'} extraClasses={'absolute right-0 top-0'}>
-                  Должно быть от 3 до 500 символов
-                </Text>
-              )}
-              <textarea
-                className={`w-full max-w-4xl ${checkFormStatus[2] ? `border border-red-600` : ``}`}
-                required
-                id='FeedBackFormBody'
-                placeholder='Сообщение'
-                rows={4}
-                value={formState.body}
-                onChange={(e) =>
-                  setFormState((state) => {
-                    return { ...state, body: e.target.value };
-                  })
-                }
-              />
+            <div className={`relative w-full flex items-center justify-center px-2`}>
+              <div className={`max-w-4xl w-full relative`}>
+                {checkFormStatus[2] && (
+                  <p className={`form-text-alert text-red-600 right-4 top-0`}>3 - 500 символов</p>
+                )}
+                <textarea
+                  className={`border rounded-md w-full px-2 max-w-4xl ${
+                    checkFormStatus[2] ? `border border-red-600` : ``
+                  }`}
+                  required
+                  id='FeedBackFormBody'
+                  placeholder='Сообщение'
+                  rows={4}
+                  value={formState.body}
+                  onChange={(e) =>
+                    setFormState((state) => {
+                      return { ...state, body: e.target.value };
+                    })
+                  }
+                />
+              </div>
             </div>
-          </div>
-          <div className={`flex flex-col sm:flex-row`}>
-            <div className={`w-full sm:max-w-md relative`}>
-              {checkFormStatus[3] && (
-                <Text ts={'xs'} tc={'red-600'} mx={'1'} extraClasses={'absolute right-0 top-0'}>
-                  Введите корректный email
-                </Text>
-              )}
-              <input
-                className={`w-full sm:max-w-md ${checkFormStatus[3] ? `border border-red-600` : ``}`}
-                required
-                id='FeedBackFormClientEmail'
-                placeholder='E-mail'
-                value={formState.clientEmail}
-                onChange={(e) =>
-                  setFormState((state) => {
-                    return { ...state, clientEmail: e.target.value };
-                  })
-                }
-              />
+            <div className={`flex flex-col sm:flex-row w-full relative items-center justify-center`}>
+              <div className={`w-full flex sm:max-w-md relative`}>
+                {checkFormStatus[3] && (
+                  <p className={`form-text-alert text-red-600 absolute right-4 top-2`}>
+                    Введите корректный email
+                  </p>
+                )}
+                <input
+                  className={`border-b w-full pt-2 px-2 mx-2 my-2 sm:max-w-md ${
+                    checkFormStatus[3] ? `rounded-md border border-red-600` : ``
+                  }`}
+                  required
+                  id='FeedBackFormClientEmail'
+                  placeholder='E-mail'
+                  value={formState.clientEmail}
+                  onChange={(e) =>
+                    setFormState((state) => {
+                      return { ...state, clientEmail: e.target.value };
+                    })
+                  }
+                />
+              </div>
+              <Text
+                my={2}
+                py={2}
+                px={2}
+                mx={2}
+                ta={'center'}
+                tc={'slate-100'}
+                extraClasses={`bg-belplit rounded-md cursor-pointer sm:max-w-md sm:w-1/2`}
+                onClick={sendForm}
+              >
+                Отправить
+              </Text>
             </div>
-            <Text
-              py={2}
-              px={2}
-              my={'auto'}
-              ta={'center'}
-              extraClasses={`bg-green-500 rounded-md cursor-pointer sm:max-w-md sm:w-1/2`}
-              onClick={sendForm}
-            >
-              Отправить
-            </Text>
           </div>
         </form>
       )}
       {formStatus === 'pending' && <Text>Отправка запроса</Text>}
       {formStatus === 'complete' && <Text>Запрос успешно отправлен. Спасибо за обращение!</Text>}
-    </>
+    </div>
   );
 }

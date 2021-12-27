@@ -19,12 +19,53 @@
 }
 
 .main-title {
-  font-family: "Fira Sans";
+  font-family: 'Fira Sans';
 }
 
 pre {
   width: 100%;
 }
+
+.img-product {
+  height: 300px;
+  width: 300px;
+}
+
+textarea:focus,
+input:focus {
+  outline: none;
+}
+textarea,
+input {
+  border-radius: 0;
+}
+.form-text-alert {
+  position: absolute;
+  font-size: 0.7rem;
+}
+.menuItem {
+  margin: 0px;
+  padding: 0px;
+}
+.menuItemTitle {
+  padding: 5px 0px 5px 25px;
+}
+.main-image-container-lg {
+  min-height: 600px;
+}
+.main-image-container-sm {
+  min-height: 200px;
+}
+.product-card {
+  flex: 1 0 20%; /* explanation below */
+  margin: 10px;
+  min-width: 200px;
+}
+.y-metrika {
+  width: 88px;
+  height: 31px;
+}
+
 
 @tailwind base;
 @tailwind components;
