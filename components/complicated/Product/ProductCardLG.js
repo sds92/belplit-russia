@@ -1,10 +1,10 @@
 // react
 import React from 'react';
 import Image from 'next/image';
-import { Text } from '../../lib';
 
 // etc
-import { Icons, PopUp, Modal, FeedBack as FeedBackForm } from '../../complicated';
+import { Icons, PopUp, Modal, ModalItems, Radio, FeedBack as FeedBackForm } from '../../complicated';
+import { Text } from '../../lib';
 
 export default function ProductCardLG(props) {
   const {
@@ -16,8 +16,25 @@ export default function ProductCardLG(props) {
   } = props.product;
   const [index, setIndex] = React.useState(0);
   const [modalStatus, setModalStatus] = React.useState('hide');
+  const [modalData, setModalData] = React.useState({
+    open: false,
+    status: 'loading',
+    description: ['Идет обработка запроса...'],
+  });
+  const [isLoading, setIsLoading] = React.useState(false);
 
-  
+  const radioItems = sizes.map((item, i) => {
+    return { bar: item[0].split(' / ')[0], square: item[0].split(' / ')[1], key: i };
+  });
+
+  const [radioValue, setRadioValue] = React.useState(0);
+
+  React.useEffect(() => {
+    setIndex(radioValue)
+    console.log("🚀 ~ file: ProductCardLG.js ~ line 34 ~ React.useEffect ~ radioValue", radioValue)
+    return
+  }, [radioValue]);
+
   return (
     <>
       <div className={`w-full max-w-6xl mx-auto relative flex-col items-center justify-center pt-4`}>
@@ -36,22 +53,9 @@ export default function ProductCardLG(props) {
               />
             </div>
             <div className={`md:w-1/3`}>
-              <p className={`p-2`}>Размеры:</p>
-              {sizes.map((item, index) => (
-                <div className={`pl-4`} key={`PS${index}`}>
-                  <input
-                    type='radio'
-                    id={`ProductSize${index}`}
-                    name={`productSize`}
-                    value={index}
-                    onChange={() => setIndex(index)}
-                  />
-                  <label className={`pl-2 font-light`} htmlFor={`ProductSize${index}`}>
-                    {item}
-                  </label>
-                </div>
-              ))}
-              <p className={`p-2`}>Цена:</p>
+              <p className={`ml-2 p-2 font-bold`}>Размеры:</p>
+              <Radio radioItems={radioItems} onChange={setRadioValue} />
+              <p className={`ml-2 p-2 font-bold`}>Цена:</p>
               <div className={`flex gap-1 pl-4 whitespace-nowrap`}>
                 <p className={``}>плита:</p>
                 <p className={`font-bold`}>{prices.bar[index]}</p>
@@ -68,7 +72,7 @@ export default function ProductCardLG(props) {
                 ta={'center'}
                 tc={'white'}
                 tw={'bold'}
-                extraClasses={`bg-green-600 max-w-xs cursor-pointer active:bg-belplit hover:text-slate-200 hover:bg-belplit`}
+                extraClasses={`bg-belplit rounded-md max-w-xs cursor-pointer active:bg-belplit hover:text-slate-200 hover:bg-belplit`}
                 onClick={() => setModalStatus('show')}
               >
                 Купить
@@ -85,7 +89,6 @@ export default function ProductCardLG(props) {
                 [installation, 'Монтаж'],
               ].map((item, index) => {
                 if (item[0]?.[0]) return <PopUp title={item[1]} arr={item[0]} key={`POPUP${index}`} />;
-                else return undefined;
               })}
             </div>
             <div className={`relative w-full md:w-2/3`}>
@@ -102,19 +105,34 @@ export default function ProductCardLG(props) {
         </div>
       </div>
       {/show|pending/.test(modalStatus) && (
-        <Modal>
-          {/show/.test(modalStatus) && (
-            <Icons.Close
-              extraClasses={`absolute m-2 top-0 right-0 w-6 h-6 border border rounded-md self-end cursor-pointer`}
-              stroke={`#000`}
-              onClick={() => setModalStatus('hide')}
+        <Modal
+          data={modalData}
+          setOpen={setModalData}
+          header={
+            <ModalItems.Header
+              data={{ isLoading, status: modalData.status, description: modalData.description }}
             />
-          )}
-          {/show/.test(modalStatus) && <Text tw={'bold'}>Оформить заказ</Text>}
-          <div>
-            <FeedBackForm onFulfilled={(a) => setModalStatus(a)} />
-          </div>
-        </Modal>
+          }
+          body={
+            <ModalItems.Body
+              data={{ isLoading, status: modalData.status, description: modalData.description }}
+            />
+          }
+        />
+
+        // <Modal>
+        //   {/show/.test(modalStatus) && (
+        //     <Icons.Close
+        //       extraClasses={`absolute m-2 top-0 right-0 w-6 h-6 border border rounded-md self-end cursor-pointer`}
+        //       stroke={`#000`}
+        //       onClick={() => setModalStatus('hide')}
+        //     />
+        //   )}
+        //   {/show/.test(modalStatus) && <Text tw={'bold'}>Оформить заказ</Text>}
+        //   <div>
+        //     <FeedBackForm onFulfilled={(a) => setModalStatus(a)} />
+        //   </div>
+        // </Modal>
       )}
     </>
   );

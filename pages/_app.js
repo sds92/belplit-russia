@@ -7,6 +7,7 @@ import Head from 'next/head';
 import '../styles/tailwind.css';
 
 function MyApp({ Component, pageProps, size }) {
+  
   return (
     <SizeMe>
       {({ size }) => {

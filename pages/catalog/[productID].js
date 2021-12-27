@@ -16,7 +16,7 @@ export default function Product(props) {
           <meta name={item.name} content={item.content} key={`METAMAIN${index}`} />
         ))}
       </Head>
-      <ProductCardLG product={product} />;
+      <ProductCardLG product={product} />
     </div>
   );
 }
