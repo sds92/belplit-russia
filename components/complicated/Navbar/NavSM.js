@@ -25,9 +25,9 @@ export default function NavSM() {
       }
     >
       {menu.map(({ show, activeLink, title, items, name }, index) => (
-        <>
+        <React.Fragment key={`NAVSM${index}`}>
           {show && activeLink && (
-            <MenuItem key={`NAVSM${index}`} className={`menuItem`}>
+            <MenuItem key={`MenuItem${index}`} className={`menuItem`}>
               <Link href={`/${name}`}>
                 <a className='menuItemTitle w-full'>{title}</a>
               </Link>
@@ -48,7 +48,7 @@ export default function NavSM() {
               )}
             </>
           )}
-        </>
+        </React.Fragment>
       ))}
       <hr />
       <MenuItem>
