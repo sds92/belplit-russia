@@ -10,6 +10,12 @@
   user styles
  */
 
+.max-h-user {
+  max-height: 1000px;
+}
+.min-w-logo {
+  width: 300px;
+}
 .mt-100 {
   margin-top: 110%;
 }

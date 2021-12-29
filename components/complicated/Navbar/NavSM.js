@@ -18,8 +18,8 @@ export default function NavSM() {
       menuButton={
         <MenuButton>
           <Icons.Menu
-            stroke={'#5d5e75'}
-            extraClasses={`w-10 h-10 cursor-pointer active:border rounded-md transition-all`}
+            
+            extraClasses={`w-10 h-10 cursor-pointer active:border rounded-md transition-all text-belplit`}
           />
         </MenuButton>
       }

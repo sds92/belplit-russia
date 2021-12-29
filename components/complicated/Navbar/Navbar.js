@@ -3,6 +3,7 @@ import React from 'react';
 // components
 import NavSM from './NavSM';
 import NavLG from './NavLG';
+import { app } from '../../../configs/app';
 
 function Navbar(props) {
   const { lgView, children } = props;
@@ -29,7 +30,7 @@ function Navbar(props) {
   });
 
   return (
-    <div className={`p-1 ${!lgView ? `flex justify-between items-center` : ``}`}>
+    <div className={` ${!lgView ? `flex justify-between items-center` : ``}`}>
       {lgView ? <NavLG /> : <NavSM />}
       {scrolled && lgView && (
         <div className={`fixed top-0 w-full bg-slate-100 ${opacity ? 'bg-opacity-95' : ''} border-0 -ml-1`}>
@@ -37,7 +38,8 @@ function Navbar(props) {
         </div>
       )}
       {scrolled && !lgView && (
-        <div className={`fixed top-0 w-full`}>
+        <div className={`fixed top-1 left-1 w-10 h-10 rounded-md bg-slate-100 bg-opacity-60 shadow-xl`}>
+          
           <NavSM />
         </div>
       )}

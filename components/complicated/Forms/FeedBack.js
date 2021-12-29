@@ -103,16 +103,16 @@ export default function FeedBack(props) {
 
   return (
     <div>
-      {formStatus === 'show' && (
-        <form>
-          <div className={`flex flex-col w-full relative items-center justify-center`}>
-            <div className={`flex flex-col sm:flex-row w-full relative items-center justify-center`}>
+      <form className={`max-w-xl w-full mx-auto`}>
+        {formStatus === 'show' && (
+          <div className={`flex flex-col w-full relative items-center justify-center max-w-xl`}>
+            <div className={`flex flex-col sm:flex-row sm:gap-2 w-full relative items-center justify-center`}>
               <div className={`w-full flex sm:max-w-md relative`}>
                 {checkFormStatus[0] && (
                   <p className={`form-text-alert text-red-600 absolute right-4 top-2`}>3 - 50 символов</p>
                 )}
                 <input
-                  className={`w-full px-2 mx-2 sm:mr-2 my-2 pt-2 border-b ${
+                  className={`w-full px-2 my-2 pt-2 border-b ${
                     checkFormStatus[0] ? `rounded-md border border-red-600` : ``
                   }`}
                   required
@@ -126,13 +126,13 @@ export default function FeedBack(props) {
                   }
                 />
               </div>
+
               <div className={`w-full flex sm:max-w-md relative`}>
                 {checkFormStatus[1] && (
                   <p className={`form-text-alert text-red-600 absolute right-4 top-2`}>Не верный номер</p>
                 )}
-
                 <input
-                  className={`w-full px-2 mx-2 sm:ml-2 my-2 border-b pt-2 ${
+                  className={`w-full px-2 my-2 border-b pt-2 ${
                     checkFormStatus[1] ? `rounded-md border border-red-600` : ``
                   }`}
                   required
@@ -147,37 +147,37 @@ export default function FeedBack(props) {
                 />
               </div>
             </div>
-            <div className={`relative w-full flex items-center justify-center px-2`}>
-              <div className={`max-w-4xl w-full relative`}>
-                {checkFormStatus[2] && (
-                  <p className={`form-text-alert text-red-600 right-4 top-0`}>3 - 500 символов</p>
-                )}
-                <textarea
-                  className={`border rounded-md w-full px-2 max-w-4xl ${
-                    checkFormStatus[2] ? `border border-red-600` : ``
-                  }`}
-                  required
-                  id='FeedBackFormBody'
-                  placeholder='Сообщение'
-                  rows={4}
-                  value={formState.body}
-                  onChange={(e) =>
-                    setFormState((state) => {
-                      return { ...state, body: e.target.value };
-                    })
-                  }
-                />
-              </div>
+
+            <div className={`w-full relative`}>
+              {checkFormStatus[2] && (
+                <p className={`form-text-alert text-red-600 right-4 top-0`}>3 - 500 символов</p>
+              )}
+              <textarea
+                className={`border rounded-md w-full px-2 ${
+                  checkFormStatus[2] ? `border border-red-600` : ``
+                }`}
+                required
+                id='FeedBackFormBody'
+                placeholder='Сообщение'
+                rows={4}
+                value={formState.body}
+                onChange={(e) =>
+                  setFormState((state) => {
+                    return { ...state, body: e.target.value };
+                  })
+                }
+              />
             </div>
-            <div className={`flex flex-col sm:flex-row w-full relative items-center justify-center`}>
-              <div className={`w-full flex sm:max-w-md relative`}>
+
+            <div className={`gap-2 flex flex-col sm:flex-row w-full relative items-center justify-between`}>
+              <div className={`w-full flex relative`}>
                 {checkFormStatus[3] && (
                   <p className={`form-text-alert text-red-600 absolute right-4 top-2`}>
                     Введите корректный email
                   </p>
                 )}
                 <input
-                  className={`border-b w-full pt-2 px-2 mx-2 my-2 sm:max-w-md ${
+                  className={`border-b w-full pt-2 px-2 my-2 sm:max-w-md ${
                     checkFormStatus[3] ? `rounded-md border border-red-600` : ``
                   }`}
                   required
@@ -191,24 +191,18 @@ export default function FeedBack(props) {
                   }
                 />
               </div>
-              <Text
-                my={2}
-                py={2}
-                px={2}
-                mx={2}
-                ta={'center'}
-                tc={'slate-100'}
-                extraClasses={`bg-belplit rounded-md cursor-pointer sm:max-w-md sm:w-1/2`}
+              <div
                 onClick={sendForm}
+                className={`bg-belplit text-center text-slate-100 rounded-md cursor-pointer px-4 py-2 w-full`}
               >
                 Отправить
-              </Text>
+              </div>
             </div>
           </div>
-        </form>
-      )}
-      {formStatus === 'pending' && <Text>Отправка запроса</Text>}
-      {formStatus === 'complete' && <Text>Запрос успешно отправлен. Спасибо за обращение!</Text>}
+        )}
+        {formStatus === 'pending' && <p className={`text-center py-10`}>Отправка запроса</p>}
+        {formStatus === 'complete' && <p className={`text-center py-10`}>Запрос успешно отправлен. Спасибо за обращение!</p>}
+      </form>
     </div>
   );
 }

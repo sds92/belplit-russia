@@ -50,14 +50,14 @@ export default function Sertificates() {
   };
 
   return (
-    <div className={`flex flex-col`}>
+    <div className={`bg-slate-100`} style={{ minHeight: '540px' }}>
        <Head>
         <title>{head.title}</title>
         {head.meta.map((item, index) => (
           <meta name={item.name} content={item.content} key={`METAMAIN${index}`} />
         ))}
       </Head>
-      <Text ta={'center'} ts={'3xl'} tw={'bold'} my={4}>
+      <Text ta={'center'} ts={'3xl'} tw={'bold'} py={10}>
         {app.pages.info.sertificates.title}
       </Text>
       <div className={`flex flex-wrap justify-center mx-20`}>

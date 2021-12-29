@@ -23,7 +23,7 @@ function MyApp({ Component, pageProps, router }) {
             <Head>
               <script async='' src='https://cdn.jsdelivr.net/npm/yandex-metrica-watch/tag.js'></script>
             </Head>
-            <div className={`flex flex-col w-full min-h-screen justify-between`}>
+            <div className={`flex flex-col w-full min-h-screen overflow-hidden justify-between`}>
               <Header lgView={newProps.lgView} />
               <LazyMotion features={domAnimation}>
                 <AnimatePresence exitBeforeEnter>

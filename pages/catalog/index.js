@@ -19,7 +19,7 @@ export default function Catalog() {
       <Text ta={'center'} ts={'3xl'} tw={'bold'} py={10}>
         {app.pages.catalog.title}
       </Text>
-      <div className={`px-20 pb-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:px-40 gap-1`}>
+      <div className={`sm:px-20 pb-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:px-40 gap-1`}>
         {products.map((product, index) => (
           <ProductCardSM product={product} key={`P${index}`} />
         ))}

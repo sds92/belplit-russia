@@ -21,19 +21,18 @@ export default function Modal({
 
   return (
     <>
-      {/* <div className="fixed inset-0 flex items-center justify-center">
-        <button
-          type="button"
-          onClick={openModal}
-          className="px-4 py-2 text-sm font-medium text-white bg-black rounded-md bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
-        >
-          Open dialog
-        </button>
-      </div> */}
 
-      <Transition appear show={isOpen} as={Fragment}>
-        <Dialog as='div' className='fixed inset-0 z-10 overflow-y-auto' onClose={closeModal}>
-          <div className='min-h-screen px-4 text-center'>
+      <Transition
+        appear
+        show={isOpen}
+        as={Fragment}
+      >
+        <Dialog
+          as='div'
+          className={`fixed inset-0 h-screen z-10 overflow-y-auto bg-slate-500 bg-opacity-50`}
+          onClose={closeModal}
+        >
+          <div className='min-h-screen px-4 text-center '>
             <Transition.Child
               as={Fragment}
               enter='ease-out duration-300'

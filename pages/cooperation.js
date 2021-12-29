@@ -8,18 +8,20 @@ import meta from '../data/meta.json';
 export default function cooperation() {
   const head = meta.find((item) => item.pageName === 'cooperation').head;
   return (
-    <div>
+    <div className={`bg-slate-100`} style={{ minHeight: '540px' }}>
       <Head>
         <title>{head.title}</title>
         {head.meta.map((item, index) => (
           <meta name={item.name} content={item.content} key={`METAMAIN${index}`} />
         ))}
       </Head>
-      <Text ta={'center'} ts={'3xl'} tw={'bold'} my={'2'}>
+      
+      {/* BODY */}
+      <Text ta={'center'} ts={'3xl'} tw={'bold'} py={10}>
         {app.pages.cooperation.title}
       </Text>
 
-      <Text ta={'center'} py={'2'}>
+      <Text ta={'center'} py={'2'} mx={'auto'} extraClasses={`max-w-xl`}>
         {app.pages.cooperation.content[1]}
       </Text>
       <FeedBackForm />

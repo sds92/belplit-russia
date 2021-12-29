@@ -24,7 +24,7 @@ export default function MyDisclosure(props) {
                         </div>
                       </Disclosure.Button>
                       
-                        <Disclosure.Panel className={`${open ? 'min-h-full' : 'h-0'} transition-1 px-4 pt-4 pb-2 text-sm text-gray-500`}>
+                        <Disclosure.Panel className={`${open ? 'max-h-0' : 'max-h-96'} transition-all px-4 pt-4 pb-2 text-sm text-gray-500`}>
                           {item[0].map((item) => (
                             <p key={Math.random().toString(36)}>{`> ${item}`}</p>
                           ))}

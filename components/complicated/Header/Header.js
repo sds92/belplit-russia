@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 
 // etc
-import { Navbar } from '../';
+import { Navbar, Icons } from '../';
 import { Text } from '../../lib';
 import { app } from '../../../configs/app';
 
@@ -16,7 +16,7 @@ export default function Header(props) {
   const router = useRouter();
 
   return (
-    <header className={`bg-slate-50 shadow-md pb-2 z-50`}>
+    <header className={`bg-slate-50 shadow-md z-50`}>
       <div className={`flex ${lgView ? `justify-between` : `justify-center`}`}>
         {lgView && (
           <div className={`${lgView && `w-1/3 p-1 ml-2 mt-2`}`}>
@@ -28,19 +28,22 @@ export default function Header(props) {
             </Text>
           </div>
         )}
-        <div className={`cursor-pointer pt-3 mt-2`}>
+        <div className={`cursor-pointer pt-3 mt-2 h-full relative min-w-logo`}>
           <Image
             src={logo}
             alt={'belplit-logo'}
-            layout='fixed'
-            objectFit='cover'
+            layout='responsive'
+            objectFit='contain'
             onClick={() => router.push('/main')}
           />
         </div>
 
         {lgView && (
           <div className={`mr-2 mt-3 w-1/3 flex justify-end`}>
-            <a href='tel:88005337881'>{app.contacts.phone1}</a>
+            <div className={`flex items-center my-1`}>
+                  <Icons.Phone extraClasses={`w-6 text-belplit`} />
+                  <a href='tel:88005337881' className={``}>{app.contacts.phone1}</a>
+                </div>
           </div>
         )}
       </div>

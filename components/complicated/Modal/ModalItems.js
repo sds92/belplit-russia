@@ -9,8 +9,8 @@ const Header = ({ data }) => {
           <>
             &nbsp;{data.header}{' '}
             <Icons.Close
-              extraClasses={`absolute m-2 top-0 right-0 w-6 h-6 border border rounded-md self-end cursor-pointer`}
-              stroke={`#000`}
+              extraClasses={`absolute m-2 top-0 right-0 w-6 h-6 hover:scale-110 hover:text-red-700 transition-all transition-duration-1000 self-end cursor-pointer`}
+              
               onClick={() => data.setClose()}
             />
           </>
