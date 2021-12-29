@@ -1,0 +1,16 @@
+{
+  "/404": "pages/404.html",
+  "/_app": "pages/_app.js",
+  "/api/hello": "pages/api/hello.js",
+  "/api/sendform": "pages/api/sendform.js",
+  "/catalog/[productID]": "pages/catalog/[productID].js",
+  "/catalog": "pages/catalog.html",
+  "/contacts": "pages/contacts.html",
+  "/cooperation": "pages/cooperation.html",
+  "/": "pages/index.html",
+  "/info/objects": "pages/info/objects.html",
+  "/info/sertificates": "pages/info/sertificates.html",
+  "/main": "pages/main.html",
+  "/_error": "pages/_error.js",
+  "/_document": "pages/_document.js"
+}
