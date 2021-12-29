@@ -34,6 +34,7 @@ module.exports = {
     'text-xs',
     'p-0.5',
     'm-0.5',
+    'py-2',
 
     {
       pattern: /(mx|my|px|py|p|m)-(0|1|2|3|4|5|6)/,
@@ -61,6 +62,7 @@ module.exports = {
       '2xl': '1536px',
     },
     colors: ({ colors }) => ({
+      'footer': '#848484',
       'belplit': '#38a000',
       inherit: colors.inherit,
       current: colors.current,

@@ -57,13 +57,17 @@ input {
   min-height: 200px;
 }
 .product-card {
-  flex: 1 0 20%; /* explanation below */
+  flex: 0 0 15%; /* explanation below */
   margin: 10px;
-  min-width: 200px;
+  min-width: 100px;
 }
+
 .y-metrika {
   width: 88px;
   height: 31px;
+}
+.trans-menu-item {
+  transition: all 0.3s ease-in-out;
 }
 
 

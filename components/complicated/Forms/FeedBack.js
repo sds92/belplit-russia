@@ -66,7 +66,7 @@ export default function FeedBack(props) {
     }
     setFormStatus('pending');
     try {
-      props.onFulfilled('pending');
+      props.onFulfilled('loading');
     } catch (err) {}
 
     fetch('/api/sendform', {
@@ -92,12 +92,12 @@ export default function FeedBack(props) {
       })
       .then(() => {
         setFormStatus('complete');
+        try {
+          props.onFulfilled('success');
+        } catch (err) {}
         setTimeout(() => {
           setFormStatus('show');
-          try {
-            props.onFulfilled('hide');
-          } catch (err) {}
-        }, 3000);
+        }, 4000);
       });
   }
 

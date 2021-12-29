@@ -8,8 +8,8 @@ export default function Radio({ label = '<TITLE>', ...props }) {
   const onChange = props.onChange(selected) || undefined;
 
   return (
-    <div className='w-full px-4 py-2'>
-      <div className='w-full max-w-md mx-auto'>
+    <div className='px-4 py-2 w-full'>
+      <div className='w-full'>
         <RadioGroup value={selected} onChange={setSelected}>
           <RadioGroup.Label className='sr-only'>{label}</RadioGroup.Label>
           <div className='space-y-2'>
@@ -34,8 +34,7 @@ export default function Radio({ label = '<TITLE>', ...props }) {
                           >
                             <span>
                               {radioItem.bar}/{radioItem.square}
-                            </span>{' '}
-                            <span aria-hidden='true'>&middot;</span> <span>{radioItem.disk}</span>
+                            </span>
                           </RadioGroup.Description>
                         </div>
                       </div>

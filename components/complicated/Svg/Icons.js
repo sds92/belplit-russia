@@ -3,8 +3,6 @@ export const ChevronDown = ({ w = 6, h = 6, ...props }) => {
   return (
     <SVGImage
       viewBox='0 0 24 24'
-      w={w}
-      h={h}
       fill='none'
       stroke={props.stroke || 'currentColor'}
       xmlns='http://www.w3.org/2000/svg'
@@ -18,8 +16,6 @@ export const Menu = ({ w = 6, h = 6, ...props }) => {
   return (
     <SVGImage
       viewBox='0 0 24 24'
-      w={w}
-      h={h}
       fill='none'
       stroke={props.stroke || 'currentColor'}
       xmlns='http://www.w3.org/2000/svg'
@@ -44,7 +40,22 @@ export const Close = ({ w = 6, h = 6, ...props }) => {
   );
 };
 
+export const ChevronUp = ({ w = 6, h = 6, ...props }) => {
+  return (
+    <SVGImage
+      xmlns='http://www.w3.org/2000/svg'
+      fill='none'
+      viewBox='0 0 24 24'
+      stroke={props.stroke || 'currentColor'}
+      {...props}
+    >
+      <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M5 15l7-7 7 7' />
+    </SVGImage>
+  );
+};
+
 const Icons = {
+  ChevronUp,
   ChevronDown,
   Menu,
   Close,

@@ -202,7 +202,7 @@
         "Влагорегуляция."
       ]
     },
-    "files": { "techDesc": "instal-description.jpg", "avatarSM": "instal.jpg" }
+    "files": { "techDesc": "instal-description.jpg", "avatarSM": "instal.jpg", "product": "instal.jpg" }
   },
   {
     "id": 5,

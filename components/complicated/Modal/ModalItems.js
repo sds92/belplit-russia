@@ -1,9 +1,20 @@
 import React from 'react';
+import { Icons } from '../';
 
 const Header = ({ data }) => {
   return (
     <div className='w-96 '>
       <h2 className='flex items-center'>
+        {data.status === 'orderonopen' && (
+          <>
+            &nbsp;{data.header}{' '}
+            <Icons.Close
+              extraClasses={`absolute m-2 top-0 right-0 w-6 h-6 border border rounded-md self-end cursor-pointer`}
+              stroke={`#000`}
+              onClick={() => data.setClose()}
+            />
+          </>
+        )}
         {data.status === 'loading' && (
           <>
             <svg

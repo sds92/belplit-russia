@@ -5,7 +5,7 @@ import { app } from '../../../configs/app';
 
 export default function Footer(lgView) {
   return (
-    <footer className={`pt-2 ${lgView ? `bg-slate-500` : ``}`}>
+    <footer className={`pt-2 ${lgView ? `bg-zinc-800` : ``}`}>
       <div className={`flex flex-col w-full sm:flex-row h-full`}>
         <div className={`p-2 w-full flex sm:w-1/3 rounded-md overflow-hidden shadow-md sm:pl-2 sm:pb-2`}>
           <iframe
@@ -18,7 +18,7 @@ export default function Footer(lgView) {
           ></iframe>
         </div>
         <div className={`flex flex-col sm:w-2/3`}>
-          <div className={`flex w-full flex-col sm:justify-end md:flex-row bg-slate-500 p-2`}>
+          <div className={`flex w-full flex-col sm:justify-end md:flex-row p-2`}>
             <div className={`p-4`}>
               <p className={`text-slate-100 font-bold`}>{app.contacts.title}:</p>
               <div className={`bg-slate-100`} style={{ height: '1px' }} />

@@ -3,8 +3,18 @@ import React from 'react';
 import Image from 'next/image';
 
 // etc
-import { Icons, PopUp, Modal, ModalItems, Radio, FeedBack as FeedBackForm } from '../../complicated';
+import {
+  Icons,
+  PopUp,
+  Modal,
+  ModalItems,
+  Radio,
+  FeedBack as FeedBackForm,
+  Disclosure,
+  ProductList,
+} from '../../complicated';
 import { Text } from '../../lib';
+import { products } from '../../../configs/products';
 
 export default function ProductCardLG(props) {
   const {
@@ -15,12 +25,12 @@ export default function ProductCardLG(props) {
     desc: { consists, options, advantages, functions, installation, description },
   } = props.product;
   const [index, setIndex] = React.useState(0);
-  const [modalStatus, setModalStatus] = React.useState('hide');
+  const [modalOpen, setModalOpen] = React.useState(false);
   const [modalData, setModalData] = React.useState({
-    open: false,
-    status: 'loading',
-    description: ['Идет обработка запроса...'],
+    status: 'orderonopen',
+    header: ['Отправить запрос'],
   });
+
   const [isLoading, setIsLoading] = React.useState(false);
 
   const radioItems = sizes.map((item, i) => {
@@ -30,110 +40,99 @@ export default function ProductCardLG(props) {
   const [radioValue, setRadioValue] = React.useState(0);
 
   React.useEffect(() => {
-    setIndex(radioValue)
-    console.log("🚀 ~ file: ProductCardLG.js ~ line 34 ~ React.useEffect ~ radioValue", radioValue)
-    return
+    setIndex(radioValue);
+    return;
   }, [radioValue]);
+
+  React.useEffect(() => {
+    if (modalData.status === 'success') {
+      setTimeout(() => {
+        setModalOpen(false, setModalData({ status: 'orderonopen', header: ['Отправить запрос'] }));
+      }, 3000);
+    }
+    return;
+  }, [modalData]);
 
   return (
     <>
-      <div className={`w-full max-w-6xl mx-auto relative flex-col items-center justify-center pt-4`}>
-        <Text ta={'center'} ts={'3xl'} tc={'belplit'}>
-          {title}
-        </Text>
-
-        <div className={`rounded-md`}>
-          <div className={`flex flex-col md:flex-row flex-wrap items-center justify-center`}>
-            <div className={`relative w-80 h-80`}>
-              <Image
-                src={`/images/products/lg/${files.product}`}
-                alt={title}
-                layout='fill'
-                objectFit='contain'
-              />
-            </div>
-            <div className={`md:w-1/3`}>
-              <p className={`ml-2 p-2 font-bold`}>Размеры:</p>
+      <Text ta={'center'} ts={'3xl'} tc={'belplit'} py={10}>
+        {title}
+      </Text>
+      <div className={`w-full max-w-6xl mx-auto relative flex-col items-center justify-center`}>
+        <div className={`flex flex-col lg:grid lg:grid-cols-3`}>
+          <div className={`relative rounded-md overflow-hidden m-4 h-96`}>
+            <Image
+              src={`/images/products/lg/${files.product}`}
+              alt={title}
+              // height={200}
+              // width={300}
+              layout='fill'
+              objectFit='contain'
+            />
+          </div>
+          <div className={``}>
+            <div className={`rounded-md shadow-md m-4 py-2 bg-slate-100`}>
+              <p className={`ml-2 pt-2 px-2 font-bold text-lg`}>Размеры:</p>
               <Radio radioItems={radioItems} onChange={setRadioValue} />
-              <p className={`ml-2 p-2 font-bold`}>Цена:</p>
-              <div className={`flex gap-1 pl-4 whitespace-nowrap`}>
-                <p className={``}>плита:</p>
+            </div>
+            <div className={`rounded-md shadow-md m-4 py-2 px-4 bg-slate-100`}>
+              <p className={`py-2 font-bold text-lg`}>Цена:</p>
+              <div className={`flex px-4 gap-1 whitespace-nowrap py-2 bg-white rounded-md shadow-md`}>
+                <p className={`text-gray-500`}>плита:</p>
                 <p className={`font-bold`}>{prices.bar[index]}</p>
-                <p>руб. /</p>
-                <p>кв.м:</p>
+                <p className={`text-gray-500`}>руб. /</p>
+                <p className={`text-gray-500`}>кв.м:</p>
                 <p className={'font-bold'}>{prices.square[index]}</p>
-                <p>руб.</p>
+                <p className={`text-gray-500`}>руб.</p>
               </div>
-              <Text
-                mx={'2'}
-                px={2}
-                py={2}
-                my={2}
-                ta={'center'}
-                tc={'white'}
-                tw={'bold'}
-                extraClasses={`bg-belplit rounded-md max-w-xs cursor-pointer active:bg-belplit hover:text-slate-200 hover:bg-belplit`}
-                onClick={() => setModalStatus('show')}
+              <div
+                className={`bg-belplit my-2 rounded-md text-center text-slate-200 py-2 cursor-pointer hover:bg-opacity-75 hover:text-slate-200`}
+                onClick={() => setModalOpen(true)}
               >
                 Купить
-              </Text>
+              </div>
             </div>
-            <div className={`w-full h-0.5 bg-belplit`}></div>
-            <div className={`w-full md:w-1/3 pt-4`}>
-              {[
+          </div>
+          <div className={`m-4 py-2`}>
+            <p className={`ml-2 pt-2 px-2 font-bold text-lg`}>Продукция:</p>
+            <ProductList listItems={products.map((item) => ({ id: item.id, title: item.title }))} />
+          </div>
+          <div className={`col-span-2 py-2 m-4 bg-slate-100 rounded-md shadow-md`}>
+            <Disclosure
+              data={[
                 [description, 'Описание'],
                 [consists, 'Состав'],
                 [options, 'Область применения'],
                 [advantages, 'Преимущества'],
                 [functions, 'Функции'],
                 [installation, 'Монтаж'],
-              ].map((item, index) => {
-                if (item[0]?.[0]) return <PopUp title={item[1]} arr={item[0]} key={`POPUP${index}`} />;
-              })}
-            </div>
-            <div className={`relative w-full md:w-2/3`}>
+              ]}
+            />
+          </div>
+          <div className={`col-span-2 rounded-md shadow-md py-2 w-full bg-white`}>
+            <div className={`relative`} style={{ height: '567px' }}>
               <Image
                 src={`/images/products/techDesc/${files.techDesc}`}
                 alt={title}
-                width={2000}
-                height={1598}
-                layout='responsive'
+                width={702}
+                height={567}
+                layout='fill'
                 objectFit='contain'
               />
             </div>
           </div>
         </div>
       </div>
-      {/show|pending/.test(modalStatus) && (
-        <Modal
-          data={modalData}
-          setOpen={setModalData}
-          header={
-            <ModalItems.Header
-              data={{ isLoading, status: modalData.status, description: modalData.description }}
-            />
-          }
-          body={
-            <ModalItems.Body
-              data={{ isLoading, status: modalData.status, description: modalData.description }}
-            />
-          }
-        />
-
-        // <Modal>
-        //   {/show/.test(modalStatus) && (
-        //     <Icons.Close
-        //       extraClasses={`absolute m-2 top-0 right-0 w-6 h-6 border border rounded-md self-end cursor-pointer`}
-        //       stroke={`#000`}
-        //       onClick={() => setModalStatus('hide')}
-        //     />
-        //   )}
-        //   {/show/.test(modalStatus) && <Text tw={'bold'}>Оформить заказ</Text>}
-        //   <div>
-        //     <FeedBackForm onFulfilled={(a) => setModalStatus(a)} />
-        //   </div>
-        // </Modal>
-      )}
+      <Modal
+        setOpen={modalOpen}
+        setClose={() => setModalOpen(false)}
+        header={
+          <ModalItems.Header
+            data={{ status: modalData.status, header: modalData.header, setClose: () => setModalOpen(false) }}
+          />
+        }
+        body={<FeedBackForm onFulfilled={(a) => setModalData({ status: a, header: modalData.header })} />}
+      />
     </>
   );
 }
