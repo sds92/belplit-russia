@@ -1,11 +1,12 @@
 import React from 'react';
 import Head from 'next/head';
-// import Image from 'next/image';
+import Image from 'next/image';
 import ImageViewer from 'react-simple-image-viewer';
 
 import { Text } from '../../components/lib';
 import { app } from '../../configs/app';
 import meta from '../../data/meta.json';
+import backgroundImage from '../../public/images/backgraund-description.jpg';
 
 // import sert1sm from '../../public/images/sertificates/1sm.jpg';
 // import sert2sm from '../../public/images/sertificates/2sm.jpg';
@@ -57,13 +58,23 @@ export default function Sertificates() {
           <meta name={item.name} content={item.content} key={`METAMAIN${index}`} />
         ))}
       </Head>
-      <Text ta={'center'} ts={'3xl'} tw={'bold'} py={10}>
-        {app.pages.info.sertificates.title}
-      </Text>
+      <div className={`relative h-56 `}>
+        <Image
+          src={backgroundImage}
+          alt={`backgroundImage`}
+          width={200}
+          height={150}
+          layout='fill'
+          objectFit='cover'
+        />
+        <Text ta={'center'} tc={`slate-100`} ts={'5xl'} tw={'bold'} py={20} extraClasses={`absolute inset-0`}>
+          {app.pages.info.sertificates.title}
+        </Text>
+      </div>
       <div className={`flex flex-wrap justify-center mx-20`}>
         {imagesSM.map((src, index) => (
           <div className={`m-5 shadow-xl cursor-pointer`} key={`SERTSM${index}`}>
-            <img src={src} onClick={() => openImageViewer(index)} alt='' />
+            <img src={src} onClick={() => openImageViewer(index)} alt={`Белтермо сертификат ${index}`} />
           </div>
         ))}
 

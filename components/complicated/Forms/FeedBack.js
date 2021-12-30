@@ -1,11 +1,9 @@
 import React from 'react';
-import FormControl from '@mui/material/FormControl';
-import { Box, TextField } from '@mui/material';
-
-import { Text } from '../../lib';
-import { app } from '../../../configs/app';
+import { useRouter } from 'next/router';
 
 export default function FeedBack(props) {
+  const router = useRouter();
+  console.log("🚀 ~ file: FeedBack.js ~ line 6 ~ FeedBack ~ router", router)
   const [formStatus, setFormStatus] = React.useState('show');
   const [formState, setFormState] = React.useState({
     clientName: '',
@@ -75,7 +73,7 @@ export default function FeedBack(props) {
         Accept: 'application/json, text/plain, */*',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(formState),
+      body: JSON.stringify({...formState, path: router.asPath}),
     })
       .then((res) => {
         if (res.ok) {

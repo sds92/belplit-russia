@@ -85,9 +85,7 @@ export const Phone = ({ w = 6, h = 6, ...props }) => {
     </SVGImage>
   );
 };
-<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-  
-</svg>
+
 export const Mail = ({ w = 6, h = 6, ...props }) => {
   return (
     <SVGImage

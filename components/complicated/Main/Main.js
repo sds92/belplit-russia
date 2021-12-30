@@ -2,14 +2,15 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import Fade from 'react-reveal/Fade';
+
 // etc
 import GridImages from './GridImages';
-import { Text } from '../../lib';
-import { app } from '../../../configs/app';
+import mainImage from '../../../public/images/mainpage/bg1.png';
 
 export default function Main() {
   return (
-    <div className={`flex flex-col overflow-hidden`}>
+    <div className={`flex flex-col overflow-hidden bg-slate-100`}>
       <div className={`relative w-full h-full overflow-hidden`}>
         <div className={`absolute`}>
           <p
@@ -46,35 +47,62 @@ export default function Main() {
             для всех типов домов
           </p>
         </div>
-        <img style={{ overflow: 'hidden', width: '100%' }} src={'/images/main.jpg'} alt={''} />
+        <img
+          style={{ overflow: 'hidden', width: '100%' }}
+          src={'/images/main.jpg'}
+          alt={`Белтермо главная`}
+        />
       </div>
 
       <div
-        className={`flex flex-col lg:flex-row rounded-md shadow-md overflow-hidden my-20 mx-4 bg-slate-200`}
+        className={`flex flex-col lg:flex-row rounded-md shadow-md overflow-hidden my-5 md:my-20 mx-4 bg-slate-200`}
       >
-        <div
-          className={`relative w-full lg:w-1/2 zero:h-44 lg:h-auto lg:max-h-user rounded-md order-last lg:order-first`}
-        >
-          <Image layout='fill' objectFit='cover' src={'/images/mainpage/bg1.png'} alt={''} />
-        </div>
+        <Fade ssrReveal left>
+          <div
+            className={`relative w-full lg:w-1/2 zero:h-44 lg:h-auto lg:max-h-user rounded-md order-last lg:order-first`}
+          >
+            <Image layout='fill' objectFit='cover' src={mainImage} alt={'МДВП БЕЛТЕРМО'} />
+          </div>
+        </Fade>
         <div className={`w-full lg:w-1/2 rounded-md sm:p-4`}>
-          <p className={'text-justify font-light sm:bg-white sm:border sm:border-belplit sm:rounded-lg p-8 text-sm'}>
+          <div
+            className={
+              ' font-light sm:bg-white sm:border sm:border-belplit md:border-0 sm:rounded-lg p-8 text-sm'
+            }
+          >
             <p className={`font-bold text-center text-xl sm:text-3xl py-2`}>
               МДВП <span className={`text-belplit`}>БЕЛТЕРМО</span>
             </p>
-            <span className={'font-bold'}>БЕЛТЕРМО</span> - это мягкие древесно-волокнистые плиты на{' '}
-            <span className={'font-bold'}>94%</span> состоящие из древесины хвойных пород. Предназначен для
-            создания эффективной ветрозащиты и экологически чистой звуко/теплоизоляции дома.
-            <br />
-            <span className={'font-bold'}>
-              ЗАЩИЩАЕТ ОТ ВЕТРА, ЗАЩИЩАЕТ ОТ ЖАРЫ, ЗАЩИШАЕТ ОТ ХОЛОДА, СОЗДАЕТ КОМФОРТНЫЙ МИКРОКЛИМАТ,
-              ЗНАЧИТЕЛЬНО СНИЖАЕТ ПРОНИКНОВЕНИЕ ШУМА, ЭКОЛОГИЧНОСТЬ, ОБЕСПЕЧИВАЕТ ПОЖАРНУЮ БЕЗОПАСНОСТЬ, ЛЕГКО
-              МОНТИРУЕТСЯ В ДОМЕ
-            </span>
-            , с применением материала БЕЛТЕРМО – стены «дышат», мансарда не перегревается, нет сквозняков, а
-            комнаты изолированы от шума. БЕЛТЕРМО – это материал для всех, кто заботится о здоровье и хочет
-            жить с комфортом!
-          </p>{' '}
+            <p className={`text-justify`}>
+              <span className={'font-bold text-belplit'}>БЕЛТЕРМО</span> - это мягкие древесно-волокнистые
+              плиты на <span className={'font-bold'}>94%</span> состоящие из древесины хвойных пород.
+              Предназначен для создания эффективной ветрозащиты и экологически чистой звуко/теплоизоляции
+              дома.
+            </p>
+            <p className={'font-bold pl-10'}>
+              ЗАЩИЩАЕТ ОТ ВЕТРА,
+              <br />
+              ЗАЩИЩАЕТ ОТ ЖАРЫ,
+              <br />
+              ЗАЩИШАЕТ ОТ ХОЛОДА,
+              <br />
+              СОЗДАЕТ КОМФОРТНЫЙ МИКРОКЛИМАТ,
+              <br />
+              ЗНАЧИТЕЛЬНО СНИЖАЕТ ПРОНИКНОВЕНИЕ ШУМА,
+              <br />
+              ЭКОЛОГИЧНЫЙ,
+              <br />
+              ОБЕСПЕЧИВАЕТ ПОЖАРНУЮ БЕЗОПАСНОСТЬ,
+              <br />
+              ЛЕГКО МОНТИРУЕТСЯ В ДОМЕ
+              <br />
+            </p>
+            <p className={`text-justify`}>
+              С применением материала <span className={'font-bold text-belplit'}> БЕЛТЕРМО</span> – стены
+              «дышат», мансарда не перегревается, нет сквозняков, а комнаты изолированы от шума. БЕЛТЕРМО –
+              это материал для всех, кто заботится о здоровье и хочет жить с комфортом!
+            </p>
+          </div>
         </div>
       </div>
 
@@ -90,7 +118,7 @@ export default function Main() {
       </div>
 
       <GridImages />
-      <p className={`text-left text-xl sm:text-3xl font-bold mt-20 mx-4`}>
+      <p className={`text-left text-xl sm:text-3xl font-bold md:mt-20 mt-5 mx-4`}>
         Преимущества <span style={{ color: '#38a000' }}>БЕЛТЕРМО</span>
       </p>
       <div className={`flex flex-col mx-4`}>

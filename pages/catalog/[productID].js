@@ -16,7 +16,9 @@ export default function Product(props) {
           <meta name={item.name} content={item.content} key={`METAMAIN${index}`} />
         ))}
       </Head>
-      <ProductCardLG product={product} />
+      <div className={`w-full bg-slate-100`}>
+        <ProductCardLG product={product} />
+      </div>
     </div>
   );
 }

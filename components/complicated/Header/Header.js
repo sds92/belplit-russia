@@ -28,7 +28,7 @@ export default function Header(props) {
             </Text>
           </div>
         )}
-        <div className={`cursor-pointer pt-3 mt-2 h-full relative min-w-logo`}>
+        <div className={`cursor-pointer ${lgView ? `pt-3` : `pb-3`} mt-2 h-full relative min-w-logo`}>
           <Image
             src={logo}
             alt={'belplit-logo'}
@@ -41,18 +41,23 @@ export default function Header(props) {
         {lgView && (
           <div className={`mr-2 mt-3 w-1/3 flex justify-end`}>
             <div className={`flex items-center my-1`}>
-                  <Icons.Phone extraClasses={`w-6 text-belplit`} />
-                  <a href='tel:88005337881' className={``}>{app.contacts.phone1}</a>
-                </div>
+              <Icons.Phone extraClasses={`w-6 h-6 text-belplit`} />
+              <a href={`tel:${app.contacts.phone1}`} className={``}>
+                {app.contacts.phone1}
+              </a>
+            </div>
           </div>
         )}
       </div>
       <div>
         <Navbar lgView={lgView}>
           {!lgView && (
-            <Text ta={'right'} extraClasses={`${lgView && `w-1/3`}`}>
-              {app.contacts.phone1}
-            </Text>
+            <div className={`flex items-center pt-1 my-1`}>
+              <Icons.Phone extraClasses={`w-6 h-6 text-belplit`} />
+              <a href={`tel:${app.contacts.phone1}`} className={``}>
+                {app.contacts.phone1}
+              </a>
+            </div>
           )}
         </Navbar>
       </div>

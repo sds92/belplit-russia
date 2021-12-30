@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { Transition } from '@headlessui/react';
 
 // react-menu
-import { Menu, MenuItem, MenuButton, SubMenu, useMenuState } from '@szhsin/react-menu';
+import { Menu, MenuItem, MenuButton, useMenuState } from '@szhsin/react-menu';
 import '@szhsin/react-menu/dist/index.css';
 
 import { Icons } from '../../complicated';
@@ -17,7 +17,6 @@ export default function NavLGItem(props) {
   const [openMenu, setOpenMenu] = React.useState(false);
   const [hover, setHover] = React.useState(false);
   const router = useRouter();
-  const { state, toggleMenu } = useMenuState();
   
   return (
     <div className={`relative`}>

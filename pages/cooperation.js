@@ -1,9 +1,13 @@
 import React from 'react';
 import Head from 'next/head';
+import Image from 'next/image';
+
 import { FeedBack as FeedBackForm } from '../components/complicated';
 import { Text } from '../components/lib';
 import { app } from '../configs/app';
 import meta from '../data/meta.json';
+import backgroundImage from '../public/images/backgraund-description.jpg';
+
 
 export default function cooperation() {
   const head = meta.find((item) => item.pageName === 'cooperation').head;
@@ -17,9 +21,19 @@ export default function cooperation() {
       </Head>
       
       {/* BODY */}
-      <Text ta={'center'} ts={'3xl'} tw={'bold'} py={10}>
-        {app.pages.cooperation.title}
-      </Text>
+      <div className={`relative h-56 `}>
+        <Image
+          src={backgroundImage}
+          alt={`backgroundImage`}
+          width={200}
+          height={150}
+          layout='fill'
+          objectFit='cover'
+        />
+        <Text ta={'center'} tc={`slate-100`} ts={'5xl'} tw={'bold'} py={20} extraClasses={`absolute inset-0`}>
+          {app.pages.cooperation.title}
+        </Text>
+      </div>
 
       <Text ta={'center'} py={'2'} mx={'auto'} extraClasses={`max-w-xl`}>
         {app.pages.cooperation.content[1]}

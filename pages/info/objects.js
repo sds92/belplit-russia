@@ -1,10 +1,13 @@
 import React from 'react';
 import Head from 'next/head';
+import Image from 'next/image';
 import ImageViewer from 'react-simple-image-viewer';
 
 import { Text } from '../../components/lib';
 import { app } from '../../configs/app';
 import meta from '../../data/meta.json';
+import backgroundImage from '../../public/images/backgraund-description.jpg';
+
 
 export default function Objects() {
   const head = meta.find((item) => item.pageName === 'objects').head;
@@ -85,14 +88,24 @@ export default function Objects() {
       </Head>
       
       {/* BODY */}
-      <Text ta={'center'} ts={'3xl'} tw={'bold'} py={10}>
-        {app.pages.info.objects.title}
-      </Text>
-      <p className={`bg-belplit text-center py-2 text-slate-100`}>МДВП Белтермо применяются в самых разных областях строительства, для самых разных целей.</p>
+      <div className={`relative h-56 `}>
+        <Image
+          src={backgroundImage}
+          alt={`backgroundImage`}
+          width={200}
+          height={150}
+          layout='fill'
+          objectFit='cover'
+        />
+        <Text ta={'center'} tc={`slate-100`} ts={'5xl'} tw={'bold'} py={20} extraClasses={`absolute inset-0`}>
+          {app.pages.info.objects.title}
+        </Text>
+      </div>
+      <p className={`bg-belplit text-center py-2 my-4 text-slate-100`}>МДВП Белтермо применяются в самых разных областях строительства, для самых разных целей.</p>
       <div className={`flex flex-wrap justify-center sm:mx-20`}>
         {imagesSM.map((src, index) => (
           <div className={`m-5 shadow-md cursor-pointer`} key={`SERTSM${index}`}>
-            <img src={src} onClick={() => openImageViewer(index)} alt='' />
+            <img src={src} onClick={() => openImageViewer(index)} alt={`Белтермо пример ${index}`} />
           </div>
         ))}
 
