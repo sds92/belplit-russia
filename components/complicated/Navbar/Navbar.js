@@ -33,7 +33,7 @@ function Navbar(props) {
     <div className={` ${!lgView ? `flex justify-between items-center` : ``}`}>
       {lgView ? <NavLG /> : <NavSM />}
       {scrolled && lgView && (
-        <div className={`fixed top-0 w-full bg-slate-100 ${opacity ? 'bg-opacity-95' : ''} border-0 -ml-1`}>
+        <div className={`fixed top-0 w-full bg-slate-100 ${opacity ? 'bg-opacity-95' : ''} border-0 `}>
           <NavLG />
         </div>
       )}

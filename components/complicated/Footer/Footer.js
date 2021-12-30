@@ -27,8 +27,8 @@ export default function Footer(lgView) {
               <p className={`text-slate-100 font-bold`}>{app.contacts.title}:</p>
 
               <div className={`bg-slate-100`} style={{ height: '1px' }} />
-              <div className={`flex`}>
-                <Icons.Location extraClasses={`w-6 text-belplit`} />
+              <div className={`flex items-center`}>
+                <Icons.Location extraClasses={`w-6 h-6 text-belplit`} />
                 <div>
                   <p className={`text-slate-100 text-sm`}>{app.contacts.address1.title}</p>
                   <p className={`text-slate-100 text-xs`}>{app.contacts.address1.value}</p>
@@ -36,8 +36,8 @@ export default function Footer(lgView) {
               </div>
 
               <br />
-              <div className={`flex`}>
-                <Icons.Location extraClasses={`w-6 text-belplit`} />
+              <div className={`flex items-center`}>
+                <Icons.Location extraClasses={`w-6 h-6 text-belplit`} />
                 <div>
                   <p className={`text-slate-100 text-sm`}>{app.contacts.address2.title}</p>
                   <p className={`text-slate-100 text-xs`}>{app.contacts.address2.value}</p>
@@ -45,8 +45,8 @@ export default function Footer(lgView) {
               </div>
 
               <br />
-              <div className={`flex`}>
-                <Icons.Location extraClasses={`w-6 text-belplit`} />
+              <div className={`flex items-center`}>
+                <Icons.Location extraClasses={`w-6 h-6 text-belplit`} />
                 <div>
                   <p className={`text-slate-100 text-sm`}>{app.contacts.address3.title}</p>
                   <p className={`text-slate-100 text-xs`}>{app.contacts.address3.value}</p>
@@ -54,16 +54,16 @@ export default function Footer(lgView) {
               </div>
 
               <div className={`bg-slate-100 my-1`} style={{ height: '1px' }} />
-                <div className={`flex my-1`}>
-                  <Icons.Phone extraClasses={`w-6 text-belplit`} />
-                  <a href='tel:88005337881' className={`text-slate-100`}>{app.contacts.phone1}</a>
+                <div className={`flex items-center my-1`}>
+                  <Icons.Phone extraClasses={`w-6 h-6 text-belplit`} />
+                  <a href={`tel:${app.contacts.phone1}`} className={`text-slate-100`}>{app.contacts.phone1}</a>
                 </div>
-                <div className={`flex my-1`}>
-                  <Icons.Phone extraClasses={`w-6 text-belplit`} />
-                  <a href='tel:88005337881' className={`text-slate-100`}>{app.contacts.phone2}</a>
+                <div className={`flex items-center my-1`}>
+                  <Icons.Phone extraClasses={`w-6 h-6 text-belplit`} />
+                  <a href={`tel:${app.contacts.phone2}`} className={`text-slate-100`}>{app.contacts.phone2}</a>
                 </div>
-                <div className={`flex my-1`}>
-                  <Icons.Mail extraClasses={`w-6 text-belplit`} />
+                <div className={`flex items-center my-1`}>
+                  <Icons.Mail extraClasses={`w-6 h-6 text-belplit`} />
                   <a href='mailto:belplit-russia@mail.ru' className={`text-slate-100`}>{app.contacts.email}</a>
                 </div>
               
@@ -72,8 +72,8 @@ export default function Footer(lgView) {
             <div className={`p-4 flex flex-col`}>
               <p className={`text-slate-100 font-bold`}>{app.workingHoars.title}:</p>
               <div className={`bg-slate-100`} style={{ height: '1px' }} />
-              <div className={`flex`}>
-                <Icons.Clock extraClasses={`w-6 text-belplit`} />
+              <div className={`flex items-center`}>
+                <Icons.Clock extraClasses={`w-6 h-6 text-belplit`} />
                 <p className={`my-1 pt-0.5 pl-1 text-slate-100 text-sm`}>{app.workingHoars.value}</p>
               </div>
             </div>

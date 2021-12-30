@@ -18,7 +18,6 @@ export default function NavSM() {
       menuButton={
         <MenuButton>
           <Icons.Menu
-            
             extraClasses={`w-10 h-10 cursor-pointer active:border rounded-md transition-all text-belplit`}
           />
         </MenuButton>
@@ -52,13 +51,19 @@ export default function NavSM() {
       ))}
       <hr />
       <MenuItem>
-        <div>
-          <a href='tel:88005337881'>{app.contacts.phone1}</a>
+      <div className={`flex my-1`}>
+          <Icons.Phone extraClasses={`w-6 h-6 text-belplit`} />
+          <a href={`tel:${app.contacts.phone1}`} className={`text-belplit`}>
+            {app.contacts.phone1}
+          </a>
         </div>
       </MenuItem>
       <MenuItem>
-        <div>
-          <a href='tel:88005337881'>{app.contacts.phone2}</a>
+        <div className={`flex my-1`}>
+          <Icons.Phone extraClasses={`w-6 h-6 text-belplit`} />
+          <a href={`tel:${app.contacts.phone2}`} className={`text-belplit`}>
+            {app.contacts.phone2}
+          </a>
         </div>
       </MenuItem>
       <hr />

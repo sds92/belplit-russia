@@ -1,9 +1,4 @@
 import React from 'react';
-import FormControl from '@mui/material/FormControl';
-import { Box, TextField } from '@mui/material';
-
-import { Text } from '../../lib';
-import { app } from '../../../configs/app';
 
 export default function FeedBack(props) {
   const [formStatus, setFormStatus] = React.useState('show');

@@ -12,3 +12,4 @@ export { default as ModalItems } from './Modal/ModalItems';
 export { default as Radio } from './Radio/Radio';
 export { default as Disclosure } from './Disclosure/Disclosure';
 export { default as ProductList } from './ProductList/ProductList';
+export { default as LazyShow } from './LazyShow/LazyShow';

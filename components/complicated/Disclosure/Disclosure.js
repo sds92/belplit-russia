@@ -1,4 +1,4 @@
-import { Disclosure, Transition } from '@headlessui/react';
+import { Disclosure } from '@headlessui/react';
 import { Icons } from '../';
 
 export default function MyDisclosure(props) {
