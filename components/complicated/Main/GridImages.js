@@ -1,9 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import Fade from 'react-reveal/Fade';
-import ScrollAnimation from 'react-animate-on-scroll';
-import { LazyShow } from '../';
 
 export default function GridImages() {
   const [hover, setHover] = React.useState(false);

@@ -1,7 +1,6 @@
 // react
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
-import { Fragment, useState } from 'react';
 
 export default function Modal({
   body = React.createElement('div', {}, '<BODY>'),
@@ -9,7 +8,6 @@ export default function Modal({
   ...props
 }) {
   const isOpen = props.setOpen;
-  // let [isOpen, setIsOpen] = useState(props.setOpen);
 
   function closeModal() {
     props.setClose();

@@ -8,7 +8,6 @@ import '@szhsin/react-menu/dist/index.css';
 
 // etc
 import { Icons } from '../';
-import { Text } from '../../lib';
 import { menu } from '../../../configs/menu';
 import { app } from '../../../configs/app';
 

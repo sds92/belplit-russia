@@ -3,7 +3,6 @@ import React from 'react';
 // components
 import NavSM from './NavSM';
 import NavLG from './NavLG';
-import { app } from '../../../configs/app';
 
 function Navbar(props) {
   const { lgView, children } = props;

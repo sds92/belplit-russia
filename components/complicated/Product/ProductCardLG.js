@@ -4,13 +4,11 @@ import Image from 'next/image';
 
 // etc
 import {
-  Icons,
   PopUp,
   Modal,
   ModalItems,
   Radio,
   FeedBack as FeedBackForm,
-  Disclosure,
   ProductList,
 } from '../../complicated';
 import { Text } from '../../lib';

@@ -1,7 +1,6 @@
 // react
 import React from 'react';
 
-
 // etc
 import NavLGItem from './NavLGItem';
 import { menu } from '../../../configs/menu';
