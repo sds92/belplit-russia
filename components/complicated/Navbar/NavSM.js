@@ -9,7 +9,7 @@ import '@szhsin/react-menu/dist/index.css';
 // etc
 import { Icons } from '../';
 import { menu } from '../../../configs/menu';
-import { app } from '../../../configs/app';
+import app from '../../../data/app.json';
 
 export default function NavSM() {
   return (
@@ -50,18 +50,18 @@ export default function NavSM() {
       ))}
       <hr />
       <MenuItem>
-      <div className={`flex my-1`}>
+        <div className={`flex my-1`}>
           <Icons.Phone extraClasses={`w-6 h-6 text-belplit`} />
-          <a href={`tel:${app.contacts.phone1}`} className={`text-belplit`}>
-            {app.contacts.phone1}
+          <a href={`tel:${app.contacts.phones[0]}`} className={`text-belplit`}>
+            {app.contacts.phones[0]}
           </a>
         </div>
       </MenuItem>
       <MenuItem>
         <div className={`flex my-1`}>
           <Icons.Phone extraClasses={`w-6 h-6 text-belplit`} />
-          <a href={`tel:${app.contacts.phone2}`} className={`text-belplit`}>
-            {app.contacts.phone2}
+          <a href={`tel:${app.contacts.phones[1]}`} className={`text-belplit`}>
+            {app.contacts.phones[1]}
           </a>
         </div>
       </MenuItem>

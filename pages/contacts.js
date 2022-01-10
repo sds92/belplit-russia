@@ -1,23 +1,14 @@
 import React from 'react';
-import Head from 'next/head';
 import Image from 'next/image';
 
 import { Icons, FeedBack as FeedBackForm } from '../components/complicated';
 import { Text } from '../components/lib';
 import { app } from '../configs/app';
-import meta from '../data/meta.json';
 import backgroundImage from '../public/images/backgraund-description.jpg';
 
-export default function Contacts({ lgView }) {
-  const head = meta.find((item) => item.pageName === 'contacts').head;
+export default function Contacts({ lgView, input }) {
   return (
     <div className={`bg-slate-100`} style={{ minHeight: '540px' }}>
-      <Head>
-        <title>{head.title}</title>
-        {head.meta.map((item, index) => (
-          <meta name={item.name} content={item.content} key={`METAMAIN${index}`} />
-        ))}
-      </Head>
 
       {/* BODY */}
       <div className={`relative h-56 `}>
@@ -29,9 +20,7 @@ export default function Contacts({ lgView }) {
           layout='fill'
           objectFit='cover'
         />
-        <Text ta={'center'} tc={`slate-100`} ts={'5xl'} tw={'bold'} py={20} extraClasses={`absolute inset-0`}>
-          {app.contacts.title}
-        </Text>
+        <Text className={`absolute text-center text-slate-100 text-5xl font-bold pt-20 inset-0`}>{input.title}</Text>
       </div>
       <div className={`flex flex-col w-full`}>
         <div className={`w-full flex flex-col sm:flex-row sm:gap-2 my-2 `}>

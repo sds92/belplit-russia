@@ -6,16 +6,9 @@ import { products } from '../../configs/products';
 import meta from '../../data/meta.json';
 
 export default function Product(props) {
-  const { product } = props;
-  const head = meta.find((item) => item.pageName === `catalog/${product.id}`).head;
+  const { product, input } = props;
   return (
     <div>
-      <Head>
-        <title>{head.title}</title>
-        {head.meta.map((item, index) => (
-          <meta name={item.name} content={item.content} key={`METAMAIN${index}`} />
-        ))}
-      </Head>
       <div className={`w-full bg-slate-100`}>
         <ProductCardLG product={product} />
       </div>

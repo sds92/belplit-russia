@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import Fade from 'react-reveal/Fade';
 
-export default function GridImages() {
+export default function ImgGrid() {
   const [hover, setHover] = React.useState(false);
   const imagesSM = [
     {

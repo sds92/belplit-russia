@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 
 // etc
-import { Navbar, Icons } from '../';
+import { Navbar, Icons, Logo } from '../';
 import { Text } from '../../lib';
 import { app } from '../../../configs/app';
 
@@ -28,14 +28,16 @@ export default function Header(props) {
             </Text>
           </div>
         )}
-        <div className={`cursor-pointer ${lgView ? `pt-3` : `pb-3`} mt-2 h-full relative min-w-logo`}>
-          <Image
+        <div className={`px-4 flex items-center cursor-pointer mt-2 h-full relative`}>
+          {/* <Image
             src={logo}
             alt={'belplit-logo'}
             layout='responsive'
             objectFit='contain'
             onClick={() => router.push('/main')}
-          />
+          /> */}
+          <Logo extraClasses={'logo'}/>
+          <p className={`text-5xl text-belplit font-bold`}>БЕЛПЛИТ</p>
         </div>
 
         {lgView && (

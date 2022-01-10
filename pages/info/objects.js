@@ -1,16 +1,13 @@
 import React from 'react';
-import Head from 'next/head';
 import Image from 'next/image';
 import ImageViewer from 'react-simple-image-viewer';
 
 import { Text } from '../../components/lib';
 import { app } from '../../configs/app';
-import meta from '../../data/meta.json';
 import backgroundImage from '../../public/images/backgraund-description.jpg';
 
 
-export default function Objects() {
-  const head = meta.find((item) => item.pageName === 'objects').head;
+export default function Objects({input}) {
   const [currentImage, setCurrentImage] = React.useState(0);
   const [isViewerOpen, setIsViewerOpen] = React.useState(false);
 
@@ -80,14 +77,6 @@ export default function Objects() {
 
   return (
     <div className={`bg-slate-100`} style={{ minHeight: '540px' }}>
-      <Head>
-        <title>{head.title}</title>
-        {head.meta.map((item, index) => (
-          <meta name={item.name} content={item.content} key={`METAMAIN${index}`} />
-        ))}
-      </Head>
-      
-      {/* BODY */}
       <div className={`relative h-56 `}>
         <Image
           src={backgroundImage}
@@ -97,9 +86,7 @@ export default function Objects() {
           layout='fill'
           objectFit='cover'
         />
-        <Text ta={'center'} tc={`slate-100`} ts={'5xl'} tw={'bold'} py={20} extraClasses={`absolute inset-0`}>
-          {app.pages.info.objects.title}
-        </Text>
+       <Text className={`absolute text-center text-slate-100 text-5xl font-bold pt-20 inset-0`}>{input.title}</Text>
       </div>
       <p className={`bg-belplit text-center py-2 my-4 text-slate-100`}>МДВП Белтермо применяются в самых разных областях строительства, для самых разных целей.</p>
       <div className={`flex flex-wrap justify-center sm:mx-20`}>

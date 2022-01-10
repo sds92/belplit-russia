@@ -35,7 +35,7 @@ module.exports = {
     'p-0.5',
     'm-0.5',
     'py-2',
-
+    'text-belplit', 
     {
       pattern: /(mx|my|px|py|p|m)-(0|1|2|3|4|5|6)/,
     },

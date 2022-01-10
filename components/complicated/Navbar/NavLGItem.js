@@ -42,7 +42,7 @@ export default function NavLGItem(props) {
                     <Icons.ChevronDown
                       stroke={stroke}
                       extraClasses={`
-                  ${!open ? `rotate-180` : ''}
+                  ${open ? `rotate-180` : ''}
                   w-6 h-6 cursor-pointer rounded-full transition-all`}
                     />
                   </div>

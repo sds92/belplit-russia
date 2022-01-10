@@ -8,7 +8,7 @@ import { products } from '../../configs/products';
 import meta from '../../data/meta.json';
 import backgroundImage from '../../public/images/backgraund-description.jpg';
 
-export default function Catalog() {
+export default function Catalog({input}) {
   const head = meta.find((item) => item.pageName === 'catalog').head;
   return (
     <div className={`bg-slate-100`}>
@@ -27,9 +27,7 @@ export default function Catalog() {
           layout='fill'
           objectFit='cover'
         />
-        <Text ta={'center'} tc={`slate-100`} ts={'5xl'} tw={'bold'} py={20} extraClasses={`absolute inset-0`}>
-          {app.pages.catalog.title}
-        </Text>
+        <Text className={`absolute text-center text-slate-100 text-5xl font-bold pt-20 inset-0`}>{input.title}</Text>
       </div>
       <div
         className={`sm:px-20 pb-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:px-40 gap-1`}
