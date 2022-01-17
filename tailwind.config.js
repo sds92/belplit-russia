@@ -2,8 +2,13 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 
 const fontFamily = defaultTheme.fontFamily;
 fontFamily['sans'] = [
-  'Roboto', // <-- Fira Sans is a default sans font now
-  'system-ui',
+  'Oswald',
+
+  // <-- you may provide more font fallbacks here
+];
+fontFamily['mono'] = [
+  'Roboto',
+
   // <-- you may provide more font fallbacks here
 ];
 
@@ -35,7 +40,7 @@ module.exports = {
     'p-0.5',
     'm-0.5',
     'py-2',
-    'text-belplit', 
+    'text-belplit',
     {
       pattern: /(mx|my|px|py|p|m)-(0|1|2|3|4|5|6)/,
     },
@@ -55,7 +60,7 @@ module.exports = {
 
   theme: {
     screens: {
-      'zero': '0px',
+      zero: '0px',
       sm: '640px',
       md: '768px',
       lg: '1024px',
@@ -63,8 +68,9 @@ module.exports = {
       '2xl': '1536px',
     },
     colors: ({ colors }) => ({
-      'footer': '#848484',
-      'belplit': '#38a000',
+      footer: '#848484',
+      belplit: '#38a000',
+      belplit_dark: '#2b7801',
       inherit: colors.inherit,
       current: colors.current,
       transparent: colors.transparent,

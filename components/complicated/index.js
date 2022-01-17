@@ -14,3 +14,4 @@ export { default as Disclosure } from './Disclosure/Disclosure';
 export { default as ProductList } from './ProductList/ProductList';
 export { default as Head } from './Head/Head';
 export { default as Logo } from './Svg/Logo';
+export { default as Social } from './Social/Social';

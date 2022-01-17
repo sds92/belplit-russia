@@ -19,11 +19,11 @@ export default function NavLGItem(props) {
   const router = useRouter();
   
   return (
-    <div className={`relative`}>
+    <div className={`relative mx-4`}>
       <div className={`flex hover:text-belplit`}>
         {show && activeLink && (
           <Link href={`/${name}`}>
-            <a>{title}</a>
+            <a>{title.toUpperCase()}</a>
           </Link>
         )}
         {items.filter((item) => item.show).length !== 0 && (
@@ -37,7 +37,7 @@ export default function NavLGItem(props) {
                     onMouseEnter={() => setStroke('#38a000')}
                     onMouseLeave={() => setStroke('#5d5e75')}
                   >
-                    {title}
+                    {title.toUpperCase()}
                     &nbsp;
                     <Icons.ChevronDown
                       stroke={stroke}
@@ -74,7 +74,7 @@ export default function NavLGItem(props) {
                   >
                     {'>'}
                   </span>
-                  &nbsp;{innerItem.title}
+                  &nbsp;{innerItem.title.toUpperCase()}
                 </MenuItem>
               ))}
             </Transition>
