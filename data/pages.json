@@ -319,5 +319,43 @@
         }
       ]
     }
+  },
+  {
+    "id": 15,
+    "path": "/404",
+    "title": "Страница не найдена",
+    "content": {},
+    "head": {
+      "title": "Белтермо",
+      "meta": [
+        {
+          "name": "keywords",
+          "content": ""
+        },
+        {
+          "name": "description",
+          "content": ""
+        }
+      ]
+    }
+  },
+  {
+    "id": 16,
+    "path": "/500",
+    "title": "Страница не найдена",
+    "content": {},
+    "head": {
+      "title": "Белтермо",
+      "meta": [
+        {
+          "name": "keywords",
+          "content": ""
+        },
+        {
+          "name": "description",
+          "content": ""
+        }
+      ]
+    }
   }
 ]
