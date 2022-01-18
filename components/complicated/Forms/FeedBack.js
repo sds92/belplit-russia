@@ -150,7 +150,7 @@ export default function FeedBack(props) {
             </div>
 
             <div className={`w-full relative border rounded-md p-1 bg-white my-1 ${
-                  checkFormStatus[2] ? `border border-red-600` : ``
+                  checkFormStatus[2] ? `border border-red-600` : `border-belplit`
                 }`}>
               {checkFormStatus[2] && (
                 <p className={`form-text-alert text-red-600 right-2 top-0`}>3 - 500 символов</p>
