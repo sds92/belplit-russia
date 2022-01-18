@@ -148,12 +148,21 @@ const slideUp = {
     }
   };
   
-  export const animations = [
-    slideUp,
-    slideRight,
-    fadeBack,
-    rotateX,
-    rotateY,
-    rotateZ,
-    opacity
-  ];
+  // export const animations = [
+  //   slideUp,
+  //   slideRight,
+  //   fadeBack,
+  //   rotateX,
+  //   rotateY,
+  //   rotateZ,
+  //   opacity
+  // ];
+export const animations = {
+  slideUp,
+  slideRight,
+  fadeBack,
+  rotateX,
+  rotateY,
+  rotateZ,
+  opacity
+};

@@ -1,9 +1,9 @@
 import React from 'react';
 import { useRouter } from 'next/router';
+import { Button } from '../../lib';
 
 export default function FeedBack(props) {
   const router = useRouter();
-  console.log("🚀 ~ file: FeedBack.js ~ line 6 ~ FeedBack ~ router", router)
   const [formStatus, setFormStatus] = React.useState('show');
   const [formState, setFormState] = React.useState({
     clientName: '',
@@ -17,7 +17,13 @@ export default function FeedBack(props) {
     2: false,
     3: false,
   });
-
+  
+  const classes = {
+    inputWrapSm: (n) => `w-full sm:w-1/2 flex relative ${
+      checkFormStatus[n] ? `rounded-md border border-red-600` : `border border-belplit`
+    } rounded-md p-1 bg-white my-1`,
+    inputSm: `w-full px-2 pt-2 bg-white`
+  }
   function checkForm() {
     let res = false;
     let a = Promise.resolve(/^[а-я, А-Я, a-z, A-Z]{3,20}$/.test(formState.clientName));
@@ -101,18 +107,16 @@ export default function FeedBack(props) {
 
   return (
     <div>
-      <form className={`max-w-xl w-full mx-auto`}>
+      <form id={'feedback'} className={`w-full mx-auto`}>
         {formStatus === 'show' && (
-          <div className={`flex flex-col w-full relative items-center justify-center max-w-xl`}>
+          <div className={`flex flex-col w-full relative items-center justify-center`}>
             <div className={`flex flex-col sm:flex-row sm:gap-2 w-full relative items-center justify-center`}>
-              <div className={`w-full flex sm:max-w-md relative`}>
+              <div className={classes.inputWrapSm(0)}>
                 {checkFormStatus[0] && (
-                  <p className={`form-text-alert text-red-600 absolute right-4 top-2`}>3 - 50 символов</p>
+                  <p className={`form-text-alert text-red-600 absolute right-2 top-0`}>3 - 50 символов</p>
                 )}
                 <input
-                  className={`w-full px-2 my-2 pt-2 border-b ${
-                    checkFormStatus[0] ? `rounded-md border border-red-600` : ``
-                  }`}
+                  className={classes.inputSm}
                   required
                   id='FeedBackFormClientName'
                   placeholder='Имя'
@@ -125,18 +129,17 @@ export default function FeedBack(props) {
                 />
               </div>
 
-              <div className={`w-full flex sm:max-w-md relative`}>
+              <div className={classes.inputWrapSm(1)}>
                 {checkFormStatus[1] && (
                   <p className={`form-text-alert text-red-600 absolute right-4 top-2`}>Не верный номер</p>
                 )}
                 <input
-                  className={`w-full px-2 my-2 border-b pt-2 ${
-                    checkFormStatus[1] ? `rounded-md border border-red-600` : ``
-                  }`}
+                  className={classes.inputSm}
                   required
                   id='FeedBackFormClientPhone'
                   placeholder='Телефон'
                   value={formState.clientPhone}
+                  type="tel"
                   onChange={(e) =>
                     setFormState((state) => {
                       return { ...state, clientPhone: e.target.value };
@@ -146,14 +149,15 @@ export default function FeedBack(props) {
               </div>
             </div>
 
-            <div className={`w-full relative`}>
+            <div className={`w-full relative border rounded-md p-1 bg-white my-1 ${
+                  checkFormStatus[2] ? `border border-red-600` : ``
+                }`}>
               {checkFormStatus[2] && (
-                <p className={`form-text-alert text-red-600 right-4 top-0`}>3 - 500 символов</p>
+                <p className={`form-text-alert text-red-600 right-2 top-0`}>3 - 500 символов</p>
               )}
               <textarea
-                className={`border rounded-md w-full px-2 ${
-                  checkFormStatus[2] ? `border border-red-600` : ``
-                }`}
+              style={{resize: 'none'}}
+                className={`w-full px-2 `}
                 required
                 id='FeedBackFormBody'
                 placeholder='Сообщение'
@@ -168,16 +172,14 @@ export default function FeedBack(props) {
             </div>
 
             <div className={`gap-2 flex flex-col sm:flex-row w-full relative items-center justify-between`}>
-              <div className={`w-full flex relative`}>
+              <div className={classes.inputWrapSm(3)}>
                 {checkFormStatus[3] && (
-                  <p className={`form-text-alert text-red-600 absolute right-4 top-2`}>
+                  <p className={`form-text-alert text-red-600 absolute right-2 top-0`}>
                     Введите корректный email
                   </p>
                 )}
                 <input
-                  className={`border-b w-full pt-2 px-2 my-2 sm:max-w-md ${
-                    checkFormStatus[3] ? `rounded-md border border-red-600` : ``
-                  }`}
+                  className={`border-b w-full pt-2 px-2`}
                   required
                   id='FeedBackFormClientEmail'
                   placeholder='E-mail'
@@ -189,12 +191,12 @@ export default function FeedBack(props) {
                   }
                 />
               </div>
-              <div
+              <Button
                 onClick={sendForm}
-                className={`bg-belplit text-center text-slate-100 rounded-md cursor-pointer px-4 py-2 w-full`}
+                className={`bg-belplit text-center text-slate-100 rounded-md cursor-pointer px-4 py-2.5 w-full sm:w-1/2`}
               >
                 Отправить
-              </div>
+              </Button>
             </div>
           </div>
         )}

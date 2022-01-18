@@ -1,45 +1,78 @@
 import React from 'react';
-import { Text } from '../../../lib';
+import Link from 'next/link';
+import { Text, Button } from '../../../lib';
 
 export default function HeadBlock(props) {
   const { text, imgs } = props.input;
   return (
-    <div className={`relative w-full h-full overflow-hidden`}>
-      <div className={`absolute`}>
-        <Text
-          className={`font-bold 
-            text-3xl sm:text-6xl md:text-8xl
-            ml-10 mt-10 sm:ml-16 sm:mt-16 md:ml-20 md:mt-20`}
-          style={{ color: '#38a000' }}
+    <div className={`relative w-full overflow-hidden`} style={{ height: 'calc(100vh - 82px)' }}>
+      {/* <div className={`absolute`}> */}
+      <div className={`absolute inset-0 h-full`}>
+        <div
+          className={`relative`}
+          style={{
+            top: '50%',
+            transform: 'perspective(1px) translateY(-50%)',
+          }}
         >
-          {text.hb0}
-        </Text>
-        <Text
-          className={`
+          <Text
+            className={`
+          w-full text-center 
+          font-bold 
+          text-3xl sm:text-6xl md:text-8xl
+        
+        `}
+            style={{ color: '#38a000' }}
+          >
+            {text.hb0}
+          </Text>
+          {/* </div> */}
+          <Text
+            className={`
+            w-full text-center 
             leading-none sm:leading-none md:leading-none lg:leading-none  
             text-sm sm:text-xl md:text-3xl
             text-slate-100 
             font-bold 
-            ml-16 sm:ml-20 md:ml-28 
-            max-w-md
             `}
-        >
-          {text.hb1}
-        </Text>
-        <Text
-          className={`
+          >
+            {text.hb1}
+          </Text>
+          <Text
+            className={`
+            w-full text-center
             leading-none sm:leading-none md:leading-none 
             text-xs sm:text-md md:text-base lg:text-lg 
             text-slate-100 
             font-light md:font-normal
-            ml-16 sm:ml-20 md:ml-28 
-            max-w-md
             `}
-        >
-          {text.hb2}
-        </Text>
+          >
+            {text.hb2}
+          </Text>
+          <div
+            className={`
+            w-full
+            mx-auto text-center
+          `}
+          >
+            <Link href={`/catalog`} passHref>
+              <Button
+                className={`
+              mx-auto text-slate-100 border px-6 my-4 
+              rounded-md max-w-md
+              hover:text-belplit
+              hover:border-belplit
+              hover:scale-105
+              transition-all
+              `}
+              >
+                {'Каталог'}
+              </Button>
+            </Link>
+          </div>
+        </div>
       </div>
-      <img style={{ overflow: 'hidden', width: '100%' }} src={`${imgs[0][0]}`} alt={`${imgs[0][1]}`} />
+      <img style={{ overflow: 'hidden', height: '100%' }} src={`${imgs[0][0]}`} alt={`${imgs[0][1]}`} />
     </div>
   );
 }

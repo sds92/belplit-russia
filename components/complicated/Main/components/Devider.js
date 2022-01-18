@@ -8,8 +8,8 @@ import { Text } from '../../../lib';
 export default function Devider({input}) {
   return (
     <div className={`flex justify-between items-center mx-4 mt-4`}>
-      <p className={`text-left text-xl sm:text-3xl font-bold`}>
-        <Text>{input.text}</Text>
+      <p >
+        <Text className={`text-left text-6xl font-bold`}>{input.text}</Text>
       </p>
       {input.link && <Link href={input.link[0]}>
         <a

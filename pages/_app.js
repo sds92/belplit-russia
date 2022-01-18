@@ -59,13 +59,13 @@ function MyApp({ Component, pageProps }) {
         <LazyMotion features={domAnimation}>
           <AnimatePresence exitBeforeEnter>
             <m.div
-              key={router.route.concat(animations[6].name)}
+              key={router.route.concat(animations.opacity.name)}
               className='page-wrap'
               initial='initial'
               animate='animate'
               exit='exit'
-              variants={animations[6].variants}
-              transition={animations[6].transition}
+              variants={animations.opacity.variants}
+              transition={animations.opacity.transition}
             >
               <Component content={newProps.input.content} {...newProps} />
             </m.div>
