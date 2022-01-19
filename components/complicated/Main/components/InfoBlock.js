@@ -5,10 +5,10 @@ import Image from 'next/image';
 // animation
 import Fade from 'react-reveal/Fade';
 import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
 
 // etc
 import { Text } from '../../../lib';
+import { InfoSwitcher } from '.';
 import { animations } from '../../../../styles/animations';
 
 export default function InfoBlock(props) {
@@ -20,21 +20,21 @@ export default function InfoBlock(props) {
   return (
     <>
       {model === 0 && (
-        <div
-          className={`
+        <>
+          <div
+            className={`
           relative 
-          w-full mt-40 max-w-7xl
-          flex flex-col lg:flex-row 
-          bg-white rounded-md 
+          w-full mt-40 mx-auto
+          flex flex-col md:flex-row justify-center
+          bg-white
+          my-20
           `}
-          style={{ height: 'calc(100vh - 82px)' }}
-        >
-          <div className={`my-auto`}>
-            <div className={`max-w-7xl overflow-hidden rounded-md`}>
+          >
+            <div className={`overflow-hidden rounded-md`}>
               <img className={`transition-all main-page-img`} src={imgs[1][0]} alt={imgs[1][1]} />
             </div>
-            <div className={`absolute w-96 rounded-md right-0 -top-20`}>
-              <div className={'font-light text-zinc-800 sm:rounded-lg text-lg leading-5 tracking-normal' }>
+            <div className={`w-96 rounded-md -mt-20 -ml-32`}>
+              <div className={'font-light text-zinc-800 sm:rounded-lg text-lg leading-5 tracking-normal'}>
                 <Text className={`font-bold text-left text-7xl -ml-1 py-2`}>{text.ib0}</Text>
                 <Text className={`text-justify`}>{text.ib1}</Text>
                 <Text className={'font-bold pl-10 leading-6 py-1'}>{text.ib2}</Text>
@@ -42,7 +42,8 @@ export default function InfoBlock(props) {
               </div>
             </div>
           </div>
-        </div>
+          {/* <InfoSwitcher input={props.input} /> */}
+        </>
       )}
       {model === 1 && (
         <div className={`flex flex-col mx-4 w-96`}>

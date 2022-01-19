@@ -5,9 +5,16 @@ import { Text, Button } from '../../../lib';
 export default function HeadBlock(props) {
   const { text, imgs } = props.input;
   return (
-    <div className={`relative w-full overflow-hidden`} style={{ height: 'calc(100vh - 82px)' }}>
-      {/* <div className={`absolute`}> */}
-      <div className={`absolute inset-0 h-full`}>
+    <div
+      className={`relative w-full overflow-hidden`}
+      style={{
+        background: `no-repeat url(${imgs[0][0]})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        height: 'calc(100vh - 82px)',
+      }}
+    >
+      <div className={`absolute inset-0`}>
         <div
           className={`relative`}
           style={{
@@ -72,7 +79,6 @@ export default function HeadBlock(props) {
           </div>
         </div>
       </div>
-      <img style={{ overflow: 'hidden', height: '100%' }} src={`${imgs[0][0]}`} alt={`${imgs[0][1]}`} />
     </div>
   );
 }

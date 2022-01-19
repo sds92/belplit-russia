@@ -15,69 +15,81 @@ export default function ImgGrid(props) {
   const [hover, setHover] = React.useState(false);
   const imagesSM = [
     {
-      src: '/images/examples/1.jpg',
-      gridClasses: classes.gridItemLg,
-      imgClasses: classes.imgLg,
-      desc: `Внутренняя изоляция перекрытий под стяжку бесшовных полов (ламинат, паркетная доска)`,
-      fade: `left`,
-    },
-    {
       src: '/images/examples/2.jpg',
       gridClasses: classes.gridItemSm,
       imgClasses: classes.imgSm,
       desc: `Внутренняя изоляция стен`,
-      fade: `a`,
     },
     {
       src: '/images/examples/3.jpg',
       gridClasses: classes.gridItemLg,
       imgClasses: classes.imgLg,
       desc: `Тепло и шумоизоляция скатных кровель`,
-      fade: `a`,
     },
     {
       src: '/images/examples/4.jpg',
       gridClasses: classes.gridItemSm,
       imgClasses: classes.imgSm,
       desc: `Утепление зданий`,
-      fade: `right`,
+    },
+    {
+      src: '/images/examples/1.jpg',
+      gridClasses: classes.gridItemLg,
+      imgClasses: classes.imgLg,
+      desc: `Внутренняя изоляция перекрытий под стяжку бесшовных полов (ламинат, паркетная доска)`,
+      
     },
     {
       src: '/images/examples/5.jpg',
       gridClasses: classes.gridItemSm,
       imgClasses: classes.imgSm,
       desc: `Ветрозащита, утепление внешних стен`,
-      fade: ``,
     },
     {
       src: '/images/examples/6.jpg',
       gridClasses: classes.gridItemSm,
       imgClasses: classes.imgSm,
       desc: `Звукоизоляция потолка`,
-      fade: `right`,
+    },
+    {
+      src: '/images/examples/7.jpg',
+      gridClasses: classes.gridItemSm,
+      imgClasses: classes.imgSm,
+      desc: `Звукоизоляция потолка`,
+    {
+      src: '/images/examples/8.jpg',
+      gridClasses: classes.gridItemSm,
+      imgClasses: classes.imgSm,
+      desc: `Звукоизоляция потолка`,
+    {
+      src: '/images/examples/9.jpg',
+      gridClasses: classes.gridItemSm,
+      imgClasses: classes.imgSm,
+      desc: `Звукоизоляция потолка`,
+    },
+    {
+      src: '/images/examples/10.jpg',
+      gridClasses: classes.gridItemSm,
+      imgClasses: classes.imgSm,
+      desc: `Звукоизоляция потолка`,
     },
   ];
   return (
-    <div className={`relative -mt-20 mb-20`}>
-      <div className={`absolute -top-40 left-10 z-10`}>
-        <InfoSwitcher input={props.input} />
-      </div>
+    <div className={`relative mb-20`}>
       {/* <Text className={`absolute z-10 right-0 top-0 text-5xl font-bold py-2 text-zinc-800 text-right`}>
         {title}
       </Text> */}
       <div
-        className={`relative w-full mx-auto overflow-hidden rounded-md z-1`}
-        style={
-          {
-            // width: 'calc(100%*0.6)',
-          }
-        }
+        className={`relative h-full mx-auto overflow-hidden rounded-md z-1`}
+        style={{
+          height: 600,
+          width: 'calc(100%*1.6)',
+        }}
       >
         <div
-          className={`w-full relative grid grid-cols-4 gap-4 main-page-carousel`}
+          className={`absolute grid grid-cols-6 gap-4 main-page-carousel`}
           style={{
-            width: 'calc(100vw*1.1)',
-            minHeight: 500,
+            height: 600,
           }}
         >
           {imagesSM.map((item, index) => (
