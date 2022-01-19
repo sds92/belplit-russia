@@ -11,10 +11,10 @@ import { menu } from '../../../configs/menu';
 
 export default function NavLG(props) {
   return (
-    <div className={`flex justify-center gap-10 h-full my-auto py-2`}>
+    <div className={`flex justify-center gap-10 h-full my-auto py-2 px-2`}>
       <Link href={`/`} passHref>
-        <div className={`flex logo-box transition-all cursor-pointer`}>
-          <Logo extraClasses={`logo my-auto transition-all`} />
+        <div className={`flex transition-all cursor-pointer items-center`}>
+          <Logo extraClasses={`${props.lgView ? 'logo' : 'h-8 w-8'} transition-all`} />
           {props.lgView && (
             <p
               className={`logo-text font-mono text-belplit font-bold overflow-hidden transition-all duration-100 text`}
@@ -33,21 +33,14 @@ export default function NavLG(props) {
       </div>
       <div className={`flex items-center gap-2`}>
         <div className={`flex items-center font-light gap-2`}>
-          <Social />
+          <Social mdView={props.mdView}/>
         </div>
         <div className={`bg-slate-500 mx-2 h-8`} style={{ width: 1 }}></div>
         <Button
           href={'#feedback'}
-          className={`
-          
-          border-belplit 
-            hover:text-belplit
-            font-medium tracking-wider 
-            hover:scale-105 
-            transition-all rounded-md`}
+          className={`whitespace-nowrap hover:text-belplit uppercase font-bold transition-all`}
         >
-          {/* <Icons.Phone extraClasses={`w-10 h-10 text-slate-500`}/> */}
-          {'Заказать звонок'}
+          Заказать звонок
         </Button>
       </div>
     </div>

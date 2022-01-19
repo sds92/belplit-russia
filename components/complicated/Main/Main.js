@@ -7,6 +7,7 @@ import { Text } from '../../lib';
 import { FeedBack } from '..';
 
 export default function Main(props) {
+  console.log("🚀 ~ file: Main.js ~ line 10 ~ Main ~ props", props)
   return (
     <div className={`flex flex-col overflow-hidden bg-white mb-20`}>
       
