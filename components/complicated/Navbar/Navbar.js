@@ -7,7 +7,6 @@ import NavSM from './NavSM';
 import NavLG from './NavLG';
 
 function Navbar(props) {
-  console.log('🚀 ~ file: Navbar.js ~ line 10 ~ Navbar ~ props', props);
   const { children } = props;
   return <>{props.mdView || props.lgView ? <NavLG {...props} /> : <NavSM {...props} />}</>;
 }

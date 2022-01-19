@@ -11,7 +11,7 @@ export default function HeadBlock(props) {
         background: `no-repeat url(${imgs[0][0]})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        height: 'calc(100vh - 82px)',
+        height: 'calc(100vh)',
       }}
     >
       <div className={`absolute inset-0`}>

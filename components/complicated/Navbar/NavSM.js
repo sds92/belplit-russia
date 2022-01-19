@@ -14,6 +14,7 @@ import app from '../../../data/app.json';
 export default function NavSM() {
   return (
     <Menu
+      className={'menu'}
       menuButton={
         <MenuButton>
           <Icons.Menu
@@ -22,50 +23,51 @@ export default function NavSM() {
         </MenuButton>
       }
     >
-      {menu.map(({ show, activeLink, title, items, name }, index) => (
-        <React.Fragment key={`NAVSM${index}`}>
-          {show && activeLink && (
-            <MenuItem key={`MenuItem${index}`} className={`menuItem`}>
-              <Link href={`/${name}`}>
-                <a className='menuItemTitle w-full'>{title}</a>
-              </Link>
-            </MenuItem>
-          )}
-          {items.filter((item) => item.show).length !== 0 && (
-            <>
-              {show && !activeLink && (
-                <SubMenu label={title}>
-                  {items.map((innerItem, index) => (
-                    <MenuItem className={`menuItem`} key={`NAVSMINNER${index}`}>
-                      <Link href={`/${name}/${innerItem.name}`}>
-                        <a className='menuItemTitle w-full'>{innerItem.title}</a>
-                      </Link>
-                    </MenuItem>
-                  ))}
-                </SubMenu>
-              )}
-            </>
-          )}
-        </React.Fragment>
-      ))}
-      <hr />
-      <MenuItem>
-        <div className={`flex my-1`}>
-          <Icons.Phone extraClasses={`w-6 h-6 text-belplit`} />
-          <a href={`tel:${app.contacts.phones[0]}`} className={`text-belplit`}>
-            {app.contacts.phones[0]}
-          </a>
-        </div>
-      </MenuItem>
-      <MenuItem>
-        <div className={`flex my-1`}>
-          <Icons.Phone extraClasses={`w-6 h-6 text-belplit`} />
-          <a href={`tel:${app.contacts.phones[1]}`} className={`text-belplit`}>
-            {app.contacts.phones[1]}
-          </a>
-        </div>
-      </MenuItem>
-      <hr />
+      
+        {menu.map(({ show, activeLink, title, items, name }, index) => (
+          <React.Fragment key={`NAVSM${index}`}>
+            {show && activeLink && (
+              <MenuItem key={`MenuItem${index}`} className={`menuItem`}>
+                <Link href={`/${name}`}>
+                  <a className='menuItemTitle w-full'>{title}</a>
+                </Link>
+              </MenuItem>
+            )}
+            {items.filter((item) => item.show).length !== 0 && (
+              <>
+                {show && !activeLink && (
+                  <SubMenu label={title}>
+                    {items.map((innerItem, index) => (
+                      <MenuItem className={`menuItem`} key={`NAVSMINNER${index}`}>
+                        <Link href={`/${name}/${innerItem.name}`}>
+                          <a className='menuItemTitle w-full'>{innerItem.title}</a>
+                        </Link>
+                      </MenuItem>
+                    ))}
+                  </SubMenu>
+                )}
+              </>
+            )}
+          </React.Fragment>
+        ))}
+        <hr />
+        <MenuItem>
+          <div className={`flex my-1`}>
+            <Icons.Phone extraClasses={`w-6 h-6 text-belplit`} />
+            <a href={`tel:${app.contacts.phones[0]}`} className={`text-belplit`}>
+              {app.contacts.phones[0]}
+            </a>
+          </div>
+        </MenuItem>
+        <MenuItem>
+          <div className={`flex my-1`}>
+            <Icons.Phone extraClasses={`w-6 h-6 text-belplit`} />
+            <a href={`tel:${app.contacts.phones[1]}`} className={`text-belplit`}>
+              {app.contacts.phones[1]}
+            </a>
+          </div>
+        </MenuItem>
+        <hr />
     </Menu>
   );
 }

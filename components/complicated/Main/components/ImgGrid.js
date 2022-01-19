@@ -56,11 +56,13 @@ export default function ImgGrid(props) {
       gridClasses: classes.gridItemSm,
       imgClasses: classes.imgSm,
       desc: `Звукоизоляция потолка`,
+    },
     {
       src: '/images/examples/8.jpg',
       gridClasses: classes.gridItemSm,
       imgClasses: classes.imgSm,
       desc: `Звукоизоляция потолка`,
+    },
     {
       src: '/images/examples/9.jpg',
       gridClasses: classes.gridItemSm,
@@ -75,12 +77,12 @@ export default function ImgGrid(props) {
     },
   ];
   return (
-    <div className={`relative mb-20`}>
+    <div className={`relative my-4`}>
       {/* <Text className={`absolute z-10 right-0 top-0 text-5xl font-bold py-2 text-zinc-800 text-right`}>
         {title}
       </Text> */}
       <div
-        className={`relative h-full mx-auto overflow-hidden rounded-md z-1`}
+        className={`relative h-full mx-auto overflow-hidden z-1`}
         style={{
           height: 600,
           width: 'calc(100%*1.6)',

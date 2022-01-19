@@ -14,12 +14,12 @@ export default function Devider({ input }) {
             <Text className={`text-left text-6xl font-bold max-w-sm my-4`}>{input.text}</Text>
           </p>
           {input.link && (
-            <Link href={input.link[0]}>
-              <a
-                className={`text-right whitespace-nowrap  bg-belplit bg-opacity-75 rounded-md p-2 shadow-md text-white`}
+            <Link href={input.link[0]} passHref>
+              <div
+                className={`cursor-pointer self-end mb-4 hover:scale-105 active:scale-105 text-center whitespace-nowrap  bg-zinc-100 text-xl text-zinc-800 rounded-md py-2 px-8 shadow-md`}
               >
                 {input.link[1]}
-              </a>
+              </div>
             </Link>
           )}
         </div>

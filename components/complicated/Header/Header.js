@@ -11,7 +11,7 @@ import useScroll from '../../../utils/hooks/useScroll';
 
 export default function Header(props) {
   const [scrolled, setScrolled] = React.useState(false);
-  const [isOnTop, setIsOnTop] = React.useState(true) 
+  const [isOnTop, setIsOnTop] = React.useState(true);
   const { lgView } = props;
   const router = useRouter();
   const ref = React.useRef(null);
@@ -23,9 +23,9 @@ export default function Header(props) {
       setScrolled(false);
     }, 700);
     if (scrollY <= 20) {
-      setIsOnTop(true)
+      setIsOnTop(true);
     } else {
-      setIsOnTop(false)
+      setIsOnTop(false);
     }
   }, [scrollY]);
 
@@ -33,13 +33,13 @@ export default function Header(props) {
     <>
       <div ref={ref}></div>
       <header
-        className={`bg-slate-100 ${!isOnTop && `shadow-2xl`} z-50 fixed w-full ${
-          scrolled ? `bg-opacity-10` : ``
+        className={`bg-zinc-100 ${!isOnTop && `shadow-2xl`} z-50 fixed w-full ${
+          scrolled ? `-translate-y-24` : ``
         } transition-all`}
       >
         {/* <div style={{height: scrolled ? 0 : 1}} className={`w-full bg-slate-300 ${ scrolled ? `` : `delay-50 duration-300`} transition-all`}></div> */}
         <div className={`${scrolled ? `bg-opacity-20` : `delay-50 duration-300`}`}>
-          <Navbar mdView={props.mdView} lgView={lgView} scrolled={scrolled} isOnTop={isOnTop}/>
+          <Navbar mdView={props.mdView} lgView={lgView} scrolled={scrolled} isOnTop={isOnTop} />
         </div>
         {/* <div style={{height: scrolled ? 0 : 1}} className={`w-full bg-slate-300 ${ scrolled ? `` : `delay-50 duration-300`} transition-all`}></div> */}
       </header>

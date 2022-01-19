@@ -53,6 +53,10 @@ function MyApp({ Component, pageProps }) {
           href='https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap'
           rel='stylesheet'
         ></link>
+        <link
+          href='https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap'
+          rel='stylesheet'
+        ></link>
       </Head>
       <div className={`flex flex-col w-full min-h-screen overflow-hidden justify-between`}>
         <Header {...newProps} />

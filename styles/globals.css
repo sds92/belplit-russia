@@ -5,6 +5,7 @@
 /* Roboto */
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
 
 /* OSWALD */
 
@@ -17,6 +18,9 @@ input:-webkit-autofill:active{
     -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
 
+.menu {
+  height: 100vh !important;
+}
 
 .main-page-carousel {
   animation: u2 60s linear infinite;
