@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 
 export default function ProductCardSM(props) {
-  const { title, files, id, prices } = props.product;
+  const { title, files, id, prices, name } = props.product;
 
   return (
     <Link href={`/catalog/${id}`} passHref>
@@ -24,7 +24,7 @@ export default function ProductCardSM(props) {
                 className={`flex text-zinc-800 items-center h-10 cursor-pointer text-base transition-all font-bold `}
               >
                 <p className={`hover:text-belplit_dark pb-1`}>
-                  {title.toString().replaceAll('Белтермо ', '')}
+                  {name}
                   <span className={`text-zinc-600 font-light hover:text-belplit_dark`}> / Подробнее</span>
                 </p>
               </div>

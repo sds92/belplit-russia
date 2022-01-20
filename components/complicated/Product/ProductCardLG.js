@@ -10,6 +10,7 @@ import { products } from '../../../configs/products';
 export default function ProductCardLG(props) {
   const {
     title,
+    name,
     files,
     sizes,
     prices,
@@ -53,7 +54,7 @@ export default function ProductCardLG(props) {
         <div className={`bg-zinc-400`}>
           <div className={`bg-belplit bg-opacity-60 py-2`}>
             <Text className={`text-5xl pl-1.5 font-bold text-zinc-800 max-w-7xl text-left mx-auto`}>
-              {title.toString().replaceAll('Белтермо ', '')}
+              {name}
             </Text>
             <Text className={`text-4xl pl-2 font-bold text-zinc-100 pb-2 max-w-7xl text-left mx-auto`}>
               Белтермо
