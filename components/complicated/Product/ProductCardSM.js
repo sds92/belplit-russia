@@ -24,7 +24,7 @@ export default function ProductCardSM(props) {
                 className={`flex text-zinc-800 items-center h-10 cursor-pointer text-base transition-all font-bold `}
               >
                 <p className={`hover:text-belplit_dark pb-1`}>
-                  {title.replaceAll('Белтермо ', '')}
+                  {title.toString().replaceAll('Белтермо ', '')}
                   <span className={`text-zinc-600 font-light hover:text-belplit_dark`}> / Подробнее</span>
                 </p>
               </div>
