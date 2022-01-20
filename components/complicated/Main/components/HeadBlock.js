@@ -23,12 +23,7 @@ export default function HeadBlock(props) {
           }}
         >
           <Text
-            className={`
-          w-full text-center 
-          font-bold 
-          text-3xl sm:text-6xl md:text-8xl
-        
-        `}
+            className={`w-full text-center font-bold text-3xl sm:text-6xl md:text-8xl        `}
             style={{ color: '#38a000' }}
           >
             {text.hb0}
@@ -58,18 +53,16 @@ export default function HeadBlock(props) {
           </Text>
           <div
             className={`
-            w-full
-            mx-auto text-center
+            w-full mx-auto text-center
           `}
           >
             <Link href={`/catalog`} passHref>
               <Button
                 className={`
+                zero:w-60 md:w-96
               mx-auto text-slate-100 border px-6 my-4 
               rounded-md max-w-md
-              hover:text-belplit
-              hover:border-belplit
-              hover:scale-105
+              hover:text-belplit hover:border-belplit hover:scale-105
               transition-all
               `}
               >

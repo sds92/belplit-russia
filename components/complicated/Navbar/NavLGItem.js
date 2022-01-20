@@ -33,7 +33,7 @@ export default function NavLGItem(props) {
               return (
                 <MenuButton>
                   <div
-                    className={`flex text-zinc-800 font-light`}
+                    className={`flex text-zinc-800 font-light hover:text-belplit`}
                     onMouseEnter={() => setStroke('#38a000')}
                     onMouseLeave={() => setStroke('#5d5e75')}
                   >

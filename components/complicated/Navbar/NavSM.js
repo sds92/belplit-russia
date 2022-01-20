@@ -14,10 +14,11 @@ import app from '../../../data/app.json';
 
 export default function NavSM(props) {
   return (
+    
     <nav className={`flex items-center gap-2 justify-between h-10 relative`}>
       <div className={`flex gap-1 h-10`}>
         <Menu
-          className={'menu'}
+          className={'menu top-2'}
           menuButton={
             <MenuButton>
               <Icons.Menu
@@ -30,9 +31,9 @@ export default function NavSM(props) {
           {menu.map(({ show, activeLink, title, items, name }, index) => (
             <React.Fragment key={`NAVSM${index}`}>
               {show && activeLink && (
-                <MenuItem key={`MenuItem${index}`} className={`menuItem`}>
+                <MenuItem key={`MenuItem${index}`} className={`menuItem `}>
                   <Link href={`/${name}`}>
-                    <a className='menuItemTitle w-full'>{title}</a>
+                    <a className='menuItemTitle  w-full'>{title}</a>
                   </Link>
                 </MenuItem>
               )}
@@ -43,7 +44,7 @@ export default function NavSM(props) {
                       {items.map((innerItem, index) => (
                         <MenuItem className={`menuItem`} key={`NAVSMINNER${index}`}>
                           <Link href={`/${name}/${innerItem.name}`}>
-                            <a className='menuItemTitle w-full'>{innerItem.title}</a>
+                            <a className='menuItemTitle w-full '>{innerItem.title}</a>
                           </Link>
                         </MenuItem>
                       ))}
@@ -72,14 +73,14 @@ export default function NavSM(props) {
           </MenuItem>
           <hr />
         </Menu>
-        <div className={`bg-gray-400 my-1`} style={{ width: 1 }} />
+        {/* <div className={`bg-gray-400 my-1`} style={{ width: 1 }} /> */}
       </div>
 
-      <div className={`flex`}>
+      {!props.isOnTop && <div className={`flex`}>
         <Logo
           extraClasses={`${props.lgView ? 'logo' : 'h-8 w-8 my-auto '} transition-all place-self-start`}
         />
-      </div>
+      </div>}
       <div className={`flex gap-2 mr-2 items-center`}>
         <Social />
       </div>

@@ -22,18 +22,12 @@ export default function InfoBlock(props) {
       {model === 0 && (
         <>
           <div
-            className={`
-          relative 
-          w-full mt-40 mx-auto
-          flex flex-col md:flex-row justify-center
-          bg-white
-          my-20
-          `}
+            className={`relative w-full mx-auto flex flex-col justify-center items-end md:flex-row justify-centerbg-white md:mt-20`}
           >
-            <div className={`overflow-hidden rounded-md`}>
+            <div className={`overflow-hidden rounded-md zero:hidden lg:block`}>
               <img className={`transition-all main-page-img`} src={imgs[1][0]} alt={imgs[1][1]} />
             </div>
-            <div className={`w-96 rounded-md -mt-20 -ml-32`}>
+            <div className={`zero:hidden md:block w-96 rounded-md -mt-20 -ml-32 pr-2`}>
               <div className={'font-light text-zinc-800 sm:rounded-lg text-lg leading-5 tracking-normal'}>
                 <Text className={`font-bold text-left text-7xl -ml-1 py-2`}>{text.ib0}</Text>
                 <Text className={`text-justify`}>{text.ib1}</Text>
@@ -41,8 +35,15 @@ export default function InfoBlock(props) {
                 <Text className={`text-justify`}>{text.ib3}</Text>
               </div>
             </div>
+            <div className={`md:hidden px-2 rounded-md`}>
+              <div className={'font-light text-zinc-800 sm:rounded-lg leading-5 tracking-normal'}>
+                <Text className={`font-bold text-left text-7xl -ml-1 py-2`}>{text.ib0}</Text>
+                <Text className={`text-justify`}>{text.ib1}</Text>
+                <Text className={'font-bold pl-10 leading-6 py-1'}>{text.ib2}</Text>
+                <Text className={`text-justify`}>{text.ib3}</Text>
+              </div>
+            </div>
           </div>
-          {/* <InfoSwitcher input={props.input} /> */}
         </>
       )}
       {model === 1 && (

@@ -45,18 +45,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <div>
       <Head head={newProps.input.head}>
-        <script async='' src='https://cdn.jsdelivr.net/npm/yandex-metrica-watch/tag.js'></script>
-        <link rel='shortcut icon' href='/images/logo.png' />
-        <link rel='preconnect' href='https://fonts.googleapis.com' />
-        <link rel='preconnect' href='https://fonts.gstatic.com' crossOrigin />
-        <link
-          href='https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap'
-          rel='stylesheet'
-        ></link>
-        <link
-          href='https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap'
-          rel='stylesheet'
-        ></link>
+        
       </Head>
       <div className={`flex flex-col w-full min-h-screen overflow-hidden justify-between`}>
         <Header {...newProps} />

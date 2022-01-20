@@ -1,18 +1,52 @@
 import React from 'react';
-import Image from 'next/image';
-import Fade from 'react-reveal/Fade';
+import Link from 'next/link';
+import useInterval from '../../../../utils/hooks/useInterval';
 import { Text } from '../../../lib';
 import { InfoSwitcher } from '.';
 
 export default function ImgGrid(props) {
-  const { title, link } = props;
+  const { links } = props;
+  const [state, setState] = React.useState({
+    class: 'left-0',
+    left: 0,
+    duration: 30,
+    px: 0,
+    wEl: 1000,
+    delay: 30000,
+  });
   const classes = {
     imgLg: `object-fill min-h-full min-w-full`,
     imgSm: `object-fill min-h-full min-w-full`,
     gridItemLg: `row-span-2 rounded-md overflow-hidden shadow-md relative`,
     gridItemSm: `rounded-md overflow-hidden shadow-md relative`,
   };
-  const [hover, setHover] = React.useState(false);
+  const ref = React.useRef();
+
+  useInterval(() => {
+    if (state.px !== 0) {
+      setState((s) => ({ ...s, px: 0 }));
+    } else {
+      setState((s) => ({ ...s, px: window.innerWidth - ref.current.offsetWidth }));
+    }
+  }, state.delay);
+
+  React.useEffect(() => {
+    setState((s) => ({
+      ...s,
+      px: window.innerWidth - ref.current.offsetWidth,
+      delay: (ref.current.offsetWidth - window.innerWidth) * 20,
+    }));
+    const action = () => {
+      setState((s) => ({
+        ...s,
+        px: window.innerWidth - ref.current.offsetWidth,
+        delay: (ref.current.offsetWidth - window.innerWidth) * 20,
+      }));
+    };
+    window.addEventListener('resize', action);
+    return () => window.removeEventListener('resize', action);
+  }, []);
+
   const imagesSM = [
     {
       src: '/images/examples/2.jpg',
@@ -37,7 +71,6 @@ export default function ImgGrid(props) {
       gridClasses: classes.gridItemLg,
       imgClasses: classes.imgLg,
       desc: `Внутренняя изоляция перекрытий под стяжку бесшовных полов (ламинат, паркетная доска)`,
-      
     },
     {
       src: '/images/examples/5.jpg',
@@ -77,56 +110,49 @@ export default function ImgGrid(props) {
     },
   ];
   return (
-    <div className={`relative my-4`}>
-      {/* <Text className={`absolute z-10 right-0 top-0 text-5xl font-bold py-2 text-zinc-800 text-right`}>
-        {title}
-      </Text> */}
+    <div className={`relative my-4 flex flex-col items-center`}>
       <div
-        className={`relative h-full mx-auto overflow-hidden z-1`}
+        className={`relative justify-center overflow-hidden zero:h-48 md:h-96`}
         style={{
-          height: 600,
-          width: 'calc(100%*1.6)',
+          width: '100%',
         }}
       >
         <div
-          className={`absolute grid grid-cols-6 gap-4 main-page-carousel`}
+          ref={ref}
+          className={`absolute flex gap-4 h-full`}
           style={{
-            height: 600,
+            marginLeft: `${state.px}px`,
+            // left: state.left,
+            transitionDuration: `${state.delay}ms`,
+            transitionProperty: 'all',
+            transitionTimingFunction: 'linear',
           }}
         >
           {imagesSM.map((item, index) => (
             <div
               key={`GRIDIMG${index}`}
-              className={`${item.gridClasses}`}
-              onMouseEnter={() => setHover({ [index]: true })}
-              onMouseLeave={() => setHover({ [index]: false })}
+              className={`zero:w-48 md:w-64 rounded-md overflow-hidden shadow-md relative`}
+              style={{
+                background: `no-repeat url(${item.src})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }}
             >
-              <img src={`${item.src}`} alt={`Белтермо пример ${index}`} className={item.imgClasses} />
-              <div className={`w-full h-full inset-0 absolute bg-black opacity-10`}></div>
-              {/* <div
-                className={`rounded-md flex flex-col justify-center inset-0 hover:bg-slate-900 hover:bg-opacity-60 transition-all`}
-              >
-                <div
-                  className={`zero:hidden sm:block absolute inset-0 m-4 box-content rounded-md ${
-                    hover[index] ? 'border border-slate-100' : ''
-                  }`}
-                ></div>
-                <p
-                  className={`zero:hidden sm:block cursor-default ${
-                    hover[index] ? 'scale-100' : 'scale-0'
-                  } text-center text-slate-100 md:text-xl font-light p-8 transition-all`}
-                >
-                  {item.desc}
-                </p>
-                <p
-                  className={`zero:flex justify-center items-center align-middle sm:hidden absolute inset-0 cursor-default text-sm text-center text-slate-100 font-light bg-slate-900 bg-opacity-60`}
-                >
-                  {item.desc}
-                </p>
-              </div> */}
+              <div className={`w-full h-full inset-0 absolute bg-black opacity-20`}></div>
             </div>
           ))}
         </div>
+      </div>
+      <div className={`sm:hidden w-full mt-4 h-12 flex items-center justify-center`}>
+        <Link href={links[0][0]} passHref>
+          <div className={`mx-auto rounded-md bg-zinc-400 w-52 flex items-center justify-center hover:scale-105 active:scale-105 `}>
+            <div
+              className={`bg-belplit bg-opacity-60 w-52 cursor-pointer text-center whitespace-nowrap text-lg font-bold uppercase text-white rounded-md py-2 px-8 shadow-md`}
+            >
+              {links[0][1]}
+            </div>
+          </div>
+        </Link>
       </div>
     </div>
   );

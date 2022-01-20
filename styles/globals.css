@@ -12,18 +12,44 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
 
 input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus, 
-input:-webkit-autofill:active{
-    -webkit-box-shadow: 0 0 0 30px white inset !important;
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
+
+.usr-text {
+  font-size: 1rem;
+}
+.usr-text:hover {
+  font-size: 1.05rem;
+}
+.usr-text:hover {
+  /* transform: translateZ(1.1); */
+  /* transform: scale(1.1);  */
+}
+
 
 .menu {
   height: 100vh !important;
 }
 
+.main-page-carousel-2 {
+  animation: u3 60s linear infinite;
+}
+
+@keyframes u3 {
+  0%,
+  100% {
+    left: 0;
+  }
+  50% {
+    left: calc((100% - 100vw) * -1);
+  }
+}
+
 .main-page-carousel {
-  animation: u2 60s linear infinite;
+  animation: u2 30s linear infinite;
 }
 .main-page-carousel-parent {
   -webkit-box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2) inset;

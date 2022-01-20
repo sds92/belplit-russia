@@ -3,14 +3,7 @@ import React from 'react';
 import Image from 'next/image';
 
 // etc
-import {
-  PopUp,
-  Modal,
-  ModalItems,
-  Radio,
-  FeedBack as FeedBackForm,
-  ProductList,
-} from '../../complicated';
+import { PopUp, Modal, ModalItems, Radio, FeedBack as FeedBackForm, ProductList } from '../../complicated';
 import { Text } from '../../lib';
 import { products } from '../../../configs/products';
 
@@ -56,21 +49,32 @@ export default function ProductCardLG(props) {
 
   return (
     <>
-      <p className={`text-center text-3xl font-bold text-belplit p-10`}>{title}</p>
-      <div className={`w-full max-w-6xl mx-auto relative flex items-start justify-start zero:flex-wrap md:flex-nowrap`}>
-        <div className={`flex flex-col lg:grid lg:grid-cols-2 bg-white rounded-md shadow-md`}>
-          <div className={`relative rounded-md overflow-hidden m-4 h-96 order-1`}>
-            <Image
+      <div className={`bg-white pt-20`}>
+        <div className={`bg-zinc-400`}>
+          <div className={`bg-belplit bg-opacity-60 py-2`}>
+            <Text className={`text-5xl pl-1.5 font-bold text-zinc-800 max-w-7xl text-left mx-auto`}>
+              {title.replaceAll('Белтермо ', '')}
+            </Text>
+            <Text className={`text-4xl pl-2 font-bold text-zinc-100 pb-2 max-w-7xl text-left mx-auto`}>
+              Белтермо
+            </Text>
+          </div>
+        </div>
+      </div>
+      <div
+        className={`w-full max-w-6xl mx-auto relative flex items-start justify-start zero:flex-wrap md:flex-nowrap`}
+      >
+        <div className={`flex flex-col lg:grid lg:grid-cols-2 bg-white rounded-md shadow-md mt-20`}>
+          <div className={`relative rounded-md overflow-hidden h-96 order-1`}>
+            <img
               src={`/images/products/lg/${files.product}`}
               alt={title}
-              // height={200}
-              // width={300}
               layout='fill'
               objectFit='contain'
             />
           </div>
           <div className={`order-2`}>
-            <div className={`rounded-md shadow-md m-4 py-2 bg-slate-100`}>
+            <div className={`rounded-md  m-4 py-2`}>
               <p className={`ml-2 pt-2 px-2 font-bold text-lg`}>Размеры:</p>
               <Radio radioItems={radioItems} onChange={setRadioValue} />
               <p className={`ml-2 pt-2 px-2 font-bold text-lg`}>Цена:</p>
@@ -85,7 +89,7 @@ export default function ProductCardLG(props) {
                 <p className={`text-gray-500`}>руб.</p>
               </div>
               <div
-                className={`bg-belplit mx-4 my-2 rounded-md text-center text-slate-200 py-2 cursor-pointer hover:bg-opacity-75 hover:text-slate-200`}
+                className={`bg-belplit uppercase font-bold mx-4 my-2 rounded-md text-center text-slate-200 py-2 cursor-pointer hover:bg-opacity-75 hover:text-slate-200`}
                 onClick={openModal}
               >
                 Купить
