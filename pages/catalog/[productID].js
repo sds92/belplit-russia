@@ -1,9 +1,6 @@
 import React from 'react';
-import Head from 'next/head';
 import { ProductCardLG } from '../../components/complicated';
 import { products } from '../../configs/products';
-
-import meta from '../../data/meta.json';
 
 export default function Product(props) {
   const { product, input } = props;

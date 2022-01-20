@@ -5,10 +5,8 @@ import { Text } from '../../components/lib';
 import { app } from '../../configs/app';
 import { products } from '../../configs/products';
 import meta from '../../data/meta.json';
-import backgroundImage from '../../public/images/background-description.jpg';
 
 export default function Catalog(props) {
-  console.log('🚀 ~ file: index.js ~ line 11 ~ Catalog ~ props', props);
   const { input } = props;
   const head = meta.find((item) => item.pageName === 'catalog').head;
   return (

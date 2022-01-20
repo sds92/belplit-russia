@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { Icons, FeedBack as FeedBackForm } from '../components/complicated';
 import { Text } from '../components/lib';
 import { app } from '../configs/app';
-import backgroundImage from '../public/images/backgraund-description.jpg';
+import backgroundImage from '../public/images/background-description.jpg';
 
 export default function Contacts({ lgView, input }) {
   return (

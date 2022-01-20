@@ -4,7 +4,7 @@ import ImageViewer from 'react-simple-image-viewer';
 
 import { Text } from '../../components/lib';
 import { app } from '../../configs/app';
-import backgroundImage from '../../public/images/backgraund-description.jpg';
+import backgroundImage from '../../public/images/background-description.jpg';
 
 export default function Sertificates({input}) {
   const [currentImage, setCurrentImage] = React.useState(0);

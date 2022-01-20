@@ -2,7 +2,6 @@ import React from 'react';
 import { AnimatePresence, domAnimation, LazyMotion, m } from 'framer-motion';
 import { useRouter } from 'next/router';
 import { animations } from '../styles/animations';
-import { SizeMe } from 'react-sizeme';
 import { Header, Footer, Head, AppContext } from '../components/complicated';
 import '../styles/tailwind.css';
 
