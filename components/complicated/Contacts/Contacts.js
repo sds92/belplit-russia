@@ -1,7 +1,6 @@
 import React from 'react';
-import { Icons } from '../../';
-import { Text } from '../../../lib';
-import { FeedBack } from '../../';
+import { Icons, FeedBack } from '../';
+import { Text } from '../../lib';
 
 export default function Contacts({ app }) {
   const classes = {

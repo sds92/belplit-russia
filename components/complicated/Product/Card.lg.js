@@ -3,12 +3,16 @@ import React from 'react';
 import Image from 'next/image';
 
 // etc
-import { PopUp, Modal, ModalItems, Radio, FeedBack as FeedBackForm, ProductList } from '../../complicated';
+import { PopUp, Modal, ModalItems, Radio, FeedBack as FeedBackForm, Decorators } from '..';
 import { Text } from '../../lib';
 import { products } from '../../../configs/products';
+import styles from './styles.module.scss';
+import ProductList from './List';
 
 export default function ProductCardLG(props) {
+  const { w } = props;
   const {
+    id,
     title,
     name,
     files,
@@ -50,30 +54,35 @@ export default function ProductCardLG(props) {
 
   return (
     <>
-      <div className={`bg-white pt-20`}>
-        <div className={`bg-zinc-400`}>
-          <div className={`bg-belplit bg-opacity-60 py-2`}>
-            <Text className={`text-5xl pl-1.5 font-bold text-zinc-800 max-w-7xl text-left mx-auto`}>
-              {name}
-            </Text>
-            <Text className={`text-4xl pl-2 font-bold text-zinc-100 pb-2 max-w-7xl text-left mx-auto`}>
-              Белтермо
-            </Text>
-          </div>
-        </div>
-      </div>
+      <Decorators.ColorBelplit classNames={'pt-20 ' + styles['shadow-in']}>
+        <Text className={`text-5xl pl-1.5 uppercase font-bold text-zinc-800 max-w-7xl text-left mx-auto`}>
+          {name}
+        </Text>
+        <Text className={`text-4xl pl-2 font-bold text-zinc-100 pb-2 max-w-7xl text-left mx-auto`}>
+          Белтермо
+        </Text>
+      </Decorators.ColorBelplit>
       <div
-        className={`w-full max-w-6xl mx-auto relative flex items-start justify-start zero:flex-wrap md:flex-nowrap`}
+        className={`w-full max-w-7xl mx-auto relative flex items-start justify-start zero:flex-wrap md:flex-nowrap`}
       >
-        <div className={`flex flex-col lg:grid lg:grid-cols-2 bg-white rounded-md shadow-md mt-20`}>
-          <div className={`relative rounded-md overflow-hidden h-96 order-1`}>
-            <img
-              src={`/images/products/lg/${files.product}`}
-              alt={title}
-              layout='fill'
-              objectFit='contain'
-            />
+        <div
+          className={`flex flex-col lg:basis-3/4 w-full lg:grid lg:grid-cols-2 bg-white rounded-md shadow-md sm:mt-4`}
+        >
+          <div className={`flex flex-col sm:flex-row`}>
+            <div
+              className={`zero:w-full sm:w-2/3 md:w-full relative rounded-md overflow-hidden sm:order-1 zero:order-2`}
+            >
+              <img width={570} height={570} src={`/images/products/lg/${files.product}`}></img>
+            </div>
+            <div className={`zero:w-full zero:order-1 sm:w-1/3 sm:order-2 lg:hidden`}>
+              <ProductList
+                inset={w < 640}
+                title={<p className={`py-2 font-bold text-lg`}>Продукция:</p>}
+                listItems={products.map((item) => ({ id: item.id, title: item.title }))}
+              />
+            </div>
           </div>
+
           <div className={`order-2`}>
             <div className={`rounded-md  m-4 py-2`}>
               <p className={`ml-2 pt-2 px-2 font-bold text-lg`}>Размеры:</p>
@@ -126,7 +135,7 @@ export default function ProductCardLG(props) {
             </div>
           </div>
         </div>
-        <div className={`m-4 py-2 w-56`}>
+        <div className={`m-4 py-2 w-56 hidden lg:block`}>
           <p className={`ml-2 pt-2 px-2 font-bold text-lg`}>Продукция:</p>
           <ProductList listItems={products.map((item) => ({ id: item.id, title: item.title }))} />
         </div>

@@ -1,16 +1,9 @@
 import React from 'react';
-import { ProductCardLG } from '../../components/complicated';
+import { Product } from '../../components/complicated';
 import { products } from '../../configs/products';
 
-export default function Product(props) {
-  const { product, input } = props;
-  return (
-    <div>
-      <div className={`w-full bg-slate-100`}>
-        <ProductCardLG product={product} />
-      </div>
-    </div>
-  );
+export default function ProductPage(props) {
+  return <Product.CardLG {...props} />;
 }
 
 export async function getStaticProps({ params }) {

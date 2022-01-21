@@ -1,9 +1,9 @@
-import { Main } from '../components/complicated';
+import { Layout } from '../components/complicated';
 
 export default function Home(props) {
   return (
     <div>
-      <Main {...props}/>
+      <Layout.Main {...props}/>
     </div>
   );
 }

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { Text, Button } from '../../../lib';
 
 export default function HeadBlock(props) {
-  const { text, imgs } = props.input;
+  const { text, imgs } = props.data.content;
   return (
     <div
       className={`relative w-full overflow-hidden`}

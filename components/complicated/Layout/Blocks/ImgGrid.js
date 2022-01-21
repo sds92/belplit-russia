@@ -5,7 +5,7 @@ import { Text } from '../../../lib';
 import { InfoSwitcher } from '.';
 
 export default function ImgGrid(props) {
-  const { links } = props;
+  const { links } = props.data.content;
   const [state, setState] = React.useState({
     class: 'left-0',
     left: 0,

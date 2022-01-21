@@ -11,6 +11,12 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
 
+.block-scroll {
+  overflow: hidden;
+  height: 100%;
+}
+
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,

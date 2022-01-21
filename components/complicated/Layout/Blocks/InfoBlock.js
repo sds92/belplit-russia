@@ -1,6 +1,5 @@
 // react
 import React from 'react';
-import Image from 'next/image';
 
 // animation
 import Fade from 'react-reveal/Fade';
@@ -12,10 +11,8 @@ import { InfoSwitcher } from '.';
 import { animations } from '../../../../styles/animations';
 
 export default function InfoBlock(props) {
-  const {
-    input: { text, imgs },
-    model,
-  } = props;
+  const { text, imgs } = props.data.content;
+  const { model } = props;
 
   return (
     <>

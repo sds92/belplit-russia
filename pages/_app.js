@@ -36,16 +36,15 @@ function MyApp({ Component, pageProps }) {
     ],
     lgView: w >= 1200,
     mdView: w >= 900 && w < 1200,
+    w: w,
     app: app,
-    input: pages.find((item) => item.path === (router.asPath === '/' ? '/main' : router.asPath)),
+    data: pages.find((item) => item.path === (router.asPath === '/' ? '/main' : router.asPath)),
     ...pageProps,
   };
 
   return (
     <div>
-      <Head head={newProps.input.head}>
-        
-      </Head>
+      <Head head={newProps.data.head}/>
       <div className={`flex flex-col w-full min-h-screen overflow-hidden justify-between`}>
         <Header {...newProps} />
         <LazyMotion features={domAnimation}>
@@ -59,7 +58,7 @@ function MyApp({ Component, pageProps }) {
               variants={animations.opacity.variants}
               transition={animations.opacity.transition}
             >
-              <Component content={newProps.input.content} {...newProps} />
+              <Component {...newProps} />
             </m.div>
           </AnimatePresence>
         </LazyMotion>
