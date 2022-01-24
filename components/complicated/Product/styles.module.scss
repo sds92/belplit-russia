@@ -3,14 +3,31 @@
   -webkit-box-shadow: 0px -5px 5px -5px rgba(34, 60, 80, 0.6) inset;
   -moz-box-shadow: 0px -5px 5px -5px rgba(34, 60, 80, 0.6) inset;
 }
-.select {
-  outline-style: none;
-  border: none;
-  -webkit-appearance: none;
-  /*webkit browsers */
-  -moz-appearance: none;
-  /*Firefox */
-  appearance: none;
-  /* modern browsers */
-  border-radius: 0;
+
+.popup {
+  animation: u1 1000 linear infinite;
+}
+
+@keyframes u1 {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.visible {
+  opacity: 1;
+  visibility: visible;
+}
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+.fade {
+  -webkit-transition: opacity 0.5s;
+  transition: opacity 0.5s;
+  visibility: visible;
 }

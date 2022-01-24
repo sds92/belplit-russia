@@ -79,6 +79,7 @@ export default function ProductCardLG(props) {
                 inset={w < 640}
                 title={<p className={`py-2 font-bold text-lg`}>Продукция:</p>}
                 listItems={products.map((item) => ({ id: item.id, title: item.title }))}
+                curProduct={props.product}
               />
             </div>
           </div>

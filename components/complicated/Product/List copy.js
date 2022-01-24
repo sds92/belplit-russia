@@ -43,9 +43,9 @@ export default function ProductList({ listItems, inset = false, title = '' }) {
     }
     if (!open) {
       setOpen(true);
-      setTimeout(() => {
-        setDelay(true);
-      }, 1);
+      setDelay(true);
+      //   setTimeout(() => {
+      //   }, 1);
     }
   };
 
@@ -57,32 +57,38 @@ export default function ProductList({ listItems, inset = false, title = '' }) {
             className={`${!open && `hidden`} fixed z-50 inset-0 bg-black overflow-hidden ${
               delay ? 'bg-opacity-40 ' : ' bg-opacity-0'
             } `}
-            onClick={handleClick}
+            // onClick={() => setOpen(!open)}
           ></div>
-          <div onClick={handleClick} className={`bg-zinc-400 flex flex-col w-full h-6 relative`}>
-            <div>
-              <Icons.ChevronDown extraClasses={`w-6 h-6 text-white`} />
-            </div>
-            {listItems && open && (
-              <div
-                className={`fixed z-50 mt-6 rounded-md bg-opacity-40 bg-black text-white font-light py-2 w-full duration-1000 transition-all ${
-                  delay ? styles.visible : styles.hidden
-                } ` + styles.fade}
-              >
-                {listItems.map((item, index) => (
-                  <div
-                    className={`w-full px-4 transition-all cursor-pointer`}
-                    value={item.id}
-                    onClick={handleClick}
-                    key={`PR${index}`}
-                  >
-                    {' > '}&nbsp;
-                    <span className={` transition-all ` + styles.popup}>{item.title}</span>
-                    <div className={`bg-zinc-500`} style={{ width: '100%', height: 1 }} />
-                  </div>
-                ))}
-              </div>
-            )}
+          <div className={`flex`}>
+              <Icons.ChevronDown extraClasses={`w-4 h-4`}/>
+            <select
+              name={`product-select`}
+              className={
+                `transition-all cursor-pointer z-50 w-full rounded-none bg-transparent ` + styles.select
+              }
+              onFocus={handleFocus}
+              onChange={handleSelect}
+              onBlur={handleClose}
+              onClick={handleClick}
+            >
+              {listItems && (
+                <>
+                  <option value='' selected disabled hidden style={{backgroundColor: 'black'}}>
+                    Выбрать другой товар...
+                  </option>
+                  {listItems.map((item, index) => (
+                    <option
+                      key={`PR${index}`}
+                      className={`cursor-pointer flex hover:text-belplit border-b py-1`}
+                      value={`/catalog/${item.id}`}
+                      //   selected={curId === item.id && 'selected'}
+                    >
+                      {item.title}
+                    </option>
+                  ))}
+                </>
+              )}
+            </select>
           </div>
         </>
       )}
