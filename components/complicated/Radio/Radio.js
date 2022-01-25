@@ -33,7 +33,8 @@ export default function Radio({ label = '<TITLE>', ...props }) {
                             className={`inline ${checked ? 'text-sky-100' : 'text-gray-500'}`}
                           >
                             <span>
-                              {radioItem.bar}/{radioItem.square}
+                              {radioItem.bar}
+                              {/* /{radioItem.square} */}
                             </span>
                           </RadioGroup.Description>
                         </div>

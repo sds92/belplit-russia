@@ -36,7 +36,7 @@ export default function Header(props) {
           left: '50%',
           transform: 'translate(-50%)',
         }}
-        className={`shadow-md z-50 fixed px-2 w-full bg-white transition-all duration-100 
+        className={`shadow-md z-40 fixed px-2 w-full bg-white transition-all duration-100 
         ${lgView && 'h-20'} 
         ${isOnTop && !lgView && !mdView && 'h-20'}
         ${!isOnTop && !lgView && !mdView && 'h-10'}
@@ -48,7 +48,7 @@ export default function Header(props) {
             <p
               className={`text-4xl text-center font-mono text-belplit font-bold overflow-hidden transition-all duration-100 text`}
             >
-              БЕЛПЛИТ
+              БЕЛТЕРМО
             </p>
           </div>
         )}

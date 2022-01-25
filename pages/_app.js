@@ -8,14 +8,16 @@ import '../styles/tailwind.css';
 import pages from '../data/pages.json';
 import app from '../data/app.json';
 
-function MyApp({ Component, pageProps }) {
+export default function MyApp({ Component, pageProps }) {
   const [loading, setLoading] = React.useState(true);
   const [w, setW] = React.useState(undefined);
+
   React.useEffect(() => {
     setW(window.innerWidth);
     setTimeout(() => {
       setLoading(false);
     }, 1000);
+
     window.addEventListener(
       'resize',
       () => {
@@ -39,12 +41,13 @@ function MyApp({ Component, pageProps }) {
     w: w,
     app: app,
     data: pages.find((item) => item.path === (router.asPath === '/' ? '/main' : router.asPath)),
+
     ...pageProps,
   };
 
   return (
     <div>
-      <Head head={newProps.data.head}/>
+      <Head head={newProps.data.head} />
       <div className={`flex flex-col w-full min-h-screen overflow-hidden justify-between`}>
         <Header {...newProps} />
         <LazyMotion features={domAnimation}>
@@ -68,4 +71,13 @@ function MyApp({ Component, pageProps }) {
   );
 }
 
-export default MyApp;
+// MyApp.getInitialProps = async (ctx) => {
+//   // calls page's `getInitialProps` and fills `appProps.pageProps`
+//   const res = await fetch('https://xn--j1ano.com/uploads/staticsites/beltermo.json').then((res) =>
+//     res.json()
+//   );
+//   const normRes = normalizeData(res, products);
+//   return { products: normRes };
+// };
+
+// MyApp;

@@ -27,7 +27,7 @@ export default function Modal({
       >
         <Dialog
           as='div'
-          className={`fixed inset-0 h-screen z-10 overflow-y-auto bg-slate-500 bg-opacity-50`}
+          className={`fixed inset-0 h-screen z-40 overflow-y-auto bg-slate-500 bg-opacity-50`}
           onClose={closeModal}
         >
           <div className='min-h-screen px-4 text-center '>

@@ -75,7 +75,8 @@ module.exports = {
     colors: ({ colors }) => ({
       footer: '#848484',
       belplit: '#38a000',
-      belplit_dark: '#2b7801',
+      belplit_2: '#62a044',
+      belplit_dark: '#426d2e',
       inherit: colors.inherit,
       current: colors.current,
       transparent: colors.transparent,

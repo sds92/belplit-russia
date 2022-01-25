@@ -8,6 +8,7 @@ export default function ProductList({ listItems, inset = false, title = '' }) {
   const [hover, setHover] = React.useState(false);
   const [open, setOpen] = React.useState(false);
   const [delay, setDelay] = React.useState(false);
+  const [h, setH] = React.useState('100%');
   const router = useRouter();
 
   const curId = parseInt(router.asPath.split('/').reverse()[0]);
@@ -34,12 +35,15 @@ export default function ProductList({ listItems, inset = false, title = '' }) {
     // }, 1);
   };
 
-  const handleClick = (a) => {
+  const handleClick = (a, id) => {
+    a.stopPropagation()
+    console.log("value", a.target)
     if (open) {
       setDelay(false);
       setOpen(false);
-      //   setTimeout(() => {
-      //   }, 1);
+      if (id || id === 0) {
+        router.push(`/catalog/${id}`);
+      }
     }
     if (!open) {
       setOpen(true);
@@ -49,35 +53,53 @@ export default function ProductList({ listItems, inset = false, title = '' }) {
     }
   };
 
+  React.useEffect(() => {
+    setH(window.innerHeight);
+    if (open) {
+      window.document.body.style.overflow = 'hidden';
+    }
+    if (!open) {
+      window.document.body.style.overflow = 'auto';
+    }
+  }, [open]);
+
   return (
     <>
       {inset && (
         <>
           <div
-            className={`${!open && `hidden`} fixed z-50 inset-0 bg-black overflow-hidden ${
+            className={`${!open && `hidden`} h-full fixed z-40 inset-0 bg-black overflow-hidden ${
               delay ? 'bg-opacity-40 ' : ' bg-opacity-0'
             } `}
             onClick={handleClick}
+            style={{
+              height: h,
+              overflow: 'hidden',
+              overflowBlock: 'hidden',
+            }}
           ></div>
-          <div onClick={handleClick} className={`bg-zinc-400 flex flex-col w-full h-6 relative`}>
-            <div>
-              <Icons.ChevronDown extraClasses={`w-6 h-6 text-white`} />
+          <div onClick={handleClick} className={`bg-white flex flex-col w-full h-6 relative`}>
+            <div className={`flex italic cursor-pointer text-zinc-800 font-light underline`}>
+              <Icons.ChevronDown extraClasses={`w-6 h-6 text-belplit_dark active:scale-105`} />
+              выбрать другой товар
             </div>
             {listItems && open && (
               <div
-                className={`fixed z-50 mt-6 rounded-md bg-opacity-40 bg-black text-white font-light py-2 w-full duration-1000 transition-all ${
-                  delay ? styles.visible : styles.hidden
-                } ` + styles.fade}
+                className={
+                  `fixed z-50 overflow-hidden mt-6 rounded-md bg-opacity-40 bg-black text-white font-light py-2 w-full duration-1000 transition-all ${
+                    delay ? styles.visible : styles.hidden
+                  } ` + styles.fade
+                }
               >
                 {listItems.map((item, index) => (
                   <div
-                    className={`w-full px-4 transition-all cursor-pointer`}
-                    value={item.id}
-                    onClick={handleClick}
+                    className={`w-full px-4 transition-all cursor-pointer active:scale-105`}
+                    
+                    onClick={(e) => handleClick(e, item.id)}
                     key={`PR${index}`}
                   >
                     {' > '}&nbsp;
-                    <span className={` transition-all ` + styles.popup}>{item.title}</span>
+                    <span className={` transition-all text-center ` + styles.popup}>{item.title}</span>
                     <div className={`bg-zinc-500`} style={{ width: '100%', height: 1 }} />
                   </div>
                 ))}

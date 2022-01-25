@@ -19,7 +19,7 @@ export default function NavLG(props) {
             <p
               className={`logo-text font-mono text-belplit font-bold overflow-hidden transition-all duration-100 text`}
             >
-              БЕЛПЛИТ
+              БЕЛТЕРМО
             </p>
           )}
         </div>

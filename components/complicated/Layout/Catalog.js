@@ -1,12 +1,12 @@
 import React from 'react';
 import { Product } from '../';
 import { Text } from '../../lib';
-import products from '../../../data/products.json';
+// import products from '../../../data/products.json';
 
-export default function Catalog({ data }) {
+export default function Catalog({ data, products }) {
   const { title } = data;
   return (
-    <div className={`bg-white pt-20`}>
+    <div className={`pt-20`}>
       <div className={`bg-zinc-400`}>
         <div className={`bg-belplit bg-opacity-60 py-2`}>
           <Text className={`text-5xl pl-1.5 font-bold text-zinc-800 max-w-7xl text-left mx-auto`}>
