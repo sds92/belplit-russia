@@ -2249,6 +2249,34 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: 0.25rem;
 }
 
+.-mt-1{
+  margin-top: -0.25rem;
+}
+
+.ml-1{
+  margin-left: 0.25rem;
+}
+
+.-mt-2{
+  margin-top: -0.5rem;
+}
+
+.-mb-2{
+  margin-bottom: -0.5rem;
+}
+
+.-mb-4{
+  margin-bottom: -1rem;
+}
+
+.-mb-5{
+  margin-bottom: -1.25rem;
+}
+
+.mt-8{
+  margin-top: 2rem;
+}
+
 .inline-block{
   display: inline-block;
 }
@@ -2403,6 +2431,16 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-52{
   width: 13rem;
+}
+
+.w-48{
+  width: 12rem;
+}
+
+.w-min{
+  width: -webkit-min-content;
+  width: -moz-min-content;
+  width: min-content;
 }
 
 .min-w-full{
@@ -3683,6 +3721,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 .scroll-py-3\.5{
   scroll-padding-top: 0.875rem;
   scroll-padding-bottom: 0.875rem;
+}
+
+.flex-row{
+  flex-direction: row;
 }
 
 .flex-col{
@@ -7992,6 +8034,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(30 64 175 / var(--tw-text-opacity));
 }
 
+.text-neutral-400{
+  --tw-text-opacity: 1;
+  color: rgb(163 163 163 / var(--tw-text-opacity));
+}
+
+.text-neutral-500{
+  --tw-text-opacity: 1;
+  color: rgb(115 115 115 / var(--tw-text-opacity));
+}
+
 .underline{
   -webkit-text-decoration-line: underline;
           text-decoration-line: underline;
@@ -10428,6 +10480,10 @@ Ensure the default browser behavior of the `hidden` attribute.
     gap: 0.5rem;
   }
 
+  .sm\:gap-4{
+    gap: 1rem;
+  }
+
   .sm\:rounded-lg{
     border-radius: 0.5rem;
   }
@@ -10519,6 +10575,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .md\:w-64{
     width: 16rem;
+  }
+
+  .md\:w-1\/2{
+    width: 50%;
   }
 
   .md\:basis-1\/3{

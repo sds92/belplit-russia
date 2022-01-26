@@ -7,6 +7,7 @@ import { ImgGrid, HeadBlock, InfoBlock, Devider, InfoSwitcher } from './Blocks';
 import { Text } from '../../lib';
 
 export default function Main({ data, w, ...props }) {
+  console.log("🚀 ~ file: Main.js ~ line 10 ~ Main ~ props", props)
   return (
     <div className={`flex flex-col overflow-hidden bg-white mb-20`}>
       <HeadBlock data={data} />
@@ -17,7 +18,7 @@ export default function Main({ data, w, ...props }) {
       <div className={`w-full py-4`}>
         <div className={`mx-auto max-w-7xl text-6xl text-zinc-800 font-bold`}>{'Калькулятор'}</div>
       </div>
-      <div className={`w-full bg-belplit_2`}>
+      <div className={`w-full `}>
         <div className={`mx-auto max-w-7xl `}>
           <Calculator products={props.products} />
         </div>
