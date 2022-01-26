@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './styles.module.scss';
 
-export default function Select({ items = [], id = 'userselect', label, ...props }) {
+export default function Select({ items = [], id = 'userselect', label, bc, ...props }) {
   const { onChange } = props;
   return (
     <>
@@ -9,13 +9,13 @@ export default function Select({ items = [], id = 'userselect', label, ...props 
         {label}
       </label>
       <select
-        className={`cursor-pointer w-full bg-transparent rounded-md border shadow-md py-1 px-2 ` + styles.select}
+        className={`cursor-pointer w-full bg-white rounded-md border border-${bc} py-1 px-2 ` + styles.select}
         id={`${id}` || 'userselect'}
         onChange={onChange}
       >
         {items.map((item, index) => {
           return (
-            <option className={`bg-transparent`} value={item.value} key={`userselect${index}`}>
+            <option className={`bg-white font-light`} value={item.value} key={`userselect${index}`}>
               {item.title}
             </option>
           );

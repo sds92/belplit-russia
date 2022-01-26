@@ -1,5 +1,6 @@
 import React from 'react';
-import { Text } from '../../../lib';
+import { Text, Devider } from '../../../lib';
+import { Logo } from '../..';
 import useInterval from '../../../../utils/hooks/useInterval';
 
 export default function InfoSwitcher(props) {
@@ -36,24 +37,27 @@ export default function InfoSwitcher(props) {
   }, 3000);
 
   return (
-    <div className={`h-full bg-zinc-400 transition-all`}>
-      <div className={`h-full bg-belplit bg-opacity-60 rounded-md p-8 transition-all`}>
-        <div className={`max-w-7xl mx-auto flex flex-col items-start`} style={{height: 380}}>
-          <Text className={`font-bold zero:text-3xl zero:text-center sm:text-left sm:text-6xl max-w-md text-zinc-800 leading-tight`}>{text.ib4}</Text>
-          <div className={`mt-8`}>
-            <Text className={`mb-1 font-bold text-zinc-100 text-xl transition-all opacity-${state.opacity}`}>
+    <>
+      {/* <Devider data={{ title: text.ib4 }} color={`white`} ts={'6xl'} /> */}
+
+      <div className={`max-w-7xl mx-auto  mt-10`}>
+        <div className={`w-full flex gap-10 items-center justify-between`}>
+          <div className={`w-1/2`}>
+          </div>
+          <div className={`w-1/2`}>
+            <Text className={`mb-1 font-bold text-zinc-800 text-xl transition-all opacity-${state.opacity}`}>
               {msgs[curMsg][0]}
             </Text>
             <hr />
             <Text
               style={{ fontWeight: 300 }}
-              className={`mt-2 bg-zinc-100 p-8 rounded-md text-black text-lg leading-5 tracking-normal transition-all opacity-${state.opacity}`}
+              className={`mt-2 w-96 p-8 rounded-md text-zinc-800 text-lg leading-5 tracking-normal transition-all opacity-${state.opacity}`}
             >
               {msgs[curMsg][1]}
             </Text>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

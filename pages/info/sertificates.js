@@ -8,12 +8,5 @@ import backgroundImage from '../../public/images/background-description.jpg';
 import { Layout } from '../../components/complicated';
 
 export default function Sertificates(props) {
-
-
-  return (
-    <div>
-      <Layout.Sertificates {...props}/>
-    </div>
-    
-  );
+  return <Layout.Sertificates {...props} />;
 }

@@ -3,28 +3,28 @@ import styles from './styles.module.scss';
 
 export default function Techdesc({ data }) {
   return (
-    <div className={`w-full mx-auto overflow-hidden py-20 bg-white rounded-tr-md rounded-b-md px-2 md:px-8`}>
+    <div className={`w-full mx-auto overflow-hidden pt-4 rounded-tr-md rounded-b-md px-2 md:px-8`}>
       <div className={`zero:overflow-x-scroll md:overflow-x-auto`}>
-        <table
-          className={
-            `w-full shadow-inner rounded-md ` +
-            styles['shadow-techdesc']
-          }
-        >
-          <thead></thead>
+        <table className={`w-full` }>
+          <thead>
+            <tr >
+              <th scope='col' className={`text-left text-lg border-r border-zinc-900 px-2`}>Показатель</th>
+              <th scope='col' className={`text-left text-lg px-2`}>Значение</th>
+            </tr>
+          </thead>
           <tbody>
             {data.map((item, index) => {
               return (
                 <tr
                   key={`TABLE${index}`}
-                  className={index % 2 === 0 ? `bg-belplit_2 bg-opacity-10` : 'bg-zinc-700 text-zinc-100'}
+                  className={index % 2 === 0 ? `bg-zinc-300` : 'bg-belplit_dark bg-opacity-90 text-zinc-100'}
                 >
                   {item.map((trItem, trIndex) => (
                     <td
                       className={
                         (trIndex === 0
-                          ? 'zero:text-xs sm:text-sm md:text-base px-1 font-light'
-                          : 'font-light') + ' border-b'
+                          ? 'zero:text-xs sm:text-sm md:text-base px-1 font-light border-r border-zinc-700 rounded-l'
+                          : 'font-light rounded-r ') + ' '
                       }
                       key={`TR${index}${trIndex}`}
                     >
@@ -38,7 +38,7 @@ export default function Techdesc({ data }) {
                                 </td>
                               ) : (
                                 <td
-                                  className={'px-2 border-x border-zinc-500'}
+                                  className={`${tdIndex % 2 && trItem.length > 4 ? 'bg-belplit_2 bg-opacity-50' : 'bg-opacity-100'} px-2`}
                                   key={`TD${index}${trIndex}${tdIndex}`}
                                 >
                                   {tdItem}

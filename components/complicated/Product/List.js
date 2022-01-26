@@ -57,9 +57,15 @@ export default function ProductList({ listItems, inset = false, title = '' }) {
     setH(window.innerHeight);
     if (open) {
       window.document.body.style.overflow = 'hidden';
+      window.document.body.style.height = '100%';
+      window.document.body.style.width = '100%';
+      window.document.body.style.position = 'fixed';
     }
     if (!open) {
       window.document.body.style.overflow = 'auto';
+      window.document.body.style.position = '';
+      window.document.body.style.width = '';
+      window.document.body.style.top = '';
     }
   }, [open]);
 
@@ -68,7 +74,7 @@ export default function ProductList({ listItems, inset = false, title = '' }) {
       {inset && (
         <>
           <div
-            className={`${!open && `hidden`} h-full fixed z-40 inset-0 bg-black overflow-hidden ${
+            className={`${!open && `hidden`} h-screen w-full fixed z-40 top-0 bg-black overflow-hidden ${
               delay ? 'bg-opacity-40 ' : ' bg-opacity-0'
             } `}
             onClick={handleClick}

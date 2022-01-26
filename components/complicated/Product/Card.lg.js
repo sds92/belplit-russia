@@ -3,7 +3,7 @@ import React from 'react';
 
 // etc
 import { PopUp, Modal, ModalItems, Radio, FeedBack as FeedBackForm, Decorators, Calculator } from '..';
-import { Text, Select } from '../../lib';
+import { Text, Select, Devider } from '../../lib';
 import styles from './styles.module.scss';
 import ProductList from './List';
 import Techdesc from './Techdesc';
@@ -57,14 +57,8 @@ export default function ProductCardLG(props) {
 
   return (
     <>
-      <Decorators.ColorBelplit classNames={'pt-20 ' + styles['shadow-in']}>
-        <Text className={`text-5xl pl-1.5 uppercase font-bold text-zinc-800 max-w-7xl text-left mx-auto`}>
-          {name}
-        </Text>
-        <Text className={`text-4xl pl-2 font-bold text-zinc-100 pb-2 max-w-7xl text-left mx-auto`}>
-          Белтермо
-        </Text>
-      </Decorators.ColorBelplit>
+    <Devider data={{title: name, subTitle: 'Белтермо'}} color={`belplit_2`}/>
+   
       <div className={`w-full max-w-7xl mx-auto relative`}>
         <div className={`flex flex-col md:flex-row w-full bg-white rounded-md sm:mt-4`}>
           <div className={`flex flex-col sm:flex-row basis-1/3`}>
@@ -105,7 +99,7 @@ export default function ProductCardLG(props) {
                 <p className={`text-gray-500`}>руб.</p>
               </div>
               <div
-                className={`bg-belplit_2 uppercase font-bold mx-4 my-4 rounded-md text-center text-zinc-100 py-2 cursor-pointer hover:bg-belplit hover:text-slate-200`}
+                className={`bg-belplit_2 active:scale-105 transition-all uppercase font-bold mx-4 my-4 rounded-md text-center text-zinc-100 py-2 cursor-pointer hover:bg-belplit hover:text-slate-200`}
                 onClick={openModal}
               >
                 Купить

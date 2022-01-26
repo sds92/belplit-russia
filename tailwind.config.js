@@ -17,12 +17,19 @@ fontFamily['sans-serif'] = [
   // <-- you may provide more font fallbacks here
 ];
 
+fontFamily['logo'] = [
+  'PT Sans Narrow',
+
+  // <-- you may provide more font fallbacks here
+];
 module.exports = {
   content: ['./pages/**/*.{html,js}', './components/**/*.{html,js}'],
   presets: [],
   darkMode: 'media', // or 'class'
 
   safelist: [
+    'pt-5',
+    'pb-5',
     'text-2xl',
     'text-3xl',
     'border-opacity-0',
@@ -73,9 +80,11 @@ module.exports = {
       '2xl': '1536px',
     },
     colors: ({ colors }) => ({
+      belplit_logo: '#55b025',
       footer: '#848484',
       belplit: '#38a000',
       belplit_2: '#62a044',
+      bp_3: '#59933e',
       belplit_dark: '#426d2e',
       inherit: colors.inherit,
       current: colors.current,

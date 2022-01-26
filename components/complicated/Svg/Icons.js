@@ -1,4 +1,24 @@
 import { SVGImage } from './Svg';
+
+export const ArrowsEx = ({ w = 6, h = 6, ...props }) => {
+  return (
+    <SVGImage
+      viewBox='0 0 24 24'
+      fill='none'
+      stroke={props.stroke || 'currentColor'}
+      xmlns='http://www.w3.org/2000/svg'
+      {...props}
+    >
+      <path
+        strokeLinecap='round'
+        strokeLinejoin='round'
+        strokeWidth='2'
+        d='M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4'
+      />
+    </SVGImage>
+  );
+};
+
 export const Whatsapp = ({ w = 1, h = 1, ...props }) => {
   return (
     <SVGImage viewBox='0 0 128 128' width={`${w}rem`} height={`${h}rem`} {...props}>
@@ -138,8 +158,8 @@ export const Mail = ({ w = 6, h = 6, ...props }) => {
       stroke={props.stroke || 'currentColor'}
       {...props}
     >
-    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-  <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+      <path d='M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z' />
+      <path d='M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z' />
     </SVGImage>
   );
 };
@@ -165,7 +185,7 @@ export const Minus = ({ w = 6, h = 6, ...props }) => {
       stroke={props.stroke || 'currentColor'}
       {...props}
     >
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
+      <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M20 12H4' />
     </SVGImage>
   );
 };
@@ -178,14 +198,18 @@ export const Clock = ({ w = 6, h = 6, ...props }) => {
       stroke={props.stroke || 'currentColor'}
       {...props}
     >
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-
+      <path
+        strokeLinecap='round'
+        strokeLinejoin='round'
+        strokeWidth={2}
+        d='M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z'
+      />
     </SVGImage>
   );
 };
 
-
 const Icons = {
+  ArrowsEx,
   Roboweb,
   Telegram,
   Whatsapp,

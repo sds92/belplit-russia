@@ -1,3 +1,9 @@
 .select {
   outline: none !important;
 }
+
+.devider {
+  box-shadow: 0px -5px 5px -5px rgba(34, 60, 80, 0.6) inset;
+  -webkit-box-shadow: 0px -5px 5px -5px rgba(34, 60, 80, 0.6) inset;
+  -moz-box-shadow: 0px -5px 5px -5px rgba(34, 60, 80, 0.6) inset;
+}

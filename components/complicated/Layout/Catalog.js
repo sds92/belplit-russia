@@ -1,5 +1,5 @@
 import React from 'react';
-import { Product } from '../';
+import { ProductComponent } from '../';
 import { Text } from '../../lib';
 // import products from '../../../data/products.json';
 
@@ -25,7 +25,7 @@ export default function Catalog({ data, products }) {
                 key={`P${index}`}
                 className={`zero:w-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4 transition-all`}
               >
-                <Product.CardSM product={product} />
+                <ProductComponent.CardSM product={product} />
               </div>
             ))}
           </div>

@@ -18,17 +18,32 @@ export default function Calculator({ products }) {
     title: item.a + '*' + item.b + '*' + item.h + ' [мм]',
     value: i,
   }));
-  const height = products[state.mark].sizes[state.size].h;
+  const h = products[state.mark].sizes[state.size].h;
   const a = products[state.mark].sizes[state.size].a;
   const b = products[state.mark].sizes[state.size].b;
-
   const price = products[state.mark].prices.square[state.size];
-
   const density = products[state.mark].density[state.size].replace('кг/м³', '');
 
+  const s = () => (a * b) / 1000000;
+  const am = () => state.amount / s();
+  const v = () => (am() * s() * h) / 1000;
+  const m = density * v();
+
+  const handleChange = (e) => {
+    if (typeof e.target.value !== 'number') {
+      setState((s) => ({ ...s, alert: true }));
+      setTimeout(() => {
+        setState((s) => ({ ...s, alert: false }));
+      }, 3000);
+    } else {
+      setState((s) => ({ ...s, amount: e.target.value }));
+    }
+  };
+  console.log('🚀 ~ file: Calculator.js ~ line 81 ~ Calculator ~ typeof state.amount', typeof state.amount);
+
   return (
-    <div className={`rounded-md m-4 flex`}>
-      <div className={`w-1/2 p-4`}>
+    <div className={`rounded-md p-4 flex w-full`}>
+      <div className={`w-1/2 p-4 font-semibold`}>
         <label>Выберите марку</label>
         <div className={`py-2`}>
           <Select
@@ -55,44 +70,52 @@ export default function Calculator({ products }) {
         </div>
         <label>Выберите регион</label>
         <div className={`py-2`}>
-          <Select></Select>
+          <Select items={[{ title: 'Москва', value: 0 }]}></Select>
         </div>
-        <div className={`flex`}>
-          <div className={`basis-1/2 flex flex-col`}>
-            <div>Введите количество м2</div>
-            <div className={`py-2 w-1/2`}>
+        <div className={`flex zero:flex-col sm:flex-row`}>
+          <div className={`basis-1/2 flex flex-col order-2`}>
+            <div className={`font-bold`}>Введите количество м²</div>
+            <div className={`zero:py-2 sm:py-0 sm:w-1/2`}>
               <input
-                className={`border rounded-md font-bold text-xl`}
+                className={`border-2 border-belplit_dark rounded-md font-bold text-3xl w-full`}
                 placeholder={state.amount}
-                onChange={(e) => setState((s) => ({ ...s, amount: e.target.value }))}
+                onChange={(e) => {
+                  setState((s) => ({ ...s, amount: e.target.value }));
+                }}
+                type={`number`}
               />
             </div>
           </div>
-          <div className={`basis-1/2 flex flex-col`}>
-            <div>Площадь листа м2</div>
+          <div className={`basis-1/2 flex flex-col order-1`}>
+            <div>Площадь листа м²</div>
             <div className={`py-2`}>
-              <div
-                className={`border rounded-md font-bold text-xl`}
-              >
-                {(a*b/1000000).toFixed(2)}
-              </div>
+              <div className={`rounded-md font-bold text-xl`}>{((a * b) / 1000000).toFixed(2)}</div>
             </div>
           </div>
         </div>
       </div>
-      <div className={`w-1/2 p-4`}>
-        <div className={`w-full font-bold texl-2xl py-2`}>Результат</div>
+      <div className={`w-1/2 p-4 border-l border-belplit_dark`}>
+        <div className={`w-full font-bold text-3xl py-2`}>Результат</div>
         <div className={`w-full`}>стоимость</div>
         <div className={`w-full font-bold text-5xl`}>
           {price * state.amount}
           <span className={`text-lg`}> руб.</span>
         </div>
         <div className={`w-full`}>количество</div>
-        <div className={`w-full font-bold text-5xl`}>{Math.ceil(state.amount/(a*b/1000000))}<span className={`text-lg`}> шт.</span>  </div>
+        <div className={`w-full font-bold text-5xl`}>
+          {Math.ceil(am())}
+          <span className={`text-lg`}> шт.</span>{' '}
+        </div>
         <div className={`w-full`}>объем</div>
-        <div className={`w-full font-bold text-5xl`}>{(state.amount * height * 0.001).toFixed(2)}<span className={`text-lg`}> м³</span></div>
+        <div className={`w-full font-bold text-5xl`}>
+          {v()}
+          <span className={`text-lg`}> м³</span>
+        </div>
         <div className={`w-full`}>вес</div>
-        <div className={`w-full font-bold text-5xl`}>{(state.amount * height * 0.01 * density).toFixed(0)}<span className={`text-lg`}> кг</span></div>
+        <div className={`w-full font-bold text-5xl`}>
+          {m.toFixed(0)}
+          <span className={`text-lg`}> кг</span>
+        </div>
       </div>
     </div>
   );

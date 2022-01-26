@@ -1,10 +1,10 @@
 import React from 'react';
-import { Product } from '../../components/complicated';
+import { Layout, Product } from '../../components/complicated';
 import productsInit from '../../data/products.json';
 import { normalizeData } from '../../utils/functions';
 
 export default function ProductPage(props) {
-  return <Product.CardLG {...props} />;
+  return <Layout.Product {...props} />;
 }
 
 export async function getStaticProps({ params }) {

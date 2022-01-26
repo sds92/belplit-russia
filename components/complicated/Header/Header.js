@@ -52,7 +52,9 @@ export default function Header(props) {
             </p>
           </div>
         )}
-        <Navbar mdView={props.mdView} lgView={lgView} scrolled={scrolled} isOnTop={isOnTop} />
+        <div className={`max-w-7xl mx-auto`}>
+          <Navbar mdView={props.mdView} lgView={lgView} scrolled={scrolled} isOnTop={isOnTop} />
+        </div>
       </header>
       <div ref={ref}></div>
     </>
