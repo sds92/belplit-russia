@@ -22,7 +22,7 @@ export default function Main({ data, w, ...props }) {
           <Calculator products={props.products} />
         </div>
       </div>
-      <InfoSwitcher data={data} w={w} />
+      {/* <InfoSwitcher data={data} w={w} /> */}
       <Text className={`font-bold text-5xl text-center text-zinc-800 my-20`}>{'Свяжитесь с нами'}</Text>
       <Contacts {...props} />
     </div>
