@@ -1,6 +1,7 @@
 // react
 import React from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 // react-menu
 import { Menu, MenuItem, MenuButton, SubMenu } from '@szhsin/react-menu';
@@ -8,7 +9,7 @@ import '@szhsin/react-menu/dist/index.css';
 import '@szhsin/react-menu/dist/transitions/slide.css';
 
 // etc
-import { Icons, Logo, Social } from '../';
+import { Icons, Logo, Social,Modal, ModalItems, FeedBack } from '../';
 import { menu } from '../../../configs/menu';
 import app from '../../../data/app.json';
 
@@ -73,7 +74,6 @@ export default function NavSM(props) {
           </MenuItem>
           <hr />
         </Menu>
-        {/* <div className={`bg-gray-400 my-1`} style={{ width: 1 }} /> */}
       </div>
 
       {!props.isOnTop && <div className={`flex`}>
