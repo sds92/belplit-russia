@@ -1,8 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
 import useInterval from '../../../../utils/hooks/useInterval';
-import { Text } from '../../../lib';
-import { InfoSwitcher } from '.';
 
 export default function ImgGrid(props) {
   const { links } = props.data.content;

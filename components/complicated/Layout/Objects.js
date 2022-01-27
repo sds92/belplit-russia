@@ -69,14 +69,12 @@ export default function Objects(props) {
     setIsViewerOpen(false);
   };
   return (
-    <div className={``}>
-      <div className={`bg-belplit_2 pt-20`}>
+    <div className={`pt-20`}>
+      <div className={`bg-belplit_2 py-4`}>
         <Text className={`text-5xl pl-1.5 uppercase font-bold text-zinc-800 max-w-7xl text-left mx-auto`}>
           {props.data.title}
         </Text>
-        <Text className={`text-4xl pl-2 font-bold text-zinc-100 pb-2 max-w-7xl text-left mx-auto`}>
-          Белтермо
-        </Text>
+       
       </div>
 
       <Text className={`text-center py-2 mx-auto max-w-xl my-20`}>

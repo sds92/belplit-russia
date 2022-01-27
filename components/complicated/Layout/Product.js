@@ -7,9 +7,7 @@ import {
   PopUp,
   Modal,
   ModalItems,
-  Radio,
   FeedBack as FeedBackForm,
-  Decorators,
   Calculator,
   Icons,
 } from '..';
@@ -63,7 +61,7 @@ export default function Product(props) {
 
   return (
     <>
-      <Devider data={{ title: name, subTitle: 'Белтермо' }} color={`belplit_2`} />
+      <Devider data={{ title: name, subTitle: 'МДВП' }} color={`belplit_2`} />
 
       <div className={`max-w-7xl mx-auto zero:my-0 sm:my-4`}>
         <div className={`flex flex-col md:flex-row w-full bg-white rounded-md`}>
@@ -132,16 +130,25 @@ export default function Product(props) {
           </div>
         </div>
       </div>
-      <Devider data={{ title: 'Калькулятор' }} pt={5} pb={5} color={`belplit_2`} />
+
+      <div className={`max-w-7xl mx-auto text-5xl font-bold text-zinc-800 mt-10 pl-2`}>Калькулятор</div>
       <div className={`w-full`}>
         <div className={`mx-auto max-w-7xl`}>
           <Calculator products={products} />
         </div>
       </div>
-      <Devider data={{ title: 'Информация', subTitle: 'об изделии' }} pt={5} pb={5} color={`belplit_2`}>
+      <div className={'bg-zinc-600 py-4'}>
+        <Text className={`pl-1.5 uppercase font-bold text-belplit_2 text-5xl max-w-7xl text-left mx-auto`}>
+          Информация
+        </Text>
 
+        <Text className={`text-4xl pl-2 font-bold text-white pb-2 max-w-7xl text-left mx-auto`}>
+          об изделии
+        </Text>
+      </div>
+   
       <div className={`max-w-7xl sm:mx-auto flex`}>
-        <div className={`h-full ml-2 my-3 bg-zinc-800 sm:hidden`} style={{width: 1, height: 50}}></div>
+        <div className={`h-full ml-2 my-3 bg-zinc-800 sm:hidden`} style={{ width: 1, height: 50 }}></div>
         <div className={`flex zero:flex-col sm:flex-row items-start py-1`}>
           {[
             ['tech', 'Технические характеристики'],
@@ -152,7 +159,7 @@ export default function Product(props) {
               className={`active:scale-105 text-left text-2xl cursor-pointer transition-all px-2 ${
                 desc.open === item[0]
                   ? 'text-zinc-800 font-bold sm:border-b-2 border-zinc-800'
-                  : 'text-white font-extralight'
+                  : 'text-zinc-800 font-extralight'
               }`}
               // style={{ minWidth: 250 }}
               onClick={() => setDesc((s) => ({ ...s, open: item[0] }))}
@@ -164,7 +171,6 @@ export default function Product(props) {
           ))}
         </div>
       </div>
-      </Devider>
 
       <div className={`w-full z-20 relative`}>
         <div className={`my-10 max-w-7xl mx-auto rounded-b-lg`}>

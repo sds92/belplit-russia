@@ -20,7 +20,7 @@ export default function FeedBack(props) {
   
   const classes = {
     inputWrapSm: (n) => `w-full sm:w-1/2 flex relative ${
-      checkFormStatus[n] ? `rounded-md border border-red-600` : `border border-belplit`
+      checkFormStatus[n] ? `rounded-md border border-red-600` : `border `
     } rounded-md p-1 bg-white my-1`,
     inputSm: `w-full px-2 pt-2 bg-white`
   }
@@ -121,6 +121,7 @@ export default function FeedBack(props) {
                   id='FeedBackFormClientName'
                   placeholder='Имя'
                   value={formState.clientName}
+                  type={"text"}
                   onChange={(e) =>
                     setFormState((state) => {
                       return { ...state, clientName: e.target.value };
@@ -139,7 +140,7 @@ export default function FeedBack(props) {
                   id='FeedBackFormClientPhone'
                   placeholder='Телефон'
                   value={formState.clientPhone}
-                  type="tel"
+                  type={"tel"}
                   onChange={(e) =>
                     setFormState((state) => {
                       return { ...state, clientPhone: e.target.value };
@@ -150,7 +151,7 @@ export default function FeedBack(props) {
             </div>
 
             <div className={`w-full relative border rounded-md p-1 bg-white my-1 ${
-                  checkFormStatus[2] ? `border border-red-600` : `border-belplit`
+                  checkFormStatus[2] ? `border border-red-600` : ``
                 }`}>
               {checkFormStatus[2] && (
                 <p className={`form-text-alert text-red-600 right-2 top-0`}>3 - 500 символов</p>
@@ -179,11 +180,12 @@ export default function FeedBack(props) {
                   </p>
                 )}
                 <input
-                  className={`border-b w-full pt-2 px-2`}
+                  className={` w-full pt-2 px-2`}
                   required
                   id='FeedBackFormClientEmail'
                   placeholder='E-mail'
                   value={formState.clientEmail}
+                  type={"email"}
                   onChange={(e) =>
                     setFormState((state) => {
                       return { ...state, clientEmail: e.target.value };
@@ -193,7 +195,7 @@ export default function FeedBack(props) {
               </div>
               <Button
                 onClick={sendForm}
-                className={`bg-belplit text-center text-slate-100 rounded-md cursor-pointer px-4 py-2.5 w-full sm:w-1/2`}
+                className={`bg-belplit_2 text-center text-white rounded-md cursor-pointer px-4 py-2.5 w-full sm:w-1/2 active:scale-105 hover:scale-105 transition-all`}
               >
                 Отправить
               </Button>

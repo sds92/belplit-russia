@@ -14,7 +14,7 @@ export default function NavLG(props) {
     <div className={`flex justify-center gap-10 h-full my-auto py-2 px-2`}>
       <Link href={`/`} passHref>
         <div className={`flex transition-all cursor-pointer items-center`}>
-          
+          <Logo extraClasses={`${props.lgView ? 'logo' : 'h-8 w-8'} transition-all`} />
           {props.lgView && (
             <p
               className={`logo-text font-sans-serif text-belplit_logo font-bold overflow-hidden transition-all duration-100`}
@@ -23,7 +23,6 @@ export default function NavLG(props) {
               БЕЛТЕРМО
             </p>
           )}
-          <Logo extraClasses={`${props.lgView ? 'logo' : 'h-8 w-8'} transition-all`} />
         </div>
       </Link>
       <div
@@ -35,7 +34,7 @@ export default function NavLG(props) {
       </div>
       <div className={`flex items-center gap-2`}>
         <div className={`flex items-center font-light gap-2`}>
-          <Social mdView={props.mdView}/>
+          <Social mdView={props.mdView} />
         </div>
         <div className={`bg-slate-500 mx-2 h-8`} style={{ width: 1 }}></div>
         <Button

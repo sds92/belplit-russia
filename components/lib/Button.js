@@ -7,7 +7,7 @@ export default function Button({ href, children, className, ...props }) {
         cursor-pointer 
         
         py-1.5  
-        antialiased
+        antialiased 
         ${className}
         `}
       {...props}

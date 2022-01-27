@@ -1,11 +1,9 @@
 import React from 'react';
-import Image from 'next/image';
 // etc
 import { Icons } from '../';
 import { Logo } from '../';
-import { app } from '../../../configs/app';
 
-export default function Footer(lgView) {
+export default function Footer() {
   return (
     <>
       <div className={`h-96 cursor-default`}>
@@ -15,10 +13,11 @@ export default function Footer(lgView) {
           height='100%'
           aria-hidden='false'
           tabIndex='0'
-          style={{ borderRadius: '5px' }}
+          className={``}
+          // style={{ borderRadius: '5px' }}
         ></iframe>
       </div>
-      <footer className={`bg-zinc-800`}>
+      <footer className={`bg-zinc-700`}>
         <div className={`flex flex-col md:flex-row justify-between items-center h-full`}>
           <div className={`basis-1/3 ml-0 sm:ml-10 md:ml-36 my-4`}>
             <a href='index.html'>

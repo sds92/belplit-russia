@@ -2,7 +2,7 @@ import React from 'react';
 import { AnimatePresence, domAnimation, LazyMotion, m } from 'framer-motion';
 import { useRouter } from 'next/router';
 import { animations } from '../styles/animations';
-import { Header, Footer, Head, AppContext } from '../components/complicated';
+import { Header, Footer, Head } from '../components/complicated';
 import '../styles/tailwind.css';
 
 import pages from '../data/pages.json';

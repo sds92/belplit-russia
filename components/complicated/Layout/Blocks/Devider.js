@@ -19,10 +19,10 @@ export default function Devider({ data }) {
             </Text>
           </p>
           {link && (
-            <div className={`self-end zero:hidden sm:block`}>
+            <div className={`self-end zero:hidden sm:block `}>
               <Link href={link[0]} passHref>
                 <div
-                  className={`cursor-pointer mb-4 hover:scale-105 active:scale-105 text-center whitespace-nowrap  bg-zinc-100 text-lg font-bold uppercase text-zinc-800 rounded-md py-2 px-8 shadow-md`}
+                  className={`transition-all font-light cursor-pointer mb-4 hover:scale-105 active:scale-105 text-center whitespace-nowrap  bg-zinc-100 text-lg uppercase text-zinc-800 rounded-md py-2 px-8 shadow-md`}
                 >
                   {link[1]}
                 </div>

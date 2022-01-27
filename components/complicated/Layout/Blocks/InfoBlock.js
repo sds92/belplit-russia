@@ -1,14 +1,8 @@
 // react
 import React from 'react';
 
-// animation
-import Fade from 'react-reveal/Fade';
-import { motion } from 'framer-motion';
-
 // etc
 import { Text } from '../../../lib';
-import { InfoSwitcher } from '.';
-import { animations } from '../../../../styles/animations';
 
 export default function InfoBlock(props) {
   const { text, imgs } = props.data.content;

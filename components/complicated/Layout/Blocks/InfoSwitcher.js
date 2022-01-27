@@ -1,6 +1,5 @@
 import React from 'react';
-import { Text, Devider } from '../../../lib';
-import { Logo } from '../..';
+import { Text } from '../../../lib';
 import useInterval from '../../../../utils/hooks/useInterval';
 
 export default function InfoSwitcher(props) {

@@ -1,21 +1,17 @@
 import React from 'react';
 import { ProductComponent } from '../';
 import { Text } from '../../lib';
-// import products from '../../../data/products.json';
 
 export default function Catalog({ data, products }) {
   const { title } = data;
   return (
     <div className={`pt-20`}>
-      <div className={`bg-zinc-400`}>
-        <div className={`bg-belplit bg-opacity-60 py-2`}>
+      <div className={`bg-belplit_2 py-4`}>
+        
           <Text className={`text-5xl pl-1.5 font-bold text-zinc-800 max-w-7xl text-left mx-auto`}>
             {title}
           </Text>
-          <Text className={`text-4xl pl-2 font-bold text-zinc-100 pb-2 max-w-7xl text-left mx-auto`}>
-            Белтермо
-          </Text>
-        </div>
+        
       </div>
       <div className={`max-w-7xl mx-auto pt-20`}>
         <div className={`border-belplit rounded-lg`}>
@@ -23,7 +19,7 @@ export default function Catalog({ data, products }) {
             {products.map((product, index) => (
               <div
                 key={`P${index}`}
-                className={`zero:w-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4 transition-all`}
+                className={`zero:w-full zero:mx-10 sm:mx-0 sm:basis-1/2 md:basis-1/3 lg:basis-1/4 transition-all`}
               >
                 <ProductComponent.CardSM product={product} />
               </div>

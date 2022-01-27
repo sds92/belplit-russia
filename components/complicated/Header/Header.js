@@ -1,12 +1,9 @@
 // react
 import React from 'react';
-import Image from 'next/image';
 import { useRouter } from 'next/router';
 
 // etc
 import { Navbar, Icons, Logo } from '../';
-import { Text } from '../../lib';
-import { app } from '../../../configs/app';
 import useScroll from '../../../utils/hooks/useScroll';
 
 export default function Header(props) {
@@ -44,16 +41,16 @@ export default function Header(props) {
       >
         {isOnTop && !mdView && !lgView && (
           <div className={`flex transition-all cursor-pointer items-center justify-center`}>
-            <Logo extraClasses={`${props.lgView ? 'logo' : 'h-8 w-8'} transition-all`} />
             <p
-              className={`text-4xl text-center font-mono text-belplit font-bold overflow-hidden transition-all duration-100 text`}
+              className={`text-4xl text-center text-belplit font-bold overflow-hidden transition-all duration-100 text`}
             >
               БЕЛТЕРМО
             </p>
+            <Logo extraClasses={`${props.lgView ? 'logo' : 'h-8 w-8'} transition-all`} />
           </div>
         )}
         <div className={`max-w-7xl mx-auto`}>
-          <Navbar mdView={props.mdView} lgView={lgView} scrolled={scrolled} isOnTop={isOnTop} />
+          <Navbar w={props.w} mdView={props.mdView} lgView={lgView} scrolled={scrolled} isOnTop={isOnTop} />
         </div>
       </header>
       <div ref={ref}></div>

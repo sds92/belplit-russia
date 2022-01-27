@@ -29,18 +29,6 @@ export default function Calculator({ products }) {
   const v = () => (am() * s() * h) / 1000;
   const m = density * v();
 
-  const handleChange = (e) => {
-    if (typeof e.target.value !== 'number') {
-      setState((s) => ({ ...s, alert: true }));
-      setTimeout(() => {
-        setState((s) => ({ ...s, alert: false }));
-      }, 3000);
-    } else {
-      setState((s) => ({ ...s, amount: e.target.value }));
-    }
-  };
-  console.log('🚀 ~ file: Calculator.js ~ line 81 ~ Calculator ~ typeof state.amount', typeof state.amount);
-
   return (
     <div className={`rounded-md p-4 flex zero:flex-col md:flex-row w-full`}>
       <div className={`zero:w-full md:w-1/2  p-4 font-semibold`}>
@@ -72,15 +60,15 @@ export default function Calculator({ products }) {
         <div className={`py-2`}>
           <Select items={[{ title: 'Москва', value: 0 }]}></Select>
         </div>
-        <div className={`my-2`} style={{ backgroundColor: '#426d2e', height: 1}} />
-        <div className={`flex flex-row justify-between gap-4`}>
+        {/* <div className={`my-2 bg-belplit_dark`} style={{ height: 1}} /> */}
+        <div className={`flex flex-row justify-between gap-4 border-b pb-6`}>
           <div className={`basis-1/2 flex flex-col items-start relative`}>
             <div className={`absolute font-bold text-xl text-left text-zinc-800 whitespace-nowrap`}>
               Введите количество м²
             </div>
             <div className={`w-full mt-8`}>
               <input
-                className={`border border-belplit_dark rounded-md font-bold text-3xl w-full`}
+                className={`border-2 border-belplit_dark rounded-md font-bold text-3xl w-full`}
                 placeholder={state.amount}
                 onChange={(e) => {
                   setState((s) => ({ ...s, amount: e.target.value }));
@@ -100,8 +88,8 @@ export default function Calculator({ products }) {
           </div>
         </div>
       </div>
-      <div className={`zero:w-full md:w-1/2 p-4 border-l border-belplit_dark`}>
-        <div className={`w-full font-bold text-3xl py-2`}>Результат</div>
+      <div className={`zero:w-full md:w-1/2 p-4 border-l bg-zinc-200 rounded-md`}>
+        <div className={`w-full font-bold text-4xl py-2 border-b`}>Результат</div>
         <div className={`w-full`}>стоимость</div>
         <div className={`w-full font-bold text-5xl`}>
           {price * state.amount}

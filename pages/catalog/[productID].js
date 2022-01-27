@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Product } from '../../components/complicated';
+import { Layout } from '../../components/complicated';
 import productsInit from '../../data/products.json';
 import { normalizeData } from '../../utils/functions';
 
