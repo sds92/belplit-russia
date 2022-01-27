@@ -1,15 +1,38 @@
 // react
 import React from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 // etc
 import Logo from '../Svg/Logo';
 import NavLGItem from './NavLGItem';
 import { Button } from '../../lib';
-import { Social, Icons } from '..';
+import { Social, Icons, Modal, ModalItems, FeedBack } from '..';
 import { menu } from '../../../configs/menu';
 
 export default function NavLG(props) {
+  const [modalOpen, setModalOpen] = React.useState(false);
+  const [modalData, setModalData] = React.useState({
+    status: 'orderonopen',
+    header: ['Отправить запрос'],
+  });
+  const router = useRouter();
+  React.useEffect(() => {
+    if (modalData.status === 'success') {
+      setTimeout(() => {
+        setModalOpen(false);
+      }, 3000);
+    }
+    return;
+  }, [modalData]);
+
+  function openModal() {
+    if (router.asPath.includes('catalog') || router.asPath.includes('info')) {
+      setModalData({ status: 'orderonopen', header: ['Отправить запрос'] });
+      setModalOpen(true);
+    }
+    return;
+  }
   return (
     <div className={`flex justify-center gap-10 h-full my-auto py-2 px-2`}>
       <Link href={`/`} passHref>
@@ -39,11 +62,22 @@ export default function NavLG(props) {
         <div className={`bg-slate-500 mx-2 h-8`} style={{ width: 1 }}></div>
         <Button
           href={'#feedback'}
+          onClick={openModal}
           className={`whitespace-nowrap hover:text-belplit uppercase font-bold transition-all`}
         >
           Заказать звонок
         </Button>
       </div>
+      <Modal
+        setOpen={modalOpen}
+        setClose={() => setModalOpen(false)}
+        header={
+          <ModalItems.Header
+            data={{ status: modalData.status, header: modalData.header, setClose: () => setModalOpen(false) }}
+          />
+        }
+        body={<FeedBack onFulfilled={(a) => setModalData({ status: a, header: modalData.header })} />}
+      />
     </div>
   );
 }

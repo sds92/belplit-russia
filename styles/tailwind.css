@@ -5866,9 +5866,9 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(89 147 62 / var(--tw-bg-opacity));
 }
 
-.bg-zinc-900{
+.bg-zinc-100{
   --tw-bg-opacity: 1;
-  background-color: rgb(24 24 27 / var(--tw-bg-opacity));
+  background-color: rgb(244 244 245 / var(--tw-bg-opacity));
 }
 
 .bg-black{
@@ -5894,11 +5894,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-belplit{
   --tw-bg-opacity: 1;
   background-color: rgb(56 160 0 / var(--tw-bg-opacity));
-}
-
-.bg-zinc-100{
-  --tw-bg-opacity: 1;
-  background-color: rgb(244 244 245 / var(--tw-bg-opacity));
 }
 
 .bg-slate-200{
@@ -5939,6 +5934,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-slate-900{
   --tw-bg-opacity: 1;
   background-color: rgb(15 23 42 / var(--tw-bg-opacity));
+}
+
+.bg-zinc-900{
+  --tw-bg-opacity: 1;
+  background-color: rgb(24 24 27 / var(--tw-bg-opacity));
 }
 
 .bg-red-100{

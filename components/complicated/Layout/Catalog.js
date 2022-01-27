@@ -1,9 +1,14 @@
 import React from 'react';
-import { ProductComponent } from '../';
+import { ProductComponent, Modal, ModalItems, FeedBack } from '../';
 import { Text } from '../../lib';
 
 export default function Catalog({ data, products }) {
   const { title } = data;
+  const [modalOpen, setModalOpen] = React.useState(false);
+  const [modalData, setModalData] = React.useState({
+    status: 'orderonopen',
+    header: ['Отправить запрос'],
+  });
   return (
     <div className={`pt-20`}>
       <div className={`bg-belplit_2 py-4`}>
@@ -27,6 +32,16 @@ export default function Catalog({ data, products }) {
           </div>
         </div>
       </div>
+      <Modal
+        setOpen={modalOpen}
+        setClose={() => setModalOpen(false)}
+        header={
+          <ModalItems.Header
+            data={{ status: modalData.status, header: modalData.header, setClose: () => setModalOpen(false) }}
+          />
+        }
+        body={<FeedBack onFulfilled={(a) => setModalData({ status: a, header: modalData.header })} />}
+      />
     </div>
   );
 }
