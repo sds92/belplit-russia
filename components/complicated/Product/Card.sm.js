@@ -6,7 +6,7 @@ export default function ProductCardSM(props) {
 
   return (
     <Link href={`/catalog/${id}`} passHref>
-      <div className={`m-2 relative transition-all active:scale-105 hover:scale-105 rounded-md bg-zinc-100`}>
+      <div className={`m-2 relative transition-all active:scale-105 hover:scale-105 rounded-md bg-belplit_2 bg-opacity-470`}>
         <div className={`flex flex-col justify-between w-full items-start h-full`}>
           <div className={`w-full rounded-md shadow-md`}>
             <div
@@ -25,7 +25,7 @@ export default function ProductCardSM(props) {
               >
                 <p className={`hover:text-white pb-1`}>
                   {name}
-                  <span className={`text-zinc-600 font-light hover:text-white`}> / Подробнее</span>
+                  <span className={`text-zinc-800 font-light hover:text-white`}> / Подробнее</span>
                 </p>
               </div>
             </div>

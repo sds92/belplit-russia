@@ -137,7 +137,7 @@ export default function Product(props) {
           <Calculator products={products} />
         </div>
       </div>
-      <div className={'bg-zinc-600 py-4'}>
+      <div className={'bg-zinc-500 py-4'}>
         <Text className={`pl-1.5 uppercase font-bold text-belplit_2 text-5xl max-w-7xl text-left mx-auto`}>
           Информация
         </Text>
