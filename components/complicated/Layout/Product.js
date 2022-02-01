@@ -2,15 +2,7 @@
 import React from 'react';
 
 // etc
-import {
-  ProductComponent,
-  PopUp,
-  Modal,
-  ModalItems,
-  FeedBack as FeedBackForm,
-  Calculator,
-  Icons,
-} from '..';
+import { ProductComponent, PopUp, Modal, ModalItems, FeedBack as FeedBackForm, Calculator, Icons } from '..';
 import { Text, Select, Devider } from '../../lib';
 import styles from './styles.module.scss';
 
@@ -33,10 +25,15 @@ export default function Product(props) {
   });
   const [desc, setDesc] = React.useState({ open: 'tech' });
 
-  const selectSizes = sizes.map((item, i) => ({
-    title: item.a + '*' + item.b + '*' + item.h + ' [мм]',
-    value: i,
-  }));
+  const selectSizes = sizes.map((item, i) => {
+    if (item[0]) {
+      return { title: item[0], value: i };
+    }
+    return {
+      title: item.a + '*' + item.b + '*' + item.h + ' [мм]',
+      value: i,
+    };
+  });
 
   const [radioValue, setRadioValue] = React.useState(0);
 
@@ -146,7 +143,7 @@ export default function Product(props) {
           об изделии
         </Text>
       </div>
-   
+
       <div className={`max-w-7xl sm:mx-auto flex`}>
         <div className={`h-full ml-2 my-3 bg-zinc-800 sm:hidden`} style={{ width: 1, height: 50 }}></div>
         <div className={`flex zero:flex-col sm:flex-row items-start py-1`}>

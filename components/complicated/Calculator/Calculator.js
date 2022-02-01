@@ -1,14 +1,17 @@
 import React from 'react';
 import { Select } from '../../lib';
 
-export default function Calculator({ products }) {
+export default function Calculator(props) {
+  const products = props.products.filter(({ name }) => name !== 'len');
   const [state, setState] = React.useState({
     mark: 0,
     option: 0,
     size: 0,
     amount: 0,
   });
-  const markSelect = products.map((item, index) => ({ title: item.title, value: index }));
+  const markSelect = products.map((item, index) => {
+    return { title: item.title, value: index };
+  });
   // const connetionTypes = products[state.mark].connetionType.   [
   //   { title: 'Прямая', value: 0 },
   //   { title: 'Шип-паз', value: 1 },
