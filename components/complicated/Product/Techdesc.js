@@ -1,17 +1,20 @@
 import React from 'react';
 import styles from './styles.module.scss';
 
-const randomKey = () => Math.random().toString()
-console.log("🚀 ~ file: Techdesc.js ~ line 5 ~ randomKey", randomKey)
+const randomKey = () => Math.random().toString();
 
-export default function Techdesc({ data }) {
+export default function Techdesc({ data, w }) {
   return (
     <div className={`w-full mx-auto overflow-hidden pt-4 rounded-tr-md rounded-b-md px-2 md:px-8`}>
       <div className={`zero:overflow-x-scroll md:overflow-x-auto`}>
         <table className={`w-full`}>
           <thead>
             <tr key={`TH${randomKey()}`}>
-              <th key={`TH${randomKey()}`} scope='col' className={`text-left text-lg border-r border-zinc-900 px-2`}>
+              <th
+                key={`TH${randomKey()}`}
+                scope='col'
+                className={`text-left text-lg border-r border-zinc-900 px-2`}
+              >
                 Показатель
               </th>
               <th key={`TH${randomKey()}`} scope='col' className={`text-left text-lg px-2`}>
@@ -35,28 +38,28 @@ export default function Techdesc({ data }) {
                           : 'font-light rounded-r ') + ' '
                       }
                     >
-                      {trIndex === 0
-                        ? trItem
-                        : trItem.map((tdItem, tdIndex) => (
-                            <React.Fragment key={`TD1${randomKey()}`}>
-                              {trItem.length === 1 ? (
-                                <td key={`TD1${randomKey()}`}>
-                                  {tdItem}
-                                </td>
-                              ) : (
-                                <td
-                                  className={`${
-                                    tdIndex % 2 && trItem.length > 4
-                                      ? 'bg-belplit_2 bg-opacity-50'
-                                      : 'bg-opacity-100'
-                                  } px-2`}
-                                  key={`TD2${randomKey()}`}
-                                >
-                                  {tdItem}
-                                </td>
-                              )}
-                            </React.Fragment>
-                          ))}
+                      {trIndex === 0 ? (
+                        <p>{trItem}</p>
+                      ) : (
+                        trItem.map((tdItem, tdIndex) => (
+                          <React.Fragment key={`TD1${randomKey()}`}>
+                            {trItem.length === 1 ? (
+                              <td key={`TD1${randomKey()}`}>{tdItem}</td>
+                            ) : (
+                              <td
+                                className={`${
+                                  tdIndex % 2 && trItem.length > 4
+                                    ? 'bg-belplit_2 bg-opacity-50'
+                                    : 'bg-opacity-100'
+                                } zero:text-xs sm:text-sm md:text-base`}
+                                key={`TD2${randomKey()}`}
+                              >
+                                {tdItem}
+                              </td>
+                            )}
+                          </React.Fragment>
+                        ))
+                      )}
                     </td>
                   ))}
                 </tr>

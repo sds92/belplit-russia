@@ -1,8 +1,9 @@
 import React from 'react';
-import { Select } from '../../lib';
+import { Select, Button } from '../../lib';
 
 export default function Calculator(props) {
   const products = props.products.filter(({ name }) => name !== 'len');
+  const { onClick } = props;
   const [state, setState] = React.useState({
     mark: 0,
     option: 0,
@@ -109,7 +110,7 @@ export default function Calculator(props) {
           <div className={`flex flex-col`}>
             <div className={`w-full`}>объем</div>
             <div className={`w-full font-bold text-5xl inline-flex items-end`}>
-              {v()}
+              {v().toFixed(2)}
               <span className={`text-lg`}> м³</span>
             </div>
           </div>
@@ -121,6 +122,15 @@ export default function Calculator(props) {
             </div>
           </div>
         </div>
+        <Button
+          className={`bg-belplit_2 rounded-md text-white w-40 mt-10 text-xl uppercase font-bold hover:bg-belplit_dark hover:scale-105 transition-all active:scale-105`}
+          onClick={(e) => {
+            const msg = `Марка: ${products[state.mark].title}\r\nРазмеры: ${sizeSelect[state.size].title}\r\nСклад: Москва\r\nКоличество: ${state.amount} [м²]\r\nСтоимость: ${price * state.amount} руб`
+            return onClick(msg);
+          }}
+        >
+          Купить
+        </Button>
       </div>
     </div>
   );

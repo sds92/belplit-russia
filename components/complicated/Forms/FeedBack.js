@@ -3,12 +3,13 @@ import { useRouter } from 'next/router';
 import { Button } from '../../lib';
 
 export default function FeedBack(props) {
+  const { body } = props;
   const router = useRouter();
   const [formStatus, setFormStatus] = React.useState('show');
   const [formState, setFormState] = React.useState({
     clientName: '',
     clientPhone: '',
-    body: '',
+    body: body ? body : '',
     clientEmail: '',
   });
   const [checkFormStatus, setCheckFormStatus] = React.useState({
@@ -17,13 +18,14 @@ export default function FeedBack(props) {
     2: false,
     3: false,
   });
-  
+
   const classes = {
-    inputWrapSm: (n) => `w-full sm:w-1/2 flex relative ${
-      checkFormStatus[n] ? `rounded-md border border-red-600` : `border `
-    } rounded-md p-1 bg-white my-1`,
-    inputSm: `w-full px-2 pt-2 bg-white`
-  }
+    inputWrapSm: (n) =>
+      `w-full sm:w-1/2 flex relative ${
+        checkFormStatus[n] ? `rounded-md border border-red-600` : `border `
+      } rounded-md p-1 bg-white my-1`,
+    inputSm: `w-full px-2 pt-2 bg-white`,
+  };
   function checkForm() {
     let res = false;
     let a = Promise.resolve(/^[а-я, А-Я, a-z, A-Z]{3,20}$/.test(formState.clientName));
@@ -79,7 +81,7 @@ export default function FeedBack(props) {
         Accept: 'application/json, text/plain, */*',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({...formState, path: router.asPath}),
+      body: JSON.stringify({ ...formState, path: router.asPath }),
     })
       .then((res) => {
         if (res.ok) {
@@ -121,7 +123,7 @@ export default function FeedBack(props) {
                   id='FeedBackFormClientName'
                   placeholder='Имя'
                   value={formState.clientName}
-                  type={"text"}
+                  type={'text'}
                   onChange={(e) =>
                     setFormState((state) => {
                       return { ...state, clientName: e.target.value };
@@ -140,7 +142,7 @@ export default function FeedBack(props) {
                   id='FeedBackFormClientPhone'
                   placeholder='Телефон'
                   value={formState.clientPhone}
-                  type={"tel"}
+                  type={'tel'}
                   onChange={(e) =>
                     setFormState((state) => {
                       return { ...state, clientPhone: e.target.value };
@@ -150,19 +152,21 @@ export default function FeedBack(props) {
               </div>
             </div>
 
-            <div className={`w-full relative border rounded-md p-1 bg-white my-1 ${
-                  checkFormStatus[2] ? `border border-red-600` : ``
-                }`}>
+            <div
+              className={`w-full relative border rounded-md p-1 bg-white my-1 ${
+                checkFormStatus[2] ? `border border-red-600` : ``
+              }`}
+            >
               {checkFormStatus[2] && (
                 <p className={`form-text-alert text-red-600 right-2 top-0`}>3 - 500 символов</p>
               )}
               <textarea
-              style={{resize: 'none'}}
+                style={{ resize: 'none' }}
                 className={`w-full px-2 `}
                 required
                 id='FeedBackFormBody'
                 placeholder='Сообщение'
-                rows={4}
+                rows={5}
                 value={formState.body}
                 onChange={(e) =>
                   setFormState((state) => {
@@ -185,7 +189,7 @@ export default function FeedBack(props) {
                   id='FeedBackFormClientEmail'
                   placeholder='E-mail'
                   value={formState.clientEmail}
-                  type={"email"}
+                  type={'email'}
                   onChange={(e) =>
                     setFormState((state) => {
                       return { ...state, clientEmail: e.target.value };
@@ -203,7 +207,9 @@ export default function FeedBack(props) {
           </div>
         )}
         {formStatus === 'pending' && <p className={`text-center py-10`}>Отправка запроса</p>}
-        {formStatus === 'complete' && <p className={`text-center py-10`}>Запрос успешно отправлен. Спасибо за обращение!</p>}
+        {formStatus === 'complete' && (
+          <p className={`text-center py-10`}>Запрос успешно отправлен. Спасибо за обращение!</p>
+        )}
       </form>
     </div>
   );

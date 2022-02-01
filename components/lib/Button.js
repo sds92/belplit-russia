@@ -3,13 +3,7 @@ import React from 'react';
 export default function Button({ href, children, className, ...props }) {
   return (
     <div
-      className={`
-        cursor-pointer 
-        
-        py-1.5  
-        antialiased 
-        ${className}
-        `}
+      className={`cursor-pointer py-1.5 antialiased ${className}`}
       {...props}
     >
       <a className={``} href={href}>
@@ -17,7 +11,6 @@ export default function Button({ href, children, className, ...props }) {
           className={`flex items-center justify-center antialiased`}
           style={{
             transform: 'translateZ(0)',
-
             backfaceVisibility: 'hidden',
           }}
         >

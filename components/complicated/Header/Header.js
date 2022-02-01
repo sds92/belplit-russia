@@ -40,7 +40,10 @@ export default function Header(props) {
         `}
       >
         {isOnTop && !mdView && !lgView && (
-          <div className={`flex transition-all cursor-pointer items-center justify-center`}>
+          <div
+            className={`flex transition-all cursor-pointer items-center justify-center`}
+            onClick={() => router.push(`/main`)}
+          >
             <p
               className={`text-4xl text-center text-belplit font-bold overflow-hidden transition-all duration-100 text`}
             >

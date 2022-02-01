@@ -8,6 +8,7 @@ import styles from './styles.module.scss';
 
 export default function Product(props) {
   const { w, products } = props;
+  console.log('🚀 ~ file: Product.js ~ line 11 ~ Product ~ w', w);
   const {
     id,
     title,
@@ -51,8 +52,9 @@ export default function Product(props) {
     return;
   }, [modalData]);
 
-  function openModal() {
-    setModalData({ status: 'orderonopen', header: ['Отправить запрос'] });
+  function openModal(msg) {
+    const _msg = msg ? msg : '';
+    setModalData({ status: 'orderonopen', header: ['Отправить запрос'], msg: [`${_msg}`] });
     setModalOpen(true);
   }
 
@@ -110,7 +112,7 @@ export default function Product(props) {
                 <p className={`text-gray-500`}>руб.</p>
               </div>
               <div
-                className={`bg-belplit_2 active:scale-105 transition-all uppercase font-bold mx-4 my-4 rounded-md text-center text-white py-2 cursor-pointer hover:bg-belplit_dark hover:text-slate-200`}
+                className={`bg-belplit_2 text-xl active:scale-105 transition-all uppercase font-bold mx-4 my-4 rounded-md text-center text-white py-2 cursor-pointer hover:scale-105 hover:bg-belplit_dark`}
                 onClick={openModal}
               >
                 Купить
@@ -131,7 +133,13 @@ export default function Product(props) {
       <div className={`max-w-7xl mx-auto text-5xl font-bold text-zinc-800 mt-10 pl-2`}>Калькулятор</div>
       <div className={`w-full`}>
         <div className={`mx-auto max-w-7xl`}>
-          <Calculator products={products} />
+          <Calculator
+            products={products}
+            onClick={(a) => {
+
+              return openModal(a);
+            }}
+          />
         </div>
       </div>
       <div className={'bg-zinc-500 py-4'}>
@@ -183,13 +191,10 @@ export default function Product(props) {
               ]}
             />
           )}
-          {desc.open === 'tech' && <ProductComponent.Techdesc data={tech} />}
+          {desc.open === 'tech' && <ProductComponent.Techdesc data={tech} w={w} />}
         </div>
         <div className={`col-span-2 rounded-md w-full bg-white order-5`}>
-          <div
-            className={`relative`}
-            // style={{height: `${files.techDesc[1][1]}px`}}
-          ></div>
+          <div className={`relative`}></div>
         </div>
       </div>
       <Modal
@@ -200,7 +205,12 @@ export default function Product(props) {
             data={{ status: modalData.status, header: modalData.header, setClose: () => setModalOpen(false) }}
           />
         }
-        body={<FeedBackForm onFulfilled={(a) => setModalData({ status: a, header: modalData.header })} />}
+        body={
+          <FeedBackForm
+            onFulfilled={(a) => setModalData({ status: a, header: modalData.header })}
+            body={modalData.msg}
+          />
+        }
       />
     </>
   );
