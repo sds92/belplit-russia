@@ -1,5 +1,5 @@
 import React from 'react';
-import { AnimatePresence, domAnimation, LazyMotion, m } from 'framer-motion';
+import { AnimatePresence, domAnimation, LazyMotion, m, motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import { animations } from '../styles/animations';
 import { Header, Footer, Head } from '../components/complicated';
@@ -52,7 +52,7 @@ export default function MyApp({ Component, pageProps }) {
         <Header {...newProps} />
         <LazyMotion features={domAnimation}>
           <AnimatePresence exitBeforeEnter>
-            <m.div
+            <motion.div
               key={router.route.concat(animations.opacity.name)}
               className='page-wrap'
               initial='initial'
@@ -62,7 +62,7 @@ export default function MyApp({ Component, pageProps }) {
               transition={animations.opacity.transition}
             >
               <Component {...newProps} />
-            </m.div>
+            </motion.div>
           </AnimatePresence>
         </LazyMotion>
         <Footer lgView={newProps.lgView} />
@@ -70,14 +70,3 @@ export default function MyApp({ Component, pageProps }) {
     </div>
   );
 }
-
-// MyApp.getInitialProps = async (ctx) => {
-//   // calls page's `getInitialProps` and fills `appProps.pageProps`
-//   const res = await fetch('https://xn--j1ano.com/uploads/staticsites/beltermo.json').then((res) =>
-//     res.json()
-//   );
-//   const normRes = normalizeData(res, products);
-//   return { products: normRes };
-// };
-
-// MyApp;

@@ -34,9 +34,9 @@ export default function Header(props) {
           transform: 'translate(-50%)',
         }}
         className={`shadow-md z-40 fixed px-2 w-full bg-white transition-all duration-100 
-        ${lgView && 'h-20'} 
-        ${isOnTop && !lgView && !mdView && 'h-20'}
-        ${!isOnTop && !lgView && !mdView && 'h-10'}
+        ${lgView ? 'h-20' : ''} 
+        ${isOnTop && !lgView && !mdView ? 'h-20' : ''}
+        ${!isOnTop && !lgView && !mdView ? 'h-10' : ''}
         `}
       >
         {isOnTop && !mdView && !lgView && (

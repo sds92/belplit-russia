@@ -3,8 +3,10 @@ import { Layout } from '../../components/complicated';
 import productsInit from '../../data/products.json';
 import { normalizeData, normalizeDataSTUPID } from '../../utils/functions';
 
+const products = normalizeDataSTUPID(productsInit)
+
 export default function ProductPage(props) {
-  return <Layout.Product {...props} />;
+  return <Layout.Product {...props} products={products} />;
 }
 
 export async function getStaticProps({ params }) {
@@ -12,12 +14,12 @@ export async function getStaticProps({ params }) {
   //   res.json()
   // );
   // const products = normalizeData(fetched, productsInit);
-  const products = normalizeDataSTUPID(productsInit)
+  
   const res = products.find((item) => item.id.toString() === params.productID.toString());
   return {
     props: {
       product: res,
-      products: products,
+      // products: products,
     },
   };
 }
@@ -27,9 +29,9 @@ export async function getStaticPaths() {
   //   res.json()
   // );
   // const products = normalizeData(fetched, productsInit);
-  const products = normalizeDataSTUPID(productsInit)
+  // const products = normalizeDataSTUPID(productsInit)
   return {
-    paths: products.map((product) => {
+    paths: productsInit.map((product) => {
       const productID = product.id.toString();
       return {
         params: {

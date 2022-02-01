@@ -1,8 +1,11 @@
 import React from 'react';
+import productsInit from '../../../data/products.json';
+import { normalizeData, normalizeDataSTUPID } from '../../../utils/functions';
 import { ProductComponent } from '../';
 import { Text } from '../../lib';
 
 export default function Catalog({ data, products }) {
+  // const products = normalizeDataSTUPID(productsInit);
   const { title } = data;
   return (
     <div className={`pt-20`}>

@@ -89,13 +89,13 @@ export const normalizeData = (inputArr, appArr) => {
 
 export const normalizeDataSTUPID = (inputArr) => {
   return inputArr.map((inputArrItem) => {
-    let tmpSizes = inputArrItem.sizes.map((item) => {
-      return item[0].slice(0, item[0].indexOf('мм')).split(/х|x/);
+    let tmpSizes = inputArrItem.sizes.map((tmpSizesItem) => {
+      return tmpSizesItem[0].slice(0, tmpSizesItem[0].indexOf('мм')).split(/х|x/);
     });
-    let tmpSizes2 = tmpSizes.map((item) => ({
-      a: parseInt(item[0].replace(' ', '')),
-      b: parseInt(item[1].replace(' ', '')),
-      h: parseInt(item[2].replace(' ', '')),
+    let tmpSizes2 = tmpSizes.map((tmpSizes2Item) => ({
+      a: parseInt(tmpSizes2Item[0].replace(' ', '')),
+      b: parseInt(tmpSizes2Item[1].replace(' ', '')),
+      h: parseInt(tmpSizes2Item[2].replace(' ', '')),
     }));
     inputArrItem.sizes = tmpSizes2;
     return inputArrItem;
