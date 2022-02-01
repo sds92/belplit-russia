@@ -7,7 +7,7 @@ export default function HeadComponent({ head, children }) {
       <title>{head.title}</title>
       <meta name='theme-color' content='#2b7801'></meta>
       <script async='' src='https://cdn.jsdelivr.net/npm/yandex-metrica-watch/tag.js'></script>
-      <link rel='shortcut icon' href='/images/logo.png' />
+      <link rel='shortcut icon' href='/svg/beltermo.svg' />
       <link rel='preconnect' href='https://fonts.googleapis.com' />
       <link rel='preconnect' href='https://fonts.gstatic.com' crossOrigin />
       <link
