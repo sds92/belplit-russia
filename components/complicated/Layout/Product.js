@@ -136,7 +136,6 @@ export default function Product(props) {
           <Calculator
             products={products}
             onClick={(a) => {
-
               return openModal(a);
             }}
           />
@@ -154,44 +153,33 @@ export default function Product(props) {
 
       <div className={`max-w-7xl sm:mx-auto flex`}>
         <div className={`h-full ml-2 my-3 bg-zinc-800 sm:hidden`} style={{ width: 1, height: 50 }}></div>
-        <div className={`flex zero:flex-col sm:flex-row items-start py-1`}>
-          {[
-            ['tech', 'Технические характеристики'],
-            ['desc', 'Описание'],
-          ].map((item, indexDesc) => (
-            <div
-              key={`DESC${indexDesc}`}
-              className={`active:scale-105 text-left text-2xl cursor-pointer transition-all px-2 ${
-                desc.open === item[0]
-                  ? 'text-zinc-800 font-bold sm:border-b-2 border-zinc-800'
-                  : 'text-zinc-800 font-extralight'
-              }`}
-              // style={{ minWidth: 250 }}
-              onClick={() => setDesc((s) => ({ ...s, open: item[0] }))}
-            >
-              <p className={``}>
-                {desc.open === item[0] && <span className={`sm:hidden`}>{' > '}</span>} {item[1]}
-              </p>
-            </div>
-          ))}
-        </div>
       </div>
 
       <div className={`w-full z-20 relative`}>
-        <div className={`my-10 max-w-7xl mx-auto rounded-b-lg`}>
-          {desc.open === 'desc' && (
-            <PopUp
-              data={[
-                [description, 'Описание'],
-                [consists, 'Состав'],
-                [options, 'Область применения'],
-                [advantages, 'Преимущества'],
-                [functions, 'Функции'],
-                [installation, 'Монтаж'],
-              ]}
-            />
-          )}
-          {desc.open === 'tech' && <ProductComponent.Techdesc data={tech} w={w} />}
+      <div
+            className={`mx-auto max-w-7xl text-left text-3xl text-zinc-800 font-bold mt-10 mb-5 border-b-4 border-zinc-600`}
+          >
+            {'Описание'}
+          </div>
+        <div className={`max-w-7xl mx-auto rounded-b-lg`}>
+          <PopUp
+            data={[
+              [description, 'Описание'],
+              [consists, 'Состав'],
+              [options, 'Область применения'],
+              [advantages, 'Преимущества'],
+              [functions, 'Функции'],
+              [installation, 'Монтаж'],
+            ]}
+          />
+          </div>
+          <div className={`max-w-7xl mx-auto rounded-b-lg`}>
+          <div
+            className={`mx-auto max-w-7xl text-left text-3xl text-zinc-800 font-bold mt-10 mb-5 border-b-4 border-zinc-600`}
+          >
+            {'Технические характеристики'}
+          </div>
+          <ProductComponent.Techdesc data={tech} w={w} />
         </div>
         <div className={`col-span-2 rounded-md w-full bg-white order-5`}>
           <div className={`relative`}></div>

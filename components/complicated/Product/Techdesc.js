@@ -48,9 +48,9 @@ export default function Techdesc({ data, w }) {
                             ) : (
                               <td
                                 className={`${
-                                  tdIndex % 2 && trItem.length > 4
-                                    ? 'bg-belplit_2 bg-opacity-50'
-                                    : 'bg-opacity-100'
+                                  tdIndex % 2
+                                    ? 'bg-zinc-600 bg-opacity-70 text-white'
+                                    : 'bg-white bg-opacity-10 text-black'
                                 } zero:text-xs sm:text-sm md:text-base`}
                                 key={`TD2${randomKey()}`}
                               >
