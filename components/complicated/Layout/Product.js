@@ -8,7 +8,6 @@ import styles from './styles.module.scss';
 
 export default function Product(props) {
   const { w, products } = props;
-  console.log('🚀 ~ file: Product.js ~ line 11 ~ Product ~ w', w);
   const {
     id,
     title,
@@ -24,7 +23,6 @@ export default function Product(props) {
     status: 'orderonopen',
     header: ['Отправить запрос'],
   });
-  const [desc, setDesc] = React.useState({ open: 'tech' });
 
   const selectSizes = sizes.map((item, i) => {
     if (item[0]) {

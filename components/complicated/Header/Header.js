@@ -33,7 +33,7 @@ export default function Header(props) {
           left: '50%',
           transform: 'translate(-50%)',
         }}
-        className={`shadow-md z-40 fixed px-2 w-full bg-white transition-all duration-100 
+        className={`shadow-md z-40 fixed w-full bg-white transition-all duration-100 
         ${lgView ? 'h-20' : ''} 
         ${isOnTop && !lgView && !mdView ? 'h-20' : ''}
         ${!isOnTop && !lgView && !mdView ? 'h-10' : ''}

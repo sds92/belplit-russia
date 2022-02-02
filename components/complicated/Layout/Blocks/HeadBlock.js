@@ -69,7 +69,7 @@ export default function HeadBlock(props) {
                 {'Каталог'}
               </Button>
             </Link>
-            <Link href={`/catalog`} passHref>
+            <Link href={`#calc`} passHref>
               <Button
                 className={`
                 zero:w-60 md:w-96

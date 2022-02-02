@@ -36,8 +36,8 @@ export default function ProductList({ listItems, inset = false, title = '' }) {
   };
 
   const handleClick = (a, id) => {
-    a.stopPropagation()
-    console.log("value", a.target)
+    a.stopPropagation();
+    console.log('value', a.target);
     if (open) {
       setDelay(false);
       setOpen(false);
@@ -100,7 +100,6 @@ export default function ProductList({ listItems, inset = false, title = '' }) {
                 {listItems.map((item, index) => (
                   <div
                     className={`w-full px-4 transition-all cursor-pointer active:scale-105`}
-                    
                     onClick={(e) => handleClick(e, item.id)}
                     key={`PR${index}`}
                   >

@@ -11,8 +11,13 @@ import app from '../data/app.json';
 export default function MyApp({ Component, pageProps }) {
   const [loading, setLoading] = React.useState(true);
   const [w, setW] = React.useState(undefined);
+  const router = useRouter();
 
   React.useEffect(() => {
+    console.log("🚀 ~ file: _app.js ~ line 18 ~ React.useEffect ~ router.asPath", router.asPath)
+    if (/\/|/.test(router.asPath)) {
+      router.push('/main')
+    }
     setW(window.innerWidth);
     setTimeout(() => {
       setLoading(false);
@@ -26,7 +31,7 @@ export default function MyApp({ Component, pageProps }) {
       []
     );
   }, []);
-  const router = useRouter();
+  
 
   const newProps = {
     menu: [

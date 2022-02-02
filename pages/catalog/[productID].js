@@ -3,10 +3,10 @@ import { Layout } from '../../components/complicated';
 import productsInit from '../../data/products.json';
 import { normalizeData, normalizeDataSTUPID } from '../../utils/functions';
 
-const products = normalizeDataSTUPID(productsInit)
+// const products = normalizeDataSTUPID(productsInit)
 
 export default function ProductPage(props) {
-  return <Layout.Product {...props} products={products} />;
+  return <Layout.Product {...props}/>;
 }
 
 export async function getStaticProps({ params }) {
@@ -15,10 +15,12 @@ export async function getStaticProps({ params }) {
   // );
   // const products = normalizeData(fetched, productsInit);
   
-  const res = products.find((item) => item.id.toString() === params.productID.toString());
+  const res = productsInit.find((item) => item.id.toString() === params.productID.toString());
+
   return {
     props: {
       product: res,
+      // products: productsInit
       // products: products,
     },
   };

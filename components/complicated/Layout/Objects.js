@@ -1,6 +1,7 @@
 import React from 'react';
 import ImageViewer from 'react-simple-image-viewer';
-import { Text } from '../../lib';
+import Link from 'next/link';
+import { Text, Button } from '../../lib';
 
 export default function Objects(props) {
   const [currentImage, setCurrentImage] = React.useState(0);
@@ -74,7 +75,6 @@ export default function Objects(props) {
         <Text className={`text-5xl pl-1.5 uppercase font-bold text-zinc-800 max-w-7xl text-left mx-auto`}>
           {props.data.title}
         </Text>
-       
       </div>
 
       <Text className={`text-center py-2 mx-auto max-w-xl my-20`}>

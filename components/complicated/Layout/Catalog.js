@@ -19,7 +19,7 @@ export default function Catalog({ data, products }) {
       <div className={`max-w-7xl mx-auto pt-20`}>
         <div className={`border-belplit rounded-lg`}>
           <div className={`pb-20 flex flex-wrap items-center justify-center mx-auto`}>
-            {products.map((product, index) => (
+            {products.sort((a, b) => a.position - b.position).map((product, index) => (
               <div
                 key={`P${index}`}
                 className={`zero:w-full zero:mx-10 sm:mx-0 sm:basis-1/2 md:basis-1/3 lg:basis-1/4 transition-all`}

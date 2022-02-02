@@ -3,6 +3,7 @@ import { Select, Button } from '../../lib';
 
 export default function Calculator(props) {
   const products = props.products.filter(({ name }) => name !== 'len');
+  console.log("🚀 ~ file: Calculator.js ~ line 6 ~ Calculator ~ products", products)
   const { onClick } = props;
   const [state, setState] = React.useState({
     mark: 0,
@@ -34,7 +35,7 @@ export default function Calculator(props) {
   const m = density * v();
 
   return (
-    <div className={`rounded-md p-4 flex zero:flex-col md:flex-row w-full`}>
+    <div id={`calc`} className={`rounded-md p-4 flex zero:flex-col md:flex-row w-full`}>
       <div className={`zero:w-full md:w-1/2  p-4 font-semibold`}>
         <label className={`text-zinc-800`}>Выберите марку</label>
         <div className={`py-2`}>
@@ -123,7 +124,7 @@ export default function Calculator(props) {
           </div>
         </div>
         <Button
-          className={`bg-belplit_2 rounded-md text-white w-40 mt-10 text-xl uppercase font-bold hover:bg-belplit_dark hover:scale-105 transition-all active:scale-105`}
+          className={`bg-belplit_2 py-4 rounded-md text-white w-40 mt-10 text-xl uppercase font-bold hover:bg-belplit_dark hover:scale-105 transition-all active:scale-105`}
           onClick={(e) => {
             const msg = `Марка: ${products[state.mark].title}\r\nРазмеры: ${sizeSelect[state.size].title}\r\nСклад: Москва\r\nКоличество: ${state.amount} [м²]\r\nСтоимость: ${price * state.amount} руб`
             return onClick(msg);
