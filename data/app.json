@@ -3,7 +3,13 @@
   "copyright": [
     "© 2021 Сайт создан с помощью <a href=\"https://roboweb.site/\"><strong>RoboWeb</strong></a>"
   ],
-
+  "url": "belplit-russia.ru",
+  "api": {
+    "ym": "86787815",
+    "email": "https://xn--j1ano.com/sendmail",
+    "products": "https://xn--j1ano.com/uploads/staticsites/plitaosb-3.kz.json",
+    "serv": "https://xn--j1ano.com/"
+  },
   "contacts": {
     "phones": ["8 (800) 533-78-81", "8 (925) 013-56-02"],
     "emails": ["belplit-russia@mail.ru"],

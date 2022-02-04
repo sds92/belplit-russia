@@ -1,5 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router';
+import { AppContext } from '../Context/AppContext';
 import { Button } from '../../lib';
 
 export default function FeedBack(props) {
@@ -65,152 +66,171 @@ export default function FeedBack(props) {
     });
   }
 
-  async function sendForm() {
-    let check = await checkForm();
-    if (!check) {
-      return;
-    }
-    setFormStatus('pending');
-    try {
-      props.onFulfilled('loading');
-    } catch (err) {}
-
-    fetch('/api/sendform', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json, text/plain, */*',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ ...formState, path: router.asPath }),
-    })
-      .then((res) => {
-        if (res.ok) {
-          console.log('Succeeded!');
-          resetForm();
-        }
-        if (!res.ok) {
-          console.log('Error!');
-          resetForm();
-        }
-        setTimeout(() => {
-          return res;
-        }, 1000);
-      })
-      .then(() => {
-        setFormStatus('complete');
-        try {
-          props.onFulfilled('success');
-        } catch (err) {}
-        setTimeout(() => {
-          setFormStatus('show');
-        }, 4000);
-      });
-  }
-
   return (
-    <div>
-      <form id={'feedback'} className={`w-full mx-auto`}>
-        {formStatus === 'show' && (
-          <div className={`flex flex-col w-full relative items-center justify-center`}>
-            <div className={`flex flex-col sm:flex-row sm:gap-2 w-full relative items-center justify-center`}>
-              <div className={classes.inputWrapSm(0)}>
-                {checkFormStatus[0] && (
-                  <p className={`form-text-alert text-red-600 absolute right-2 top-0`}>3 - 50 символов</p>
-                )}
-                <input
-                  className={classes.inputSm}
-                  required
-                  id='FeedBackFormClientName'
-                  placeholder='Имя'
-                  value={formState.clientName}
-                  type={'text'}
-                  onChange={(e) =>
-                    setFormState((state) => {
-                      return { ...state, clientName: e.target.value };
-                    })
-                  }
-                />
-              </div>
+    <AppContext.Consumer>
+      {(app) => {
+        async function sendForm() {
+          let check = await checkForm();
+          if (!check) {
+            return;
+          }
+          setFormStatus('pending');
+          try {
+            props.onFulfilled('loading');
+          } catch (err) {}
 
-              <div className={classes.inputWrapSm(1)}>
-                {checkFormStatus[1] && (
-                  <p className={`form-text-alert text-red-600 absolute right-4 top-2`}>Не верный номер</p>
-                )}
-                <input
-                  className={classes.inputSm}
-                  required
-                  id='FeedBackFormClientPhone'
-                  placeholder='Телефон'
-                  value={formState.clientPhone}
-                  type={'tel'}
-                  onChange={(e) =>
-                    setFormState((state) => {
-                      return { ...state, clientPhone: e.target.value };
-                    })
-                  }
-                />
-              </div>
-            </div>
+          fetch('/api/sendform', {
+            method: 'POST',
+            headers: {
+              Accept: 'application/json, text/plain, */*',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              ...formState,
+              path: router.asPath,
+              fromSite: app.url,
+              to: 'helloworld1823@gmail.com',
+            }),
+          })
+            .then((res) => {
+              if (res.ok) {
+                console.log('Succeeded!');
+                resetForm();
+              }
+              if (!res.ok) {
+                console.log('Error!');
+                resetForm();
+              }
+              setTimeout(() => {
+                return res;
+              }, 1000);
+            })
+            .then(() => {
+              setFormStatus('complete');
+              try {
+                props.onFulfilled('success');
+              } catch (err) {}
+              setTimeout(() => {
+                setFormStatus('show');
+              }, 4000);
+            });
+        }
 
-            <div
-              className={`w-full relative border rounded-md p-1 bg-white my-1 ${
-                checkFormStatus[2] ? `border border-red-600` : ``
-              }`}
-            >
-              {checkFormStatus[2] && (
-                <p className={`form-text-alert text-red-600 right-2 top-0`}>3 - 500 символов</p>
+        return (
+          <div>
+            <form id={'feedback'} className={`w-full mx-auto`}>
+              {formStatus === 'show' && (
+                <div className={`flex flex-col w-full relative items-center justify-center`}>
+                  <div
+                    className={`flex flex-col sm:flex-row sm:gap-2 w-full relative items-center justify-center`}
+                  >
+                    <div className={classes.inputWrapSm(0)}>
+                      {checkFormStatus[0] && (
+                        <p className={`form-text-alert text-red-600 absolute right-2 top-0`}>
+                          3 - 50 символов
+                        </p>
+                      )}
+                      <input
+                        className={classes.inputSm}
+                        required
+                        id='FeedBackFormClientName'
+                        placeholder='Имя'
+                        value={formState.clientName}
+                        type={'text'}
+                        onChange={(e) =>
+                          setFormState((state) => {
+                            return { ...state, clientName: e.target.value };
+                          })
+                        }
+                      />
+                    </div>
+
+                    <div className={classes.inputWrapSm(1)}>
+                      {checkFormStatus[1] && (
+                        <p className={`form-text-alert text-red-600 absolute right-4 top-2`}>
+                          Не верный номер
+                        </p>
+                      )}
+                      <input
+                        className={classes.inputSm}
+                        required
+                        id='FeedBackFormClientPhone'
+                        placeholder='Телефон'
+                        value={formState.clientPhone}
+                        type={'tel'}
+                        onChange={(e) =>
+                          setFormState((state) => {
+                            return { ...state, clientPhone: e.target.value };
+                          })
+                        }
+                      />
+                    </div>
+                  </div>
+
+                  <div
+                    className={`w-full relative border rounded-md p-1 bg-white my-1 ${
+                      checkFormStatus[2] ? `border border-red-600` : ``
+                    }`}
+                  >
+                    {checkFormStatus[2] && (
+                      <p className={`form-text-alert text-red-600 right-2 top-0`}>3 - 500 символов</p>
+                    )}
+                    <textarea
+                      style={{ resize: 'none' }}
+                      className={`w-full px-2 `}
+                      required
+                      id='FeedBackFormBody'
+                      placeholder='Сообщение'
+                      rows={5}
+                      value={formState.body}
+                      onChange={(e) =>
+                        setFormState((state) => {
+                          return { ...state, body: e.target.value };
+                        })
+                      }
+                    />
+                  </div>
+
+                  <div
+                    className={`gap-2 flex flex-col sm:flex-row w-full relative items-center justify-between`}
+                  >
+                    <div className={classes.inputWrapSm(3)}>
+                      {checkFormStatus[3] && (
+                        <p className={`form-text-alert text-red-600 absolute right-2 top-0`}>
+                          Введите корректный email
+                        </p>
+                      )}
+                      <input
+                        className={` w-full pt-2 px-2`}
+                        required
+                        id='FeedBackFormClientEmail'
+                        placeholder='E-mail'
+                        value={formState.clientEmail}
+                        type={'email'}
+                        onChange={(e) =>
+                          setFormState((state) => {
+                            return { ...state, clientEmail: e.target.value };
+                          })
+                        }
+                      />
+                    </div>
+                    <Button
+                      onClick={sendForm}
+                      className={`bg-belplit_2 text-center text-white rounded-md cursor-pointer px-4 py-2.5 w-full sm:w-1/2 active:scale-105 hover:scale-105 transition-all`}
+                    >
+                      Отправить
+                    </Button>
+                  </div>
+                </div>
               )}
-              <textarea
-                style={{ resize: 'none' }}
-                className={`w-full px-2 `}
-                required
-                id='FeedBackFormBody'
-                placeholder='Сообщение'
-                rows={5}
-                value={formState.body}
-                onChange={(e) =>
-                  setFormState((state) => {
-                    return { ...state, body: e.target.value };
-                  })
-                }
-              />
-            </div>
-
-            <div className={`gap-2 flex flex-col sm:flex-row w-full relative items-center justify-between`}>
-              <div className={classes.inputWrapSm(3)}>
-                {checkFormStatus[3] && (
-                  <p className={`form-text-alert text-red-600 absolute right-2 top-0`}>
-                    Введите корректный email
-                  </p>
-                )}
-                <input
-                  className={` w-full pt-2 px-2`}
-                  required
-                  id='FeedBackFormClientEmail'
-                  placeholder='E-mail'
-                  value={formState.clientEmail}
-                  type={'email'}
-                  onChange={(e) =>
-                    setFormState((state) => {
-                      return { ...state, clientEmail: e.target.value };
-                    })
-                  }
-                />
-              </div>
-              <Button
-                onClick={sendForm}
-                className={`bg-belplit_2 text-center text-white rounded-md cursor-pointer px-4 py-2.5 w-full sm:w-1/2 active:scale-105 hover:scale-105 transition-all`}
-              >
-                Отправить
-              </Button>
-            </div>
+              {formStatus === 'pending' && <p className={`text-center py-10`}>Отправка запроса</p>}
+              {formStatus === 'complete' && (
+                <p className={`text-center py-10`}>Запрос успешно отправлен. Спасибо за обращение!</p>
+              )}
+            </form>
           </div>
-        )}
-        {formStatus === 'pending' && <p className={`text-center py-10`}>Отправка запроса</p>}
-        {formStatus === 'complete' && (
-          <p className={`text-center py-10`}>Запрос успешно отправлен. Спасибо за обращение!</p>
-        )}
-      </form>
-    </div>
+        );
+      }}
+    </AppContext.Consumer>
   );
 }
