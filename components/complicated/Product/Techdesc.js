@@ -5,7 +5,7 @@ const randomKey = () => Math.random().toString();
 
 export default function Techdesc({ data, w }) {
   return (
-    <div className={`w-full mx-auto overflow-hidden pt-4 rounded-tr-md rounded-b-md px-2 md:px-8`}>
+    <div className={`w-full mx-auto overflow-hidden pt-4 pb-4 rounded-tr-md rounded-b-md px-2 md:px-8`}>
       <div className={`zero:overflow-x-scroll md:overflow-x-auto`}>
         <table className={`w-full`}>
           <thead>
@@ -27,15 +27,15 @@ export default function Techdesc({ data, w }) {
               return (
                 <tr
                   key={`TABLE${randomKey()}`}
-                  className={index % 2 === 0 ? `bg-zinc-300` : 'bg-belplit_dark bg-opacity-90 text-zinc-100'}
+                  className={index % 2 === 0 ? `bg-zinc-300 ` : 'bg-belplit_dark bg-opacity-90 text-zinc-100'}
                 >
                   {item.map((trItem, trIndex) => (
                     <td
                       key={`TR${randomKey()}`}
                       className={
-                        (trIndex === 0
+                        trIndex === 0
                           ? 'zero:text-xs sm:text-sm md:text-base px-1 font-light border-r border-zinc-700 rounded-l'
-                          : 'font-light rounded-r ') + ' '
+                          : 'font-light rounded-r '
                       }
                     >
                       {trIndex === 0 ? (
@@ -47,11 +47,12 @@ export default function Techdesc({ data, w }) {
                               <td key={`TD1${randomKey()}`}>{tdItem}</td>
                             ) : (
                               <td
-                                className={`${
-                                  tdIndex % 2
-                                    ? 'bg-zinc-600 bg-opacity-70 text-white'
-                                    : 'bg-white bg-opacity-10 text-black'
-                                } zero:text-xs sm:text-sm md:text-base`}
+                                className={
+                                  `${
+                                    tdIndex % 2 ? ' ' : ''
+                                  } zero:text-xs sm:text-sm md:text-base font-extralight ` +
+                                  (index % 2 ? `border-r border-zinc-300` : `border-r border-zinc-800`)
+                                }
                                 key={`TD2${randomKey()}`}
                               >
                                 {tdItem}

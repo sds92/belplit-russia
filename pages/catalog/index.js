@@ -1,10 +1,9 @@
 import React from 'react';
 import productsInit from '../../data/products.json';
-import { normalizeData, normalizeDataSTUPID } from '../../utils/functions';
+// import { normalizeData, normalizeDataSTUPID } from '../../utils/functions';
 import { Layout } from '../../components/complicated';
 
 export default function Catalog(props) {
-  console.log("🚀 ~ file: index.js ~ line 8 ~ Catalog ~ productsInit", productsInit[0].sizes)
   // const products = normalizeDataSTUPID(productsInit);
   return <Layout.Catalog products={productsInit} {...props} />;
 }

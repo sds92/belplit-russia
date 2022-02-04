@@ -17,11 +17,11 @@ export default function Footer() {
           // style={{ borderRadius: '5px' }}
         ></iframe>
       </div>
-      <footer className={`bg-zinc-700`}>
+      <footer className={`bg-zinc-600`}>
         <div className={`flex flex-col md:flex-row justify-between items-center h-full`}>
           <div className={`basis-1/3 ml-0 sm:ml-10 md:ml-36 my-4`}>
             <a href='index.html'>
-              <Logo extraClasses={`w-20 h-20 `} />
+              <Logo extraClasses={`w-full`} />
             </a>
           </div>
 

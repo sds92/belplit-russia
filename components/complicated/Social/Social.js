@@ -12,17 +12,44 @@ export default function Social(props) {
               app.contacts.socials.map((item, index) => {
                 const Icon = Icons[item[0]];
                 return (
-                  <div className={`cursor-pointer hover:scale-110 active:scale-110`} key={`SOCIAL${index}`}>
-                    <a target='_blank' href={`${item[1]}`} rel='noopener noreferrer'>
-                      <Icon extraClasses={`w-6 h-6`} />
-                    </a>
-                  </div>
+                  <>
+                    {props.sm && <div className={`bg-slate-500 mx-2 h-8`} style={{ width: 1 }}></div>}
+                    <div className={`cursor-pointer hover:scale-110 active:scale-110`} key={`SOCIAL${index}`}>
+                      <a target='_blank' href={`${item[1]}`} rel='noopener noreferrer'>
+                        <Icon extraClasses={`w-6 h-6`} />
+                      </a>
+                    </div>
+                  </>
                 );
               })}
-            {!props.mdView ? <div className={`text-slate-900 hover:text-belplit transition-all whitespace-nowrap`}>
-              <a href={`tel:${app.contacts.phones[0]}`}>{app.contacts.phones[0]}</a>
-            </div> : <Icons.Phone extraClasses={`w-8 h-8 text-belplit mt-1.5 -ml-0.5 hover:scale-110 active:scale-110 cursor-pointer`}/>}
-             
+            {!props.mdView ? (
+              <>
+                <div className={`bg-slate-500 mx-2 h-8`} style={{ width: 1 }}></div>
+                <div className={`flex flex-col text-slate-900 whitespace-nowrap`}>
+                  {!props.sm && (
+                    <a className={`hover:text-belplit transition-all`} href={`tel:${app.contacts.phones[0]}`}>
+                      {app.contacts.phones[0]}
+                    </a>
+                  )}
+                  {!props.sm && (
+                    <a className={`hover:text-belplit transition-all`} href={`tel:${app.contacts.phones[1]}`}>
+                      {app.contacts.phones[1]}
+                    </a>
+                  )}
+                  {props.sm && (
+                    <a className={`hover:text-belplit transition-all`} href={`tel:${app.contacts.phones[1]}`}>
+                      <Icons.Phone
+                        extraClasses={`w-8 h-8 text-belplit mt-1.5 -ml-0.5 hover:scale-110 active:scale-110 cursor-pointer`}
+                      />
+                    </a>
+                  )}
+                </div>
+              </>
+            ) : (
+              <Icons.Phone
+                extraClasses={`w-8 h-8 text-belplit mt-1.5 -ml-0.5 hover:scale-110 active:scale-110 cursor-pointer`}
+              />
+            )}
           </>
         );
       }}

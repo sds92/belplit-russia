@@ -73,35 +73,21 @@ export const normalizeData = (inputArr, appArr) => {
       });
       if (temp) {
         temp.density = cur.density;
-        temp.sizes = cur.sizes;
+        temp.sizesA = cur.sizes;
+        temp.sizes = cur.sizes.map((item) => `${item.a}x${item.b}x${item.h}мм`);
         temp.connectionType = cur.connectionType;
-        temp.prices = {
-          bar: cur.prices.map((item, i) => {
-            return item * cur.coef[i];
-          }),
-          square: cur.prices,
-        };
+        temp.prices = [
+          [
+            cur.prices,
+            'руб/м2',
+            cur.prices.map((item, i) => {
+              return item * cur.coef[i];
+            }),
+            'руб/шт',
+          ],
+        ];
         pre.splice(index, 1, temp);
       }
       return pre;
     }, appArr);
-};
-
-export const normalizeDataSTUPID = (inputArr) => {
-  return inputArr.map((inputArrItem) => {
-    let tmpSizes = inputArrItem.sizes.map((tmpSizesItem) => {
-      return tmpSizesItem[0]?.slice(0, tmpSizesItem[0].indexOf('мм')).split(/х|x/);
-    });
-    let connectionTypes = inputArrItem.sizes.map((tmpSizesItem) => {
-      return tmpSizesItem[0]?.slice(tmpSizesItem[0].indexOf('(') + 1, tmpSizesItem[0].indexOf(')'));
-    });
-    let tmpSizes2 = tmpSizes.map((tmpSizes2Item) => ({
-      a: parseInt(tmpSizes2Item[0].replace(' ', '')),
-      b: parseInt(tmpSizes2Item[1].replace(' ', '')),
-      h: parseInt(tmpSizes2Item[2].replace(' ', '')),
-    }));
-    inputArrItem.sizes = tmpSizes2;
-    inputArrItem.connectionTypes = connectionTypes;
-    return inputArrItem;
-  });
 };

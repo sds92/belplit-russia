@@ -7,6 +7,7 @@ import { ImgGrid, HeadBlock, InfoBlock, Devider, InfoSwitcher } from './Blocks';
 import { Text } from '../../lib';
 
 export default function Main({ data, w, ...props }) {
+
   return (
     <div className={`flex flex-col overflow-hidden bg-white mb-20`}>
       <HeadBlock data={data} />
@@ -14,7 +15,7 @@ export default function Main({ data, w, ...props }) {
       <Devider data={{ text: data.content.text.d0, link: data.content.links[0] }} />
 
       <ImgGrid data={data} />
-      <div className={`w-full py-4 mt-10`}>
+      <div id={`calc`} className={`w-full py-4 mt-10`}>
         <div
           className={`mx-auto max-w-7xl text-center text-6xl text-zinc-800 font-bold border-b-8 border-belplit_2`}
         >

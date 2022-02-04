@@ -33,25 +33,8 @@ export default function Header(props) {
           left: '50%',
           transform: 'translate(-50%)',
         }}
-        className={`shadow-md z-40 fixed w-full bg-white transition-all duration-100 
-        ${lgView ? 'h-20' : ''} 
-        ${isOnTop && !lgView && !mdView ? 'h-20' : ''}
-        ${!isOnTop && !lgView && !mdView ? 'h-10' : ''}
-        `}
+        className={`shadow-md z-40 fixed w-full bg-white transition-all duration-100`}
       >
-        {isOnTop && !mdView && !lgView && (
-          <div
-            className={`flex transition-all cursor-pointer items-center justify-center`}
-            onClick={() => router.push(`/main`)}
-          >
-            <p
-              className={`text-4xl text-center text-belplit font-bold overflow-hidden transition-all duration-100 text`}
-            >
-              БЕЛТЕРМО
-            </p>
-            <Logo extraClasses={`${props.lgView ? 'logo' : 'h-8 w-8'} transition-all`} />
-          </div>
-        )}
         <div className={`max-w-7xl mx-auto`}>
           <Navbar w={props.w} mdView={props.mdView} lgView={lgView} scrolled={scrolled} isOnTop={isOnTop} />
         </div>

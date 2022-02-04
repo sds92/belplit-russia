@@ -15,6 +15,9 @@ export default function Product(props) {
     files,
     sizes,
     prices,
+    coef,
+    connectionTypes,
+
     desc: { consists, options, advantages, functions, installation, description, tech },
   } = props.product;
   const [index, setIndex] = React.useState(0);
@@ -29,12 +32,13 @@ export default function Product(props) {
       return { title: item[0], value: i };
     }
     return {
-      title: item.a + '*' + item.b + '*' + item.h + ' [мм]',
+      title: item.a + '*' + item.b + '*' + item.h + ' [мм]' + ' ' + connectionTypes[i],
       value: i,
     };
   });
 
   const [radioValue, setRadioValue] = React.useState(0);
+  const [region, setRegion] = React.useState(0);
 
   React.useEffect(() => {
     setIndex(radioValue);
@@ -55,6 +59,10 @@ export default function Product(props) {
     setModalData({ status: 'orderonopen', header: ['Отправить запрос'], msg: [`${_msg}`] });
     setModalOpen(true);
   }
+  const cities = ['Москва', 'СПБ', 'Казань', 'Краснодар', 'Волгоград', 'Астрахань'];
+  const ab = Object.entries(prices).map((item, i) => {
+    return [cities[i], item[0], item[1]];
+  });
 
   return (
     <>
@@ -92,18 +100,19 @@ export default function Product(props) {
               </div>
               <div className={`px-4`}>
                 <Select
-                  label={`Регионы:`}
-                  items={[{ title: 'Москва', value: 0 }]}
-                  id={'sizes'}
+                  defaultValue={region}
+                  label={`Склады:`}
+                  items={ab.map((item, i) => ({ title: item[0], value: i }))}
+                  id={'region'}
                   onChange={(e) => {
-                    setRadioValue(e.target.value);
+                    setRegion(e.target.value);
                   }}
                 />
               </div>
               <p className={`ml-2 pt-2 px-2 font-bold text-xl`}>Цена:</p>
               <div className={`flex items-end mx-4 px-4 gap-1 whitespace-nowrap py-2 bg-white border-b `}>
                 <p className={`text-gray-500 `}>плита:</p>
-                <p className={`font-bold text-xl`}>{Math.round(prices.bar[index])}</p>
+                <p className={`font-bold text-xl`}>{Math.round(prices[ab[region][1]][index] * coef)}</p>
                 <p className={`text-gray-500`}>руб. /</p>
                 <p className={`text-gray-500`}>кв.м:</p>
                 <p className={'font-bold text-xl text-red-600'}>{prices.square[index]}</p>
@@ -132,6 +141,8 @@ export default function Product(props) {
       <div className={`w-full`}>
         <div className={`mx-auto max-w-7xl`}>
           <Calculator
+            initRegions={ab}
+            initValues={{ mark: id }}
             products={products}
             onClick={(a) => {
               return openModal(a);
@@ -154,11 +165,11 @@ export default function Product(props) {
       </div>
 
       <div className={`w-full z-20 relative`}>
-      <div
-            className={`mx-auto max-w-7xl text-left text-3xl text-zinc-800 font-bold mt-10 mb-5 border-b-4 border-zinc-600`}
-          >
-            {'Описание'}
-          </div>
+        <div
+          className={`mx-auto max-w-7xl text-left text-3xl text-zinc-800 font-bold mt-10 mb-5 border-b-4 border-zinc-600`}
+        >
+          {'Описание'}
+        </div>
         <div className={`max-w-7xl mx-auto rounded-b-lg`}>
           <PopUp
             data={[
@@ -170,8 +181,8 @@ export default function Product(props) {
               [installation, 'Монтаж'],
             ]}
           />
-          </div>
-          <div className={`max-w-7xl mx-auto rounded-b-lg`}>
+        </div>
+        <div className={`max-w-7xl mx-auto rounded-b-lg`}>
           <div
             className={`mx-auto max-w-7xl text-left text-3xl text-zinc-800 font-bold mt-10 mb-5 border-b-4 border-zinc-600`}
           >

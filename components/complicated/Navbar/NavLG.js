@@ -34,18 +34,11 @@ export default function NavLG(props) {
     return;
   }
   return (
-    <div className={`flex justify-between gap-10 h-full my-auto py-2`}>
+    <div className={`flex justify-between h-14 gap-10 my-3 py-2`}>
       <Link href={`/main`} passHref>
-        <div className={`flex transition-all cursor-pointer items-center`}>
-          <Logo extraClasses={`${props.lgView ? 'logo' : 'h-8 w-8'} transition-all`} />
-          {props.lgView && (
-            <p
-              className={`logo-text font-sans-serif text-belplit_logo font-bold overflow-hidden transition-all duration-100`}
-              style={{}}
-            >
-              БЕЛТЕРМО
-            </p>
-          )}
+        <div className={`flex transition-all cursor-pointer items-center relative`}>
+          <Logo extraClasses={`${props.lgView ? 'h-10' : 'h-8'} transition-all`} />
+         
         </div>
       </Link>
       <div

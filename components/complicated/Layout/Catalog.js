@@ -4,11 +4,11 @@ import { normalizeData, normalizeDataSTUPID } from '../../../utils/functions';
 import { ProductComponent } from '../';
 import { Text } from '../../lib';
 
-export default function Catalog({ data, products }) {
+export default function Catalog({ data, products, ...props }) {
   // const products = normalizeDataSTUPID(productsInit);
   const { title } = data;
   return (
-    <div className={`pt-20`}>
+    <div className={props.lgView ? `pt-20`: `pt-10`}>
       <div className={`bg-belplit_2 py-4`}>
         
           <Text className={`text-5xl pl-1.5 font-bold text-zinc-800 max-w-7xl text-left mx-auto`}>

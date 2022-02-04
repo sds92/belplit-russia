@@ -12,6 +12,7 @@ export default function Select({ items = [], id = 'userselect', label, bc, ...pr
         className={`cursor-pointer w-full bg-white rounded-md border border-${bc} py-1 px-2 ` + styles.select}
         id={`${id}` || 'userselect'}
         onChange={onChange}
+        defaultValue={props.defaultValue}
       >
         {items.map((item, index) => {
           return (

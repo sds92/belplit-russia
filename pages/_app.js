@@ -3,25 +3,21 @@ import { AnimatePresence, domAnimation, LazyMotion, m, motion } from 'framer-mot
 import { useRouter } from 'next/router';
 import { animations } from '../styles/animations';
 import { Header, Footer, Head } from '../components/complicated';
+import { normalizeDataSTUPID } from '../utils/functions';
 import '../styles/tailwind.css';
 
+import initProducts from '../data/products.json';
 import pages from '../data/pages.json';
 import app from '../data/app.json';
 
+const products = normalizeDataSTUPID(initProducts);
+
 export default function MyApp({ Component, pageProps }) {
-  const [loading, setLoading] = React.useState(true);
   const [w, setW] = React.useState(undefined);
   const router = useRouter();
 
   React.useEffect(() => {
-    console.log("🚀 ~ file: _app.js ~ line 18 ~ React.useEffect ~ router.asPath", router.asPath)
-    if (/\/|/.test(router.asPath)) {
-      router.push('/main')
-    }
     setW(window.innerWidth);
-    setTimeout(() => {
-      setLoading(false);
-    }, 1000);
 
     window.addEventListener(
       'resize',
@@ -31,7 +27,6 @@ export default function MyApp({ Component, pageProps }) {
       []
     );
   }, []);
-  
 
   const newProps = {
     menu: [
@@ -45,8 +40,19 @@ export default function MyApp({ Component, pageProps }) {
     mdView: w >= 900 && w < 1200,
     w: w,
     app: app,
-    data: pages.find((item) => item.path === (router.asPath === '/' ? '/main' : router.asPath)),
+    data: pages.find((item) => {
+      let acv = /\#/.test(router.asPath)
+        ? router.asPath.slice(0, router.asPath.indexOf('#'))
+        : router.asPath === '/'
+        ? '/main'
+        : router.asPath;
 
+      if (acv === '/') {
+        acv = '/main';
+      }
+      return item.path === acv;
+    }),
+    products: products,
     ...pageProps,
   };
 
