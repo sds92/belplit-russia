@@ -4,6 +4,7 @@ import { Modal, ModalItems, FeedBack as FeedBackForm } from '..';
 
 export default function Calculator(props) {
   const products = props.products.filter(({ name }) => name !== 'len');
+  console.log("🚀 ~ file: Calculator.js ~ line 7 ~ Calculator ~ products", products)
   const [modalOpen, setModalOpen] = React.useState(false);
   const [modalData, setModalData] = React.useState({
     status: 'orderonopen',
@@ -26,7 +27,7 @@ export default function Calculator(props) {
     setModalOpen(true);
   }
   const [state, setState] = React.useState({
-    mark: props.initValues?.mark || 0,
+    mark: props.initValues?.mark !== 7 ? props.initValues?.mark || 0 : 0,
     option: 0,
     size: 0,
     amount: 0,
