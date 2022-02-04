@@ -14,11 +14,13 @@ import { menu } from '../../../configs/menu';
 import app from '../../../data/app.json';
 
 export default function NavSM(props) {
+  const router = useRouter();
   return (
     <>
       <nav className={`flex items-center gap-2 justify-between h-10 relative`}>
-        <div className={`flex gap-1 h-10`}>
+        <div className={`flex gap-1 h-10 z-50`}>
           <Menu
+            menuClassName={router.pathname === '/' || router.pathname === '/main' ? `mt-0` : `mt-10`}
             className={'menu top-2'}
             menuButton={
               <MenuButton>

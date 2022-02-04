@@ -9,9 +9,9 @@ export default function Catalog({ data, products, ...props }) {
   const { title } = data;
   return (
     <div className={props.lgView ? `pt-20`: `pt-10`}>
-      <div className={`bg-belplit_2 py-4`}>
+      <div className={`bg-belplit_2 ${props.lgView ? `py-4` : `py-1 fixed z-50 w-full`}`}>
         
-          <Text className={`text-5xl pl-1.5 font-bold text-zinc-800 max-w-7xl text-left mx-auto`}>
+          <Text className={` pl-1.5 font-bold text-zinc-800 max-w-7xl ${props.lgView ? `text-5xl` : `text-3xl`} text-left mx-auto`}>
             {title}
           </Text>
         

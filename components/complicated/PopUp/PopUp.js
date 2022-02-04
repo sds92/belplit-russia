@@ -18,12 +18,12 @@ export default function PopUp(props) {
               <Icons.ChevronDown
                 extraClasses={`${
                   show[index] ? `rotate-0` : `-rotate-90`
-                } bg-zinc-700 left-0 w-10 h-10 text-white rounded-md transition-all active:scale-105 hover:scale-105`}
+                } absolute bg-zinc-700 left-0 w-10 h-10 text-white rounded-md transition-all active:scale-105 hover:scale-105`}
               />
               <div
                 className={`${
                   show[index] === true ? `bg-bp_3 text-white bg-opacity-90` : `text-zinc-900 hover:bg-opacity-30 hover:bg-bp_3`
-                }  mx-3 w-full h-10 text-xl flex justify-between relative items-center rounded-md overflow-hidden cursor-pointer pl-2 transition-all`}
+                }  mr-3 ml-12 w-full h-10 text-xl flex justify-between relative items-center rounded-md overflow-hidden cursor-pointer pl-2 transition-all`}
               >
                 {item[1]}
               </div>

@@ -66,9 +66,21 @@ export default function Product(props) {
 
   return (
     <>
-      <Devider data={{ title: name, subTitle: 'МДВП' }} color={`belplit_2`} />
+    <div className={props.lgView ? `pt-20` : `pt-10`}>
+      {/* BODY */}
+      <div className={`bg-belplit_2 ${props.lgView ? `py-4` : `py-1 fixed z-40 w-full`}`}>
+        <Text
+          className={` pl-1.5 font-bold text-zinc-800 max-w-7xl ${
+            props.lgView ? `text-5xl` : `text-xl`
+          } text-left mx-auto`}
+        >
+          {props.data.title}
+        </Text>
+      </div>
+      </div>
+      {/* <Devider data={{ title: name, subTitle: 'МДВП' }} color={`belplit_2`} /> */}
 
-      <div className={`max-w-7xl mx-auto zero:my-0 sm:my-4`}>
+      <div className={`max-w-7xl mx-auto zero:my-0 sm:my-4 ` + props.lgView ? `mt-10` : `mt-0`}>
         <div className={`flex flex-col md:flex-row w-full bg-white rounded-md`}>
           <div className={`flex flex-col items-center sm:flex-row basis-1/3 relative`}>
             <div
@@ -160,9 +172,7 @@ export default function Product(props) {
         </Text>
       </div>
 
-      <div className={`max-w-7xl sm:mx-auto flex`}>
-        <div className={`h-full ml-2 my-3 bg-zinc-800 sm:hidden`} style={{ width: 1, height: 50 }}></div>
-      </div>
+     
 
       <div className={`w-full z-20 relative`}>
         <div
@@ -172,6 +182,7 @@ export default function Product(props) {
         </div>
         <div className={`max-w-7xl mx-auto rounded-b-lg`}>
           <PopUp
+          
             data={[
               [description, 'Описание'],
               [consists, 'Состав'],
