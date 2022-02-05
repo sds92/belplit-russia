@@ -13,7 +13,7 @@ import app from '../data/app.json';
 const products = normalizeDataSTUPID(initProducts);
 
 export default function MyApp({ Component, pageProps }) {
-  const [w, setW] = React.useState(undefined);
+  const [w, setW] = React.useState(1400);
   const router = useRouter();
 
   React.useEffect(() => {
