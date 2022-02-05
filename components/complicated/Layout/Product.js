@@ -80,7 +80,7 @@ export default function Product(props) {
       </div>
       {/* <Devider data={{ title: name, subTitle: 'МДВП' }} color={`belplit_2`} /> */}
 
-      <div className={`max-w-7xl mx-auto zero:my-0 sm:my-4 ` + props.lgView ? `mt-10` : `mt-0`}>
+      <div className={`max-w-7xl mx-auto zero:my-0 sm:my-4 ${props.lgView ? `mt-10` : `mt-0`}`}>
         <div className={`flex flex-col md:flex-row w-full bg-white rounded-md`}>
           <div className={`flex flex-col items-center sm:flex-row basis-1/3 relative`}>
             <div
@@ -176,7 +176,7 @@ export default function Product(props) {
 
       <div className={`w-full z-20 relative`}>
         <div
-          className={`mx-auto max-w-7xl text-left text-3xl text-zinc-800 font-bold mt-10 mb-5 border-b-4 border-zinc-600`}
+          className={`mx-auto zero:text-2xl zero:pl-1 max-w-7xl text-left text-3xl text-zinc-800 font-bold mt-10 mb-5 border-b-4 border-zinc-600`}
         >
           {'Описание'}
         </div>
@@ -195,7 +195,7 @@ export default function Product(props) {
         </div>
         <div className={`max-w-7xl mx-auto rounded-b-lg`}>
           <div
-            className={`mx-auto max-w-7xl text-left text-3xl text-zinc-800 font-bold mt-10 mb-5 border-b-4 border-zinc-600`}
+            className={`mx-auto zero:text-2xl zero:pl-1 max-w-7xl text-left text-3xl text-zinc-800 font-bold mt-10 mb-5 border-b-4 border-zinc-600`}
           >
             {'Технические характеристики'}
           </div>

@@ -17,7 +17,7 @@ export default function Footer() {
           // style={{ borderRadius: '5px' }}
         ></iframe>
       </div>
-      <footer className={`bg-zinc-600`}>
+      <footer className={`bg-white`}>
         <div className={`flex flex-col md:flex-row justify-between items-center h-full`}>
           <div className={`basis-1/3 ml-0 sm:ml-10 md:ml-36 my-4`}>
             <a href='index.html'>
@@ -25,8 +25,13 @@ export default function Footer() {
             </a>
           </div>
 
-          <div className={`basis-2/3 my-4 flex justify-end items-center gap-6 text-slate-100 cursor-default pr-4`}>
-            <Icons.Roboweb extraClasses={`w-10 h-10`} />
+          <div
+            className={`basis-2/3 my-4 flex justify-end items-center gap-6 text-zinc-800 cursor-default pr-4`}
+          >
+            <a href='https://roboweb.site/'>
+              <Icons.Roboweb fill={`#363636`} extraClasses={`w-10 h-10`} />
+            </a>
+
             <p>
               2021. Сайт создан с помощью <a href='https://roboweb.site/'>RoboWeb</a>
             </p>

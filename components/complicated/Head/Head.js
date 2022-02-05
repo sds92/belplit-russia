@@ -5,7 +5,7 @@ export default function HeadComponent({ head, children }) {
   return (
     <Head>
       <title>{head.title}</title>
-      <meta name='theme-color' content='#2b7801'></meta>
+      <meta name='theme-color' content='#ffffff'></meta>
       <script async='' src='https://cdn.jsdelivr.net/npm/yandex-metrica-watch/tag.js'></script>
       <link rel='shortcut icon' type="image/x-icon" href='/favicon.ico' />
       <link rel='preconnect' href='https://fonts.googleapis.com' />
