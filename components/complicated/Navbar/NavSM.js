@@ -21,7 +21,7 @@ export default function NavSM(props) {
         <div className={`flex gap-1 h-10 z-50`}>
           <Menu
             menuClassName={router.pathname === '/' || router.pathname === '/main' ? `mt-0` : `mt-10`}
-            className={'menu top-2'}
+            className={'menu '}
             menuButton={
               <MenuButton>
                 <Icons.Menu
