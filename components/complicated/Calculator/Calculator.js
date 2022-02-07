@@ -40,8 +40,8 @@ export default function Calculator(props) {
   }));
 
   // Regions
-  const ab = Object.entries(products.find(({ id }) => id === state.mark).prices).map((item, i) => {
-    const cities = ['Москва', 'СПБ', 'Казань', 'Краснодар', 'Волгоград', 'Астрахань'];
+  const cities = ['Москва', 'СПБ', 'Казань', 'Краснодар', 'Волгоград', 'Астрахань'];
+  const ab = Object.entries(products.find(({ id }) => id.toString() === state.mark.toString()).prices).map((item, i) => {
     return [cities[i], item[0], item[1]];
   });
   // Показатели
