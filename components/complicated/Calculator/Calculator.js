@@ -123,7 +123,7 @@ export default function Calculator(props) {
             {price * state.amount}
             <span className={`text-lg`}> руб.</span>
           </div>
-          <div className={`flex gap-6 mt-4`}>
+          <div className={`flex flex-wrap gap-6 mt-4`}>
             <div className={`flex flex-col`}>
               <div className={`w-full`}>количество</div>
               <div className={`w-full font-bold text-5xl inline-flex items-end`}>
