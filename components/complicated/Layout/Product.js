@@ -17,9 +17,10 @@ export default function Product(props) {
     prices,
     coef,
     connectionTypes,
-
+    displayName,
     desc: { consists, options, advantages, functions, installation, description, tech },
   } = props.product;
+  console.log('🚀 ~ file: Product.js ~ line 23 ~ Product ~ prices', prices);
   const [index, setIndex] = React.useState(0);
   const [modalOpen, setModalOpen] = React.useState(false);
   const [modalData, setModalData] = React.useState({
@@ -59,24 +60,24 @@ export default function Product(props) {
     setModalData({ status: 'orderonopen', header: ['Отправить запрос'], msg: [`${_msg}`] });
     setModalOpen(true);
   }
-  const cities = ['Москва', 'СПБ', 'Казань', 'Краснодар', 'Волгоград', 'Астрахань'];
+  const cities = ['Москва', 'СПБ', 'Казань', 'Краснодар', 'Ростов', 'Волгоград', 'Астрахань', 'Крым'];
   const ab = Object.entries(prices).map((item, i) => {
     return [cities[i], item[0], item[1]];
   });
 
   return (
     <>
-    <div className={props.lgView ? `pt-20` : `pt-10`}>
-      {/* BODY */}
-      <div className={`bg-belplit_2 ${props.lgView ? `py-4` : `py-1 fixed z-40 w-full`}`}>
-        <Text
-          className={` pl-1.5 font-bold text-zinc-800 max-w-7xl ${
-            props.lgView ? `text-5xl` : `text-xl`
-          } text-left mx-auto`}
-        >
-          {props.data.title}
-        </Text>
-      </div>
+      <div className={props.lgView ? `pt-20` : `pt-10`}>
+        {/* BODY */}
+        <div className={`bg-belplit_2 ${props.lgView ? `py-4` : `py-1 fixed z-40 w-full`}`}>
+          <Text
+            className={` pl-1.5 font-bold text-zinc-800 max-w-7xl ${
+              props.lgView ? `text-5xl` : `text-xl`
+            } text-left mx-auto`}
+          >
+            {displayName ? 'Белплит' + ' ' + displayName : props.data.title}
+          </Text>
+        </div>
       </div>
       {/* <Devider data={{ title: name, subTitle: 'МДВП' }} color={`belplit_2`} /> */}
 
@@ -124,10 +125,10 @@ export default function Product(props) {
               <p className={`ml-2 pt-2 px-2 font-bold text-xl`}>Цена:</p>
               <div className={`flex items-end mx-4 px-4 gap-1 whitespace-nowrap py-2 bg-white border-b `}>
                 <p className={`text-gray-500 `}>плита:</p>
-                <p className={`font-bold text-xl`}>{Math.round(prices[ab[region][1]][index] * coef)}</p>
+                <p className={`font-bold text-xl`}>{prices.bar ? prices.bar[index] : Math.round(prices[ab[region][1]][index] * coef)}</p>
                 <p className={`text-gray-500`}>руб. /</p>
                 <p className={`text-gray-500`}>кв.м:</p>
-                <p className={'font-bold text-xl text-red-600'}>{prices.square[index]}</p>
+                <p className={'font-bold text-xl text-red-600'}>{Math.round(prices[ab[region][1]][index])}</p>
                 <p className={`text-gray-500`}>руб.</p>
               </div>
               <div
@@ -172,8 +173,6 @@ export default function Product(props) {
         </Text>
       </div>
 
-     
-
       <div className={`w-full z-20 relative`}>
         <div
           className={`mx-auto zero:text-2xl zero:pl-1 max-w-7xl text-left text-3xl text-zinc-800 font-bold mt-10 mb-5 border-b-4 border-zinc-600`}
@@ -182,7 +181,6 @@ export default function Product(props) {
         </div>
         <div className={`max-w-7xl mx-auto rounded-b-lg`}>
           <PopUp
-          
             data={[
               [description, 'Описание'],
               [consists, 'Состав'],
