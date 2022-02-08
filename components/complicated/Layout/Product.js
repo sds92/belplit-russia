@@ -20,7 +20,6 @@ export default function Product(props) {
     displayName,
     desc: { consists, options, advantages, functions, installation, description, tech },
   } = props.product;
-  console.log('🚀 ~ file: Product.js ~ line 23 ~ Product ~ prices', prices);
   const [index, setIndex] = React.useState(0);
   const [modalOpen, setModalOpen] = React.useState(false);
   const [modalData, setModalData] = React.useState({
@@ -57,7 +56,6 @@ export default function Product(props) {
 
   function openModal(msg) {
     const _msg = msg ? msg : '';
-    console.log('🚀 ~ file: Product.js ~ line 60 ~ openModal ~ _msg', _msg);
     setModalData({ status: 'orderonopen', header: ['Отправить запрос'], msg: [`${_msg}`] });
     setModalOpen(true);
   }
@@ -80,7 +78,6 @@ export default function Product(props) {
           </Text>
         </div>
       </div>
-      {/* <Devider data={{ title: name, subTitle: 'МДВП' }} color={`belplit_2`} /> */}
 
       <div className={`max-w-7xl mx-auto zero:my-0 sm:my-4 ${props.lgView ? `mt-10` : `mt-0`}`}>
         <div className={`flex flex-col md:flex-row w-full bg-white rounded-md`}>
@@ -94,7 +91,7 @@ export default function Product(props) {
               <ProductComponent.List
                 inset={w < 640}
                 title={<p className={`py-2 font-bold text-lg`}>Продукция:</p>}
-                listItems={products.map((item) => ({ id: item.id, title: item.title }))}
+                listItems={products.map((item) => ({ id: item.id, title: item.displayName ? 'Белплит' + ' ' + item.displayName : item.title }))}
                 curProduct={props.product}
               />
             </div>
@@ -151,7 +148,7 @@ export default function Product(props) {
             <ProductComponent.List
               inset={w < 640}
               title={<p className={`py-2 font-bold text-lg`}>Продукция:</p>}
-              listItems={products.map((item) => ({ id: item.id, title: item.title }))}
+              listItems={products.map((item) => ({ id: item.id, title: item.displayName ? 'Белплит' + ' ' + item.displayName : item.title }))}
               curProduct={props.product}
             />
           </div>
