@@ -40,7 +40,9 @@ export default function Calculator(props) {
   }));
 
   // Regions
-  const cities = ['Москва', 'СПБ', 'Казань', 'Краснодар', 'Волгоград', 'Астрахань'];
+  // const cities = ['Москва', 'СПБ', 'Казань', 'Краснодар', 'Волгоград', 'Астрахань'];
+  const cities = ['Москва', 'СПБ', 'Казань', 'Краснодар', 'Ростов', 'Волгоград', 'Астрахань', 'Крым'];
+
   const ab = Object.entries(products.find(({ id }) => id.toString() === state.mark.toString()).prices).map((item, i) => {
     return [cities[i], item[0], item[1]];
   });
@@ -151,7 +153,7 @@ export default function Calculator(props) {
             onClick={(e) => {
               const msg = `Марка: ${products[state.mark].title}\r\nРазмеры: ${
                 sizeSelect[state.size].title
-              }\r\nСклад: Москва\r\nКоличество: ${state.amount} [м²]\r\nСтоимость: ${
+              }\r\nСклад: ${cities[region]}\r\nКоличество: ${state.amount} [м²]\r\nСтоимость: ${
                 price * state.amount
               } руб`;
               return openModal(msg);

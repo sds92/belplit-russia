@@ -57,6 +57,7 @@ export default function Product(props) {
 
   function openModal(msg) {
     const _msg = msg ? msg : '';
+    console.log('🚀 ~ file: Product.js ~ line 60 ~ openModal ~ _msg', _msg);
     setModalData({ status: 'orderonopen', header: ['Отправить запрос'], msg: [`${_msg}`] });
     setModalOpen(true);
   }
@@ -125,7 +126,9 @@ export default function Product(props) {
               <p className={`ml-2 pt-2 px-2 font-bold text-xl`}>Цена:</p>
               <div className={`flex items-end mx-4 px-4 gap-1 whitespace-nowrap py-2 bg-white border-b `}>
                 <p className={`text-gray-500 `}>плита:</p>
-                <p className={`font-bold text-xl`}>{prices.bar ? prices.bar[index] : Math.round(prices[ab[region][1]][index] * coef)}</p>
+                <p className={`font-bold text-xl`}>
+                  {prices.bar ? prices.bar[index] : Math.round(prices[ab[region][1]][index] * coef)}
+                </p>
                 <p className={`text-gray-500`}>руб. /</p>
                 <p className={`text-gray-500`}>кв.м:</p>
                 <p className={'font-bold text-xl text-red-600'}>{Math.round(prices[ab[region][1]][index])}</p>
@@ -133,7 +136,12 @@ export default function Product(props) {
               </div>
               <div
                 className={`bg-belplit_2 text-xl active:scale-105 transition-all uppercase font-bold mx-4 my-4 rounded-md text-center text-white py-2 cursor-pointer hover:scale-105 hover:bg-belplit_dark`}
-                onClick={openModal}
+                onClick={() => {
+                  const tempMsg = `Марка: ${title}\r\nРазмеры: ${
+                    selectSizes[index].title
+                  }\r\nСклад: ${cities[region]}\r\n`;
+                  return openModal(tempMsg);
+                }}
               >
                 Купить
               </div>
