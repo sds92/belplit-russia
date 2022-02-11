@@ -85,7 +85,7 @@ export default function Product(props) {
             <div
               className={`zero:w-full zero:rounded-none zero:mx-2 sm:w-2/3 md:w-full relative rounded-md overflow-hidden sm:order-1 zero:order-2`}
             >
-              <img width={570} height={570} src={`/images/products/lg/${files.product}`}></img>
+              <img width={570} height={570} src={`../images/products/lg/${files.product}`}></img>
             </div>
             <div className={`zero:w-full zero:order-1 sm:w-1/3 sm:order-2 md:hidden`}>
               <ProductComponent.List

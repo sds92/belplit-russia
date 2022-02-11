@@ -7,18 +7,18 @@ export default function Sertificates(props) {
   const [isViewerOpen, setIsViewerOpen] = React.useState(false);
 
   const imagesSM = [
-    '/images/sertificates/1sm.jpg',
-    '/images/sertificates/2sm.jpg',
-    '/images/sertificates/3sm.jpg',
-    '/images/sertificates/4sm.jpg',
-    '/images/sertificates/5sm.jpg',
+    '../images/sertificates/1sm.jpg',
+    '../images/sertificates/2sm.jpg',
+    '../images/sertificates/3sm.jpg',
+    '../images/sertificates/4sm.jpg',
+    '../images/sertificates/5sm.jpg',
   ];
   const imagesLG = [
-    '/images/sertificates/1.jpg',
-    '/images/sertificates/2.jpg',
-    '/images/sertificates/3.jpg',
-    '/images/sertificates/4.jpg',
-    '/images/sertificates/5.jpg',
+    '../images/sertificates/1.jpg',
+    '../images/sertificates/2.jpg',
+    '../images/sertificates/3.jpg',
+    '../images/sertificates/4.jpg',
+    '../images/sertificates/5.jpg',
   ];
 
   const openImageViewer = React.useCallback((index) => {
