@@ -12,14 +12,14 @@ export default function Social(props) {
               app.contacts.socials.map((item, index) => {
                 const Icon = Icons[item[0]];
                 return (
-                  <>
+                  <React.Fragment key={`SOCIAL${index}`}>
                     {props.sm && <div className={`bg-slate-500 mx-2 h-8`} style={{ width: 1 }}></div>}
-                    <div className={`cursor-pointer hover:scale-110 active:scale-110`} key={`SOCIAL${index}`}>
+                    <div className={`cursor-pointer hover:scale-110 active:scale-110`} >
                       <a target='_blank' href={`${item[1]}`} rel='noopener noreferrer'>
                         <Icon extraClasses={`w-6 h-6`} />
                       </a>
                     </div>
-                  </>
+                  </React.Fragment>
                 );
               })}
             {!props.mdView ? (

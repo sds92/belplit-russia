@@ -79,7 +79,7 @@ export default function Product(props) {
         </div>
       </div>
 
-      <div className={`max-w-7xl mx-auto zero:my-0 sm:my-4 ${props.lgView ? `mt-10` : `mt-0`}`}>
+      <div className={`max-w-7xl mx-auto ${props.lgView ? `mt-10` : `mt-10`}`}>
         <div className={`flex flex-col md:flex-row w-full bg-white rounded-md`}>
           <div className={`flex flex-col items-center sm:flex-row basis-1/3 relative`}>
             <div

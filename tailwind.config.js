@@ -6,22 +6,6 @@ fontFamily['sans'] = [
 
   // <-- you may provide more font fallbacks here
 ];
-fontFamily['mono'] = [
-  'Roboto',
-
-  // <-- you may provide more font fallbacks here
-];
-fontFamily['sans-serif'] = [
-  'Roboto Condensed',
-
-  // <-- you may provide more font fallbacks here
-];
-
-fontFamily['logo'] = [
-  'PT Sans Narrow',
-
-  // <-- you may provide more font fallbacks here
-];
 module.exports = {
   content: ['./pages/**/*.{html,js}', './components/**/*.{html,js}'],
   presets: [],
