@@ -1,6 +1,8 @@
 import React from 'react';
 import { AnimatePresence, domAnimation, LazyMotion, m, motion } from 'framer-motion';
-import { useRouter } from 'next/router';
+import { useRouter, Router } from 'next/router';
+import withYM from 'next-ym';
+
 import { animations } from '../styles/animations';
 import { Header, Footer, Head } from '../components/complicated';
 import { normalizeDataSTUPID } from '../utils/functions';
@@ -12,7 +14,8 @@ import app from '../data/app.json';
 
 const products = normalizeDataSTUPID(initProducts);
 
-export default function MyApp({ Component, pageProps }) {
+
+function MyApp({ Component, pageProps }) {
   const [w, setW] = React.useState(1400);
   const router = useRouter();
 
@@ -81,3 +84,6 @@ export default function MyApp({ Component, pageProps }) {
     </div>
   );
 }
+
+export default withYM(app.api.ym, Router)(MyApp);
+ 
