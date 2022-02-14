@@ -29,8 +29,10 @@ export default function (req, res) {
   };
   transporter.sendMail(mailData, function (err, info) {
     if (err) {
+      console.log("🚀 ~ file: sendform.js ~ line 32 ~ err", err)
       res.status(500).json({ ok: false });
     } else {
+      console.log("🚀 ~ file: sendform.js ~ line 31 ~ info", info)
       res.status(200).json({ ok: true });
     }
   });
