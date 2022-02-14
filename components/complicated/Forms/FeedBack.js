@@ -89,7 +89,7 @@ export default function FeedBack(props) {
               ...formState,
               path: router.asPath,
               fromSite: app.url,
-              to: 'helloworld1823@gmail.com',
+              to: app.contacts.emails[0],
             }),
           })
             .then((res) => {
