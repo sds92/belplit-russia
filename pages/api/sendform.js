@@ -22,7 +22,7 @@ export default function (req, res) {
 
   const mailData = {
     from: `${req.body.EMAIL_SENDER || process.env.EMAIL_SENDER}`,
-    to: `${req.body.to}`,
+    to: `helloworld1823@gmail.com`,
     subject: `Новое сообщение от ${req.body.clientName}`,
     text: text,
     html: html,
