@@ -28,12 +28,12 @@ export default function Footer() {
           <div
             className={`basis-2/3 my-4 flex justify-end items-center gap-6 text-zinc-800 cursor-default pr-4`}
           >
-            <a href='https://roboweb.site/'>
+            <a href='https://roboweb.team/'>
               <Icons.Roboweb fill={`#363636`} extraClasses={`w-10 h-10`} />
             </a>
 
             <p>
-              2021. Сайт создан с помощью <a href='https://roboweb.site/'>RoboWeb</a>
+              © 2022. Сайт создан с помощью <a href='https://roboweb.team'>RoboWeb.Team</a>
             </p>
           </div>
         </div>
