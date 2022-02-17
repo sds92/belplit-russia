@@ -1,5 +1,5 @@
 module.exports = {
-  basePath: '/bp', 
+  basePath: '/белтермо.com', 
   reactStrictMode: true,
   images: {
     domains: ['metrika-informer.com'],
