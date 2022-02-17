@@ -116,6 +116,12 @@ export default function FeedBack(props) {
               setTimeout(() => {
                 setFormStatus('show');
               }, 4000);
+            })
+            .catch((err) => {
+              setFormStatus('error');
+              setTimeout(() => {
+                setFormStatus('show');
+              }, 3000);
             });
         }
 
@@ -166,6 +172,8 @@ export default function FeedBack(props) {
                             return { ...state, clientPhone: e.target.value };
                           })
                         }
+                        mask='+7\ (999) 999 99 99'
+                        maskChar='_'
                       />
                     </div>
                   </div>
@@ -229,6 +237,12 @@ export default function FeedBack(props) {
               {formStatus === 'pending' && <p className={`text-center py-10`}>Отправка запроса</p>}
               {formStatus === 'complete' && (
                 <p className={`text-center py-10`}>Запрос успешно отправлен. Спасибо за обращение!</p>
+              )}
+              {formStatus === 'error' && (
+                <p className={`text-center py-10 text-zinc-100`}>
+                  Произошла ошибка. Попробуйте еще раз. Если ошибка повторится обратитесь к администрации
+                  сайта.
+                </p>
               )}
             </form>
           </div>
