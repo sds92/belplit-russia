@@ -13,8 +13,6 @@ export default function Footer() {
           height='100%'
           aria-hidden='false'
           tabIndex='0'
-          className={``}
-          // style={{ borderRadius: '5px' }}
         ></iframe>
       </div>
       <footer className={`bg-white`}>
@@ -28,7 +26,7 @@ export default function Footer() {
           <div
             className={`basis-2/3 my-4 flex justify-end items-center gap-6 text-zinc-800 cursor-default pr-4`}
           >
-            <a href='https://roboweb.team/'>
+            <a href='https://roboweb.team'>
               <Icons.Roboweb fill={`#363636`} extraClasses={`w-10 h-10`} />
             </a>
 
