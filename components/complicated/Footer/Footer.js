@@ -13,8 +13,6 @@ export default function Footer() {
           height='100%'
           aria-hidden='false'
           tabIndex='0'
-          className={``}
-          // style={{ borderRadius: '5px' }}
         ></iframe>
       </div>
       <footer className={`bg-white`}>
