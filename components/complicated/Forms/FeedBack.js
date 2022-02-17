@@ -3,6 +3,8 @@ import { useRouter } from 'next/router';
 import { AppContext } from '../Context/AppContext';
 import { Button } from '../../lib';
 
+import InputMask from 'react-input-mask';
+
 export default function FeedBack(props) {
   const { body } = props;
   const router = useRouter();
@@ -153,7 +155,7 @@ export default function FeedBack(props) {
                           Не верный номер
                         </p>
                       )}
-                      <input
+                      <InputMask
                         className={classes.inputSm}
                         required
                         id='FeedBackFormClientPhone'
@@ -165,6 +167,8 @@ export default function FeedBack(props) {
                             return { ...state, clientPhone: e.target.value };
                           })
                         }
+                        mask='+7\ (999) 999 99 99'
+                        maskChar='_'
                       />
                     </div>
                   </div>
