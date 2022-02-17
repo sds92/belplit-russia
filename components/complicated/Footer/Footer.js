@@ -33,7 +33,7 @@ export default function Footer() {
             </a>
 
             <p>
-              2021. Сайт создан с помощью <a href='https://roboweb.site/'>RoboWeb</a>
+              © 2022. Сайт создан с помощью <a href='https://roboweb.team'>RoboWeb.Team</a>
             </p>
           </div>
         </div>
