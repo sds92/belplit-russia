@@ -88,7 +88,7 @@ export default function Objects(props) {
       <div className={`flex flex-wrap justify-center sm:mx-20`}>
         {imagesSM.map((src, index) => (
           <div className={`m-5 shadow-md cursor-pointer`} key={`SERTSM${index}`}>
-            <img src={src} onClick={() => openImageViewer(index)} alt={`Белтермо пример ${index}`} />
+            <img src={`..${src}`} onClick={() => openImageViewer(index)} alt={`Белтермо пример ${index}`} />
           </div>
         ))}
 

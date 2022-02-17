@@ -52,8 +52,8 @@
         "d1": ["Преимущества <span class=\"text-belplit\" >БЕЛТЕРМО</span>"]
       },
       "imgs": [
-        ["/images/main.jpg", "Белтермо главная"],
-        ["/images/mainpage/bg1.png", "МДВП БЕЛТЕРМО"]
+        ["./images/main.jpg", "Белтермо главная"],
+        ["./images/mainpage/bg1.png", "МДВП БЕЛТЕРМО"]
       ],
       "links": [["/info/objects", "другие объекты"]]
     }

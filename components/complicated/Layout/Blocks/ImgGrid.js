@@ -131,7 +131,7 @@ export default function ImgGrid(props) {
               key={`GRIDIMG${index}`}
               className={`zero:w-48 md:w-64 rounded-md overflow-hidden shadow-md relative`}
               style={{
-                background: `no-repeat url(${item.src})`,
+                background: `no-repeat url(.${item.src})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
               }}

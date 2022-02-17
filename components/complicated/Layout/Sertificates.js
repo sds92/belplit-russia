@@ -46,7 +46,7 @@ export default function Sertificates(props) {
         <div className={`flex flex-wrap justify-center mx-20`}>
           {imagesSM.map((src, index) => (
             <div className={`m-5 shadow-xl cursor-pointer`} key={`SERTSM${index}`}>
-              <img src={src} onClick={() => openImageViewer(index)} alt={`Белтермо сертификат ${index}`} />
+              <img src={`..${src}`} onClick={() => openImageViewer(index)} alt={`Белтермо сертификат ${index}`} />
             </div>
           ))}
 
