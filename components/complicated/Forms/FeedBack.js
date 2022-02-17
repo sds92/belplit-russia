@@ -27,34 +27,36 @@ export default function FeedBack(props) {
       } rounded-md p-1 bg-white my-1`,
     inputSm: `w-full px-2 pt-2 bg-white`,
   };
-  function checkForm() {
+  async function checkForm() {
     let res = false;
     let a = Promise.resolve(/^[а-я, А-Я, a-z, A-Z]{3,20}$/.test(formState.clientName));
     let b = Promise.resolve(/\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/.test(formState.clientPhone));
-    let c = Promise.resolve(/.{3,500}/.test(formState.body));
-    let d = Promise.resolve(
-      /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/.test(
-        formState.clientEmail
-      )
-    );
-    return Promise.all([a, b, c, d]).then((values) => {
-      console.log(values);
-      res = true;
-      values.map((item, index) => {
-        if (!item) {
-          res = false;
-          setCheckFormStatus((state) => {
-            return { ...state, [index]: true };
+    let c = formState.body === '' ? true : Promise.resolve(/.{3,500}/.test(formState.body));
+    let d =
+      formState.clientEmail === ''
+        ? true
+        : Promise.resolve(
+            /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/.test(
+              formState.clientEmail
+            )
+          );
+    const values_1 = await Promise.all([a, b, c, d]);
+    console.log(values_1);
+    res = true;
+    values_1.map((item, index) => {
+      if (!item) {
+        res = false;
+        setCheckFormStatus((state) => {
+          return { ...state, [index]: true };
+        });
+        setTimeout(() => {
+          setCheckFormStatus((state_1) => {
+            return { ...state_1, [index]: false };
           });
-          setTimeout(() => {
-            setCheckFormStatus((state) => {
-              return { ...state, [index]: false };
-            });
-          }, 3000);
-        }
-      });
-      return res;
+        }, 3000);
+      }
     });
+    return res;
   }
 
   function resetForm() {
@@ -79,7 +81,7 @@ export default function FeedBack(props) {
             props.onFulfilled('loading');
           } catch (err) {}
 
-          fetch('/api/sendform', {
+          fetch(`${app.api.email}`, {
             method: 'POST',
             headers: {
               Accept: 'application/json, text/plain, */*',

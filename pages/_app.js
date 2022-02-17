@@ -1,7 +1,6 @@
 import React from 'react';
 import { AnimatePresence, domAnimation, LazyMotion, m, motion } from 'framer-motion';
 import { useRouter, Router } from 'next/router';
-import withYM from 'next-ym';
 
 import { animations } from '../styles/animations';
 import { Header, Footer, Head } from '../components/complicated';
@@ -13,7 +12,6 @@ import pages from '../data/pages.json';
 import app from '../data/app.json';
 
 const products = normalizeDataSTUPID(initProducts);
-
 
 function MyApp({ Component, pageProps }) {
   const [w, setW] = React.useState(1400);
@@ -81,9 +79,26 @@ function MyApp({ Component, pageProps }) {
         </LazyMotion>
         <Footer lgView={newProps.lgView} />
       </div>
+      <script
+        type='text/javascript'
+        dangerouslySetInnerHTML={{
+          __html: `
+             (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+             m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+             (window, document, "script", "https://cdn.jsdelivr.net/npm/yandex-metrica-watch/tag.js", "ym");
+          
+             ym(${app.api.ym}, "init", {
+                  clickmap:true,
+                  trackLinks:true,
+                  accurateTrackBounce:true,
+                  webvisor:true,
+                  trackHash:true
+             });
+  `,
+        }}
+      ></script>
     </div>
   );
 }
 
-export default withYM(app.api.ym, Router)(MyApp);
- 
+export default MyApp;
