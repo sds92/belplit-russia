@@ -1,9 +1,9 @@
 {
   "title": "БЕЛТЕРМО",
   "copyright": [
-    "© 2021 Сайт создан с помощью <a href=\"https://roboweb.site/\"><strong>RoboWeb</strong></a>"
+       "© 2022 Сайт создан с помощью <a href=\"https://roboweb.team\"><strong>RoboWeb.Team</strong></a>"
   ],
-  "url": "belplit-russia.ru",
+  "url": "beltermo-russia.ru",
   "api": {
     "ym": "",
     "email": "https://xn--j1ano.com/sendmail",
@@ -27,7 +27,7 @@
       }
     ],
     "socials": [
-      ["Whatsapp", "https://wa.me/89250135602?text=Здравствуйте..."]
+      ["Whatsapp", "https://wa.me/+79250135602?text=Здравствуйте..."]
     ]
   },
   "workingHoars": {
