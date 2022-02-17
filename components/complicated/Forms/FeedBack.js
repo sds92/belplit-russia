@@ -2,6 +2,7 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import { AppContext } from '../Context/AppContext';
 import { Button } from '../../lib';
+import InputMask from 'react-input-mask';
 
 export default function FeedBack(props) {
   const { body } = props;
@@ -153,7 +154,7 @@ export default function FeedBack(props) {
                           Не верный номер
                         </p>
                       )}
-                      <input
+                      <InputMask
                         className={classes.inputSm}
                         required
                         id='FeedBackFormClientPhone'
