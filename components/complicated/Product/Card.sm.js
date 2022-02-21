@@ -22,7 +22,7 @@ export default function ProductCardSM(props) {
                 className={`flex text-zinc-800 items-center h-10 cursor-pointer text-base transition-all font-bold `}
               >
                 <div className={` pb-1 text-zinc-900`}>
-                  <span className={` font-bold uppercase`}>{name}</span>
+                  <span className={` font-bold uppercase`}>{props.product.displayName && `Белплит ${props.product.displayName}` || name}</span>
 
                   <span className={` font-light text-zinc-400 hover:text-belplit_dark`}> / Подробнее</span>
                 </div>
