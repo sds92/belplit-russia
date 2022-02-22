@@ -136,7 +136,7 @@ export default function Product(props) {
                 onClick={() => {
                   const tempMsg = `Марка: ${title}\r\nРазмеры: ${
                     selectSizes[index].title
-                  }\r\nСклад: ${cities[region]}\r\n`;
+                  }\r\nСклад: ${cities[region]}\r\nКоличество:`;
                   return openModal(tempMsg);
                 }}
               >
