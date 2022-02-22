@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import { AppContext } from '../Context/AppContext';
-import { Button } from '../../lib';
+import { Button, Text } from '../../lib';
 import InputMask from 'react-input-mask';
 
 export default function FeedBack(props) {
@@ -59,7 +59,7 @@ export default function FeedBack(props) {
     });
     return res;
   }
-	
+
   function resetForm() {
     setFormState({
       clientName: '',
