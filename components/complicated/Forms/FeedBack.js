@@ -156,7 +156,7 @@ export default function FeedBack(props) {
 
                     <div className={classes.inputWrapSm(1)}>
                       {checkFormStatus[1] && (
-                        <p className={`form-text-alert text-red-600 absolute right-4 top-2`}>
+                        <p className={`form-text-alert text-red-600 absolute right-2 top-0`}>
                           Не верный номер
                         </p>
                       )}
