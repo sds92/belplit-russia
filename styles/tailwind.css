@@ -2253,6 +2253,18 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: 0.25rem;
 }
 
+.mt-0\.5{
+  margin-top: 0.125rem;
+}
+
+.ml-1{
+  margin-left: 0.25rem;
+}
+
+.-mr-1{
+  margin-right: -0.25rem;
+}
+
 .inline-block{
   display: inline-block;
 }
@@ -2315,6 +2327,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .h-12{
   height: 3rem;
+}
+
+.h-7{
+  height: 1.75rem;
 }
 
 .max-h-0{
@@ -2385,6 +2401,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-52{
   width: 13rem;
+}
+
+.w-7{
+  width: 1.75rem;
 }
 
 .min-w-full{
@@ -7542,6 +7562,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-bottom: 1.25rem;
 }
 
+.pl-3{
+  padding-left: 0.75rem;
+}
+
 .text-left{
   text-align: left;
 }
@@ -10216,11 +10240,6 @@ Ensure the default browser behavior of the `hidden` attribute.
     margin-right: 2.5rem;
   }
 
-  .zero\:my-0{
-    margin-top: 0px;
-    margin-bottom: 0px;
-  }
-
   .zero\:mx-2{
     margin-left: 0.5rem;
     margin-right: 0.5rem;
@@ -10323,11 +10342,6 @@ Ensure the default browser behavior of the `hidden` attribute.
     margin-right: 5rem;
   }
 
-  .sm\:my-4{
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-  }
-
   .sm\:ml-10{
     margin-left: 2.5rem;
   }
@@ -10384,6 +10398,10 @@ Ensure the default browser behavior of the `hidden` attribute.
     gap: 0.5rem;
   }
 
+  .sm\:whitespace-nowrap{
+    white-space: nowrap;
+  }
+
   .sm\:rounded-lg{
     border-radius: 0.5rem;
   }
@@ -10432,6 +10450,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 @media (min-width: 768px){
+  .md\:mx-4{
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
   .md\:ml-36{
     margin-left: 9rem;
   }
@@ -10492,6 +10515,10 @@ Ensure the default browser behavior of the `hidden` attribute.
     overflow-x: auto;
   }
 
+  .md\:whitespace-nowrap{
+    white-space: nowrap;
+  }
+
   .md\:px-8{
     padding-left: 2rem;
     padding-right: 2rem;
@@ -10522,12 +10549,21 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 @media (min-width: 1024px){
+  .lg\:mx-4{
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
   .lg\:block{
     display: block;
   }
 
   .lg\:basis-1\/4{
     flex-basis: 25%;
+  }
+
+  .lg\:whitespace-nowrap{
+    white-space: nowrap;
   }
 
   .lg\:text-lg{

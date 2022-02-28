@@ -9,6 +9,7 @@ import NavLGItem from './NavLGItem';
 import { Button } from '../../lib';
 import { Social, Icons, Modal, ModalItems, FeedBack } from '..';
 import { menu } from '../../../configs/menu';
+import ContactsNav from './ContactsNav';
 
 export default function NavLG(props) {
   const [modalOpen, setModalOpen] = React.useState(false);
@@ -34,7 +35,7 @@ export default function NavLG(props) {
     return;
   }
   return (
-    <div className={`flex justify-between h-14 gap-10 my-3 py-2`}>
+    <div className={`flex justify-between h-full py-1`}>
       <Link href={`/main`} passHref>
         <div className={`flex transition-all cursor-pointer items-center relative`}>
           <Logo extraClasses={`${props.lgView ? 'h-10' : 'h-8'} transition-all`} />
@@ -48,7 +49,8 @@ export default function NavLG(props) {
       >
         {menu.map((item, index) => item.show && <NavLGItem item={item} key={`NAVLG${index}`} i={index} />)}
       </div>
-      <div className={`flex items-center gap-2`}>
+      <ContactsNav {...props}/>
+      {/* <div className={`flex items-center gap-2`}>
         <div className={`flex items-center font-light gap-2`}>
           <Social mdView={props.mdView} />
         </div>
@@ -56,11 +58,11 @@ export default function NavLG(props) {
         <Button
           href={'#feedback'}
           onClick={openModal}
-          className={`whitespace-nowrap hover:text-belplit uppercase font-bold transition-all`}
+          className={`hover:text-belplit text-center uppercase font-bold transition-all`}
         >
           Заказать звонок
         </Button>
-      </div>
+      </div> */}
       <Modal
         setOpen={modalOpen}
         setClose={() => setModalOpen(false)}

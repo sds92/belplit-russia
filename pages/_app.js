@@ -1,6 +1,6 @@
 import React from 'react';
 import { AnimatePresence, domAnimation, LazyMotion, m, motion } from 'framer-motion';
-import { useRouter, Router } from 'next/router';
+import { useRouter } from 'next/router';
 
 import { animations } from '../styles/animations';
 import { Header, Footer, Head } from '../components/complicated';

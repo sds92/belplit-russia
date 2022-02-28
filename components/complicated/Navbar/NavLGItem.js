@@ -19,7 +19,7 @@ export default function NavLGItem(props) {
   const router = useRouter();
   
   return (
-    <div className={`relative mx-4`}>
+    <div className={`relative zero:mx-1 lg:mx-4`}>
       <div className={`flex hover:text-belplit text-zinc-800 font-light`}>
         {show && activeLink && (
           <Link href={`/${name}`}>
