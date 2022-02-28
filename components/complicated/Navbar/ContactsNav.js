@@ -65,15 +65,15 @@ export default function ContactsNav(props) {
                           rel='noopener noreferrer'
                         >
                           {!sm && (
-                            <div className={`whitespace-nowrap`}>
-                              Напишите в{' '}
-                              <span
-                                className={`font-bold ${
+                            <div className={`whitespace-nowrap flex hover:text-belplit`}>
+                              Напишите в&nbsp;
+                              <div
+                                className={`font-bold hover:scale-105 ${
                                   item[0] === 'Whatsapp' ? 'text-belplit' : 'text-blue-900'
                                 }`}
                               >
                                 {item[0] === 'Whatsapp' ? 'WhatsApp' : item[0]}
-                              </span>
+                              </div>
                             </div>
                           )}
                           &nbsp;&nbsp;

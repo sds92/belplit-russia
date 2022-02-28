@@ -7,7 +7,7 @@ export default function Catalog({ data, products, ...props }) {
   const { title } = data;
   return (
     <div className={props.lgView ? `pt-20`: `pt-10`}>
-      <div className={`bg-belplit_2 ${props.lgView ? `py-4` : `py-1 fixed z-50 w-full`}`}>
+      <div className={`bg-belplit_2 ${props.lgView ? `py-4` : `py-1 fixed z-50 w-full shadow-md`}`}>
         
           <Text className={` pl-1.5 font-bold text-zinc-800 max-w-7xl ${props.lgView ? `text-5xl` : `text-3xl`} text-left mx-auto`}>
             {title}
@@ -30,9 +30,9 @@ export default function Catalog({ data, products, ...props }) {
       </div>
       <hr/>
       <Text className={`text-center py-5 text-3xl uppercase font-bold bg-belplit_2`}>Свяжитесь с нами</Text>
-      <Contacts/>
+      <Contacts contactsHidden/>
       <br/>
-      <hr/>
+      
     </div>
   );
 }

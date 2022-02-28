@@ -7,6 +7,7 @@ import { Header, Footer, Head } from '../components/complicated';
 import { normalizeDataSTUPID } from '../utils/functions';
 import '../styles/tailwind.css';
 
+import { appDataConfig } from 'configs/appDataConfig';
 import initProducts from '../data/products.json';
 import pages from '../data/pages.json';
 import app from '../data/app.json';
@@ -40,7 +41,7 @@ function MyApp({ Component, pageProps }) {
     lgView: w >= 1200,
     mdView: w >= 900 && w < 1200,
     w: w,
-    app: app,
+    app: appDataConfig(app, process.env.NEXT_PUBLIC_SITE_URL),
     data: pages.find((item) => {
       let acv = /\#/.test(router.asPath)
         ? router.asPath.slice(0, router.asPath.indexOf('#'))
@@ -87,7 +88,7 @@ function MyApp({ Component, pageProps }) {
              m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
              (window, document, "script", "https://cdn.jsdelivr.net/npm/yandex-metrica-watch/tag.js", "ym");
           
-             ym(${app.api.ym}, "init", {
+             ym(${newProps.app.api.ym}, "init", {
                   clickmap:true,
                   trackLinks:true,
                   accurateTrackBounce:true,

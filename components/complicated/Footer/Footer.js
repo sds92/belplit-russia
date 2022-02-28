@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 // etc
 import { AppContext } from '../Context/AppContext';
@@ -32,9 +33,9 @@ export default function Footer(props) {
                 ></iframe>
               </div>
             )}
-            <footer className={`bg-white py-4`}>
+            <footer className={`bg-white pt-4`}>
               <div className={`flex flex-col md:flex-row justify-between items-center h-full`}>
-                <div className={`flex pt-2`}>
+                <div className={`flex py-2`}>
                   <div className={`flex justify-between`}>
                     <div className={`flex flex-col justify-center px-2 border-r mr-1`}>
                       {menu.map((item, index) => {
@@ -46,12 +47,14 @@ export default function Footer(props) {
                                   className={`cursor-pointer hover:text-belplit_2`}
                                   key={`FOOTERMENUITEMI${index_i}`}
                                 >
-                                  {item_i.title}
+                                  <Link href={`/${item.name}/${item_i.name}`}>{item_i.title}</Link>
                                 </div>
                               );
                             })}
                             <div className={`cursor-pointer hover:text-belplit_2`}>
-                              {item.show && item.items.length === 0 && item.title}
+                              {item.show && item.items.length === 0 && (
+                                <Link href={`/${item.name}`}>{item.title}</Link>
+                              )}
                             </div>
                           </div>
                         );
@@ -119,15 +122,16 @@ export default function Footer(props) {
                   </div>
                 </div>
               </div>
-              <div className={`flex items-center justify-center gap-2`}>
+              <div className={`w-full h-2 shadow-2xl bg-zinc-800`} />
+              <div className={`py-10 flex items-center bg-zinc-800 text-zinc-100 justify-center gap-2`}>
                 <p className={`text-center`}>
                   2022. Сайт создан с помощью{' '}
-                  <a className={`font-bold`} href='https://roboweb.site/'>
+                  <a className={`font-bold`} href='https://roboweb.team/'>
                     RoboWeb
                   </a>
                 </p>
-                <a href='https://roboweb.site/'>
-                  <Icons.Roboweb fill={`#363636`} extraClasses={`w-10 h-10 hover:scale-105 transition-all`} />
+                <a href='https://roboweb.team/'>
+                  <Icons.Roboweb fill={`#ffffff`} extraClasses={`w-10 h-10 hover:scale-105 transition-all`} />
                 </a>
               </div>
             </footer>

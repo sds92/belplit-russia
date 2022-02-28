@@ -1,37 +1,72 @@
-{
-  "title": "БЕЛТЕРМО",
-  "copyright": [
-    "© 2021 Сайт создан с помощью <a href=\"https://roboweb.site/\"><strong>RoboWeb</strong></a>"
-  ],
-  "url": "belplit-russia.ru",
-  "api": {
-    "ym": "",
-    "email": "https://xn--j1ano.com/sendmail",
-    "serv": "https://xn--j1ano.com/"
-  },
-  "contacts": {
-    "phones": ["8 (800) 533-78-81", "8 (925) 013-56-02"],
-    "emails": ["belplit-russia@mail.ru"],
-    "addresses": [
-      {
-        "title": "Офис",
-        "value": "Россия, Московская область, Одинцово, улица Молодежная, 46"
-      },
-      {
-        "title": "Склад №1",
-        "value": "Москва, пос. Мосрентген, проектируемый проезд 134, вл. 4"
-      },
-      {
-        "title": "Склад №2",
-        "value": "Московская область, Рузский городской округ, д. Берёзкино 69"
-      }
+[
+  {
+    "title": "БЕЛТЕРМО",
+    "copyright": [
+      "© 2021 Сайт создан с помощью <a href=\"https://roboweb.site/\"><strong>RoboWeb</strong></a>"
     ],
-    "socials": [
-      ["Whatsapp", "https://wa.me/+79250135602?text=Здравствуйте..."]
-    ]
+    "url": "beltermo-russia.ru",
+    "api": {
+      "ym": "",
+      "email": "https://xn--j1ano.com/sendmail",
+      "serv": "https://xn--j1ano.com/"
+    },
+    "contacts": {
+      "phones": ["8 (925) 013-56-02"],
+      "emails": ["belplit-russia@mail.ru"],
+      "addresses": [
+        {
+          "title": "Офис",
+          "value": "Россия, Московская область, Одинцово, улица Молодежная, 46"
+        },
+        {
+          "title": "Склад №1",
+          "value": "Москва, пос. Мосрентген, проектируемый проезд 134, вл. 4"
+        },
+        {
+          "title": "Склад №2",
+          "value": "Московская область, Рузский городской округ, д. Берёзкино 69"
+        }
+      ],
+      "socials": [["Whatsapp", "https://wa.me/+79250135602?text=Здравствуйте..."]]
+    },
+    "workingHoars": {
+      "title": "Время работы",
+      "value": ["Ежедневно: <span class=\"text-bold\">8:00–20:00</span>"]
+    }
   },
-  "workingHoars": {
-    "title": "Время работы",
-    "value": ["Ежедневно: <span class=\"text-bold\">8:00–20:00</span>"]
+  {
+    "title": "БЕЛТЕРМО",
+    "copyright": [
+      "© 2021 Сайт создан с помощью <a href=\"https://roboweb.site/\"><strong>RoboWeb</strong></a>"
+    ],
+    "url": "белтермо.com",
+    "api": {
+      "ym": "",
+      "email": "https://xn--j1ano.com/sendmail",
+      "serv": "https://xn--j1ano.com/"
+    },
+    "contacts": {
+      "phones": ["8 (925) 013-56-02"],
+      "emails": ["belplit-russia@mail.ru"],
+      "addresses": [
+        {
+          "title": "Офис",
+          "value": "Россия, Московская область, Одинцово, улица Молодежная, 46"
+        },
+        {
+          "title": "Склад №1",
+          "value": "Москва, пос. Мосрентген, проектируемый проезд 134, вл. 4"
+        },
+        {
+          "title": "Склад №2",
+          "value": "Московская область, Рузский городской округ, д. Берёзкино 69"
+        }
+      ],
+      "socials": [["Whatsapp", "https://wa.me/+79250135602?text=Здравствуйте..."]]
+    },
+    "workingHoars": {
+      "title": "Время работы",
+      "value": ["Ежедневно: <span class=\"text-bold\">8:00–20:00</span>"]
+    }
   }
-}
+]
