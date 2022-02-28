@@ -60,26 +60,28 @@ function MyApp({ Component, pageProps }) {
           ...pageProps,
         };
         return (
-          <div>
-            <Head head={newProps.data.head} />
-            <div className={`flex flex-col w-full min-h-screen overflow-hidden justify-between`}>
-              <Header {...newProps} />
-              <LazyMotion features={domAnimation}>
-                <AnimatePresence exitBeforeEnter>
-                  <motion.div
-                    key={router.route.concat(animations.opacity.name)}
-                    className='page-wrap'
-                    initial='initial'
-                    animate='animate'
-                    exit='exit'
-                    variants={animations.opacity.variants}
-                    transition={animations.opacity.transition}
-                  >
-                    <Component {...newProps} />
-                  </motion.div>
-                </AnimatePresence>
-              </LazyMotion>
-              <Footer lgView={newProps.lgView} w={w} />
+          <>
+            <div>
+              <Head head={newProps.data.head} />
+              <div className={`flex flex-col w-full min-h-screen overflow-hidden justify-between`}>
+                <Header {...newProps} />
+                <LazyMotion features={domAnimation}>
+                  <AnimatePresence exitBeforeEnter>
+                    <motion.div
+                      key={router.route.concat(animations.opacity.name)}
+                      className='page-wrap'
+                      initial='initial'
+                      animate='animate'
+                      exit='exit'
+                      variants={animations.opacity.variants}
+                      transition={animations.opacity.transition}
+                    >
+                      <Component {...newProps} />
+                    </motion.div>
+                  </AnimatePresence>
+                </LazyMotion>
+                <Footer lgView={newProps.lgView} w={w} />
+              </div>
             </div>
             <script
               type='text/javascript'
@@ -90,16 +92,16 @@ function MyApp({ Component, pageProps }) {
              (window, document, "script", "https://cdn.jsdelivr.net/npm/yandex-metrica-watch/tag.js", "ym");
           
              ym(${app.api.ym}, "init", {
-                  clickmap:true,
-                  trackLinks:true,
-                  accurateTrackBounce:true,
-                  webvisor:true,
-                  trackHash:true
-             });
-  `,
+               clickmap:true,
+               trackLinks:true,
+               accurateTrackBounce:true,
+               webvisor:true,
+               trackHash:true
+              });
+              `,
               }}
             ></script>
-          </div>
+          </>
         );
       }}
     </AppContext.Consumer>
