@@ -1,7 +1,5 @@
 import React from 'react';
-import productsInit from '../../../data/products.json';
-import { normalizeData, normalizeDataSTUPID } from '../../../utils/functions';
-import { ProductComponent } from '../';
+import { Contacts, ProductComponent } from '../';
 import { Text } from '../../lib';
 
 export default function Catalog({ data, products, ...props }) {
@@ -30,7 +28,11 @@ export default function Catalog({ data, products, ...props }) {
           </div>
         </div>
       </div>
-     
+      <hr/>
+      <Text className={`text-center py-5 text-3xl uppercase font-bold bg-belplit_2`}>Свяжитесь с нами</Text>
+      <Contacts/>
+      <br/>
+      <hr/>
     </div>
   );
 }
