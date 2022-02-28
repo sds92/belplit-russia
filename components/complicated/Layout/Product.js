@@ -66,12 +66,12 @@ export default function Product(props) {
 
   return (
     <>
-      <div className={props.lgView ? `pt-20` : `pt-10`}>
+      <div className={props.lgView || props.mdView ? `pt-20` : `pt-10`}>
         {/* BODY */}
-        <div className={`bg-belplit_2 ${props.lgView ? `py-4` : `py-1 fixed z-40 w-full shadow-md`}`}>
+        <div className={`bg-belplit_2 ${props.lgView || props.mdView ? `py-4` : `py-1 fixed z-40 w-full shadow-md`}`}>
           <Text
             className={` pl-1.5 font-bold text-zinc-800 max-w-7xl ${
-              props.lgView ? `text-5xl` : `text-xl`
+              props.lgView || props.mdView ? `text-5xl` : `text-xl`
             } text-left mx-auto`}
           >
             {displayName ? 'Белплит' + ' ' + displayName : props.data.title}

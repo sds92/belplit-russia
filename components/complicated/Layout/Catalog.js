@@ -3,13 +3,14 @@ import { Contacts, ProductComponent } from '../';
 import { Text } from '../../lib';
 
 export default function Catalog({ data, products, ...props }) {
+  console.log("🚀 ~ file: Catalog.js ~ line 6 ~ Catalog ~ props", props)
   // const products = normalizeDataSTUPID(productsInit);
   const { title } = data;
   return (
-    <div className={props.lgView ? `pt-20`: `pt-10`}>
-      <div className={`bg-belplit_2 ${props.lgView ? `py-4` : `py-1 fixed z-50 w-full shadow-md`}`}>
+    <div className={props.lgView || props.mdView ? `pt-20`: `pt-10`}>
+      <div className={`bg-belplit_2 ${props.lgView || props.mdView ? `py-4` : `py-1 fixed z-50 w-full shadow-md`}`}>
         
-          <Text className={` pl-1.5 font-bold text-zinc-800 max-w-7xl ${props.lgView ? `text-5xl` : `text-3xl`} text-left mx-auto`}>
+          <Text className={` pl-1.5 font-bold text-zinc-800 max-w-7xl ${props.lgView || props.mdView ? `text-5xl` : `text-3xl`} text-left mx-auto`}>
             {title}
           </Text>
         
