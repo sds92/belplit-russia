@@ -14,7 +14,7 @@ export default function Social(props) {
                 return (
                   <React.Fragment key={`SOCIAL${index}`}>
                     {props.sm && <div className={`bg-slate-500 mx-2 h-8`} style={{ width: 1 }}></div>}
-                    <div className={`cursor-pointer hover:scale-110 active:scale-110`} >
+                    <div className={`cursor-pointer hover:scale-110 active:scale-110`}>
                       <a target='_blank' href={`${item[1]}`} rel='noopener noreferrer'>
                         <Icon extraClasses={`w-6 h-6`} />
                       </a>
@@ -37,7 +37,7 @@ export default function Social(props) {
                     </a>
                   )}
                   {props.sm && (
-                    <a className={`hover:text-belplit transition-all`} href={`tel:${app.contacts.phones[1]}`}>
+                    <a className={`hover:text-belplit transition-all`} href={`tel:${app.contacts.phones[0]}`}>
                       <Icons.Phone
                         extraClasses={`w-8 h-8 text-belplit mt-1.5 -ml-0.5 hover:scale-110 active:scale-110 cursor-pointer`}
                       />
@@ -46,9 +46,11 @@ export default function Social(props) {
                 </div>
               </>
             ) : (
-              <Icons.Phone
-                extraClasses={`w-8 h-8 text-belplit mt-1.5 -ml-0.5 hover:scale-110 active:scale-110 cursor-pointer`}
-              />
+              <a className={`hover:text-belplit transition-all`} href={`tel:${app.contacts.phones[0]}`}>
+                <Icons.Phone
+                  extraClasses={`w-8 h-8 text-belplit mt-1.5 -ml-0.5 hover:scale-110 active:scale-110 cursor-pointer`}
+                />
+              </a>
             )}
           </>
         );
