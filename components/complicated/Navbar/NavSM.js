@@ -58,22 +58,16 @@ export default function NavSM(props) {
               </React.Fragment>
             ))}
             <hr />
-            <MenuItem>
-              <div className={`flex my-1`}>
-                <Icons.Phone extraClasses={`w-6 h-6 text-belplit`} />
-                <a href={`tel:${app.contacts.phones[0]}`} className={`text-belplit`}>
-                  {app.contacts.phones[0]}
-                </a>
-              </div>
-            </MenuItem>
-            <MenuItem>
-              <div className={`flex my-1`}>
-                <Icons.Phone extraClasses={`w-6 h-6 text-belplit`} />
-                <a href={`tel:${app.contacts.phones[1]}`} className={`text-belplit`}>
-                  {app.contacts.phones[1]}
-                </a>
-              </div>
-            </MenuItem>
+            {app.contacts.phones.map((item, index) => (
+              <MenuItem key={`PHONE${index}`}>
+                <div className={`flex my-1`}>
+                  <Icons.Phone extraClasses={`w-6 h-6 text-belplit`} />
+                  <a href={`tel:${item}`} className={`text-belplit`}>
+                    {item}
+                  </a>
+                </div>
+              </MenuItem>
+            ))}
             <hr />
           </Menu>
         </div>

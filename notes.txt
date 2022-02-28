@@ -1,0 +1,9 @@
+REGIONS
+mos 5f85ba274a9a5d34e0a45fed
+spb 5f85ba274a9a5d34e0a45fee
+kazan 5f85ba274a9a5d34e0a45fef
+krasnodar 5f85ba274a9a5d34e0a45ff0
+rostov 5f85ba274a9a5d34e0a45ff3
+volvograd 5f85ba274a9a5d34e0a45ff2
+astrahan 5f85ba274a9a5d34e0a45ff1
+сrimea 5f85ba274a9a5d34e0a45fed
