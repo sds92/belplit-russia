@@ -12,8 +12,8 @@ export default function HeadComponent({ script, head, children }) {
       ))}
       {!head && (
         <>
-          <meta name={'keywords'} content={'Белтермо'} key={`META${index}`} />
-          <meta name={'description'} content={'Белтермо'} key={`META${index}`} />
+          <meta name={'keywords'} content={'Белтермо'} />
+          <meta name={'description'} content={'Белтермо'} />
         </>
       )}
       {children && children}
