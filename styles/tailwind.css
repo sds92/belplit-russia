@@ -3707,6 +3707,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   align-items: center;
 }
 
+.items-stretch{
+  align-items: stretch;
+}
+
+.justify-start{
+  justify-content: flex-start;
+}
+
 .justify-end{
   justify-content: flex-end;
 }
@@ -10190,6 +10198,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(66 109 46 / var(--tw-text-opacity));
 }
 
+.hover\:text-belplit_2:hover{
+  --tw-text-opacity: 1;
+  color: rgb(98 160 68 / var(--tw-text-opacity));
+}
+
 .focus\:outline-none:focus{
   outline: 2px solid transparent;
   outline-offset: 2px;
@@ -10318,6 +10331,11 @@ Ensure the default browser behavior of the `hidden` attribute.
     line-height: 2.25rem;
   }
 
+  .zero\:text-sm{
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+
   .zero\:font-extralight{
     font-weight: 200;
   }
@@ -10432,6 +10450,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   .sm\:text-xl{
     font-size: 1.25rem;
     line-height: 1.75rem;
+  }
+
+  .sm\:text-lg{
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+
+  .sm\:text-base{
+    font-size: 1rem;
+    line-height: 1.5rem;
   }
 
   .sm\:font-light{

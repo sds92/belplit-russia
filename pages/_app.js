@@ -77,7 +77,7 @@ function MyApp({ Component, pageProps }) {
             </motion.div>
           </AnimatePresence>
         </LazyMotion>
-        <Footer lgView={newProps.lgView} />
+        <Footer lgView={newProps.lgView} w={w} />
       </div>
       <script
         type='text/javascript'

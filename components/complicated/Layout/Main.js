@@ -34,7 +34,7 @@ export default function Main({ data, w, ...props }) {
         >
           {'Контакты'}
         </Text>
-        <Contacts subTitle={`Свяжитесь с нами`} {...props} />
+        <Contacts contactsHidden subTitle={`Свяжитесь с нами`} {...props} />
       </div>
     </div>
   );

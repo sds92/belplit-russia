@@ -1,45 +1,139 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 // etc
+import { AppContext } from '../Context/AppContext';
+import { menu } from '../../../configs/menu';
 import { Icons } from '../';
 import { Logo } from '../';
+import { Text } from 'components/lib';
 
 export default function Footer(props) {
+  const { w } = props;
   const router = useRouter();
+  const classes = {
+    contactsTitle: `cursor-default pl-2 border-b border-slate-300 w-full font-bold`,
+    contactsValue: `mx-2 font-light zero:text-sm sm:text-base`,
+  };
   return (
-    <>
-      {router.asPath !== '/catalog' && <div className={`h-96 cursor-default`}>
-        <iframe
-          src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2249.6768022748242!2d37.26887351592759!3d55.67722018053323!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b550444d104d95%3A0x2e41f78026092c4!2z0JzQvtC70L7QtNGR0LbQvdCw0Y8g0YPQuy4sIDQ2LCDQntC00LjQvdGG0L7QstC-LCDQnNC-0YHQutC-0LLRgdC60LDRjyDQvtCx0LsuLCAxNDMwMDc!5e0!3m2!1sru!2sru!4v1605787923881!5m2!1sru!2sru'
-          width='100%'
-          height='100%'
-          aria-hidden='false'
-          tabIndex='0'
-          className={``}
-          // style={{ borderRadius: '5px' }}
-        ></iframe>
-      </div>}
-      <footer className={`bg-white`}>
-        <div className={`flex flex-col md:flex-row justify-between items-center h-full`}>
-          <div className={`basis-1/3 ml-0 sm:ml-10 md:ml-36 my-4`}>
-            <a href='index.html'>
-              <Logo extraClasses={`w-full`} />
-            </a>
-          </div>
+    <AppContext.Consumer>
+      {(app) => {
+        return (
+          <>
+            {router.asPath !== '/catalog' && (
+              <div className={`h-96 cursor-default`}>
+                <iframe
+                  src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2249.6768022748242!2d37.26887351592759!3d55.67722018053323!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b550444d104d95%3A0x2e41f78026092c4!2z0JzQvtC70L7QtNGR0LbQvdCw0Y8g0YPQuy4sIDQ2LCDQntC00LjQvdGG0L7QstC-LCDQnNC-0YHQutC-0LLRgdC60LDRjyDQvtCx0LsuLCAxNDMwMDc!5e0!3m2!1sru!2sru!4v1605787923881!5m2!1sru!2sru'
+                  width='100%'
+                  height='100%'
+                  aria-hidden='false'
+                  tabIndex='0'
+                  className={``}
+                  // style={{ borderRadius: '5px' }}
+                ></iframe>
+              </div>
+            )}
+            <footer className={`bg-white py-4`}>
+              <div className={`flex flex-col md:flex-row justify-between items-center h-full`}>
+                <div className={`flex pt-2`}>
+                  <div className={`flex justify-between`}>
+                    <div className={`flex flex-col justify-center px-2 border-r mr-1`}>
+                      {menu.map((item, index) => {
+                        return (
+                          <div className={``} key={`FOOTERMENUITEM${index}`}>
+                            {item.items.map((item_i, index_i) => {
+                              return (
+                                <div
+                                  className={`cursor-pointer hover:text-belplit_2`}
+                                  key={`FOOTERMENUITEMI${index_i}`}
+                                >
+                                  {item_i.title}
+                                </div>
+                              );
+                            })}
+                            <div className={`cursor-pointer hover:text-belplit_2`}>
+                              {item.show && item.items.length === 0 && item.title}
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                  {/* CONTACTS */}
+                  <div className={`flex justify-start flex-wrap w-full`}>
+                    <div
+                      className={`flex ${
+                        w > 420 ? `flex-row` : `flex-col`
+                      } justify-between items-stretch w-full`}
+                    >
+                      <div className={`w-full my-1 flex flex-col`}>
+                        <div className={`flex h-6 mx-0.5`}>
+                          <Icons.Phone extraClasses={`w-6 h-6 border-b border-belplit_2 text-belplit_2`} />
+                          <p className={classes.contactsTitle}>Телефон:</p>
+                        </div>
+                        {app.contacts.phones.map((item, index) => (
+                          <div className={`hover:text-belplit`} key={`FOOTERPHONES${index}`}>
+                            <a href={`tel:${item}`} className={classes.contactsValue}>
+                              {item}
+                            </a>
+                          </div>
+                        ))}
+                      </div>
+                      <div className={`w-full my-1 flex flex-col`}>
+                        <div className={`flex h-6 mx-0.5`}>
+                          <Icons.Mail extraClasses={`w-6 h-6 border-b border-belplit_2 text-belplit_2`} />
+                          <p className={classes.contactsTitle}>EMAIL:</p>
+                        </div>
+                        <Text className={classes.contactsValue}>{app.contacts.emails[0]}</Text>
+                      </div>
+                    </div>
+                    <div
+                      className={`flex ${
+                        w > 420 ? `flex-row` : `flex-col`
+                      } justify-between items-stretch w-full`}
+                    >
+                      <div className={`w-full my-1 flex flex-col`}>
+                        <div className={`flex h-6 mx-0.5`}>
+                          <Icons.Location
+                            extraClasses={`w-6 h-6 pt-0.5 border-b border-belplit_2 text-belplit_2`}
+                          />
+                          <p className={classes.contactsTitle}>АДРЕС:</p>
+                        </div>
+                        <Text className={classes.contactsValue}>{app.contacts.addresses[0].value}</Text>
+                      </div>
+                      <div className={`w-full my-1 flex flex-col`}>
+                        <div className={`flex h-6 mx-0.5`}>
+                          <Icons.Clock extraClasses={`w-6 h-6 border-b border-belplit_2 text-belplit_2`} />
+                          <p className={classes.contactsTitle}>ВРЕМЯ РАБОТЫ:</p>
+                        </div>
+                        <Text className={classes.contactsValue}>{app.workingHoars.value}</Text>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-          <div
-            className={`basis-2/3 my-4 flex justify-end items-center gap-6 text-zinc-800 cursor-default pr-4`}
-          >
-            <a href='https://roboweb.site/'>
-              <Icons.Roboweb fill={`#363636`} extraClasses={`w-10 h-10`} />
-            </a>
-
-            <p>
-              2021. Сайт создан с помощью <a href='https://roboweb.site/'>RoboWeb</a>
-            </p>
-          </div>
-        </div>
-      </footer>
-    </>
+                <div className={`w-full flex flex-col justify-end items-end text-zinc-800 cursor-default`}>
+                  <div className={`w-full p-2`}>
+                    <a href='index.html'>
+                      <Logo extraClasses={`w-full`} />
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div className={`flex items-center justify-center gap-2`}>
+                <p className={`text-center`}>
+                  2022. Сайт создан с помощью{' '}
+                  <a className={`font-bold`} href='https://roboweb.site/'>
+                    RoboWeb
+                  </a>
+                </p>
+                <a href='https://roboweb.site/'>
+                  <Icons.Roboweb fill={`#363636`} extraClasses={`w-10 h-10 hover:scale-105 transition-all`} />
+                </a>
+              </div>
+            </footer>
+          </>
+        );
+      }}
+    </AppContext.Consumer>
   );
 }

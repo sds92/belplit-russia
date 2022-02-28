@@ -29,7 +29,6 @@ export default function FeedBack(props) {
     inputSm: `w-full px-2 pt-2 bg-white`,
   };
   async function checkForm() {
-    console.log("🚀 ~ file: FeedBack.js ~ line 35 ~ checkForm ~ formState.clientPhone", formState.clientPhone)
     let res = false;
     let a = Promise.resolve(/^[а-я, А-Я, a-z, A-Z]{3,20}$/.test(formState.clientName));
     let b = Promise.resolve(/\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/.test(formState.clientPhone.replaceAll(' ', '')));
