@@ -2,4 +2,6 @@ import React from 'react';
 import app from '../../../data/app.json';
 import { appDataConfig } from '../../../configs/appDataConfig';
 
-export const AppContext = React.createContext(appDataConfig(app, process.env.NEXT_PUBLIC_SITE_URL));
+const a = app
+
+export const AppContext = React.createContext(appDataConfig(a, process.env.NEXT_PUBLIC_SITE_URL));

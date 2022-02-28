@@ -10,9 +10,8 @@ import '@szhsin/react-menu/dist/transitions/slide.css';
 
 // etc
 import { AppContext } from '../Context/AppContext';
-import { Icons, Logo, Social, Modal, ModalItems, FeedBack } from '../';
+import { Icons, Logo } from '../';
 import { menu } from '../../../configs/menu';
-import app from '../../../data/app.json';
 import ContactsNav from './ContactsNav';
 
 export default function NavSM(props) {
