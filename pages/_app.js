@@ -63,7 +63,7 @@ function MyApp({ Component, pageProps }) {
           <>
             <div>
               <Head
-                head={newProps.data.head}
+                head={newProps.data?.head}
                 script={
                   <script
                     type='text/javascript'
