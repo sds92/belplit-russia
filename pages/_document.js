@@ -1,6 +1,4 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-// import productsInit from '../data/products.json';
-// import { normalizeData, normalizeDataSTUPID } from '../utils/functions';
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
