@@ -38,7 +38,7 @@ export default function ContactsNav(props) {
               } justify-center h-full gap-1 mx-1`}
             >
               <div className={`flex  justify-center items-center`}>
-                <a className={`flex flex-col transition-all`} href={`tel:${app.contacts.phones[1]}`}>
+                <a className={`flex flex-col transition-all`} href={`tel:${app.contacts.phones[0]}`}>
                   {sm && (
                     <Icons.Phone
                       extraClasses={`w-7 h-7 mt-1 -mr-1 text-belplit hover:scale-110 active:scale-110 cursor-pointer`}
