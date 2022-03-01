@@ -3,4 +3,7 @@ module.exports = {
   images: {
     domains: ['metrika-informer.com'],
   },
+  productionBrowserSourceMaps: true,
+  crossOrigin: 'anonymous'
 };
+

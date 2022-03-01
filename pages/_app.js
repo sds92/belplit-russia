@@ -69,22 +69,45 @@ function MyApp({ Component, pageProps }) {
                     type='text/javascript'
                     dangerouslySetInnerHTML={{
                       __html: `
-             (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-             m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-             (window, document, "script", "https://cdn.jsdelivr.net/npm/yandex-metrica-watch/tag.js", "ym");
-          
-             ym(${app.api.ym}, "init", {
-               clickmap:true,
-               trackLinks:true,
-               accurateTrackBounce:true,
-               webvisor:true,
-               trackHash:true
-              });
-              `,
+                        <!--Yandex metrika -->
+                        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+                        m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+                        (window, document, "script", "https://cdn.jsdelivr.net/npm/yandex-metrica-watch/tag.js", "ym");
+                      
+                        ym(${app.api.ym}, "init", {
+                          clickmap:true,
+                          trackLinks:true,
+                          accurateTrackBounce:true,
+                          webvisor:true,
+                          trackHash:true
+                        });
+
+                        <!-- Google Tag Manager -->
+                        (function(w,d,s,l,i){
+                          w[l]=w[l]||[];
+                          w[l].push({
+                            'gtm.start':new Date().getTime(),event:'gtm.js'});
+                            var f=d.getElementsByTagName(s)[0],
+                            j=d.createElement(s),
+                            dl=l!='dataLayer'?'&l='+l:'';
+                            j.async=true;
+                            j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+                            f.parentNode.insertBefore(j,f);
+                          })(window,document,'script','dataLayer',${app.api.gtm});
+                        <!-- End Google Tag Manager -->
+                        `,
                     }}
                   ></script>
                 }
               />
+              <noscript>
+                <iframe
+                  src={`https://www.googletagmanager.com/ns.html?id=${app.api.gtm}`}
+                  height='0'
+                  width='0'
+                  style={{ display: 'none', visibility: 'hidden' }}
+                ></iframe>
+              </noscript>
               <div className={`flex flex-col w-full min-h-screen overflow-hidden justify-between`}>
                 <Header {...newProps} />
                 <LazyMotion features={domAnimation}>
