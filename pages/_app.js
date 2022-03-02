@@ -90,7 +90,7 @@ function MyApp({ Component, pageProps }) {
                 }
               >
                 <Script
-                  src='https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID'
+                  src={`https://www.googletagmanager.com/gtag/js?id=${app.api.gtm}`}
                   strategy='afterInteractive'
                 />
                 <Script id='google-analytics' strategy='afterInteractive'>
