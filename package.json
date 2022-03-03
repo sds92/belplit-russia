@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "cross-env NEXT_PUBLIC_SITE_URL=белтермо.com next build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "export": "next build && next export"
