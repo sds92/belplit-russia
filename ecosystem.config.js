@@ -4,7 +4,7 @@ module.exports = {
       name: 'beltermo-com',
       cwd: ' ./',
       script: 'npm',
-	    args: "start",
+	    args: "run start",
     }
   ],
 }
