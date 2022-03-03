@@ -2,9 +2,8 @@ module.exports = {
   apps: [
     {
       name: 'beltermo-com',
-      // cwd: ' ./',
       script: 'npm',
-	    args: "run start -p 3101",
-    }
+      args: 'run start',
+    },
   ],
-}
+};
