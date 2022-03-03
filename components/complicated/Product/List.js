@@ -4,36 +4,12 @@ import { useRouter } from 'next/router';
 import styles from './styles.module.scss';
 import { Icons } from '..';
 
-export default function ProductList({ listItems, inset = false, title = '' }) {
+export default function ProductList({ listItems, inset = false, title = '', reset }) {
   const [hover, setHover] = React.useState(false);
   const [open, setOpen] = React.useState(false);
   const [delay, setDelay] = React.useState(false);
   const [h, setH] = React.useState('100%');
   const router = useRouter();
-
-  const curId = parseInt(router.asPath.split('/').reverse()[0]);
-
-  const handleFocus = (a) => {
-    setOpen(true);
-    setTimeout(() => {
-      setDelay(true);
-    }, 1);
-  };
-
-  const handleClose = (b) => {
-    setDelay(false);
-    // setTimeout(() => {
-    setOpen(false);
-    // }, 1);
-  };
-
-  const handleSelect = (a) => {
-    setDelay(false);
-    setOpen(false);
-    router.push(a.target.value);
-    // setTimeout(() => {
-    // }, 1);
-  };
 
   const handleClick = (a, id) => {
     a.stopPropagation();
@@ -43,6 +19,7 @@ export default function ProductList({ listItems, inset = false, title = '' }) {
       setOpen(false);
       if (id || id === 0) {
         router.push(`/catalog/${id}`);
+        reset()
       }
     }
     if (!open) {
@@ -123,6 +100,7 @@ export default function ProductList({ listItems, inset = false, title = '' }) {
                   className={`cursor-pointer flex hover:text-belplit border-b py-1`}
                   onMouseEnter={() => setHover({ [index]: true })}
                   onMouseLeave={() => setHover({ [index]: false })}
+                  onClick={() => reset()}
                 >
                   <span
                     className={`trans-menu-item transition-duration-500 ${

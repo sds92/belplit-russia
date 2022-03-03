@@ -93,6 +93,7 @@ export default function Product(props) {
                 title={<p className={`py-2 font-bold text-lg`}>Продукция:</p>}
                 listItems={products.map((item) => ({ id: item.id, title: item.displayName ? 'Белплит' + ' ' + item.displayName : item.title }))}
                 curProduct={props.product}
+                reset={() => setIndex(0)}
               />
             </div>
           </div>
@@ -150,6 +151,7 @@ export default function Product(props) {
               title={<p className={`py-2 font-bold text-lg`}>Продукция:</p>}
               listItems={products.map((item) => ({ id: item.id, title: item.displayName ? 'Белплит' + ' ' + item.displayName : item.title }))}
               curProduct={props.product}
+              reset={() => setIndex(0)}
             />
           </div>
         </div>

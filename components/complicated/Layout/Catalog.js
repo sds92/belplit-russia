@@ -3,7 +3,6 @@ import { Contacts, ProductComponent } from '../';
 import { Text } from '../../lib';
 
 export default function Catalog({ data, products, ...props }) {
-  console.log("🚀 ~ file: Catalog.js ~ line 6 ~ Catalog ~ props", props)
   // const products = normalizeDataSTUPID(productsInit);
   const { title } = data;
   return (

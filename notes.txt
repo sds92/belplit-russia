@@ -1,0 +1,8 @@
+5f85ba274a9a5d34e0a45ff1 astrahan
+5f85ba274a9a5d34e0a45ff3 rostov
+5f85ba274a9a5d34e0a45fef kazan
+5f85ba274a9a5d34e0a45ff0 krasnodar
+5f85ba274a9a5d34e0a45fed moscow
+5fa506e8f25f0bebf89b3d5d cremea
+5f85ba274a9a5d34e0a45fee spb
+5f85ba274a9a5d34e0a45ff2 volgograd
