@@ -2,8 +2,11 @@ module.exports = {
   apps: [
     {
       name: 'beltermo-com',
-      script: 'npm',
-      args: 'run start',
+      script: './startscript.js',
+    },
+    {
+      name: 'beltermo-russia-ru',
+      script: './startscript2.js',
     },
   ],
 };

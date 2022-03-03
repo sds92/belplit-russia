@@ -1,2 +1,2 @@
 var cmd = require('node-cmd');
-cmd.run('npm run start1');
+cmd.run('npm run start2');
