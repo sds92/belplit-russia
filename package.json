@@ -3,15 +3,17 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "start": "next start -p 3101",
+    "build": "cross-env NEXT_PUBLIC_SITE_URL=белтермо.com next build",
+    "start": "next start",
     "lint": "next lint",
     "export": "next build && next export"
   },
   "dependencies": {
     "@headlessui/react": "^1.4.2",
     "@szhsin/react-menu": "^2.3.0",
+    "cross-env": "^7.0.3",
     "dotenv": "^10.0.0",
+    "forever": "^4.0.3",
     "framer-motion": "^5.5.5",
     "next": "12.0.7",
     "next-ym": "^2.3.5",

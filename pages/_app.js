@@ -15,6 +15,7 @@ import pages from '../data/pages.json';
 const products = normalizeDataSTUPID(initProducts);
 
 function MyApp({ Component, pageProps }) {
+  console.log(process.env.NEXT_PUBLIC_SITE_URL)
   const [w, setW] = React.useState(1400);
   const router = useRouter();
 
