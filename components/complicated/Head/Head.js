@@ -6,25 +6,7 @@ export default function HeadComponent({ app, head, children }) {
     <Head>
       <title>{head?.title ? head.title : 'Белтермо. Страница не найдена'}</title>
       <meta name='theme-color' content='#ffffff'></meta>
-      <script
-        type='text/javascript'
-        dangerouslySetInnerHTML={{
-          __html: `
-            <!--Yandex metrika -->
-            (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-            m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-            (window, document, "script", "https://cdn.jsdelivr.net/npm/yandex-metrica-watch/tag.js", "ym");
-            
-            ym(${app.api.ym}, "init", {
-                clickmap:true,
-                trackLinks:true,
-                accurateTrackBounce:true,
-                webvisor:true,
-                trackHash:true
-            });
-            `,
-        }}
-      ></script>
+      
     
       {head?.meta.map((item, index) => (
         <meta name={item.name} content={item.content} key={`META${index}`} />
