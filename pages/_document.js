@@ -28,6 +28,14 @@ class MyDocument extends Document {
             }}
           ></noscript>
           )}
+          {process.env.NEXT_PUBLIC_SITE_URL === 'белтермо.com' && (
+            <noscript
+            dangerouslySetInnerHTML={{
+              __html: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PNMWMTQ"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>`,
+            }}
+          ></noscript>
+          )}
           <Main />
           <NextScript />
         </body>
