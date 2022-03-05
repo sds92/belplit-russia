@@ -124,14 +124,3 @@ export const normalizeDataSTUPID = (inputArr) => {
 //     return inputArrItem;
 //   });
 // };
-
-const axios = require('axios');
-
-const getProducts = async (uri) => {
-  try {
-    const response = await axios.get('/user?ID=12345');
-    console.log(response);
-  } catch (error) {
-    console.error(error);
-  }
-};
