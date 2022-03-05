@@ -71,7 +71,7 @@ export default function Calculator(props) {
               defaultValue={state.mark}
               id={`MARK`}
               items={markSelect}
-              onChange={(e) => setState((s) => ({ ...s, mark: e.target.value }))}
+              onChange={(e) => setState((s) => ({ ...s, size: 0,  mark: e.target.value }))}
             ></Select>
           </div>
           <label className={`text-zinc-800`}>Выберите толщину</label>
@@ -79,7 +79,7 @@ export default function Calculator(props) {
             <Select
               id={`SIZE`}
               items={sizeSelect}
-              onChange={(e) => setState((s) => ({ ...s, size: e.target.value }))}
+              onChange={(e) => setState((s) => ({ ...s,  size: e.target.value }))}
             ></Select>
           </div>
           <label className={`text-zinc-800`}>Выберите склад</label>
