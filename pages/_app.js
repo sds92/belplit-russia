@@ -1,6 +1,7 @@
 import React from 'react';
 import { AnimatePresence, domAnimation, LazyMotion, m, motion } from 'framer-motion';
 import { useRouter } from 'next/router';
+import TagManager from 'react-gtm-module';
 
 import { AppContext } from 'components/complicated/Context/AppContext';
 import { animations } from '../styles/animations';
@@ -14,7 +15,10 @@ import pages from '../data/pages.json';
 const products = normalizeDataSTUPID(initProducts);
 
 function MyApp({ Component, pageProps }) {
-  console.log(process.env.NEXT_PUBLIC_SITE_URL);
+  useEffect(() => {
+    TagManager.initialize({ gtmId: app.api.gtm });
+  }, []);
+
   const [w, setW] = React.useState(1400);
   const router = useRouter();
 
@@ -57,7 +61,7 @@ function MyApp({ Component, pageProps }) {
           <>
             <div>
               <Head app={app} head={newProps.data?.head} />
-              
+
               <div className={`flex flex-col w-full min-h-screen overflow-hidden justify-between`}>
                 <Header {...newProps} />
                 <LazyMotion features={domAnimation}>
