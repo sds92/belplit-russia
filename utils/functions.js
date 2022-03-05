@@ -105,3 +105,33 @@ export const normalizeDataSTUPID = (inputArr) => {
     return inputArrItem;
   });
 };
+
+// export const normalizeDataSTUPID = (inputArr) => {
+//   return inputArr.map((inputArrItem) => {
+//     let tmpSizes = inputArrItem.sizes.map((tmpSizesItem) => {
+//       return tmpSizesItem[0]?.slice(0, tmpSizesItem[0].indexOf('мм')).split(/х|x/);
+//     });
+//     let connectionTypes = inputArrItem.sizes.map((tmpSizesItem) => {
+//       return tmpSizesItem[0]?.slice(tmpSizesItem[0].indexOf('(') + 1, tmpSizesItem[0].indexOf(')'));
+//     });
+//     let tmpSizes2 = tmpSizes.map((tmpSizes2Item) => ({
+//       a: parseInt(tmpSizes2Item[0].replace(' ', '')),
+//       b: parseInt(tmpSizes2Item[1].replace(' ', '')),
+//       h: parseInt(tmpSizes2Item[2].replace(' ', '')),
+//     }));
+//     inputArrItem.sizes = tmpSizes2;
+//     inputArrItem.connectionTypes = connectionTypes;
+//     return inputArrItem;
+//   });
+// };
+
+const axios = require('axios');
+
+const getProducts = async (uri) => {
+  try {
+    const response = await axios.get('/user?ID=12345');
+    console.log(response);
+  } catch (error) {
+    console.error(error);
+  }
+};

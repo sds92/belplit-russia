@@ -6,3 +6,31 @@
 5fa506e8f25f0bebf89b3d5d cremea
 5f85ba274a9a5d34e0a45fee spb
 5f85ba274a9a5d34e0a45ff2 volgograd
+
+<Script
+                  src={`https://www.googletagmanager.com/gtag/js?id=${app.api.gtm}`}
+                  strategy='afterInteractive'
+                />
+                <Script id='google-analytics' strategy='afterInteractive'>
+                  {`
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){window.dataLayer.push(arguments);}
+                    gtag('js', new Date());
+
+                    gtag('config', ${app.api.ym});
+                  `}
+                </Script>
+
+                // <!-- Google Tag Manager -->
+// (function(w,d,s,l,i){
+//   w[l]=w[l]||[];
+//   w[l].push({
+//     'gtm.start':new Date().getTime(),event:'gtm.js'});
+//     var f=d.getElementsByTagName(s)[0],
+//     j=d.createElement(s),
+//     dl=l!='dataLayer'?'&l='+l:'';
+//     j.async=true;
+//     j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+//     f.parentNode.insertBefore(j,f);
+//   })(window,document,'script','dataLayer',${app.api.gtm});
+// <!-- End Google Tag Manager -->
