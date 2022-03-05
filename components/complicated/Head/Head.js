@@ -4,11 +4,11 @@ import Head from 'next/head';
 export default function HeadComponent({ app, head, children }) {
   return (
     <Head>
-      <title>{head?.title ? head.title : 'Белтермо. Страница не найдена'}</title>
+      <title>{head ? head.title : 'Белтермо. Страница не найдена'}</title>
       <meta name='theme-color' content='#ffffff'></meta>
       
     
-      {head?.meta.map((item, index) => (
+      {head && head?.meta.map((item, index) => (
         <meta name={item.name} content={item.content} key={`META${index}`} />
       ))}
       {!head && (
