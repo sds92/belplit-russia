@@ -1,7 +1,7 @@
 import React from 'react';
 import { AnimatePresence, domAnimation, LazyMotion, m, motion } from 'framer-motion';
 import { useRouter } from 'next/router';
-import Script from 'next/script';
+
 
 import { AppContext } from 'components/complicated/Context/AppContext';
 import { animations } from '../styles/animations';
@@ -15,7 +15,7 @@ import pages from '../data/pages.json';
 const products = normalizeDataSTUPID(initProducts);
 
 function MyApp({ Component, pageProps }) {
-  console.log(process.env.NEXT_PUBLIC_SITE_URL)
+  console.log(process.env.NEXT_PUBLIC_SITE_URL);
   const [w, setW] = React.useState(1400);
   const router = useRouter();
 
@@ -36,13 +36,6 @@ function MyApp({ Component, pageProps }) {
       {(app) => {
         const newProps = {
           app: app,
-          menu: [
-            ['Главная', '#Main'],
-            ['Цены', '#Catalog'],
-            ['Преимущества', '#Advantages'],
-            ['Применение', '#Gallery'],
-            ['Контакты', '#Contacts'],
-          ],
           lgView: w >= 1200,
           mdView: w >= 900 && w < 1200,
           w: w,
@@ -65,45 +58,9 @@ function MyApp({ Component, pageProps }) {
           <>
             <div>
               <Head
+                app={app}
                 head={newProps.data?.head}
-                script={
-                  <script
-                    type='text/javascript'
-                    dangerouslySetInnerHTML={{
-                      __html: `
-                        <!--Yandex metrika -->
-                        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-                        m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-                        (window, document, "script", "https://cdn.jsdelivr.net/npm/yandex-metrica-watch/tag.js", "ym");
-                      
-                        ym(${app.api.ym}, "init", {
-                          clickmap:true,
-                          trackLinks:true,
-                          accurateTrackBounce:true,
-                          webvisor:true,
-                          trackHash:true
-                        });
-
-                       
-                        `,
-                    }}
-                  ></script>
-                }
-              >
-                <Script
-                  src={`https://www.googletagmanager.com/gtag/js?id=${app.api.gtm}`}
-                  strategy='afterInteractive'
-                />
-                <Script id='google-analytics' strategy='afterInteractive'>
-                  {`
-                    window.dataLayer = window.dataLayer || [];
-                    function gtag(){window.dataLayer.push(arguments);}
-                    gtag('js', new Date());
-
-                    gtag('config', ${app.api.ym});
-                  `}
-                </Script>
-              </Head>
+              />
               <noscript>
                 <iframe
                   src={`https://www.googletagmanager.com/ns.html?id=${app.api.gtm}`}
@@ -140,16 +97,4 @@ function MyApp({ Component, pageProps }) {
 }
 
 export default MyApp;
-// <!-- Google Tag Manager -->
-// (function(w,d,s,l,i){
-//   w[l]=w[l]||[];
-//   w[l].push({
-//     'gtm.start':new Date().getTime(),event:'gtm.js'});
-//     var f=d.getElementsByTagName(s)[0],
-//     j=d.createElement(s),
-//     dl=l!='dataLayer'?'&l='+l:'';
-//     j.async=true;
-//     j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
-//     f.parentNode.insertBefore(j,f);
-//   })(window,document,'script','dataLayer',${app.api.gtm});
-// <!-- End Google Tag Manager -->
+
