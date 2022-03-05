@@ -57,14 +57,7 @@ function MyApp({ Component, pageProps }) {
           <>
             <div>
               <Head app={app} head={newProps.data?.head} />
-              <noscript>
-                <iframe
-                  src={`https://www.googletagmanager.com/ns.html?id=${app.api.gtm}`}
-                  height='0'
-                  width='0'
-                  style={{ display: 'none', visibility: 'hidden' }}
-                ></iframe>
-              </noscript>
+              
               <div className={`flex flex-col w-full min-h-screen overflow-hidden justify-between`}>
                 <Header {...newProps} />
                 <LazyMotion features={domAnimation}>
