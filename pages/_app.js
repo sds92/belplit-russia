@@ -15,7 +15,7 @@ import pages from '../data/pages.json';
 const products = normalizeDataSTUPID(initProducts);
 
 function MyApp({ Component, pageProps }) {
-  useEffect(() => {
+  React.useEffect(() => {
     TagManager.initialize({ gtmId: app.api.gtm });
   }, []);
 
