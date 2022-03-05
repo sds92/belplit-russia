@@ -15,13 +15,11 @@ import pages from '../data/pages.json';
 const products = normalizeDataSTUPID(initProducts);
 
 function MyApp({ Component, pageProps }) {
-  React.useEffect(() => {
-    TagManager.initialize({ gtmId: app.api.gtm });
-  }, []);
-
   const [w, setW] = React.useState(1400);
   const router = useRouter();
-
+  React.useEffect(() => {
+    TagManager.initialize({ gtmId: process.env.NEXT_PUBLIC_SITE_URL === 'belplit-russia.ru' ? 'GTM-NP9FQ74' : 'GTM-PNMWMTQ'});
+  }, []);
   React.useEffect(() => {
     setW(window.innerWidth);
 
@@ -57,11 +55,12 @@ function MyApp({ Component, pageProps }) {
           products: products,
           ...pageProps,
         };
+        
         return (
           <>
             <div>
               <Head app={app} head={newProps.data?.head} />
-              <script
+              {/* <script
                 type='text/javascript'
                 dangerouslySetInnerHTML={{
                   __html: `
@@ -79,7 +78,7 @@ function MyApp({ Component, pageProps }) {
             });
             `,
                 }}
-              ></script>
+              ></script> */}
               <div className={`flex flex-col w-full min-h-screen overflow-hidden justify-between`}>
                 <Header {...newProps} />
                 <LazyMotion features={domAnimation}>
