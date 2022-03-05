@@ -2,7 +2,6 @@ import React from 'react';
 import { AnimatePresence, domAnimation, LazyMotion, m, motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 
-
 import { AppContext } from 'components/complicated/Context/AppContext';
 import { animations } from '../styles/animations';
 import { Header, Footer, Head } from '../components/complicated';
@@ -57,16 +56,15 @@ function MyApp({ Component, pageProps }) {
         return (
           <>
             <div>
-              <Head
-                app={app}
-                head={newProps.data?.head}
-              />
+              <Head app={app} head={newProps.data?.head} />
+              <noscript>
                 <iframe
                   src={`https://www.googletagmanager.com/ns.html?id=${app.api.gtm}`}
                   height='0'
                   width='0'
                   style={{ display: 'none', visibility: 'hidden' }}
                 ></iframe>
+              </noscript>
               <div className={`flex flex-col w-full min-h-screen overflow-hidden justify-between`}>
                 <Header {...newProps} />
                 <LazyMotion features={domAnimation}>
@@ -95,4 +93,3 @@ function MyApp({ Component, pageProps }) {
 }
 
 export default MyApp;
-
