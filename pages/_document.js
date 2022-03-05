@@ -21,14 +21,12 @@ class MyDocument extends Document {
         </Head>
         <body>
           {process.env.NEXT_PUBLIC_SITE_URL === 'belplit-russia.ru' && (
-            <noscript>
-              <iframe
-                src='https://www.googletagmanager.com/ns.html?id=GTM-NP9FQ74'
-                height='0'
-                width='0'
-                style='display:none;visibility:hidden'
-              ></iframe>
-            </noscript>
+            <iframe
+              src='https://www.googletagmanager.com/ns.html?id=GTM-NP9FQ74'
+              height='0'
+              width='0'
+              style='display:none;visibility:hidden'
+            ></iframe>
           )}
           <Main />
           <NextScript />
