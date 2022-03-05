@@ -48,7 +48,6 @@ export default function HeadComponent({ app, head, children }) {
           <meta name={'description'} content={'Белтермо'} />
         </>
       )}
-      {children && children}
     </Head>
   );
 }
