@@ -17,6 +17,7 @@ const products = normalizeDataSTUPID(initProducts);
 function MyApp({ Component, pageProps }) {
   const [w, setW] = React.useState(1400);
   const router = useRouter();
+  // console.log("🚀 ~ file: _app.js ~ line 20 ~ MyApp ~ router", router)
   React.useEffect(() => {
     TagManager.initialize({ gtmId: process.env.NEXT_PUBLIC_SITE_URL === 'belplit-russia.ru' ? 'GTM-NP9FQ74' : 'GTM-PNMWMTQ'});
   }, []);
@@ -31,7 +32,7 @@ function MyApp({ Component, pageProps }) {
       []
     );
   }, []);
-
+  // ?utm_source=yandex&utm_medium=cpc&utm_campaign={campaign_id}poisk_brend&utm_content={ad_id}&utm_term={keyword}.{device_type}.{region_name}&yclid=391650252469254
   return (
     <AppContext.Consumer>
       {(app) => {
@@ -41,14 +42,13 @@ function MyApp({ Component, pageProps }) {
           mdView: w >= 900 && w < 1200,
           w: w,
           data: pages.find((item) => {
-            let acv = /\#/.test(router.asPath)
-              ? router.asPath.slice(0, router.asPath.indexOf('#'))
-              : router.asPath === '/'
-              ? '/main'
-              : router.asPath;
+            let acv = router.route
 
-            if (acv === '/') {
+            if (router.route === '/') {
               acv = '/main';
+            }
+            if (router.query.productID) {
+              acv = `/catalog/${router.query.productID}`
             }
             return item.path === acv;
           }),
@@ -60,29 +60,11 @@ function MyApp({ Component, pageProps }) {
           <>
             <div>
               <Head app={app} head={newProps.data?.head} />
-              {/* <script
-                type='text/javascript'
-                dangerouslySetInnerHTML={{
-                  __html: `
-            <!--Yandex metrika -->
-            (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-            m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-            (window, document, "script", "https://cdn.jsdelivr.net/npm/yandex-metrica-watch/tag.js", "ym");
-            
-            ym(${app.api.ym}, "init", {
-                clickmap:true,
-                trackLinks:true,
-                accurateTrackBounce:true,
-                webvisor:true,
-                trackHash:true
-            });
-            `,
-                }}
-              ></script> */}
+             
               <div className={`flex flex-col w-full min-h-screen overflow-hidden justify-between`}>
                 <Header {...newProps} />
-                {/* <LazyMotion features={domAnimation}>
-                  <AnimatePresence exitBeforeEnter> */}
+                <LazyMotion features={domAnimation}>
+                  <AnimatePresence exitBeforeEnter>
                     <motion.div
                       key={router.route.concat(animations.opacity.name)}
                       className='page-wrap'
@@ -94,8 +76,8 @@ function MyApp({ Component, pageProps }) {
                     >
                       <Component {...newProps} />
                     </motion.div>
-                  {/* </AnimatePresence>
-                </LazyMotion> */}
+                  </AnimatePresence>
+                </LazyMotion>
                 <Footer lgView={newProps.lgView} w={w} />
               </div>
             </div>
