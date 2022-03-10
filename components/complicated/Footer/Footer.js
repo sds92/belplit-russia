@@ -114,9 +114,9 @@ export default function Footer(props) {
 
                 <div className={`w-full flex flex-col justify-end items-end text-zinc-800 cursor-default`}>
                   <div className={`w-full p-2`}>
-                    <a href='index.html'>
-                      <Logo extraClasses={`w-full`} />
-                    </a>
+                    <Link href='/main' passHref>
+                      <Logo extraClasses={`w-full cursor-pointer`} />
+                    </Link>
                   </div>
                 </div>
               </div>
