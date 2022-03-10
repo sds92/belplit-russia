@@ -50,6 +50,7 @@ export default function Calculator(props) {
   const a = products[state.mark].sizes[state.size].a / 1000;
   const b = products[state.mark].sizes[state.size].b / 1000;
   const price = products[state.mark].prices[ab[region][1]][state.size];
+  console.log("🚀 ~ file: Calculator.js ~ line 53 ~ Calculator ~ price", products[state.mark].prices)
   const density = products[state.mark].density.replace('кг/м³', '');
 
   // площадь одного листа в м2
@@ -126,7 +127,7 @@ export default function Calculator(props) {
           <div className={`w-full font-bold text-4xl py-2 border-b`}>Результат</div>
           <div className={`w-full`}>стоимость</div>
           <div className={`w-full font-bold text-5xl`}>
-            {price * state.amount}
+            {price * Math.ceil(am()) * s()}
             <span className={`text-lg`}> руб.</span>
           </div>
           <div className={`flex flex-wrap gap-6 mt-4`}>
