@@ -17,7 +17,7 @@ const products = normalizeDataSTUPID(initProducts);
 function MyApp({ Component, pageProps }) {
   const [w, setW] = React.useState(1400);
   const router = useRouter();
-  // console.log("🚀 ~ file: _app.js ~ line 20 ~ MyApp ~ router", router)
+  console.log("🚀process.env.NEXT_PUBLIC_SITE_URL", process.env.NEXT_PUBLIC_SITE_URL)
   React.useEffect(() => {
     TagManager.initialize({ gtmId: process.env.NEXT_PUBLIC_SITE_URL === 'belplit-russia.ru' ? 'GTM-NP9FQ74' : 'GTM-PNMWMTQ'});
   }, []);
