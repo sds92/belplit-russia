@@ -81,8 +81,8 @@ function MyApp({ Component, pageProps }) {
               ></script> */}
               <div className={`flex flex-col w-full min-h-screen overflow-hidden justify-between`}>
                 <Header {...newProps} />
-                <LazyMotion features={domAnimation}>
-                  <AnimatePresence exitBeforeEnter>
+                {/* <LazyMotion features={domAnimation}>
+                  <AnimatePresence exitBeforeEnter> */}
                     <motion.div
                       key={router.route.concat(animations.opacity.name)}
                       className='page-wrap'
@@ -94,8 +94,8 @@ function MyApp({ Component, pageProps }) {
                     >
                       <Component {...newProps} />
                     </motion.div>
-                  </AnimatePresence>
-                </LazyMotion>
+                  {/* </AnimatePresence>
+                </LazyMotion> */}
                 <Footer lgView={newProps.lgView} w={w} />
               </div>
             </div>
