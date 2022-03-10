@@ -53,9 +53,10 @@ export default function Calculator(props) {
   const density = products[state.mark].density.replace('кг/м³', '');
 
   // площадь одного листа в м2
-  const s = () => a * b;
+  const s = () => (a * b).toFixed(2);
   // количество листов
-  const am = () => state.amount / s();
+  const am = () => (state.amount / s());
+  console.log("🚀 ~ file: Calculator.js ~ line 59 ~ Calculator ~ am", am())
   // объем
   const v = () => Math.ceil(am()) * s() * h;
   // вес
@@ -65,6 +66,7 @@ export default function Calculator(props) {
     <>
       <div className={`rounded-md p-4 flex zero:flex-col md:flex-row w-full`}>
         <div className={`zero:w-full md:w-1/2  p-4 font-semibold`}>
+          {/* MARK */}
           <label className={`text-zinc-800`}>Выберите марку</label>
           <div className={`py-2`}>
             <Select
@@ -74,6 +76,7 @@ export default function Calculator(props) {
               onChange={(e) => setState((s) => ({ ...s, size: 0,  mark: e.target.value }))}
             ></Select>
           </div>
+          {/* H */}
           <label className={`text-zinc-800`}>Выберите толщину</label>
           <div className={`py-2`}>
             <Select
@@ -82,6 +85,7 @@ export default function Calculator(props) {
               onChange={(e) => setState((s) => ({ ...s,  size: e.target.value }))}
             ></Select>
           </div>
+          {/* REGION */}
           <label className={`text-zinc-800`}>Выберите склад</label>
           <div className={`py-2`}>
             <Select
@@ -94,6 +98,7 @@ export default function Calculator(props) {
           </div>
           <div className={`flex flex-row justify-between gap-4 border-b pb-6`}>
             <div className={`basis-1/2 flex flex-col items-start relative`}>
+              {/* INPUT */}
               <div className={`absolute font-bold text-xl text-left text-zinc-800 whitespace-nowrap`}>
                 Введите количество м²
               </div>
@@ -110,7 +115,7 @@ export default function Calculator(props) {
             </div>
             <div className={`basis-1/2 flex flex-col justify-end`}>
               <div className={`w-full flex `}>
-                <div className={`text-zinc-700  rounded-md font-light text-xl w-min`}>{s().toFixed(2)}</div>
+                <div className={`text-zinc-700  rounded-md font-light text-xl w-min`}>{s()}</div>
                 <span className={`text-lg font-light`}>&nbsp;м²</span>
               </div>
               <div className={`text-left text-zinc-800 -mb-5 whitespace-nowrap`}>Площадь листа</div>
