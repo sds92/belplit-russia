@@ -5,7 +5,7 @@ export default function ProductCardSM(props) {
   const { title, files, id, prices, name } = props.product;
 
   return (
-    <Link href={`/catalog/${id}`} passHref>
+    <Link href={`/catalog/${name}`} passHref>
       <div className={`m-2 relative transition-all active:scale-105 hover:scale-105 rounded-md`}>
         <div className={`flex flex-col justify-between w-full items-start h-full`}>
           <div className={`w-full rounded-md `}>

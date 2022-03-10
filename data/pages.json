@@ -170,7 +170,7 @@
   },
   {
     "id": 7,
-    "path": "/catalog/0",
+    "path": "/catalog/top",
     "title": "Белтермо Top",
     "content": {},
     "head": {
@@ -189,7 +189,7 @@
   },
   {
     "id": 8,
-    "path": "/catalog/1",
+    "path": "/catalog/kombi",
     "title": "Белтермо Kombi",
     "content": {},
     "head": {
@@ -208,7 +208,7 @@
   },
   {
     "id": 9,
-    "path": "/catalog/2",
+    "path": "/catalog/floor",
     "title": "Белтермо Floor",
     "content": {},
     "head": {
@@ -227,7 +227,7 @@
   },
   {
     "id": 10,
-    "path": "/catalog/3",
+    "path": "/catalog/ultra",
     "title": "Белтермо Ultra",
     "content": {},
     "head": {
@@ -246,7 +246,7 @@
   },
   {
     "id": 11,
-    "path": "/catalog/4",
+    "path": "/catalog/instal",
     "title": "Белтермо instal",
     "content": {},
     "head": {
@@ -265,7 +265,7 @@
   },
   {
     "id": 12,
-    "path": "/catalog/5",
+    "path": "/catalog/multi",
     "title": "Белтермо Multi",
     "content": {},
     "head": {
@@ -284,7 +284,7 @@
   },
   {
     "id": 13,
-    "path": "/catalog/6",
+    "path": "/catalog/room",
     "title": "Белтермо Room",
     "content": {},
     "head": {
@@ -303,7 +303,7 @@
   },
   {
     "id": 14,
-    "path": "/catalog/7",
+    "path": "/catalog/len",
     "title": "Белтермо лен",
     "content": {},
     "head": {
