@@ -19,7 +19,7 @@ function MyApp({ Component, pageProps }) {
   const router = useRouter();
   console.log("🚀process.env.NEXT_PUBLIC_SITE_URL", process.env.NEXT_PUBLIC_SITE_URL)
   React.useEffect(() => {
-    TagManager.initialize({ gtmId: process.env.NEXT_PUBLIC_SITE_URL === 'belplit-russia.ru' ? 'GTM-NP9FQ74' : 'GTM-PNMWMTQ'});
+    TagManager.initialize({ gtmId: process.env.NEXT_PUBLIC_SITE_URL === 'beltermo-russia.ru' ? 'GTM-NP9FQ74' : 'GTM-PNMWMTQ'});
   }, []);
   React.useEffect(() => {
     setW(window.innerWidth);
