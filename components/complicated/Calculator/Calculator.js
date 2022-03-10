@@ -50,14 +50,12 @@ export default function Calculator(props) {
   const a = products[state.mark].sizes[state.size].a / 1000;
   const b = products[state.mark].sizes[state.size].b / 1000;
   const price = products[state.mark].prices[ab[region][1]][state.size];
-  console.log("🚀 ~ file: Calculator.js ~ line 53 ~ Calculator ~ price", products[state.mark].prices)
   const density = products[state.mark].density.replace('кг/м³', '');
 
   // площадь одного листа в м2
   const s = () => (a * b).toFixed(2);
   // количество листов
   const am = () => (state.amount / s());
-  console.log("🚀 ~ file: Calculator.js ~ line 59 ~ Calculator ~ am", am())
   // объем
   const v = () => Math.ceil(am()) * s() * h;
   // вес
