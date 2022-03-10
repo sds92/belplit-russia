@@ -77,7 +77,9 @@ export default function NavSM(props) {
               </div>
 
               <div className={`flex`}>
+                <Link href={`/main`} passHref>
                 <Logo extraClasses={`h-6 transition-all place-self-start`} />
+                </Link>
               </div>
 
               <ContactsNav sm {...props} />
