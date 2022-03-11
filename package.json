@@ -20,6 +20,7 @@
     "dotenv": "^10.0.0",
     "forever": "^4.0.3",
     "framer-motion": "^5.5.5",
+    "iron-session": "^6.0.5",
     "next": "12.0.7",
     "next-ym": "^2.3.5",
     "node-cmd": "^5.0.0",
@@ -31,7 +32,8 @@
     "react-input-mask": "^2.0.4",
     "react-intersection-observer": "^8.33.1",
     "react-simple-image-viewer": "^1.1.1",
-    "sass": "^1.49.0"
+    "sass": "^1.49.0",
+    "swr": "^1.2.2"
   },
   "devDependencies": {
     "eslint": "8.5.0",
