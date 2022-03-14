@@ -46,7 +46,7 @@ export default function ProductsSetter() {
   };
 
   const save = async () => {
-    fetch(`api/prices`, {
+    await fetch(`api/prices`, {
       method: 'POST',
       // headers: {
       //   Accept: 'application/json, text/plain, */*',

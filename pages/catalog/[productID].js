@@ -1,6 +1,5 @@
 import React from 'react';
 import { Layout } from '../../components/complicated';
-// import productsInit from '../../data/products.json'
 
 export default function ProductPage(props) {
   return <Layout.Product {...props}/>;
