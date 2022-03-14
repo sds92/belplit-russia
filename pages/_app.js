@@ -8,13 +8,11 @@ import fetchJson from "lib/fetchJson";
 import { AppContext } from 'components/complicated/Context/AppContext';
 import { animations } from '../styles/animations';
 import { Header, Footer, Head } from '../components/complicated';
-import { normalizeDataSTUPID } from '../utils/functions';
+import { v1 } from '../utils/functions';
 import '../styles/tailwind.css';
 
-import initProducts from '../data/products.json';
 import pages from '../data/pages.json';
 
-const products = normalizeDataSTUPID(initProducts);
 
 function MyApp({ Component, pageProps }) {
   const [w, setW] = React.useState(1400);

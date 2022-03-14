@@ -1,11 +1,13 @@
 import { Layout } from '../components/complicated';
+import fs from 'fs';
+import { v1 } from 'utils/functions';
 
 export default function main(props) {
   return <Layout.Main {...props} />;
 }
 
 export async function getStaticProps({ params, ...props }) {
-  const products = require('data/products.json');
+  let products = v1(JSON.parse(fs.readFileSync('data/products.json', 'utf8')));
 
   return {
     props: {

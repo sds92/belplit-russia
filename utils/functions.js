@@ -87,7 +87,7 @@ export const normalizeData = (inputArr, appArr) => {
     }, appArr);
 };
 
-export const normalizeDataSTUPID = (inputArr) => {
+export const v1 = (inputArr) => {
 // console.log("🚀 ~ file: functions.js ~ line 91 ~ normalizeDataSTUPID ~ inputArr", inputArr)
   return inputArr.map((inputArrItem) => {
     let tmpSizes = inputArrItem.sizes.map((tmpSizesItem) => {
