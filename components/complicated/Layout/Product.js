@@ -8,6 +8,7 @@ import styles from './styles.module.scss';
 
 export default function Product(props) {
   const { w, products } = props;
+  console.log("🚀 ~ file: Product.js ~ line 11 ~ Product ~ products", products)
   const {
     id,
     title,

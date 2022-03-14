@@ -1605,6 +1605,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-right: 0.25rem;
 }
 
+.mx-2{
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
 .my-2{
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
@@ -1623,11 +1628,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .mx-0{
   margin-left: 0px;
   margin-right: 0px;
-}
-
-.mx-2{
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
 }
 
 .my-20{
@@ -2165,6 +2165,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: -0.875rem;
 }
 
+.ml-10{
+  margin-left: 2.5rem;
+}
+
 .mt-8{
   margin-top: 2rem;
 }
@@ -2365,8 +2369,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 100%;
 }
 
-.w-72{
-  width: 18rem;
+.w-60{
+  width: 15rem;
 }
 
 .w-min{
@@ -2403,10 +2407,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 1.75rem;
 }
 
-.w-60{
-  width: 15rem;
-}
-
 .w-1{
   width: 0.25rem;
 }
@@ -2425,6 +2425,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-52{
   width: 13rem;
+}
+
+.w-16{
+  width: 4rem;
 }
 
 .min-w-full{
@@ -4092,6 +4096,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .self-end{
   align-self: flex-end;
+}
+
+.self-center{
+  align-self: center;
 }
 
 .overflow-hidden{
@@ -7225,6 +7233,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding: 0.875rem;
 }
 
+.py-2{
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
 .py-1\.5{
   padding-top: 0.375rem;
   padding-bottom: 0.375rem;
@@ -7238,11 +7251,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .px-2{
   padding-left: 0.5rem;
   padding-right: 0.5rem;
-}
-
-.py-2{
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
 }
 
 .py-4{
@@ -7618,14 +7626,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   vertical-align: bottom;
 }
 
-.text-4xl{
-  font-size: 2.25rem;
-  line-height: 2.5rem;
-}
-
 .text-xl{
   font-size: 1.25rem;
   line-height: 1.75rem;
+}
+
+.text-4xl{
+  font-size: 2.25rem;
+  line-height: 2.5rem;
 }
 
 .text-3xl{
@@ -10209,6 +10217,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .hover\:text-belplit_dark:hover{
   --tw-text-opacity: 1;
   color: rgb(66 109 46 / var(--tw-text-opacity));
+}
+
+.hover\:text-zinc-100:hover{
+  --tw-text-opacity: 1;
+  color: rgb(244 244 245 / var(--tw-text-opacity));
 }
 
 .focus\:outline-none:focus{

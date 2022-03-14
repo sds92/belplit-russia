@@ -1,26 +1,22 @@
-import { withIronSessionApiRoute } from "iron-session/next";
-import { sessionOptions } from "lib/session";
+import { withIronSessionApiRoute } from 'iron-session/next';
+import { sessionOptions } from 'lib/session';
+import fs from 'fs';
 
 export default withIronSessionApiRoute(async (req, res) => {
-    require('dotenv').config();
-    if (req.session.user.pass !== process.env.PASS) {
-        res.status(500).json({ message: 'AUTH FAILED' });
-    }
-    const products = require('../../data/products.json')
-    res.json(products)
+  require('dotenv').config();
+  if (req.session.user.pass !== process.env.PASS) {
+    res.status(500).json({ message: 'AUTH FAILED' });
+  }
 
-
-    //   console.log("🚀 ~ file: prices.js ~ line 9 ~ withIronSessionApiRoute ~ products", products)
-    //   try {
-    //     if (username === 'qwerty') {
-    //       const login = 'qwerty'
-    //       const user = { isLoggedIn: true, pass};
-    //       req.session.user = user;
-    //       await req.session.save();
-    //       res.json(user);
-    //     }
-
-    //   } catch (error) {
-    //     res.status(500).json({ message: error.message });
-    //   }
+  if (req.method === 'POST') {
+    fs.writeFile(`data/products.json`, req.body, (err) => {
+      if (err) throw err;
+      res.json({ status: 'ok' });
+      console.log('The file has been saved!');
+    });
+  }
+  if (req.method === 'GET') {
+    const products = require('../../data/products.json');
+    res.json(products);
+  }
 }, sessionOptions);
