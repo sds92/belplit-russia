@@ -32,19 +32,20 @@ export default function Calculator(props) {
     amount: 0,
   });
   const markSelect = products.map((item, index) => {
-    return { title: item.title, value: item.id };
+    return { title: item.title, value: item.id, _name: item.name };
   });
-  const sizeSelect = products[state.mark].sizes.map((item, i) => ({
-    title: item.a + '*' + item.b + '*' + item.h + ' [мм] ' + products[state.mark].connectionTypes[i],
+  const sizeSelect = products.find(item => item.id.toString() === state.mark.toString()).sizes.map((item, i) => ({
+    title: item.a + '*' + item.b + '*' + item.h + ' [мм] ' + products.find(item => item.id.toString() === state.mark.toString()).connectionTypes[i],
     value: i,
   }));
-
   // Regions
   const cities = ['Москва', 'СПБ', 'Казань', 'Краснодар', 'Ростов', 'Волгоград', 'Астрахань', 'Крым'];
 
-  const ab = Object.entries(products.find(({ id }) => id.toString() === state.mark.toString()).prices).map((item, i) => {
-    return [cities[i], item[0], item[1]];
-  });
+  const ab = Object.entries(products.find(({ id }) => id.toString() === state.mark.toString()).prices).map(
+    (item, i) => {
+      return [cities[i], item[0], item[1]];
+    }
+  );
   // Показатели
   const h = products[state.mark].sizes[state.size].h / 1000;
   const a = products[state.mark].sizes[state.size].a / 1000;
@@ -55,12 +56,16 @@ export default function Calculator(props) {
   // площадь одного листа в м2
   const s = () => (a * b).toFixed(2);
   // количество листов
-  const am = () => (state.amount / s());
+  const am = () => state.amount / s();
   // объем
   const v = () => Math.ceil(am()) * s() * h;
   // вес
   const m = density * v();
 
+  React.useEffect(() => {
+    // console.log("🚀 ~ file: Calculator.js ~ line 68 ~ React.useEffect ~ sizeSelect", sizeSelect)
+    // sizeSelect
+  }, [sizeSelect]);
   return (
     <>
       <div className={`rounded-md p-4 flex zero:flex-col md:flex-row w-full`}>
@@ -72,16 +77,16 @@ export default function Calculator(props) {
               defaultValue={state.mark}
               id={`MARK`}
               items={markSelect}
-              onChange={(e) => setState((s) => ({ ...s, size: 0,  mark: e.target.value }))}
+              onChange={(e) => setState((s) => ({ ...s, size: 0, mark: e.target.value }))}
             ></Select>
           </div>
-          {/* H */}
+          {/* SIZES */}
           <label className={`text-zinc-800`}>Выберите толщину</label>
           <div className={`py-2`}>
             <Select
               id={`SIZE`}
               items={sizeSelect}
-              onChange={(e) => setState((s) => ({ ...s,  size: e.target.value }))}
+              onChange={(e) => setState((s) => ({ ...s, size: e.target.value }))}
             ></Select>
           </div>
           {/* REGION */}

@@ -36,6 +36,7 @@ export default function Product(props) {
       value: i,
     };
   });
+  // console.log("🚀 ~ file: Product.js ~ line 39 ~ selectSizes ~ selectSizes", selectSizes, title)
 
   const [radioValue, setRadioValue] = React.useState(0);
   const [region, setRegion] = React.useState(0);
@@ -91,7 +92,7 @@ export default function Product(props) {
               <ProductComponent.List
                 inset={w < 640}
                 title={<p className={`py-2 font-bold text-lg`}>Продукция:</p>}
-                listItems={products.map((item) => ({ id: item.id, title: item.displayName ? 'Белплит' + ' ' + item.displayName : item.title }))}
+                listItems={products.map((item) => ({ id: item.id, name: item.name, title: item.displayName ? 'Белплит' + ' ' + item.displayName : item.title }))}
                 curProduct={props.product}
                 reset={() => setIndex(0)}
               />
@@ -149,7 +150,7 @@ export default function Product(props) {
             <ProductComponent.List
               inset={w < 640}
               title={<p className={`py-2 font-bold text-lg`}>Продукция:</p>}
-              listItems={products.map((item) => ({ id: item.id, title: item.displayName ? 'Белплит' + ' ' + item.displayName : item.title }))}
+              listItems={products.map((item) => ({ id: item.id, name: item.name, title: item.displayName ? 'Белплит' + ' ' + item.displayName : item.title }))}
               curProduct={props.product}
               reset={() => setIndex(0)}
             />

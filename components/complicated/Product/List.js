@@ -11,14 +11,14 @@ export default function ProductList({ listItems, inset = false, title = '', rese
   const [h, setH] = React.useState('100%');
   const router = useRouter();
 
-  const handleClick = (a, id) => {
+  const handleClick = (a, id, name) => {
     a.stopPropagation();
     console.log('value', a.target);
     if (open) {
       setDelay(false);
       setOpen(false);
       if (id || id === 0) {
-        router.push(`/catalog/${id}`);
+        router.push(`/catalog/${name}`);
         reset()
       }
     }
@@ -77,7 +77,7 @@ export default function ProductList({ listItems, inset = false, title = '', rese
                 {listItems.map((item, index) => (
                   <div
                     className={`w-full px-4 transition-all cursor-pointer active:scale-105`}
-                    onClick={(e) => handleClick(e, item.id)}
+                    onClick={(e) => handleClick(e, item.id, item.name)}
                     key={`PR${index}`}
                   >
                     {' > '}&nbsp;
@@ -95,7 +95,7 @@ export default function ProductList({ listItems, inset = false, title = '', rese
           {title && title}
           {listItems &&
             listItems.map((item, index) => (
-              <Link key={`PR${index}`} href={`/catalog/${item.id}`} passHref>
+              <Link key={`PR${index}`} href={`/catalog/${item.name}`} passHref>
                 <div
                   className={`cursor-pointer flex hover:text-belplit border-b py-1`}
                   onMouseEnter={() => setHover({ [index]: true })}
