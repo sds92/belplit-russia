@@ -88,6 +88,7 @@ export const normalizeData = (inputArr, appArr) => {
 };
 
 export const normalizeDataSTUPID = (inputArr) => {
+// console.log("🚀 ~ file: functions.js ~ line 91 ~ normalizeDataSTUPID ~ inputArr", inputArr)
   return inputArr.map((inputArrItem) => {
     let tmpSizes = inputArrItem.sizes.map((tmpSizesItem) => {
       return tmpSizesItem[0]?.slice(0, tmpSizesItem[0].indexOf('мм')).split(/х|x/);

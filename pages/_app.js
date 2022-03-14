@@ -68,7 +68,7 @@ function MyApp({ Component, pageProps }) {
             }
             return item.path === acv;
           }),
-          products: products,
+          // products: products,
           ...pageProps,
         };
 
