@@ -16,7 +16,12 @@ export default withIronSessionApiRoute(async (req, res) => {
     });
   }
   if (req.method === 'GET') {
-    const products = require('../../data/products.json');
-    res.json(products);
+    let products = [];
+    fs.readFile('data/products.json', 'utf8', (err, data) => {
+      if (err) throw err;
+      products = JSON.parse(data);
+      res.json(JSON.stringify(products));
+      console.log('The file has been sent!');
+    });
   }
 }, sessionOptions);
