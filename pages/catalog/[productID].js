@@ -7,6 +7,7 @@ export default function ProductPage(props) {
 }
 
 export async function getStaticProps({ params, ...props }) {
+  const products = require('data/products.json');
   const product = products.find((item) => item.name === params.productID);
   return {
     props: {
