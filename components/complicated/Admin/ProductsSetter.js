@@ -66,14 +66,11 @@ export default function ProductsSetter() {
   React.useEffect(() => {
     getPrices();
   }, []);
-  React.useEffect(() => {
-    // console.log('newData', newData);
-  }, [newData]);
 
   return (
     <div>
       <hr />
-      <div className={`flex justify-center py-1 bg-zinc-100`}>
+      <div className={`flex flex-wrap justify-center py-1 bg-zinc-100`}>
         {cities.map((item, i) => {
           return (
             <div
