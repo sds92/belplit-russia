@@ -5,7 +5,7 @@ export default function Layout({ children }) {
   return (
     <>
       <Head>
-        <title>With Iron Session</title>
+        <title>ADMINISTARTION PANEL</title>
       </Head>
       <style jsx global>{`
         *,

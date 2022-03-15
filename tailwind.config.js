@@ -28,6 +28,8 @@ module.exports = {
     'font-bold',
     'text-white',
     'shadow-md',
+    'shadow-xl',
+    'shadow-2xl',
     'ordinal',
     'border-l',
     'ml-2',

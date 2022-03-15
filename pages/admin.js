@@ -7,7 +7,6 @@ function Admin({ user }) {
   return (
     <>
       <Header />
-      <div className={`text-center font-bold py-2 text-xl`}>ПАНЕЛЬ УПРАВЛЕНИЯ</div>
       {user?.isLoggedIn && (
         <>
           <ProductsSetter />

@@ -4,6 +4,7 @@ import styles from './styles.module.scss';
 const randomKey = () => Math.random().toString();
 
 export default function Techdesc({ data, w }) {
+  return <></>
   return (
     <div className={`w-full mx-auto overflow-hidden pt-4 pb-4 rounded-tr-md rounded-b-md px-2 md:px-8`}>
       <div className={`zero:overflow-x-scroll md:overflow-x-auto`}>

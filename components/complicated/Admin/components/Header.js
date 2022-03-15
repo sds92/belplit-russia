@@ -1,8 +1,8 @@
-import Link from "next/link";
-import useUser from "lib/useUser";
-import { useRouter } from "next/router";
-import Image from "next/image";
-import fetchJson from "lib/fetchJson";
+import Link from 'next/link';
+import useUser from 'lib/useUser';
+import { useRouter } from 'next/router';
+import Image from 'next/image';
+import fetchJson from 'lib/fetchJson';
 
 export default function Header() {
   const { user, mutateUser } = useUser();
@@ -10,87 +10,44 @@ export default function Header() {
 
   return (
     <header>
-      <nav>
-        <ul>
-          <li>
-            <Link href="/">
-              <a>Home</a>
-            </Link>
-          </li>
-          {user?.isLoggedIn === false && (
-            <li>
-              <Link href="/login">
-                <a>Login</a>
+      <nav className={``}>
+        <div className={`flex justify-center bg-zinc-700 items-center font-light`}>
+          <div className={`basis-1/3`}/>
+          <div className={`basis-1/3 font-bold text-center text-xl cursor-default text-zinc-100`}>ПАНЕЛЬ УПРАВЛЕНИЯ</div>
+          <div className={`basis-1/3 flex justify-end `}>
+            <div className={`my-1 py-1 px-2 text-zinc-100 hover:bg-opacity-40 hover:bg-sky-500 rounded-md transition-all`}>
+              <Link href='/'>
+                <a>На сайт</a>
               </Link>
-            </li>
-          )}
-          {user?.isLoggedIn === true && (
-            <>
-              <li>
-                {/* In this case, we're fine with linking with a regular a in case of no JavaScript */}
-                {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-                <a
-                  href="/api/logout"
-                  onClick={async (e) => {
-                    e.preventDefault();
-                    mutateUser(
-                      await fetchJson("/api/logout", { method: "POST" }),
-                      false,
-                    );
-                    router.push("/login");
-                  }}
-                >
-                  Logout
-                </a>
-              </li>
-            </>
-          )}
-          <li>
-            <a href="https://github.com/vvo/iron-session">
-              <Image
-                src="/GitHub-Mark-Light-32px.png"
-                width="32"
-                height="32"
-                alt=""
-              />
-            </a>
-          </li>
-        </ul>
+            </div>
+            {user?.isLoggedIn === false && (
+              <div className={`my-1 py-1 px-2 text-zinc-100 hover:bg-opacity-60 hover:bg-green-800 rounded-md transition-all`}>
+                <Link href='/login'>
+                  <a>Войти</a>
+                </Link>
+              </div>
+            )}
+            {user?.isLoggedIn === true && (
+              <>
+                <div className={`my-1 p-1 text-zinc-100 hover:text-zinc-900 hover:bg-red-300 rounded-md transition-all`}>
+                  {/* In this case, we're fine with linking with a regular a in case of no JavaScript */}
+                  {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+                  <a
+                    href='/api/logout'
+                    onClick={async (e) => {
+                      e.preventDefault();
+                      mutateUser(await fetchJson('/api/logout', { method: 'POST' }), false);
+                      router.push('/login');
+                    }}
+                  >
+                    Выйти
+                  </a>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
       </nav>
-      <style jsx>{`
-        ul {
-          display: flex;
-          list-style: none;
-          margin-left: 0;
-          padding-left: 0;
-        }
-
-        li {
-          margin-right: 1rem;
-          display: flex;
-        }
-
-        li:first-child {
-          margin-left: auto;
-        }
-
-        a {
-          color: #fff;
-          text-decoration: none;
-          display: flex;
-          align-items: center;
-        }
-
-        a img {
-          margin-right: 1em;
-        }
-
-        header {
-          padding: 0.2rem;
-          color: #fff;
-          background-color: #333;
-        }
-      `}</style>
     </header>
   );
 }

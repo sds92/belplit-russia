@@ -88,7 +88,7 @@ export const normalizeData = (inputArr, appArr) => {
 };
 
 export const v1 = (inputArr) => {
-// console.log("🚀 ~ file: functions.js ~ line 91 ~ normalizeDataSTUPID ~ inputArr", inputArr)
+  // console.log("🚀 ~ file: functions.js ~ line 91 ~ normalizeDataSTUPID ~ inputArr", inputArr)
   return inputArr.map((inputArrItem) => {
     let tmpSizes = inputArrItem.sizes.map((tmpSizesItem) => {
       return tmpSizesItem[0]?.slice(0, tmpSizesItem[0].indexOf('мм')).split(/х|x/);
@@ -107,21 +107,41 @@ export const v1 = (inputArr) => {
   });
 };
 
-// export const normalizeDataSTUPID = (inputArr) => {
-//   return inputArr.map((inputArrItem) => {
-//     let tmpSizes = inputArrItem.sizes.map((tmpSizesItem) => {
-//       return tmpSizesItem[0]?.slice(0, tmpSizesItem[0].indexOf('мм')).split(/х|x/);
-//     });
-//     let connectionTypes = inputArrItem.sizes.map((tmpSizesItem) => {
-//       return tmpSizesItem[0]?.slice(tmpSizesItem[0].indexOf('(') + 1, tmpSizesItem[0].indexOf(')'));
-//     });
-//     let tmpSizes2 = tmpSizes.map((tmpSizes2Item) => ({
-//       a: parseInt(tmpSizes2Item[0].replace(' ', '')),
-//       b: parseInt(tmpSizes2Item[1].replace(' ', '')),
-//       h: parseInt(tmpSizes2Item[2].replace(' ', '')),
-//     }));
-//     inputArrItem.sizes = tmpSizes2;
-//     inputArrItem.connectionTypes = connectionTypes;
-//     return inputArrItem;
-//   });
-// };
+export const v2 = (input) => {
+  const setPrices = (input_i, count) => {
+    console.log('🚀 ~ file', input_i);
+    return input_i.filter((item_ii, iii) => {
+      console.log('🚀 ~ == count', iii !== count);
+      if (iii === count) {
+        return false
+      } else {
+        return true
+      }
+    });
+  };0
+
+  return input.map((item) => {
+    let count = null;
+    return {
+      ...item,
+      sizes: item.sizes.filter((item_i, ii) => {
+        if (item_i.show !== true) {
+          count = ii;
+          return false;
+        } else {
+          return true;
+        }
+      }),
+      prices: {
+        square: setPrices(item.prices.square, count),
+        spb: setPrices(item.prices.spb, count),
+        kazan: setPrices(item.prices.kazan, count),
+        krasnodar: setPrices(item.prices.krasnodar, count),
+        rostov: setPrices(item.prices.rostov, count),
+        volvograd: setPrices(item.prices.volvograd, count),
+        astrahan: setPrices(item.prices.astrahan, count),
+        сrimea: setPrices(item.prices.сrimea, count),
+      },
+    };
+  });
+};
