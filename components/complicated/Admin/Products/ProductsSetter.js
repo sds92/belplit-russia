@@ -107,6 +107,9 @@ export default function ProductsSetter() {
         return { ...item };
       })
     );
+    _product.connectionTypes.push(newSize[productPos]?.connectionTypes || 'прямая');
+    console.log('🚀 ~ file: ProductsSetter.js ~ line 111 ~ addNewSizes ~ newSize', newSize);
+    console.log('🚀 ~ file', _product.connectionTypes);
     setNewData(_data);
     save(_data);
   };
@@ -114,17 +117,16 @@ export default function ProductsSetter() {
   const deleteSize = (a, e) => {
     const _data = JSON.parse(JSON.stringify(newData));
     const _product = _data[a.productPos];
-    _product.sizes.splice(a.size, 1)
-    console.log("🚀 ~ file: ProductsSetter.js ~ line 118 ~ deleteSize ~ _product.sizes", _product.sizes)
+    _product.sizes.splice(a.size, 1);
+    _product.connectionTypes.splice(a.size, 1);
     _product.prices = Object.fromEntries(
       Object.entries(_product.prices).map((item) => {
-        item[1].splice(a.size, 1)
+        item[1].splice(a.size, 1);
         return { ...item };
       })
     );
     setNewData(_data);
     save(_data);
-    console.log('🚀 ~ file:', a);
   };
 
   React.useEffect(() => {
@@ -156,10 +158,12 @@ export default function ProductsSetter() {
             <div key={`asjdifh${iii}`}>
               {cities[selectedCity][1] === item_iii[1] && (
                 <table className={``}>
+                  {/* TABLE HEADER */}
                   <thead className={`bg-zinc-100 rounded-md`}>
                     <tr>
                       <td className={`w-10 text-center`}>показывать</td>
-                      <td className={`w-40 text-right`}>размер[мм]</td>
+                      <td className={`w-32 text-right`}>размер[мм]</td>
+                      <td className={`w-20 text-right`}>тип кромки</td>
                       <td className={`w-16 text-center`}>текущая цена</td>
                       <td className={`w-16 text-center`}>новая цена</td>
                       <td>
@@ -177,14 +181,14 @@ export default function ProductsSetter() {
                       return (
                         <React.Fragment key={`lfjkh${i}`}>
                           <tr className={``}>
-                            <td colSpan={5} className={`rounded-sm bg-zinc-400 text-zinc-900 font-semibold`}>
+                            <td colSpan={6} className={`rounded-sm bg-zinc-400 text-zinc-900 font-semibold`}>
                               <p className={`ml-10 text-xl`}>{item.title}</p>
                             </td>
                           </tr>
                           {item.sizes.map((item_i, ii) => {
                             return (
                               <tr key={`sdjkfhs${ii}`} className={`font-light`}>
-                                <td className={`w-10 text-center rounded-l-sm bg-zinc-200`}>
+                                <td className={`text-center rounded-l-sm bg-zinc-200`}>
                                   <input
                                     type={'checkbox'}
                                     checked={newData[i]?.sizes[ii]?.show || false}
@@ -196,10 +200,11 @@ export default function ProductsSetter() {
                                     }
                                   />
                                 </td>
-                                <td className={`w-40 text-right rounded-l-sm bg-zinc-200`}>
+                                <td className={`text-right rounded-l-sm bg-zinc-200`}>
                                   {item_i.a}x{item_i.b}x{item_i.h}
                                 </td>
-                                <td className={`w-16 text-center mx-2 font-bold bg-zinc-200`}>
+                                <td className={`text-center mx-2 bg-zinc-200`}>{item.connectionTypes[ii]}</td>
+                                <td className={`text-center mx-2 font-bold bg-zinc-200`}>
                                   {item.prices[cities[selectedCity][1]]?.[ii]
                                     ? item.prices[cities[selectedCity][1]][ii]
                                     : ' - '}
@@ -242,45 +247,59 @@ export default function ProductsSetter() {
                                     type={'checkbox'}
                                     onChange={(e) => {
                                       setNewSize((s) => {
-                                        return { ...s, [i]: { show: e.target.checked } };
+                                        return { ...s, [i]: { ...s[i], show: e.target.checked } };
                                       });
                                     }}
                                   />
                                 </td>
-                                <td colSpan={3} className={`w-40 text-right rounded-l-sm bg-zinc-50`}>
+                                <td colSpan={4} className={`text-right rounded-l-sm bg-zinc-50`}>
+                                  <div className={`flex mt-1`}>
+                                    <input
+                                      type={'number'}
+                                      className={`border rounded-md w-16 font-extralight mx-1`}
+                                      onChange={(e) => {
+                                        setNewSize((s) => {
+                                          return { ...s, [i]: { ...s[i], a: e.target.value } };
+                                        });
+                                      }}
+                                      placeholder={'ширина'}
+                                    />
+                                    <input
+                                      type={'number'}
+                                      className={`border rounded-md w-16 font-extralight mx-1`}
+                                      onChange={(e) => {
+                                        setNewSize((s) => {
+                                          return { ...s, [i]: { ...s[i], b: e.target.value } };
+                                        });
+                                      }}
+                                      placeholder={'длина'}
+                                    />
+                                    <input
+                                      type={'number'}
+                                      className={`border rounded-md w-16 font-extralight mx-1`}
+                                      onChange={(e) => {
+                                        setNewSize((s) => {
+                                          return { ...s, [i]: { ...s[i], h: e.target.value } };
+                                        });
+                                      }}
+                                      placeholder={'высота'}
+                                    />
+                                    <select
+                                      className={`border rounded-md w-32 font-extralight mx-1 cursor-pointer`}
+                                      onChange={(e) => {
+                                        setNewSize((s) => {
+                                          return { ...s, [i]: { ...s[i], connectionTypes: e.target.value } };
+                                        });
+                                      }}
+                                    >
+                                      <option>прямая</option>
+                                      <option>шип-паз</option>
+                                    </select>
+                                  </div>
+
                                   <input
                                     type={'number'}
-                                    className={`border rounded-md w-16 font-extralight mx-1`}
-                                    onChange={(e) => {
-                                      setNewSize((s) => {
-                                        return { ...s, [i]: { ...s[i], a: e.target.value } };
-                                      });
-                                    }}
-                                    placeholder={'ширина'}
-                                  />
-                                  <input
-                                    type={'number'}
-                                    className={`border rounded-md w-16 font-extralight mx-1`}
-                                    onChange={(e) => {
-                                      setNewSize((s) => {
-                                        return { ...s, [i]: { ...s[i], b: e.target.value } };
-                                      });
-                                    }}
-                                    placeholder={'длина'}
-                                  />
-                                  <input
-                                    type={'number'}
-                                    className={`border rounded-md w-16 font-extralight mx-1`}
-                                    onChange={(e) => {
-                                      setNewSize((s) => {
-                                        return { ...s, [i]: { ...s[i], h: e.target.value } };
-                                      });
-                                    }}
-                                    placeholder={'высота'}
-                                  />
-                                  <input
-                                    type={'number'}
-                                    className={`border rounded-md w-16 font-extralight mx-1`}
+                                    className={`border rounded-md w-16 font-extralight mx-1 my-1`}
                                     onChange={(e) => {
                                       setNewSize((s) => {
                                         return { ...s, [i]: { ...s[i], price: e.target.value } };
@@ -308,7 +327,7 @@ export default function ProductsSetter() {
                                 </td>
                               </>
                             ) : (
-                              <td colSpan={5} className={` rounded-sm border-t shadow-md`}>
+                              <td colSpan={6} className={` rounded-sm border-t shadow-md`}>
                                 <Icons.Plus
                                   extraClasses={`bg-zinc-50 ml-auto mr-2 my-2 h-6 w-6 shadow-md border border-belplit_2 text-zinc-800 rounded-md m-1 hover:scale-110 cursor-pointer transition-all duration-75`}
                                   onClick={() => {
