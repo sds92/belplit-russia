@@ -2357,6 +2357,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 3rem;
 }
 
+.h-9{
+  height: 2.25rem;
+}
+
 .max-h-0{
   max-height: 0px;
 }
@@ -2441,6 +2445,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-32{
   width: 8rem;
+}
+
+.w-9{
+  width: 2.25rem;
 }
 
 .min-w-full{

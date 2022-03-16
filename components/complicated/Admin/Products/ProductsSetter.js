@@ -1,4 +1,5 @@
 import React from 'react';
+import Product from 'models/Product';
 import { Icons } from '../..';
 
 export default function ProductsSetter() {
@@ -16,9 +17,24 @@ export default function ProductsSetter() {
   const [data2, setData] = React.useState([]);
   const [newData, setNewData] = React.useState([]);
 
+  const optionsMatrix = data2.map((item, i) => {
+    return { sizes: item.sizes.map((item_i, ii) => ({ ...item_i, _id: ii })) };
+  });
+  const [options, setOptions] = React.useState(optionsMatrix);
+
+  const [newProduct, setNewProduct] = React.useState({});
+  // console.log('🚀 ~ file: ProductsSetter.js ~ line 26 ~ ProductsSetter ~ newProduct', newProduct);
+  // console.log('🚀optionsMatrix', options);
+  // const optionsMatrix2 = newData.map((item, i) => {
+  //   return {[i]: {sizes: item.sizes}}
+  // });
+  // setOptions((s) => {
+  //   return { ...s, [i]: { ...s[i], id: ii } };
+  // });
+  // console.log('🚀 s\n', optionsMatrix[0][0], '\n\n');
+
   const [create, setCreate] = React.useState({});
   const [newSize, setNewSize] = React.useState({});
-  console.log('🚀', newSize);
 
   const [selectedCity, setSelectedCity] = React.useState(0);
 
@@ -28,6 +44,15 @@ export default function ProductsSetter() {
       .then((res) => {
         setData(JSON.parse(JSON.stringify(res)));
         setNewData(JSON.parse(JSON.stringify(res)));
+        setOptions(
+          JSON.parse(
+            JSON.stringify(
+              res.map((item, i) => {
+                return { sizes: item.sizes.map((item_i, ii) => ({ ...item_i, _id: ii })) };
+              })
+            )
+          )
+        );
       })
       .catch((err) => console.log(err));
   };
@@ -108,8 +133,6 @@ export default function ProductsSetter() {
       })
     );
     _product.connectionTypes.push(newSize[productPos]?.connectionTypes || 'прямая');
-    console.log('🚀 ~ file: ProductsSetter.js ~ line 111 ~ addNewSizes ~ newSize', newSize);
-    console.log('🚀 ~ file', _product.connectionTypes);
     setNewData(_data);
     save(_data);
   };
@@ -125,13 +148,37 @@ export default function ProductsSetter() {
         return { ...item };
       })
     );
+    let _optionsMatrix = JSON.parse(JSON.stringify(options));
+
+    let idx = null;
+    _optionsMatrix[a.productPos].sizes.find((item, i) => {
+      if (item._id === a._id) {
+        idx = i;
+      }
+    });
+
+    _optionsMatrix[a.productPos].sizes.splice(idx, 1);
+    setOptions(_optionsMatrix);
     setNewData(_data);
-    save(_data);
+  };
+
+  const createProduct = (a, e) => {
+    const _data = JSON.parse(JSON.stringify(newData));
+    const _newProduct = new Product(_data.length + 1, newProduct.created.name, newProduct.created.title);
+    _data.push(_newProduct);
+    setCreate({})
+    setNewData(_data);
+    save()
   };
 
   React.useEffect(() => {
     getPrices();
   }, []);
+  React.useEffect(() => {
+    if (newProduct.created) {
+      createProduct()
+    }
+  }, [newProduct.created]);
 
   return (
     <div>
@@ -171,12 +218,68 @@ export default function ProductsSetter() {
                           onClick={() => save()}
                           className={`bg-belplit_2 self-center m-1 px-2 py-1 rounded-md shadow-md hover:bg-belplit_dark hover:text-zinc-100 cursor-pointer `}
                         >
-                          Сохранить
+                          Обновить
                         </div>
                       </td>
                     </tr>
                   </thead>
                   <tbody>
+                    <tr>
+                      <td colSpan={6} className={` rounded-sm border-t shadow-md`}>
+                        {!create[data2.length + 1] ? (
+                          <div className={`flex justify-start items-center`}>
+                            <Icons.Plus
+                              extraClasses={`bg-zinc-50 mr-2 my-2 h-6 w-6 shadow-md border border-belplit_2 text-zinc-800 rounded-md m-1 hover:scale-110 cursor-pointer transition-all duration-75`}
+                              onClick={() => {
+                                setCreate({
+                                  [data2.length + 1]: !create[data2.length + 1],
+                                });
+                              }}
+                            />
+                            <div>Добавить товар</div>
+                          </div>
+                        ) : (
+                          <div className={`flex justify-start items-center`}>
+                            <input
+                              onChange={(e) => {
+                                setNewProduct((s) => ({
+                                  ...s,
+                                  input: {
+                                    ...s.input,
+                                    title: e.target.value,
+                                  },
+                                }));
+                              }}
+                              value={newProduct?.input?.title}
+                              className={`border rounded-md m-1`}
+                              placeholder='Название'
+                            />
+                            <input
+                              onChange={(e) => {
+                                setNewProduct((s) => ({
+                                  ...s,
+                                  input: {
+                                    ...s.input,
+                                    name: /^[a-z]{1,20}$/.test(e.target.value) ? e.target.value : '',
+                                  },
+                                }));
+                              }}
+                              value={newProduct?.input?.name}
+                              className={`border rounded-md m-1`}
+                              placeholder='url'
+                            />
+                            <Icons.Plus
+                              extraClasses={`bg-zinc-50 mr-2 my-2 h-6 w-6 shadow-md border border-belplit_2 text-zinc-800 rounded-md m-1 hover:scale-110 cursor-pointer transition-all duration-75`}
+                              onClick={() => {
+                                setNewProduct({
+                                  created: newProduct.input,
+                                });
+                              }}
+                            />
+                          </div>
+                        )}
+                      </td>
+                    </tr>
                     {data2.map((item, i) => {
                       return (
                         <React.Fragment key={`lfjkh${i}`}>
@@ -185,13 +288,17 @@ export default function ProductsSetter() {
                               <p className={`ml-10 text-xl`}>{item.title}</p>
                             </td>
                           </tr>
-                          {item.sizes.map((item_i, ii) => {
+                          {/* SIZES */}
+                          {optionsMatrix[i].sizes.map((item_i, ii) => {
+                            const highlight =
+                              options[i]?.sizes.map(({ _id }) => _id)?.indexOf(item_i._id) === -1;
+                            const bg = highlight ? 'bg-red-200' : 'bg-zinc-200';
                             return (
                               <tr key={`sdjkfhs${ii}`} className={`font-light`}>
-                                <td className={`text-center rounded-l-sm bg-zinc-200`}>
+                                <td className={`text-center rounded-l-sm ${bg}`}>
                                   <input
                                     type={'checkbox'}
-                                    checked={newData[i]?.sizes[ii]?.show || false}
+                                    checked={newData[i]?.sizes[ii]?.show || data2[i]?.sizes[ii]?.show}
                                     onChange={(e) =>
                                       handleDataChange(
                                         { type: 'showSize', productPos: i, size: ii, value: e.target.value },
@@ -200,16 +307,16 @@ export default function ProductsSetter() {
                                     }
                                   />
                                 </td>
-                                <td className={`text-right rounded-l-sm bg-zinc-200`}>
+                                <td className={`text-right rounded-l-sm ${bg}`}>
                                   {item_i.a}x{item_i.b}x{item_i.h}
                                 </td>
-                                <td className={`text-center mx-2 bg-zinc-200`}>{item.connectionTypes[ii]}</td>
-                                <td className={`text-center mx-2 font-bold bg-zinc-200`}>
+                                <td className={`text-center mx-2 ${bg}`}>{item.connectionTypes[ii]}</td>
+                                <td className={`text-center mx-2 font-bold ${bg}`}>
                                   {item.prices[cities[selectedCity][1]]?.[ii]
                                     ? item.prices[cities[selectedCity][1]][ii]
                                     : ' - '}
                                 </td>
-                                <td className={`bg-zinc-200`}>
+                                <td className={`${bg}`}>
                                   <input
                                     type={'number'}
                                     className={`border rounded-md w-16`}
@@ -227,13 +334,15 @@ export default function ProductsSetter() {
                                   />
                                 </td>
                                 {/* DELETE */}
-                                <td className={`rounded-r-sm bg-zinc-200`}>
-                                  <Icons.Close
-                                    extraClasses={`bg-zinc-50 mx-auto h-6 w-6 shadow-md border border-red-900 text-zinc-800 rounded-md m-1 hover:scale-110 cursor-pointer transition-all duration-75`}
-                                    onClick={(e) => {
-                                      deleteSize({ productPos: i, size: ii }, e);
-                                    }}
-                                  />
+                                <td className={`rounded-r-sm ${bg}`}>
+                                  {!highlight && (
+                                    <Icons.Close
+                                      extraClasses={`bg-zinc-50 mx-auto h-6 w-6 shadow-md border border-red-900 text-zinc-800 rounded-md m-1 hover:scale-110 cursor-pointer transition-all duration-75`}
+                                      onClick={(e) => {
+                                        deleteSize({ productPos: i, size: ii, _id: item_i._id }, e);
+                                      }}
+                                    />
+                                  )}
                                 </td>
                               </tr>
                             );
@@ -241,6 +350,7 @@ export default function ProductsSetter() {
                           <tr className={``}>
                             {create[i] ? (
                               <>
+                                {/* SHOW */}
                                 <td className={`py-2 w-10 text-center rounded-l-sm bg-zinc-50 `}>
                                   <input
                                     className={``}
@@ -252,8 +362,9 @@ export default function ProductsSetter() {
                                     }}
                                   />
                                 </td>
+
                                 <td colSpan={4} className={`text-right rounded-l-sm bg-zinc-50`}>
-                                  <div className={`flex mt-1`}>
+                                  <div className={`flex justify-start mt-1`}>
                                     <input
                                       type={'number'}
                                       className={`border rounded-md w-16 font-extralight mx-1`}
@@ -262,7 +373,7 @@ export default function ProductsSetter() {
                                           return { ...s, [i]: { ...s[i], a: e.target.value } };
                                         });
                                       }}
-                                      placeholder={'ширина'}
+                                      placeholder={'ширина*'}
                                     />
                                     <input
                                       type={'number'}
@@ -272,7 +383,7 @@ export default function ProductsSetter() {
                                           return { ...s, [i]: { ...s[i], b: e.target.value } };
                                         });
                                       }}
-                                      placeholder={'длина'}
+                                      placeholder={'длина*'}
                                     />
                                     <input
                                       type={'number'}
@@ -282,10 +393,12 @@ export default function ProductsSetter() {
                                           return { ...s, [i]: { ...s[i], h: e.target.value } };
                                         });
                                       }}
-                                      placeholder={'высота'}
+                                      placeholder={'высота*'}
                                     />
+                                  </div>
+                                  <div className={`flex justify-start`}>
                                     <select
-                                      className={`border rounded-md w-32 font-extralight mx-1 cursor-pointer`}
+                                      className={`border rounded-md w-32 font-extralight mx-1 cursor-pointer my-1`}
                                       onChange={(e) => {
                                         setNewSize((s) => {
                                           return { ...s, [i]: { ...s[i], connectionTypes: e.target.value } };
@@ -295,18 +408,17 @@ export default function ProductsSetter() {
                                       <option>прямая</option>
                                       <option>шип-паз</option>
                                     </select>
+                                    <input
+                                      type={'number'}
+                                      className={`border rounded-md w-16 font-extralight mx-1 my-1`}
+                                      onChange={(e) => {
+                                        setNewSize((s) => {
+                                          return { ...s, [i]: { ...s[i], price: e.target.value } };
+                                        });
+                                      }}
+                                      placeholder={'цена'}
+                                    />
                                   </div>
-
-                                  <input
-                                    type={'number'}
-                                    className={`border rounded-md w-16 font-extralight mx-1 my-1`}
-                                    onChange={(e) => {
-                                      setNewSize((s) => {
-                                        return { ...s, [i]: { ...s[i], price: e.target.value } };
-                                      });
-                                    }}
-                                    placeholder={'цена'}
-                                  />
                                 </td>
                                 <td>
                                   <div className={`flex`}>
