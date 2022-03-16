@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icons } from '../';
+import { Icons } from '../..';
 
 export default function ProductsSetter() {
   const cities = [
@@ -33,20 +33,14 @@ export default function ProductsSetter() {
   };
 
   const save = async (input) => {
-    console.log('🚀 ~ file: ProductsSetter.js ~ line 36 ~ save ~ input', input);
     let _t = [];
     if (input) {
       _t = input;
     } else {
       _t = newData;
     }
-    console.log('🚀 ~ file: ProductsSetter.js ~ line 21 ~ ProductsSetter ~ newSize', _t);
     await fetch(`api/prices`, {
       method: 'POST',
-      // headers: {
-      //   Accept: 'application/json, text/plain, */*',
-      //   'Content-Type': 'application/json',
-      // },
       body: JSON.stringify(_t),
     })
       .then((res) => res.json())
@@ -113,10 +107,24 @@ export default function ProductsSetter() {
         return { ...item };
       })
     );
-
-    console.log('🚀 ~ file: ProductsSetter.js ~ line 113 ~ addNewSizes ~ _data', _data[productPos]);
     setNewData(_data);
     save(_data);
+  };
+
+  const deleteSize = (a, e) => {
+    const _data = JSON.parse(JSON.stringify(newData));
+    const _product = _data[a.productPos];
+    _product.sizes.splice(a.size, 1)
+    console.log("🚀 ~ file: ProductsSetter.js ~ line 118 ~ deleteSize ~ _product.sizes", _product.sizes)
+    _product.prices = Object.fromEntries(
+      Object.entries(_product.prices).map((item) => {
+        item[1].splice(a.size, 1)
+        return { ...item };
+      })
+    );
+    setNewData(_data);
+    save(_data);
+    console.log('🚀 ~ file:', a);
   };
 
   React.useEffect(() => {
@@ -179,7 +187,7 @@ export default function ProductsSetter() {
                                 <td className={`w-10 text-center rounded-l-sm bg-zinc-200`}>
                                   <input
                                     type={'checkbox'}
-                                    checked={newData[i]?.sizes[ii].show || false}
+                                    checked={newData[i]?.sizes[ii]?.show || false}
                                     onChange={(e) =>
                                       handleDataChange(
                                         { type: 'showSize', productPos: i, size: ii, value: e.target.value },
@@ -213,10 +221,13 @@ export default function ProductsSetter() {
                                     }
                                   />
                                 </td>
+                                {/* DELETE */}
                                 <td className={`rounded-r-sm bg-zinc-200`}>
                                   <Icons.Close
                                     extraClasses={`bg-zinc-50 mx-auto h-6 w-6 shadow-md border border-red-900 text-zinc-800 rounded-md m-1 hover:scale-110 cursor-pointer transition-all duration-75`}
-                                    
+                                    onClick={(e) => {
+                                      deleteSize({ productPos: i, size: ii }, e);
+                                    }}
                                   />
                                 </td>
                               </tr>
