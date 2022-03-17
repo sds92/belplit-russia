@@ -20,6 +20,8 @@ export default function Product(props) {
     displayName,
     desc: { consists, options, advantages, functions, installation, description, tech },
   } = props.product;
+  console.log("🚀 ~ file: Product.js ~ line 11 ~ Product ~ products", products[id].sizes)
+
   const [index, setIndex] = React.useState(0);
   const [modalOpen, setModalOpen] = React.useState(false);
   const [modalData, setModalData] = React.useState({

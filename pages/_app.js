@@ -13,7 +13,6 @@ import '../styles/tailwind.css';
 
 import pages from '../data/pages.json';
 
-
 function MyApp({ Component, pageProps }) {
   const [w, setW] = React.useState(1400);
   const router = useRouter();
