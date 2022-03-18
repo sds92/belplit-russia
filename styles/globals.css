@@ -198,7 +198,7 @@ input {
   transition: all 0.3s ease-in-out;
 }
 html {
-  font-family: 'Oswald';
+  /* font-family: 'Oswald'; */
   scroll-behavior: smooth;
 }
 

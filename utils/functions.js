@@ -118,7 +118,7 @@ export const v2 = (input) => {
         return true
       }
     });
-  };0
+  }; 0
 
   return input.map((item) => {
     let count = null;
@@ -145,3 +145,27 @@ export const v2 = (input) => {
     };
   });
 };
+
+function v3(input) {
+  console.log('🚀 ~ file: ProductList.js ~ line 1112 ~ v3 ~ input', input[0]);
+  return input.map((item) => ({
+    id: item.id,
+    info: { slug: item.name, position: item.position, displayName: item.displayName, title: item.title },
+    options: item.sizes.map((item_i, ii) => {
+      return {
+        ...item_i,
+        prices: Object.entries(item.prices).map((item_ii) => ({
+          city: item_ii[0] === 'сrimea' ? 'crimea' : item_ii[0],
+          value: item_ii[1][ii],
+        })),
+        coef: parseFloat((((item_i.a / 1000) * item_i.b) / 1000).toFixed(4)),
+        connectonType: item.connectionTypes[ii],
+        density: parseInt(item.density.replace(' кг/м³', '')),
+      };
+    }),
+    desc: Object.entries(item.desc).map((item_iii) => ({
+      title: item_iii[0],
+      value: item_iii[1],
+    })),
+  }));
+}

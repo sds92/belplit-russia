@@ -9,7 +9,7 @@ export default withIronSessionApiRoute(async (req, res) => {
   }
 
   if (req.method === 'POST') {
-    fs.writeFile(`data/products2.json`, req.body, (err) => {
+    fs.writeFile(`data/products3.json`, req.body, (err) => {
       if (err) throw err;
       res.json({ status: 'ok' });
       console.log('The file has been saved!');
@@ -17,7 +17,7 @@ export default withIronSessionApiRoute(async (req, res) => {
   }
   if (req.method === 'GET') {
     let products = [];
-    fs.readFile('data/products2.json', 'utf8', (err, data) => {
+    fs.readFile('data/products3.json', 'utf8', (err, data) => {
       if (err) throw err;
       products = JSON.parse(data);
       res.json(JSON.stringify(products));

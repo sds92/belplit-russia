@@ -1,9 +1,20 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 
 const fontFamily = defaultTheme.fontFamily;
-fontFamily['sans'] = [
+fontFamily['oswald'] = [
   'Oswald',
-
+  // <-- you may provide more font fallbacks here
+];
+fontFamily['roboto'] = [
+  'Roboto',
+  // <-- you may provide more font fallbacks here
+];
+fontFamily['fira'] = [
+  'Fira Sans',
+  // <-- you may provide more font fallbacks here
+];
+fontFamily['rc'] = [
+  'Roboto Condensed',
   // <-- you may provide more font fallbacks here
 ];
 module.exports = {
