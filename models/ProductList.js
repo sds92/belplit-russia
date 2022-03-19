@@ -11,7 +11,7 @@ class ProductList {
           h: null,
           show: false,
           coef: null,
-          connectonType: '',
+          connectionType: '',
           density: null,
           prices: config.cities.map((item) => ({ city: item, value: null })),
         },

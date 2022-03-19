@@ -35,6 +35,6 @@
 //   })(window,document,'script','dataLayer',${app.api.gtm});
 // <!-- End Google Tag Manager -->
 
-  GTM-PNMWMTQ
+GTM-PNMWMTQ
 
 GTM-NP9FQ74

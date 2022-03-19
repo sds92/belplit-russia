@@ -1,15 +1,19 @@
-import { Header, ProductsSetter } from '../components/complicated/Admin';
+import { Header, Products } from '../components/complicated/Admin';
 import { withIronSessionSsr } from 'iron-session/next';
 import { sessionOptions } from 'lib/session';
+// redux
+import { Provider } from 'react-redux';
+import { store } from 'redux/store';
 
 function Admin({ user }) {
-
   return (
     <>
       <Header />
       {user?.isLoggedIn && (
         <>
-          <ProductsSetter />
+          <Provider store={store}>
+            <Products />
+          </Provider>
         </>
       )}
     </>
