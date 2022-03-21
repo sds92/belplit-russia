@@ -23,8 +23,7 @@ export default function Calculator(props) {
         _t = i;
       }
     });
-    setState((s) => ({ ...s, size: 0, mark: parseInt(_t) }))
-
+    setState((s) => ({ ...s, size: 0, mark: parseInt(_t) }));
   };
   React.useEffect(() => {
     if (modalData.status === 'success') {
@@ -49,8 +48,7 @@ export default function Calculator(props) {
   const markSelect = products.map((item, index) => {
     return { title: item.title, value: item.id, _name: item.name };
   });
-  const sizeSelect = products[state.mark]// .find((item) => item.id.toString() === state.mark.toString())
-  .sizes
+  const sizeSelect = products[state.mark].sizes // .find((item) => item.id.toString() === state.mark.toString())
     .map((item, i) => ({
       title: item.a + '*' + item.b + '*' + item.h + ' [мм] ' + products[productPosition].connectionTypes[i],
 
@@ -73,21 +71,16 @@ export default function Calculator(props) {
 
   // площадь одного листа в м2
   const s = () => (a * b).toFixed(2);
-  console.log("🚀 ~ file: Calculator.js ~ line 76 ~ Calculator ~ s", s())
+
   // количество листов
   const am = () => state.amount / s();
-  console.log("🚀 ~ file: Calculator.js ~ line 79 ~ Calculator ~ am", am())
+
   // объем
   const v = () => Math.ceil(am()) * s() * h;
-  console.log("🚀 ~ file: Calculator.js ~ line 82 ~ Calculator ~ v", v())
+
   // вес
   const m = density * v();
-  console.log("🚀 ~ file: Calculator.js ~ line 85 ~ Calculator ~ m", m)
 
-  React.useEffect(() => {
-    // console.log("🚀 ~ file: Calculator.js ~ line 68 ~ React.useEffect ~ sizeSelect", sizeSelect)
-    // sizeSelect
-  }, [sizeSelect]);
   return (
     <>
       <div className={`rounded-md p-4 flex zero:flex-col md:flex-row w-full`}>
@@ -100,7 +93,7 @@ export default function Calculator(props) {
               id={`MARK`}
               items={markSelect}
               onChange={
-                handleMarkSelect                // (e) => setState((s) => ({ ...s, size: 0, mark: parseInt(e.target.value) }))
+                handleMarkSelect // (e) => setState((s) => ({ ...s, size: 0, mark: parseInt(e.target.value) }))
               }
             ></Select>
           </div>

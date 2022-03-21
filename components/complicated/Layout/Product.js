@@ -3,8 +3,7 @@ import React from 'react';
 
 // etc
 import { ProductComponent, PopUp, Modal, ModalItems, FeedBack as FeedBackForm, Calculator, Icons } from '..';
-import { Text, Select, Devider } from '../../lib';
-import styles from './styles.module.scss';
+import { Text, Select } from '../../lib';
 
 export default function Product(props) {
   const { w, products } = props;
@@ -20,7 +19,6 @@ export default function Product(props) {
     displayName,
     desc: { consists, options, advantages, functions, installation, description, tech },
   } = props.product;
-  console.log("🚀 ~ file: Product.js ~ line 11 ~ Product ~ products", products[id].sizes)
 
   const [index, setIndex] = React.useState(0);
   const [modalOpen, setModalOpen] = React.useState(false);
@@ -38,7 +36,6 @@ export default function Product(props) {
       value: i,
     };
   });
-  // console.log("🚀 ~ file: Product.js ~ line 39 ~ selectSizes ~ selectSizes", selectSizes, title)
 
   const [radioValue, setRadioValue] = React.useState(0);
   const [region, setRegion] = React.useState(0);
