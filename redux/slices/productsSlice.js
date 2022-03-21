@@ -2,17 +2,37 @@ import { createSlice } from '@reduxjs/toolkit';
 import ProductList from 'models/ProductList';
 
 const initialState = {
+  productList: new ProductList({
+    cities: [
+      ['Москва', 'square'],
+      ['СПБ', 'spb'],
+      ['Казань', 'kazan'],
+      ['Краснодар', 'krasnodar'],
+      ['Ростов', 'rostov'],
+      ['Волгоград', 'volvograd'],
+      ['Астрахань', 'astrahan'],
+      ['Крым', 'crimea'],
+    ],
+  }),
   productsInit: [],
   products: [],
-  changes: [],
+  save: false,
+  toDelete: [],
+  createdOptions: [],
 };
 
 export const productsSlice = createSlice({
   name: 'products',
   initialState,
   reducers: {
-    update: (state, action) => {
+    updateStatus: (state, action) => {
+      state.save = action.payload;
+    },
+    updateProducts: (state, action) => {
       state.products = action.payload;
+    },
+    updateProductsInit: (state, action) => {
+      state.productsInit = action.payload;
     },
     importInitProducts: (state, action) => {
       state.productsInit = action.payload;
@@ -20,45 +40,103 @@ export const productsSlice = createSlice({
     },
     setOption: (state, action) => {
       const { product_id, option_position, option_name, option_value } = action.payload;
-      state.products.find((item) => item.id === product_id).options[option_position][option_name] =
-        option_value;
+      const _products = JSON.parse(JSON.stringify(state.products));
+      const _product = _products.find((item) => item.id === product_id);
+      _product.options[option_position][option_name] = option_value;
 
-      // state.changes.push()
+      const product_position = null;
+      _products.find((item, i) => {
+        if (item.id === parseInt(product_id)) {
+          product_position = i;
+        }
+      });
+      state.products.splice(product_position, 1, _product);
+      state.save = true;
     },
     addOption: (state, action) => {
-      const {product_id, a, b, h, show, coef, connectionType, density, prices} = action.payload
-      state.products
-        .find((item) => item.id === product_id)
-        .options.push({
-          a: a,
-          b: b,
-          h: h,
-          show: show,
-          coef: coef,
-          connectionType: connectionType,
-          density: density,
-          prices: config.cities.map((item) => ({ city: item, value: null })),
-        });
+      const { product_id, a, b, h, show, connectionType, density } = action.payload;
+      const _products = JSON.parse(JSON.stringify(state.products));
+      const _product = _products[product_id];
+      const product_position = null;
+      _products.find((item, i) => {
+        if (item.id === parseInt(product_id)) {
+          product_position = i;
+        }
+      });
+      _product.options.push({
+        a: parseInt(a),
+        b: parseInt(b),
+        h: parseInt(h),
+        show: show || false,
+        coef: ((parseInt(a) / 1000) * parseInt(b)) / 1000,
+        connectionType: connectionType || ' - ',
+        density: parseInt(density) || null,
+        prices: state.productList.cities.map((item) => ({ city: item[1], value: null })),
+      });
+      state.products.splice(product_position, 1, _product);
+      state.save = true;
+    },
+    setSave: (state, action) => {
+      state.save = action.payload;
     },
     setPrices: (state, action) => {
-      const { product_id, option_position, option_city, option_value } = action.payload;
-      state.products
-        .find((item) => item.id === product_id)
-        .options[option_position].prices.find((item) => item.city === option_city).value = option_value;
+      state.products = action.payload;
+      state.save = true;
     },
-    deleteOption: (state, action) => {
+    preDeleteOption: (state, action) => {
       const { product_id, option_position } = action.payload;
-      state.products.find((item) => item.id === product_id).options.splice(option_position, 1);
+      state.toDelete.push({ product_id, option_position });
+      state.save = true;
+    },
+    setCreated: (state, action) => {
+      const { product_id, option_position } = action.payload;
+      state.createdOptions.push({ product_id, option_position });
+      state.save = true;
+    },
+    deleteOptions: (state, action) => {
+      state.products = action.payload;
+    },
+    clearToDelete: (state, action) => {
+      state.toDelete = action.payload;
+    },
+    clearCreated: (state, action) => {
+      state.createdOptions = action.payload;
     },
   },
 });
 
-export const { update, setOption, setPrices, deleteOption, addOption } = productsSlice.actions;
+export const {
+  setCreated,
+  updateStatus,
+  updateProducts,
+  updateProductsInit,
+  setOption,
+  setPrices,
+  preDeleteOption,
+  addOption,
+  importInitProducts,
+  deleteOptions,
+  clearToDelete,
+  clearCreated,
+  setSave
+} = productsSlice.actions;
 
+export const selectCreated = (state) => {
+  return state.products.createdOptions;
+};
+export const selectPreDelete = (state) => {
+  return state.products.toDelete;
+};
+export const selectProductList = (state) => {
+  return state.products.productList;
+};
 export const selectProductsInit = (state) => {
   return state.products.productsInit;
 };
 export const selectProducts = (state) => {
   return state.products.products;
+};
+export const selectStatus = (state) => {
+  return state.products.save;
 };
 export default productsSlice.reducer;

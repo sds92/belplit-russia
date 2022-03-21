@@ -3,10 +3,9 @@ import { Specs } from './';
 import { Icons } from '../../..';
 
 export default function ProductLine(props) {
-  const { product, children, productList } = props;
+  const { product, children, productList, handleSettingsOpenState, settings } = props;
   const [state, setState] = React.useState({
     open: {
-      settings: false,
       specs: true,
     },
   });
@@ -17,10 +16,10 @@ export default function ProductLine(props) {
           <div className={`flex justify-start items-center`}>
             <Icons.Settings
               extraClasses={`${
-                state.open.settings ? `bg-sky-900 bg-opacity-90 border text-white` : `bg-zinc-50`
+                settings ? `bg-sky-900 bg-opacity-90 border text-white` : `bg-zinc-50`
               }  mx-2 my-2 h-6 w-6 shadow-md text-zinc-800 rounded-md hover:scale-110 cursor-pointer transition-all duration-300`}
               onClick={() => {
-                setState((s) => ({ ...s, open: { ...s.open, settings: !state.open.settings } }));
+                handleSettingsOpenState()
               }}
             />
             <Icons.ChevronDown
@@ -33,7 +32,7 @@ export default function ProductLine(props) {
                 setState((s) => ({ ...s, open: { ...s.open, specs: !state.open.specs } }));
               }}
             />
-            <p className={`ml-1 text-xl cursor-default`}>{product.info.title}</p>
+            <p className={`ml-1 text-xl cursor-default`}>{product.info?.title}</p>
           </div>
         </div>
       
