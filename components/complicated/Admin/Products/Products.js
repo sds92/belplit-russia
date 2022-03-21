@@ -23,6 +23,7 @@ const config = {
 };
 export default function ProductsSetter() {
   const dispatch = useDispatch();
+  const  productsUpd = useSelector(selectProducts)
   const productList = new ProductList(config);
   const descs = [
     ['Описание товара', 'description'],
@@ -35,7 +36,7 @@ export default function ProductsSetter() {
   ];
 
   const [products, setProducts] = React.useState([]);
-  const [productsUpd, setProductsUpd] = React.useState([]);
+  // const [productsUpd, setProductsUpd] = React.useState([]);
   const [updateStatus, setUpdateStatus] = React.useState(false);
 
   const [newData, setNewData] = React.useState([]);
@@ -61,7 +62,8 @@ export default function ProductsSetter() {
       .then((res) => {
         // console.log("🚀 ~ file: Products.js ~ line 58 ~ .then ~ res", res)
         setProducts(JSON.parse(JSON.stringify(res)));
-        setProductsUpd(JSON.parse(JSON.stringify(res)));
+        dispatch(update(JSON.parse(JSON.stringify(res))))
+        // setProductsUpd(JSON.parse(JSON.stringify(res)));
       })
       .catch((err) => console.log(err));
   };
@@ -388,7 +390,7 @@ export default function ProductsSetter() {
   function addProduct(a) {
     let _products = JSON.parse(JSON.stringify(productsUpd));
     productList.addItem(_products, a);
-    setProductsUpd(_products);
+    dispatch(update(_products))
   }
 
   React.useEffect(() => {
@@ -403,7 +405,7 @@ export default function ProductsSetter() {
   }, [newProduct.created]);
 
   React.useEffect(() => {
-    dispatch(update(productsUpd))
+    // dispatch(update(productsUpd))
     if (productsUpd.length !== products.length) {
       setUpdateStatus(true);
     }

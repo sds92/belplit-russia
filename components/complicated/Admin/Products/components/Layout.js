@@ -8,34 +8,33 @@ const Products = (props) => {
 
 const Specs = (props) => {
   const { productList } = props;
-  // console.log('🚀 ~ file: Layout.js ~ line 11 ~ Specs ~ productList', productList);
   return (
-    <table width={'100%'} className={`mx-auto text-sm`}>
-      <thead className={`bg-zinc-100 rounded-md border-x border-zinc-400`}>
-        <tr>
-          <td width={40} className={`text-center border-r`}>
+    <div width={'100%'} className={`text-sm`}>
+      <div className={`flex justify-start bg-zinc-100 border-x border-zinc-400 items-center`}>
+    
+          <div className={`w-8 border-r flex-none`}>
             <Icons.Visible fill={`#1b5374`} extraClasses={`mx-auto w-5 h-5`} />
-          </td>
-          <td width={100} className={`text-center font-bold text-xs border-r`}>
-            размер[мм]
-          </td>
-          <td width={100} className={`text-center font-bold text-xs border-r`}>
+          </div>
+          <div className={`w-32 h-5 pt-0.5 text-center font-bold text-xs border-r flex-none`}>
+            размеры[мм]
+          </div>
+          <div className={`w-20 text-center font-bold text-xs border-r flex-none`}>
             тип кромки
-          </td>
+          </div>
 
          
         {productList.cities.map((city, i) => {
           return (
-            <td width={50} key={`sdfjksd${i}`} className={`font-bold text-xs text-center ${i !== productList.cities.length - 1 ? `border-r` : ''}`}>
+            <div key={`sdfjksd${i}`} className={`font-bold w-32 text-xs flex-none text-center ${i !== productList.cities.length - 1 ? `border-r` : ''}`}>
               {city[0]}
-            </td>
+            </div>
           );
         })}
-        </tr>
+       
         
-      </thead>
-      <tbody>{props.children && props.children}</tbody>
-    </table>
+      </div>
+      <div>{props.children && props.children}</div>
+    </div>
   );
 };
 
