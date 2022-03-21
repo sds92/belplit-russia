@@ -67,9 +67,7 @@ export default function Calculator(props) {
   // Показатели
   const h = products[state.mark].sizes[state.size].h / 1000;
   const a = products[state.mark].sizes[state.size].a / 1000;
-  console.log("🚀 ~ file: Calculator.js ~ line 70 ~ Calculator ~ a", a)
   const b = products[state.mark].sizes[state.size].b / 1000;
-  console.log("🚀 ~ file: Calculator.js ~ line 72 ~ Calculator ~ b", b)
   const price = products[state.mark].prices[ab[region][1]][state.size];
   const density = products[state.mark].density.replace('кг/м³', '');
 
@@ -156,7 +154,7 @@ export default function Calculator(props) {
           <div className={`w-full font-bold text-4xl py-2 border-b`}>Результат</div>
           <div className={`w-full`}>стоимость</div>
           <div className={`w-full font-bold text-5xl`}>
-            {price * Math.ceil(am()) * s()}
+            {Math.ceil(price * am() * s())}
             <span className={`text-lg`}> руб.</span>
           </div>
           <div className={`flex flex-wrap gap-6 mt-4`}>

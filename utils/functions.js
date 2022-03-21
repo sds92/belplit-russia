@@ -109,9 +109,7 @@ export const v1 = (inputArr) => {
 
 export const v2 = (input) => {
   const setPrices = (input_i, count) => {
-    console.log('🚀 ~ file', input_i);
     return input_i.filter((item_ii, iii) => {
-      console.log('🚀 ~ == count', iii !== count);
       if (iii === count) {
         return false
       } else {
@@ -147,7 +145,6 @@ export const v2 = (input) => {
 };
 
 function v3(input) {
-  console.log('🚀 ~ file: ProductList.js ~ line 1112 ~ v3 ~ input', input[0]);
   return input.map((item) => ({
     id: item.id,
     info: { slug: item.name, position: item.position, displayName: item.displayName, title: item.title },
