@@ -27,7 +27,7 @@ class ProductList {
       connectionType: '',
       density: null,
       prices: config.cities.map((item) => ({ city: item, value: null })),
-    }
+    };
   }
 
   getNewId(products) {
@@ -52,7 +52,31 @@ class ProductList {
   }
 
   modifyOptions(productList, input) {
-    this.findById(input.product_id).options[input.option_position][input.option_name] = input.option_value
+    this.findById(input.product_id).options[input.option_position][input.option_name] = input.option_value;
+  }
+
+  setPrices(productList, { product_id, option_position, option_city, option_value }) {
+    const _products = JSON.parse(JSON.stringify(productList));
+    const _product = _products[product_id];
+    let product_position = null;
+    let price_position = null;
+    _products.find((item, i) => {
+      if (item.id === parseInt(product_id)) {
+        product_position = i;
+      }
+    });
+    _product.options[option_position].prices.find((item, i) => {
+      if (item.city === option_city) {
+        price_position = i;
+        return true
+      }
+    });
+    _product.options[option_position].prices.splice(price_position, 1, {
+      city: option_city,
+      value: option_value,
+    });
+    _products.splice(product_position, 1, _product);
+    return _products
   }
 
   deleteItem() {}

@@ -18,6 +18,7 @@ import {
   setCreated,
   selectCreated,
   selectStatus,
+  setSave
 } from 'redux/slices/productsSlice';
 
 export default function Specs(props) {
@@ -31,46 +32,18 @@ export default function Specs(props) {
 
   const { product } = props;
   const [state, setState] = React.useState({
-    prices: {},
     create: false,
     options: {},
     focus: {},
     newOption: {},
     tip: {},
   });
-  // console.log('🚀 state', state);
-  // console.log('🚀', product);
-
   function handlePrices(input) {
+    dispatch(setSave(true))
+  
     const { product_id, option_position, option_city, option_value } = input;
-    setState((s) => ({
-      ...s,
-      prices: {
-        ...s.prices,
-        [product_id]: [option_position, option_city, option_value],
-      },
-    }));
-    console.log("🚀 ~ file: Specs.js ~ line 46 ~ handlePrices ~ input", state)
-    const _products = JSON.parse(JSON.stringify(products));
-    const _product = _products[product_id];
-    const product_position = null;
-    const price_position = null;
-    _products.find((item, i) => {
-      if (item.id === parseInt(product_id)) {
-        product_position = i;
-      }
-    });
-    _product.options[option_position].prices.find((item, i) => {
-      if (item.city === option_city) {
-        price_position = i;
-      }
-    });
-
-    _product.options[option_position].prices.splice(price_position, 1, {
-      city: option_city,
-      value: option_value,
-    });
-    _products.splice(product_position, 1, _product);
+    let _products = JSON.parse(JSON.stringify(products));
+    _products = productList.setPrices(_products, input)
     dispatch(setPrices(_products));
   }
 
@@ -95,17 +68,17 @@ export default function Specs(props) {
               ? 'bg-red-200'
               : highlight === 'gold'
               ? 'bg-yellow-500 bg-opacity-40'
-              : 'bg-zinc-200';
+              : i % 2 != 0 ? 'bg-zinc-400 bg-opacity-40': '';
           return (
             <div
               key={`sdjkfhs${i}`}
-              className={`w-full border-x border-zinc-400 font-light flex items-center justify-start `}
+              className={`w-full border-x border-zinc-500 font-light flex items-center justify-start `}
             >
               <div
                 className={`flex-none flex items-center justify-center h-8 w-8 rounded-l-sm border-r border-zinc-100 ${bg}`}
               >
                 <div
-                  className={`mx-auto w-5 h-5 rounded-sm border border-sky-900 hover:scale-105 transition-all cursor-pointer`}
+                  className={`mx-auto w-5 h-5 bg-white shadow-inner rounded-sm border border-sky-900 hover:scale-105 transition-all cursor-pointer`}
                   onClick={() => {
                     dispatch(
                       setOption({
@@ -136,13 +109,18 @@ export default function Specs(props) {
                     key={`sdfjksd${i}`}
                     className={`h-8 px-1 w-32 flex-none flex items-center justify-between border-r border-zinc-100 ${bg}`}
                   >
-                    {/* <div className={`flex justify-between item-center mx-2`}> */}
-                    <div>
+                    <div className={`font-light flex items-center`}>
+                      <span className={`font-semibold text-lg`}>
+
                       {
-                        initProducts[product.id].options[i]?.prices.find((item) => item.city === city[1])
-                          ?.value
+                        initProducts[product.id]?.options[i]?.prices.find((item) => item.city === city[1])
+                        ?.value || ' - '
                       }{' '}
+                      </span>
+                      <p className={`ml-0.5 -mb-0.5 italic text-xs`}>
+
                       руб.
+                      </p>
                     </div>
 
                     <input
@@ -155,16 +133,15 @@ export default function Specs(props) {
                           option_value: e.target.value,
                         })
                       }
-                      value={state.prices[product.id]?.[i] || 0}
+                      // value={!statusSave && ''}
                       placeholder={product.options[i]?.prices.find((item) => item.city === city[1])?.value}
                       onFocus={() => {
                         setState((s) => ({ ...s, focus: { [i]: city[1] } }));
                       }}
                       className={`w-12 border ${
-                        state.focus?.[i] === city[1] ? `border-opacity-95` : ``
-                      } border-sky-900 border-opacity-50 rounded-md`}
+                        state.focus?.[i] === city[1] ? `border-opacity-95` : `border-opacity-50 `
+                      } border-zinc-600 rounded-sm shadow-inner`}
                     />
-                    {/* </div> */}
                   </div>
                 );
               })}
@@ -186,9 +163,9 @@ export default function Specs(props) {
       {state.create ? (
         <>
           {/* SHOW */}
-          <div className={`flex items-center justify-start h-10 border-x border-zinc-400 `}>
+          <div className={`flex items-center justify-start h-10 border bg-white border-zinc-500 shadow-md px-0.5`}>
             <div
-              className={`w-5 h-5 mx-1.5 rounded-sm border border-sky-900 hover:scale-105 transition-all cursor-pointer`}
+              className={`w-5 bg-white shadow-inner h-5 mx-1 rounded-sm border border-sky-900 hover:scale-105 transition-all cursor-pointer`}
               onClick={() => {
                 setState((s) => ({ ...s, newOption: { ...s.newOption, show: !s.newOption?.show } }));
               }}
@@ -198,40 +175,40 @@ export default function Specs(props) {
 
             <input
               type={'number'}
-              className={`border rounded-md w-16 h-6 font-extralight mx-1 placeholder:text-sm`}
+              className={`shadow-inner border border-zinc-500 rounded-sm w-20 h-6 font-extralight mx-1 placeholder:text-sm placeholder:ml-1` }
               onChange={(e) => {
                 setState((s) => ({ ...s, newOption: { ...s.newOption, a: e.target.value } }));
               }}
-              placeholder={'ширина*'}
+              placeholder={' ширина*'}
             />
             <input
               type={'number'}
-              className={`border rounded-md w-16 h-6 font-extralight mx-1`}
+              className={`shadow-inner border border-zinc-500 rounded-sm w-20 h-6 font-extralight mx-1`}
               onChange={(e) => {
                 setState((s) => ({ ...s, newOption: { ...s.newOption, b: e.target.value } }));
               }}
-              placeholder={'длина*'}
+              placeholder={' длина*'}
             />
             <input
               type={'number'}
-              className={`border rounded-md w-16 h-6 font-extralight mx-1`}
+              className={`shadow-inner border border-zinc-500 rounded-sm w-20 h-6 font-extralight mx-1`}
               onChange={(e) => {
                 setState((s) => ({ ...s, newOption: { ...s.newOption, h: e.target.value } }));
               }}
-              placeholder={'высота*'}
+              placeholder={' высота*'}
             />
             <select
-              className={`border rounded-md w-32 h-6 font-extralight mx-1 cursor-pointer `}
+              className={`shadow-inner border border-zinc-500 rounded-sm w-32 h-6 font-extralight mx-1 cursor-pointer `}
               onChange={(e) => {
                 setState((s) => ({ ...s, newOption: { ...s.newOption, connectionType: e.target.value } }));
               }}
             >
-              <option>прямая</option>
+              <option defaultChecked>прямая</option>
               <option>шип-паз</option>
             </select>
             <input
               type={'number'}
-              className={`border rounded-md w-20 font-extralight mx-1`}
+              className={`shadow-inner border border-zinc-500 h-6 rounded-sm w-20 font-extralight mx-1`}
               onChange={(e) => {
                 setState((s) => ({ ...s, newOption: { ...s.newOption, h: e.target.value } }));
               }}
@@ -282,7 +259,7 @@ export default function Specs(props) {
           </div>
         </>
       ) : (
-        <div className={`rounded-sm shadow-md border-x border-b border-zinc-400`}>
+        <div className={`rounded-sm shadow-md border border-zinc-500`}>
           <div className={`flex justify-start items-center`}>
             <Icons.Plus
               extraClasses={`bg-zinc-50 m-2 h-6 w-6 shadow-md border border-belplit_2 text-zinc-800 rounded-md hover:scale-110 cursor-pointer transition-all duration-75`}

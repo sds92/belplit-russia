@@ -24,6 +24,7 @@ export default function ProductsSetter() {
   const products = useSelector(selectProducts);
   const productsInit = useSelector(selectProductsInit);
   const productList = useSelector(selectProductList);
+  console.log("🚀 ~ file: Products.js ~ line 27 ~ ProductsSetter ~ productList", productList)
   const preDeleted = useSelector(selectPreDelete);
 
   const statusSave = useSelector(selectStatus);
@@ -165,7 +166,7 @@ export default function ProductsSetter() {
   function addProduct(a) {
     let _products = JSON.parse(JSON.stringify(products));
     productList.addItem(_products, a);
-    dispatch(update(_products));
+    dispatch(updateProducts(_products));
   }
 
   function handleSave() {

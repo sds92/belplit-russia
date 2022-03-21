@@ -63,7 +63,7 @@ module.exports = {
       pattern: /(font)-(bold|semibold|light|medium)/,
     },
     {
-      pattern: /(bg|text|)-(red|green|blue|zinc|slate)-(100|200|300|400|500|600|700|800|900)/,
+      pattern: /(bg|text|)-(red|green|blue|zinc|slate|neutral)-(100|200|300|400|500|600|700|800|900)/,
     },
   ],
 
