@@ -163,7 +163,7 @@ export default function Product(props) {
           <Calculator
             initRegions={ab}
             initValues={{ mark: id }}
-            products={products}
+            products={[props.product]}
             onClick={(a) => {
               return openModal(a);
             }}
