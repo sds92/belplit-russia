@@ -18,7 +18,10 @@ const initialState = {
   products: [],
   save: false,
   toDelete: [],
+  toDeleteProducts: [],
   createdOptions: [],
+  pages: [],
+  pagesInit: [],
 };
 
 export const productsSlice = createSlice({
@@ -38,6 +41,7 @@ export const productsSlice = createSlice({
       state.productsInit = action.payload;
       state.products = action.payload;
     },
+
     setOption: (state, action) => {
       const { product_id, option_position, option_name, option_value } = action.payload;
       const _products = JSON.parse(JSON.stringify(state.products));
@@ -83,6 +87,10 @@ export const productsSlice = createSlice({
       state.products = action.payload;
       state.save = true;
     },
+    preDeleteProduct: (state, action) => {
+      state.toDeleteProducts.push(action.payload);
+      state.save = true;
+    },
     preDeleteOption: (state, action) => {
       const { product_id, option_position } = action.payload;
       state.toDelete.push({ product_id, option_position });
@@ -102,10 +110,18 @@ export const productsSlice = createSlice({
     clearCreated: (state, action) => {
       state.createdOptions = action.payload;
     },
+    importInitPages: (state, action) => {
+      state.pages = action.payload;
+      state.pagesInit = action.payload;
+    },
+    updatePages: (state, action) => {
+      state.pages = action.payload;
+    },
   },
 });
 
 export const {
+  preDeleteProduct,
   setCreated,
   updateStatus,
   updateProducts,
@@ -118,11 +134,22 @@ export const {
   deleteOptions,
   clearToDelete,
   clearCreated,
-  setSave
+  setSave,
+  importInitPages,
+  updatePages,
 } = productsSlice.actions;
 
+export const selectPages = (state) => {
+  return state.products.pages;
+};
+export const selectPagesInit = (state) => {
+  return state.products.pagesInit;
+};
 export const selectCreated = (state) => {
   return state.products.createdOptions;
+};
+export const selectPreDeleteProducts = (state) => {
+  return state.products.toDeleteProducts;
 };
 export const selectPreDelete = (state) => {
   return state.products.toDelete;

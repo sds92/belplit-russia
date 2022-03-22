@@ -4,7 +4,6 @@ import { Icons } from '../../..';
 
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  update,
   selectProducts,
   selectProductList,
   selectProductsInit,
@@ -130,9 +129,6 @@ export default function Specs(props) {
                     }}
                   />
                 )}
-                <div className={`ml-0.5 italic text-xs self-end pb-0.5`}>
-                  удалить
-                </div>
               </div>
             </div>
           );
@@ -179,25 +175,32 @@ export default function Specs(props) {
             <select
               className={`shadow-inner border border-zinc-500 rounded-sm w-32 h-6 font-extralight mx-1 cursor-pointer `}
               onChange={(e) => {
-                setState((s) => ({ ...s, newOption: { ...s.newOption, connectionType: e.target.value } }));
+                console.log("🚀 ~ file: Specs.js ~ line 179 ~ Specs ~ e", e)
+                setState((s) => ({ ...s, newOption: { ...s.newOption, connectionType: e.target.value || 'прямая' } }));
               }}
+              defaultValue={'прямая'}
             >
-              <option defaultChecked>прямая</option>
-              <option>шип-паз</option>
+              <option value={'прямая'}>прямая</option>
+              <option value={'шип-паз'}>шип-паз</option>
             </select>
             <input
               type={'number'}
-              className={`shadow-inner border border-zinc-500 h-6 rounded-sm w-20 font-extralight mx-1`}
+              className={`shadow-inner border border-zinc-500 h-6 rounded-sm w-22 font-extralight mx-1`}
               onChange={(e) => {
-                setState((s) => ({ ...s, newOption: { ...s.newOption, h: e.target.value } }));
+                setState((s) => ({ ...s, newOption: { ...s.newOption, density: e.target.value } }));
               }}
-              placeholder={'плотность'}
+              placeholder={'плотность*'}
             />
             <div className={`flex mx-1`}>
               <Icons.Ok
                 extraClasses={`bg-zinc-50 ml-auto h-6 w-6 shadow-md border border-belplit_2 text-zinc-800 rounded-md m-1 hover:scale-110 cursor-pointer transition-all duration-75`}
                 onClick={(e) => {
-                  if (state.newOption.a && state.newOption.b && state.newOption.h) {
+                  if (!state.newOption.connectionType) {
+                    setState((s) => ({ ...s, newOption: { ...s.newOption, connectionType: 'прямая' } }));
+                  }
+                  if (state.newOption.a && state.newOption.b && state.newOption.h && state.newOption.density) {
+                  console.log("🚀 ~ file: Specs.js ~ line 202 ~ Specs ~ state.newOption", state.newOption.connectionType)
+                    
                     dispatch(setCreated({ product_id: product.id, option_position: product.options.length }));
                     dispatch(
                       addOption({
@@ -206,7 +209,7 @@ export default function Specs(props) {
                         b: state.newOption.b,
                         h: state.newOption.h,
                         show: state.newOption.show,
-                        connectionType: state.newOption.connectionType,
+                        connectionType: !state.newOption.connectionType ? 'прямая' : state.newOption.connectionType,
                         density: state.newOption.density,
                       })
                     );
@@ -232,7 +235,7 @@ export default function Specs(props) {
               <div
                 className={`z-50 mx-1 rounded-sm bg-sky-800 bg-opacity-90 text-white text-xs font-light p-2 shadow-md`}
               >
-                <strong>Заполните обязательные поля: ширина, длина и высота</strong>
+                <strong>Заполните обязательные поля</strong>
               </div>
             )}
           </div>

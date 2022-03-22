@@ -1,22 +1,25 @@
 import React from 'react';
 import { Icons } from '../..';
 import { validateName } from 'utils/validations';
-import { Layout, AddProduct, Product, Navigation } from './components';
+import { Layout, AddProduct, Product, Navigation, Settings } from './components';
 
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  update,
+  selectPreDeleteProducts,
   selectStatus,
   selectProducts,
   selectProductList,
   selectProductsInit,
   importInitProducts,
-  deleteOptions,
   selectPreDelete,
   updateProducts,
   clearToDelete,
   clearCreated,
-  setSave
+  setSave,
+  preDeleteProduct,
+  selectPages,
+  selectPagesInit,
+  importInitPages,
 } from 'redux/slices/productsSlice';
 
 export default function Products() {
@@ -25,23 +28,28 @@ export default function Products() {
   const productsInit = useSelector(selectProductsInit);
   const productList = useSelector(selectProductList);
   const preDeleted = useSelector(selectPreDelete);
-
+  const preDeletedProducts = useSelector(selectPreDeleteProducts);
+  const pages = useSelector(selectPages);
+  const pagesInit = useSelector(selectPagesInit);
   const statusSave = useSelector(selectStatus);
-
-  const [newData, setNewData] = React.useState([]);
-
   const [settings, setSettings] = React.useState(null);
 
   const getProducts = () => {
     fetch('api/products')
       .then((res) => res.json())
       .then((res) => {
-        dispatch(importInitProducts(JSON.parse(JSON.stringify(res))));
+        dispatch(importInitProducts(res));
       })
       .catch((err) => console.log(err));
   };
-  const [pages, setPages] = React.useState([]);
-  const [newPages, setNewPages] = React.useState([]);
+  const getPages = () => {
+    fetch('api/pages')
+      .then((res) => res.json())
+      .then((res) => {
+        dispatch(importInitPages(res));
+      })
+      .catch((err) => console.log(err));
+  };
 
   const save = async (input) => {
     let _t = [];
@@ -68,7 +76,7 @@ export default function Products() {
     if (input) {
       _t = input;
     } else {
-      _t = newPages;
+      _t = pages;
     }
     await fetch(`api/pages`, {
       method: 'POST',
@@ -164,13 +172,21 @@ export default function Products() {
     let _products = JSON.parse(JSON.stringify(products));
     productList.addItem(_products, a);
     dispatch(updateProducts(_products));
+    dispatch(setSave(true));
+  }
+
+  function deleteProduct(id) {
+    let _products = [...products];
+    _products = productList.deleteItem(_products, id);
+    dispatch(preDeleteProduct(id));
+    dispatch(setSave(true));
   }
 
   function handleSave() {
-    if (preDeleted.length !== 0) {
+    if (preDeleted.length !== 0 || preDeletedProducts !== 0) {
       const pr_pos = null;
       const _products = JSON.parse(JSON.stringify(products));
-      Promise.all(
+      Promise.all([
         preDeleted.map((item) => {
           const _product = _products.find((item_i, i) => {
             if (item_i.id === item.product_id) {
@@ -180,8 +196,17 @@ export default function Products() {
           });
           _product.options.splice(item.option_position, 1);
           _products.splice(pr_pos, 1, _product);
-        })
-      ).then(() => {
+        }),
+        preDeletedProducts.map((item) => {
+          _products.find((item_i, i) => {
+            if (item_i.id === item) {
+              pr_pos = i;
+              return true;
+            }
+          });
+          _products.splice(pr_pos, 1);
+        }),
+      ]).then(() => {
         dispatch(clearToDelete([]));
         dispatch(clearCreated([]));
       });
@@ -190,220 +215,56 @@ export default function Products() {
       dispatch(clearCreated([]));
       save(products);
     }
-    dispatch(setSave(false))
+    dispatch(setSave(false));
   }
 
   React.useEffect(() => {
     getProducts();
-    // getPages();
+    getPages();
   }, []);
 
   return (
     <div className={`font-rc px-2 relative`}>
       <Navigation handleSave={handleSave} statusSave={statusSave} />
-
-     
-        <AddProduct addProduct={addProduct} />
-
-        {products.map((item, i) => {
-          return (
-            <div className={`mb-2 shadow-md`} key={`lfjkh${i}`}>
-              <Product
-                handleSettingsOpenState={() => {
-                  if (settings === i) {
-                    setSettings(null);
-                  } else {
-                    setSettings(i);
-                  }
-                }}
-                settings={settings === i}
-                product={item}
-              >
-                {/* SETTINGS */}
-                {settings === i ? (
-                  <div className={`flex flex-col border-x border-zinc-500 `}>
-                    <div className={`flex items-center justify-start bg-zinc-200 rounded-sm`}>
-                      <div className={`ml-2 font-light text-sm`}>удалить товар</div>
-                      <Icons.Close
-                        extraClasses={`bg-zinc-50 h-6 w-6 m-1 shadow-md border border-red-900 text-zinc-800 rounded-md hover:scale-110 cursor-pointer transition-all duration-75`}
-                        onClick={() => {
-                          // deleteProduct(item.id);
-                        }}
-                      />
-                    </div>
-                    <div className={`border p-4 bg-zinc-100`}>
-                      {/* META */}
-                      {/* <div className={`uppercase py-2 font-bold`}>Метатеги</div>
-                      {['TITLE', 'KEYWORDS', 'DESCRIPTION'].map((metaItem, mii) => {
-                        return (
-                          <React.Fragment key={`dfjg${mii}`}>
-                            <div className={`ml-2 flex`}>{metaItem}</div>
-                            <div
-                              className={`relative h-10 ml-2 flex flex-col border rounded-sm p-2 bg-white cursor-default ${
-                                settings[i]?.hover?.meta === metaItem.toLowerCase() ? `bg-blue-100` : ``
-                              }`}
-                              onMouseEnter={() => {
-                                setSettings((s) => ({
-                                  ...s,
-                                  [i]: { ...s[i], hover: { meta: metaItem.toLowerCase() } },
-                                }));
-                              }}
-                              onMouseLeave={() => {
-                                setSettings((s) => ({
-                                  ...s,
-                                  [i]: { ...s[i], hover: {} },
-                                }));
-                              }}
-                            >
-                              {settings[i].edit?.meta === metaItem.toLowerCase() ? (
-                                <React.Fragment>
-                                  <div className={`absolute w-full h-6 z-50 flex gap-2`}>
-                                    <input
-                                      className={`border rounded-sm `}
-                                      style={{ width: '70%' }}
-                                      value={settings[i]?.content?.meta?.[metaItem.toLowerCase()]}
-                                      onChange={(e) => {
-                                        setSettings((s) => ({
-                                          ...s,
-                                          [i]: {
-                                            ...s[i],
-                                            content: {
-                                              meta: {
-                                                [metaItem.toLowerCase()]: e.target.value,
-                                              },
-                                            },
-                                          },
-                                        }));
-                                      }}
-                                    />
-                                    <Icons.Ok
-                                      extraClasses={`bg-zinc-50 h-6 w-6 shadow-md border border-green-900 text-zinc-800 rounded-md hover:scale-110 cursor-pointer transition-all duration-75`}
-                                      onClick={() => {
-                                        handleMetaChange({
-                                          productId: item.id,
-                                          metaName: metaItem.toLowerCase(),
-                                        });
-                                        setSettings((s) => ({
-                                          ...s,
-                                          [i]: {
-                                            ...s[i],
-                                            edit: {},
-                                            hover: {},
-                                          },
-                                        }));
-                                      }}
-                                    />
-                                  </div>
-                                  <div className={`fixed top-0 left-0 w-full h-screen z-40`}></div>
-                                </React.Fragment>
-                              ) : metaItem.toLowerCase() === 'title' ? (
-                                pages.find((item) => item.content.product_id === i)?.head.title
-                              ) : (
-                                pages
-                                  .find((item) => item.content.product_id === i)
-                                  ?.head.meta.find((_metaItem) => _metaItem.name === metaItem.toLowerCase())
-                                  ?.content
-                              )}
-
-                              {settings[i].hover?.meta === metaItem.toLowerCase() && (
-                                <div className={`absolute flex justify-start items-center gap-2 inset-0`}>
-                                  <Icons.Edit
-                                    extraClasses={`ml-2 bg-green-900 bg-opacity-80 h-6 w-6 -m-0.5 shadow-md  border-green-900 text-zinc-100 rounded-md hover:scale-110 cursor-pointer transition-all duration-75`}
-                                    onClick={() => {
-                                      setSettings((s) => ({
-                                        ...s,
-                                        [i]: {
-                                          ...s[i],
-                                          edit: { meta: metaItem.toLowerCase() },
-                                          hover: {},
-                                          content: {
-                                            meta: {
-                                              [metaItem.toLowerCase()]:
-                                                metaItem.toLowerCase() === 'title'
-                                                  ? pages.find((item) => item.content.product_id === i)?.head
-                                                      .title
-                                                  : pages
-                                                      .find((item) => item.content.product_id === i)
-                                                      .head.meta.find(
-                                                        (_metaItem) =>
-                                                          _metaItem.name === metaItem.toLowerCase()
-                                                      ).content || '',
-                                            },
-                                          },
-                                        },
-                                      }));
-                                    }}
-                                  />
-                                </div>
-                              )}
-                            </div>
-                          </React.Fragment>
-                        );
-                      })}
-                      <div className={`uppercase py-2 font-bold`}>Характеристики товара</div>
-                      {(item.density || item.position) && (
-                        <div>
-                          <div className={`ml-2`}>Отдельные характеристики товара для сайтов Белтермо:</div>
-                          <div className={`ml-2 flex flex-col border rounded-sm p-2 bg-white`}>
-                            <div className={`flex gap-2`}>
-                              <div>Плотность:</div>
-                              <div>{item.density}</div>
-                              <input
-                                type={'number'}
-                                value={
-                                  parseInt(otherSpecs[item.id]?.density?.replace(' кг/м³', '')) ||
-                                  item.density.replace(' кг/м³', '')
-                                }
-                                className={`border rounded-md`}
-                                onChange={(e) => {
-                                  setOtherSpecs((s) => ({
-                                    [item.id]: {
-                                      ...s[item.id],
-                                      density: e.target.value + ' кг/м³',
-                                    },
-                                  }));
-                                }}
-                              />
-                            </div>
-                            <div className={`flex gap-2`}>
-                              <div>Позиция в каталоге:</div>
-                              <div>{item.position}</div>
-                              <input
-                                type={'number'}
-                                value={otherSpecs[item.id]?.position || item.position}
-                                className={`border rounded-md`}
-                                onChange={(e) => {
-                                  setOtherSpecs((s) => ({
-                                    [item.id]: {
-                                      ...s[item.id],
-                                      position: e.target.value,
-                                    },
-                                  }));
-                                }}
-                              />
-                            </div>
-                            <div
-                              className={`bg-belplit_2 px-2 py-1 mr-auto shadow-md text-zinc-100 rounded-md hover:bg-belplit_dark cursor-pointer transition-all duration-75`}
-                              onClick={(e) => {
-                                console.log(otherSpecs);
-                                handleOtherSpecs(item.id, e);
-                              }}
-                            >
-                              Сохранить
-                            </div>
-                          </div>
-                        </div>
-                      )} */}
-                    </div>
-                  </div>
-                ) : (
-                  <></>
-                )}
-              </Product>
-            </div>
-          );
-        })}
-      
+      <AddProduct addProduct={addProduct} />
+      {products.map((item, i) => {
+        let highlight = false;
+        preDeletedProducts.map((item_i) => {
+          if (item.id === item_i) {
+            highlight = 'red';
+          }
+        });
+        return (
+          <div className={`mb-2 shadow-md`} key={`lfjkh${i}`}>
+            <Product
+              handleSettingsOpenState={() => {
+                if (settings === i) {
+                  setSettings(null);
+                } else {
+                  setSettings(i);
+                }
+              }}
+              settings={settings === i}
+              product={item}
+              highlight={highlight}
+            >
+              {/* SETTINGS */}
+              {settings === i ? (
+                <Settings
+                  meta={pages.find((item) => item.content.product_id === item.productId).head}
+                  deleteProduct={deleteProduct}
+                  product={item}
+                  pages={pages}
+                  productList={productList}
+                  save={save}
+                />
+              ) : (
+                <></>
+              )}
+            </Product>
+          </div>
+        );
+      })}
     </div>
   );
 }

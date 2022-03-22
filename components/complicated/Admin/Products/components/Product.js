@@ -3,7 +3,8 @@ import { Specs } from '.';
 import { Icons } from '../../..';
 
 export default function Product(props) {
-  const { product, children, productList, handleSettingsOpenState, settings } = props;
+  const { product, children, productList, handleSettingsOpenState, settings, highlight } = props;
+
   const [state, setState] = React.useState({
     open: {
       specs: true,
@@ -12,7 +13,7 @@ export default function Product(props) {
   return (
     <React.Fragment>
 
-      <div className={`bg-zinc-500 border border-zinc-500 text-zinc-900 font-semibold rounded relative z-10 -m-1`}>
+      <div className={`border ${highlight === 'red' ? 'bg-red-500 ': 'bg-zinc-500 '} border-zinc-500 text-zinc-900 font-semibold rounded relative z-10 -m-1`}>
         <div className={`flex justify-start items-center `}>
           <Icons.Settings
             extraClasses={`${settings ? `bg-sky-900 bg-opacity-90 border text-white` : `bg-zinc-50`

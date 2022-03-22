@@ -16,11 +16,11 @@ export default withIronSessionApiRoute(async (req, res) => {
     });
   }
   if (req.method === 'GET') {
-    let products = [];
+    let pages = [];
     fs.readFile('data/pages.json', 'utf8', (err, data) => {
       if (err) throw err;
-      products = JSON.parse(data);
-      res.json(JSON.stringify(products));
+      pages = JSON.parse(data);
+      res.json(JSON.stringify(pages));
       console.log('The file has been sent!');
     });
   }

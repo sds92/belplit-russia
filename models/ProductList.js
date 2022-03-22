@@ -47,7 +47,37 @@ class ProductList {
     return productList.push(newItem);
   }
 
-  findById(productList, _id) {
+  setUserTitle(productList, input, id) {
+    let _products = JSON.parse(JSON.stringify(productList));
+    let _product = this.findById(_products, id);
+    _product.info.userTitle = input;
+    let product_position = null;
+    _products.find((item, i) => {
+      if (item.id === parseInt(id)) {
+        product_position = i;
+        return true;
+      }
+    });
+    _products.splice(product_position, 1, _product);
+    return _products;
+  }
+
+  addDesk(productList, input, id) {
+    let _products = JSON.parse(JSON.stringify(productList));
+    let _product = this.findById(_products, id);
+    _product.desc.push(input);
+    let product_position = null;
+    _products.find((item, i) => {
+      if (item.id === parseInt(id)) {
+        product_position = i;
+        return true;
+      }
+    });
+    _products.splice(product_position, 1, _product);
+    return _products;
+  }
+
+  findById(productList, product_id) {
     return productList.find((item) => item.id === product_id);
   }
 
@@ -56,19 +86,20 @@ class ProductList {
   }
 
   setPrices(productList, { product_id, option_position, option_city, option_value }) {
-    const _products = JSON.parse(JSON.stringify(productList));
-    const _product = _products[product_id];
+    let _products = JSON.parse(JSON.stringify(productList));
+    let _product = _products[product_id];
     let product_position = null;
     let price_position = null;
     _products.find((item, i) => {
       if (item.id === parseInt(product_id)) {
         product_position = i;
+        return true;
       }
     });
     _product.options[option_position].prices.find((item, i) => {
       if (item.city === option_city) {
         price_position = i;
-        return true
+        return true;
       }
     });
     _product.options[option_position].prices.splice(price_position, 1, {
@@ -76,10 +107,21 @@ class ProductList {
       value: option_value,
     });
     _products.splice(product_position, 1, _product);
-    return _products
+    return _products;
   }
 
-  deleteItem() {}
+  deleteItem(productList, id) {
+    let _products = [...productList];
+    let product_position = null;
+    _products.find((item, i) => {
+      if (item.id === parseInt(id)) {
+        product_position = i;
+        return true;
+      }
+    });
+    _products.splice(product_position, 1);
+    return _products;
+  }
 
   instance() {}
 }

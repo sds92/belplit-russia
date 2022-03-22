@@ -38,3 +38,173 @@
 GTM-PNMWMTQ
 
 GTM-NP9FQ74
+
+
+
+
+
+
+
+<div className={`border p-4 bg-zinc-100`}>
+                {/* META */}
+                <div className={`uppercase py-2 font-bold`}>Метатеги</div>
+                {['TITLE', 'KEYWORDS', 'DESCRIPTION'].map((metaItem, mii) => {
+                    return (
+                        <React.Fragment key={`dfjg${mii}`}>
+                            <div className={`ml-2 flex`}>{metaItem}</div>
+                            <div
+                                className={`relative h-10 ml-2 flex flex-col border rounded-sm p-2 bg-white cursor-default ${settings[i]?.hover?.meta === metaItem.toLowerCase() ? `bg-blue-100` : ``
+                                    }`}
+                                onMouseEnter={() => {
+                                    setSettings((s) => ({
+                                        ...s,
+                                        [i]: { ...s[i], hover: { meta: metaItem.toLowerCase() } },
+                                    }));
+                                }}
+                                onMouseLeave={() => {
+                                    setSettings((s) => ({
+                                        ...s,
+                                        [i]: { ...s[i], hover: {} },
+                                    }));
+                                }}
+                            >
+                                {settings[i].edit?.meta === metaItem.toLowerCase() ? (
+                                    <React.Fragment>
+                                        <div className={`absolute w-full h-6 z-50 flex gap-2`}>
+                                            <input
+                                                className={`border rounded-sm `}
+                                                style={{ width: '70%' }}
+                                                value={settings[i]?.content?.meta?.[metaItem.toLowerCase()]}
+                                                onChange={(e) => {
+                                                    setSettings((s) => ({
+                                                        ...s,
+                                                        [i]: {
+                                                            ...s[i],
+                                                            content: {
+                                                                meta: {
+                                                                    [metaItem.toLowerCase()]: e.target.value,
+                                                                },
+                                                            },
+                                                        },
+                                                    }));
+                                                }}
+                                            />
+                                            <Icons.Ok
+                                                extraClasses={`bg-zinc-50 h-6 w-6 shadow-md border border-green-900 text-zinc-800 rounded-md hover:scale-110 cursor-pointer transition-all duration-75`}
+                                                onClick={() => {
+                                                    handleMetaChange({
+                                                        productId: item.id,
+                                                        metaName: metaItem.toLowerCase(),
+                                                    });
+                                                    setSettings((s) => ({
+                                                        ...s,
+                                                        [i]: {
+                                                            ...s[i],
+                                                            edit: {},
+                                                            hover: {},
+                                                        },
+                                                    }));
+                                                }}
+                                            />
+                                        </div>
+                                        <div className={`fixed top-0 left-0 w-full h-screen z-40`}></div>
+                                    </React.Fragment>
+                                ) : metaItem.toLowerCase() === 'title' ? (
+                                    pages.find((item) => item.content.product_id === i)?.head.title
+                                ) : (
+                                    pages
+                                        .find((item) => item.content.product_id === i)
+                                        ?.head.meta.find((_metaItem) => _metaItem.name === metaItem.toLowerCase())
+                                        ?.content
+                                )}
+
+                                {settings[i].hover?.meta === metaItem.toLowerCase() && (
+                                    <div className={`absolute flex justify-start items-center gap-2 inset-0`}>
+                                        <Icons.Edit
+                                            extraClasses={`ml-2 bg-green-900 bg-opacity-80 h-6 w-6 -m-0.5 shadow-md  border-green-900 text-zinc-100 rounded-md hover:scale-110 cursor-pointer transition-all duration-75`}
+                                            onClick={() => {
+                                                setSettings((s) => ({
+                                                    ...s,
+                                                    [i]: {
+                                                        ...s[i],
+                                                        edit: { meta: metaItem.toLowerCase() },
+                                                        hover: {},
+                                                        content: {
+                                                            meta: {
+                                                                [metaItem.toLowerCase()]:
+                                                                    metaItem.toLowerCase() === 'title'
+                                                                        ? pages.find((item) => item.content.product_id === i)?.head
+                                                                            .title
+                                                                        : pages
+                                                                            .find((item) => item.content.product_id === i)
+                                                                            .head.meta.find(
+                                                                                (_metaItem) =>
+                                                                                    _metaItem.name === metaItem.toLowerCase()
+                                                                            ).content || '',
+                                                            },
+                                                        },
+                                                    },
+                                                }));
+                                            }}
+                                        />
+                                    </div>
+                                )}
+                            </div>
+                        </React.Fragment>
+                    );
+                })}
+                <div className={`uppercase py-2 font-bold`}>Характеристики товара</div>
+                {(item.density || item.position) && (
+                    <div>
+                        <div className={`ml-2`}>Отдельные характеристики товара для сайтов Белтермо:</div>
+                        <div className={`ml-2 flex flex-col border rounded-sm p-2 bg-white`}>
+                            <div className={`flex gap-2`}>
+                                <div>Плотность:</div>
+                                <div>{item.density}</div>
+                                <input
+                                    type={'number'}
+                                    value={
+                                        parseInt(otherSpecs[item.id]?.density?.replace(' кг/м³', '')) ||
+                                        item.density.replace(' кг/м³', '')
+                                    }
+                                    className={`border rounded-md`}
+                                    onChange={(e) => {
+                                        setOtherSpecs((s) => ({
+                                            [item.id]: {
+                                                ...s[item.id],
+                                                density: e.target.value + ' кг/м³',
+                                            },
+                                        }));
+                                    }}
+                                />
+                            </div>
+                            <div className={`flex gap-2`}>
+                                <div>Позиция в каталоге:</div>
+                                <div>{item.position}</div>
+                                <input
+                                    type={'number'}
+                                    value={otherSpecs[item.id]?.position || item.position}
+                                    className={`border rounded-md`}
+                                    onChange={(e) => {
+                                        setOtherSpecs((s) => ({
+                                            [item.id]: {
+                                                ...s[item.id],
+                                                position: e.target.value,
+                                            },
+                                        }));
+                                    }}
+                                />
+                            </div>
+                            <div
+                                className={`bg-belplit_2 px-2 py-1 mr-auto shadow-md text-zinc-100 rounded-md hover:bg-belplit_dark cursor-pointer transition-all duration-75`}
+                                onClick={(e) => {
+                                    console.log(otherSpecs);
+                                    handleOtherSpecs(item.id, e);
+                                }}
+                            >
+                                Сохранить
+                            </div>
+                        </div>
+                    </div>
+                )}
+            </div>
