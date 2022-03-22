@@ -64,17 +64,17 @@ export default function Specs(props) {
             highlight === 'red'
               ? 'bg-red-200'
               : highlight === 'gold'
-              ? 'bg-yellow-500 bg-opacity-40'
-              : i % 2 != 0
-              ? 'bg-sky-900 bg-opacity-30'
-              : 'bg-slate-200 bg-opacity-10';
+                ? 'bg-yellow-500 bg-opacity-40'
+                : i % 2 != 0
+                  ? 'bg-sky-900 bg-opacity-30'
+                  : 'bg-slate-200 bg-opacity-10';
           return (
             <div
               key={`sdjkfhs${i}`}
               className={`w-full border-x border-zinc-500 font-light flex items-center justify-start `}
             >
               <div
-                className={`flex-none flex items-center justify-center h-8 w-10 rounded-l-sm border-r border-zinc-100 ${bg}`}
+                className={`flex-none flex items-center justify-center h-8 w-10 rounded-l-sm border-r border-zinc-500 ${bg}`}
               >
                 <div
                   className={`mx-auto w-5 h-5 bg-white shadow-inner rounded-sm border border-sky-900 hover:scale-105 transition-all cursor-pointer`}
@@ -93,12 +93,12 @@ export default function Specs(props) {
                 </div>
               </div>
               <div
-                className={`w-32 h-8 flex-none flex items-center justify-center border-r border-zinc-100 ${bg}`}
+                className={`w-32 h-8 flex-none flex items-center justify-center border-r border-zinc-500 ${bg}`}
               >
                 {option.a}x{option.b}x{option.h}
               </div>
               <div
-                className={`w-20 h-8 align-middle flex-none flex items-center justify-center border-r border-zinc-100 ${bg}`}
+                className={`w-20 h-8 align-middle flex-none flex items-center justify-center border-r border-zinc-500 ${bg}`}
               >
                 {option.connectionType}
               </div>
@@ -106,7 +106,7 @@ export default function Specs(props) {
                 return (
                   <div
                     key={`sdfjksd${i}`}
-                    className={`h-8 px-1 w-32 flex-none flex items-center justify-between border-r border-zinc-100 ${bg}`}
+                    className={`h-8 px-1 w-32 flex-none flex items-center justify-between border-r border-zinc-500 ${bg}`}
                   >
                     <div className={`font-light flex items-center`}>
                       <span className={`font-semibold text-lg`}>
@@ -115,13 +115,13 @@ export default function Specs(props) {
                       </span>
                       <p className={`ml-0.5 -mb-0.5 italic text-xs`}>руб.</p>
                     </div>
-                    <InputPrice optionPosition={i} city={city[1]} onChange={handlePrices} product={product}/>
+                    <InputPrice optionPosition={i} city={city[1]} onChange={handlePrices} product={product} />
                   </div>
                 );
               })}
 
               {/* DELETE */}
-              <div className={`${bg}`}>
+              <div className={`px-2 flex items-center border-r ${bg}`}>
                 {!highlight && (
                   <Icons.Close
                     extraClasses={`bg-zinc-50 mx-auto h-6 w-6 shadow-md border border-red-900 text-zinc-800 rounded-md m-1 hover:scale-110 cursor-pointer transition-all duration-75`}
@@ -130,6 +130,9 @@ export default function Specs(props) {
                     }}
                   />
                 )}
+                <div className={`ml-0.5 italic text-xs self-end pb-0.5`}>
+                  удалить
+                </div>
               </div>
             </div>
           );

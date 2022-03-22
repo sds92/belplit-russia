@@ -19,7 +19,7 @@ import {
   setSave
 } from 'redux/slices/productsSlice';
 
-export default function ProductsSetter() {
+export default function Products() {
   const dispatch = useDispatch();
   const products = useSelector(selectProducts);
   const productsInit = useSelector(selectProductsInit);
@@ -199,15 +199,15 @@ export default function ProductsSetter() {
   }, []);
 
   return (
-    <div className={`font-rc px-2`}>
-      {statusSave && <Navigation handleSave={handleSave} />}
+    <div className={`font-rc px-2 relative`}>
+      <Navigation handleSave={handleSave} statusSave={statusSave} />
 
      
         <AddProduct addProduct={addProduct} />
 
         {products.map((item, i) => {
           return (
-            <div className={`mb-1 `} key={`lfjkh${i}`}>
+            <div className={`mb-2 shadow-md`} key={`lfjkh${i}`}>
               <Product
                 handleSettingsOpenState={() => {
                   if (settings === i) {
@@ -221,7 +221,7 @@ export default function ProductsSetter() {
               >
                 {/* SETTINGS */}
                 {settings === i ? (
-                  <div className={`flex flex-col border-x border-zinc-400 `}>
+                  <div className={`flex flex-col border-x border-zinc-500 `}>
                     <div className={`flex items-center justify-start bg-zinc-200 rounded-sm`}>
                       <div className={`ml-2 font-light text-sm`}>удалить товар</div>
                       <Icons.Close
