@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout } from './';
+import { Layout, InputPrice } from './';
 import { Icons } from '../../..';
 
 import { useSelector, useDispatch } from 'react-redux';
@@ -18,7 +18,7 @@ import {
   setCreated,
   selectCreated,
   selectStatus,
-  setSave
+  setSave,
 } from 'redux/slices/productsSlice';
 
 export default function Specs(props) {
@@ -39,11 +39,9 @@ export default function Specs(props) {
     tip: {},
   });
   function handlePrices(input) {
-    dispatch(setSave(true))
-  
-    const { product_id, option_position, option_city, option_value } = input;
+    dispatch(setSave(true));
     let _products = JSON.parse(JSON.stringify(products));
-    _products = productList.setPrices(_products, input)
+    _products = productList.setPrices(_products, input);
     dispatch(setPrices(_products));
   }
 
@@ -62,20 +60,21 @@ export default function Specs(props) {
               highlight = 'gold';
             }
           });
-          //   options[i]?.sizes.map(({ _id }) => _id)?.indexOf(item_i._id) === -1;
           const bg =
             highlight === 'red'
               ? 'bg-red-200'
               : highlight === 'gold'
               ? 'bg-yellow-500 bg-opacity-40'
-              : i % 2 != 0 ? 'bg-zinc-400 bg-opacity-40': '';
+              : i % 2 != 0
+              ? 'bg-sky-900 bg-opacity-30'
+              : 'bg-slate-200 bg-opacity-10';
           return (
             <div
               key={`sdjkfhs${i}`}
               className={`w-full border-x border-zinc-500 font-light flex items-center justify-start `}
             >
               <div
-                className={`flex-none flex items-center justify-center h-8 w-8 rounded-l-sm border-r border-zinc-100 ${bg}`}
+                className={`flex-none flex items-center justify-center h-8 w-10 rounded-l-sm border-r border-zinc-100 ${bg}`}
               >
                 <div
                   className={`mx-auto w-5 h-5 bg-white shadow-inner rounded-sm border border-sky-900 hover:scale-105 transition-all cursor-pointer`}
@@ -111,37 +110,12 @@ export default function Specs(props) {
                   >
                     <div className={`font-light flex items-center`}>
                       <span className={`font-semibold text-lg`}>
-
-                      {
-                        initProducts[product.id]?.options[i]?.prices.find((item) => item.city === city[1])
-                        ?.value || ' - '
-                      }{' '}
+                        {initProducts[product.id]?.options[i]?.prices.find((item) => item.city === city[1])
+                          ?.value || ' - '}{' '}
                       </span>
-                      <p className={`ml-0.5 -mb-0.5 italic text-xs`}>
-
-                      руб.
-                      </p>
+                      <p className={`ml-0.5 -mb-0.5 italic text-xs`}>руб.</p>
                     </div>
-
-                    <input
-                      type={'number'}
-                      onChange={(e) =>
-                        handlePrices({
-                          product_id: product.id,
-                          option_position: i,
-                          option_city: city[1],
-                          option_value: e.target.value,
-                        })
-                      }
-                      // value={!statusSave && ''}
-                      placeholder={product.options[i]?.prices.find((item) => item.city === city[1])?.value}
-                      onFocus={() => {
-                        setState((s) => ({ ...s, focus: { [i]: city[1] } }));
-                      }}
-                      className={`w-12 border ${
-                        state.focus?.[i] === city[1] ? `border-opacity-95` : `border-opacity-50 `
-                      } border-zinc-600 rounded-sm shadow-inner`}
-                    />
+                    <InputPrice optionPosition={i} city={city[1]} onChange={handlePrices} product={product}/>
                   </div>
                 );
               })}
@@ -163,7 +137,9 @@ export default function Specs(props) {
       {state.create ? (
         <>
           {/* SHOW */}
-          <div className={`flex items-center justify-start h-10 border bg-white border-zinc-500 shadow-md px-0.5`}>
+          <div
+            className={`flex items-center justify-start h-10 border bg-white border-zinc-500 shadow-md px-0.5`}
+          >
             <div
               className={`w-5 bg-white shadow-inner h-5 mx-1 rounded-sm border border-sky-900 hover:scale-105 transition-all cursor-pointer`}
               onClick={() => {
@@ -175,7 +151,7 @@ export default function Specs(props) {
 
             <input
               type={'number'}
-              className={`shadow-inner border border-zinc-500 rounded-sm w-20 h-6 font-extralight mx-1 placeholder:text-sm placeholder:ml-1` }
+              className={`shadow-inner border border-zinc-500 rounded-sm w-20 h-6 font-extralight mx-1 placeholder:text-sm placeholder:ml-1`}
               onChange={(e) => {
                 setState((s) => ({ ...s, newOption: { ...s.newOption, a: e.target.value } }));
               }}

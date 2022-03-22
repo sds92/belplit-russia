@@ -1,7 +1,7 @@
 import React from 'react';
 import { Icons } from '../..';
 import { validateName } from 'utils/validations';
-import { Layout, AddProduct, ProductLine, Navigation } from './components';
+import { Layout, AddProduct, Product, Navigation } from './components';
 
 import { useSelector, useDispatch } from 'react-redux';
 import {
@@ -24,7 +24,6 @@ export default function ProductsSetter() {
   const products = useSelector(selectProducts);
   const productsInit = useSelector(selectProductsInit);
   const productList = useSelector(selectProductList);
-  console.log("🚀 ~ file: Products.js ~ line 27 ~ ProductsSetter ~ productList", productList)
   const preDeleted = useSelector(selectPreDelete);
 
   const statusSave = useSelector(selectStatus);
@@ -51,7 +50,6 @@ export default function ProductsSetter() {
     } else {
       _t = products;
     }
-    console.log('🚀 ~ file: Products.js ~ line 57 ~ save ~ _t', _t);
 
     await fetch(`api/prices`, {
       method: 'POST',
@@ -59,7 +57,6 @@ export default function ProductsSetter() {
     })
       .then((res) => res.json())
       .then((res) => {
-        console.log('🚀 ~ file: Products.js ~ line 68 ~ .then ~ res', res);
         if (res.status === 'ok') {
           getProducts();
         }
@@ -201,23 +198,17 @@ export default function ProductsSetter() {
     // getPages();
   }, []);
 
-  // React.useEffect(() => {
-  //   if (newProduct.created) {
-  //     createProduct();
-  //   }
-  // }, [newProduct.created]);
-
   return (
-    <div className={`font-rc`}>
+    <div className={`font-rc px-2`}>
       {statusSave && <Navigation handleSave={handleSave} />}
 
-      <Layout.Products save={save}>
+     
         <AddProduct addProduct={addProduct} />
 
         {products.map((item, i) => {
           return (
-            <div className={`mb-1`} key={`lfjkh${i}`}>
-              <ProductLine
+            <div className={`mb-1 `} key={`lfjkh${i}`}>
+              <Product
                 handleSettingsOpenState={() => {
                   if (settings === i) {
                     setSettings(null);
@@ -408,11 +399,11 @@ export default function ProductsSetter() {
                 ) : (
                   <></>
                 )}
-              </ProductLine>
+              </Product>
             </div>
           );
         })}
-      </Layout.Products>
+      
     </div>
   );
 }

@@ -12,8 +12,8 @@ const Specs = (props) => {
   const productList = useSelector(selectProductList);
   return (
     <div width={'100%'} className={`text-sm`}>
-      <div className={`flex justify-start bg-zinc-100 border-x border-zinc-400 items-center`}>
-        <div className={`w-8 border-r flex-none`}>
+      <div className={`flex justify-start bg-zinc-100 border-x border-b border-zinc-500 items-center rounded-sm`}>
+        <div className={`w-10 border-r  flex-none`}>
           <Icons.Visible fill={`#1b5374`} extraClasses={`mx-auto w-5 h-5`} />
         </div>
         <div className={`w-32 h-5 pt-0.5 text-center font-bold text-xs border-r flex-none`}>размеры[мм]</div>

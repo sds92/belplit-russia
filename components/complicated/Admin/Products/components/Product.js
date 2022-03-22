@@ -1,8 +1,8 @@
 import React from 'react';
-import { Specs } from './';
+import { Specs } from '.';
 import { Icons } from '../../..';
 
-export default function ProductLine(props) {
+export default function Product(props) {
   const { product, children, productList, handleSettingsOpenState, settings } = props;
   const [state, setState] = React.useState({
     open: {
