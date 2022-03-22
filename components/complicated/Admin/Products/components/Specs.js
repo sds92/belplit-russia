@@ -13,9 +13,9 @@ import {
   deleteOptions,
   addOption,
   updateStatus,
-  selectPreDelete,
+  selectToDeleteOptions,
   setCreated,
-  selectCreated,
+  selectCreatedOptions,
   selectStatus,
   setSave,
 } from 'redux/slices/productsSlice';
@@ -25,8 +25,8 @@ export default function Specs(props) {
   const initProducts = useSelector(selectProductsInit);
   const products = useSelector(selectProducts);
   const productList = useSelector(selectProductList);
-  const preDeleted = useSelector(selectPreDelete);
-  const created = useSelector(selectCreated);
+  const toDeleteOptions = useSelector(selectToDeleteOptions);
+  const createdOptions = useSelector(selectCreatedOptions);
   const statusSave = useSelector(selectStatus);
 
   const { product } = props;
@@ -49,12 +49,12 @@ export default function Specs(props) {
       {product &&
         product.options.map((option, i) => {
           let highlight = false;
-          preDeleted.map((item) => {
+          toDeleteOptions.map((item) => {
             if (product.id === item.product_id && i === item.option_position) {
               highlight = 'red';
             }
           });
-          created.map((item) => {
+          createdOptions.map((item) => {
             if (product.id === item.product_id && i === item.option_position) {
               highlight = 'gold';
             }

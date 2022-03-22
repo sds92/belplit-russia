@@ -5,31 +5,37 @@ import { Layout, AddProduct, Product, Navigation, Settings } from './components'
 
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  selectPreDeleteProducts,
+  setToDeleteProducts,
+  selectToDeleteOptions,
+  selectToDeleteProducts,
+  clearToDeleteOptions,
+  clearToDeleteProducts,
+  clearCreatedOptions,
+  clearCreatedProducts,
+  setCreatedOptions,
+  setCreatedProducts,
   selectStatus,
   selectProducts,
   selectProductList,
   selectProductsInit,
   importInitProducts,
-  selectPreDelete,
   updateProducts,
-  clearToDelete,
-  clearCreated,
   setSave,
-  preDeleteProduct,
   selectPages,
   selectPagesInit,
   importInitPages,
+  updatePages,
 } from 'redux/slices/productsSlice';
 
 export default function Products() {
   const dispatch = useDispatch();
+  const productList = useSelector(selectProductList);
   const products = useSelector(selectProducts);
   const productsInit = useSelector(selectProductsInit);
-  const productList = useSelector(selectProductList);
-  const preDeleted = useSelector(selectPreDelete);
-  const preDeletedProducts = useSelector(selectPreDeleteProducts);
+  const toDeleteOptions = useSelector(selectToDeleteOptions);
+  const toDeleteProducts = useSelector(selectToDeleteProducts);
   const pages = useSelector(selectPages);
+  console.log('🚀 ~line 38 ', pages, products);
   const pagesInit = useSelector(selectPagesInit);
   const statusSave = useSelector(selectStatus);
   const [settings, setSettings] = React.useState(null);
@@ -51,7 +57,7 @@ export default function Products() {
       .catch((err) => console.log(err));
   };
 
-  const save = async (input) => {
+  const saveProducts = async (input) => {
     let _t = [];
     if (input) {
       _t = input;
@@ -91,129 +97,67 @@ export default function Products() {
       .catch((err) => console.log(err));
   };
 
-  // const handleSettingsChange = (a, e) => {
-  //   const _data = JSON.parse(JSON.stringify(newData));
-  //   const _product = _data[a.product];
-  //   _product.desc[a.descName].splice(
-  //     a.descItemPosition,
-  //     1,
-  //     settings[a.product].content[a.descNamePosition][a.descItemPosition]
-  //   );
-  //   setSettings((s) => ({
-  //     ...s,
-  //     [a.product]: {
-  //       ...s[a.product],
-  //       content: {
-  //         [a.descNamePosition]: { [a.descItemPosition]: '' },
-  //       },
-  //     },
-  //   }));
-  //   setNewData(_data);
-  //   save(_data);
-  // };
-  // const deskItemDelete = (a, e) => {
-  //   const _data = JSON.parse(JSON.stringify(newData));
-  //   const _product = _data[a.product];
-  //   _product.desc[a.descName].splice(a.descItemPosition, 1);
-  //   setNewData(_data);
-  //   save(_data);
-  // };
-  // const deskItemAdd = (a, e) => {
-  //   const _data = JSON.parse(JSON.stringify(newData));
-  //   const _product = _data[a.product];
-  //   _product.desc[a.descName].push(settings[a.product].content[a.descNamePosition][a.descItemPosition]);
-  //   setSettings((s) => ({
-  //     ...s,
-  //     [a.product]: {
-  //       ...s[a.product],
-  //       content: {
-  //         [a.descNamePosition]: { [a.descItemPosition]: '' },
-  //       },
-  //     },
-  //   }));
-  //   setNewData(_data);
-  //   save(_data);
-  // };
-
-  // const handleMetaChange = (a) => {
-  //   const _pages = JSON.parse(JSON.stringify(newPages));
-  //   const pagePosition = null;
-  //   _pages.find((item, i) => {
-  //     if (item.content.product_id === a.productId) {
-  //       pagePosition = i;
-  //     }
-  //   });
-  //   const _page = _pages[pagePosition];
-  //   switch (a.metaName) {
-  //     case 'title': {
-  //       _page.head.title = settings[a.productId].content.meta.title || _page.head.title;
-  //       break;
-  //     }
-  //     case 'keywords': {
-  //       _page.head.meta.find((item) => item.name === 'keywords').content =
-  //         settings[a.productId].content.meta[a.metaName] ||
-  //         _page.head.meta.find((item) => item.name === 'keywords').content;
-  //       break;
-  //     }
-  //     case 'description': {
-  //       _page.head.meta.find((item) => item.name === 'description').content =
-  //         settings[a.productId].content.meta[a.metaName] ||
-  //         _page.head.meta.find((item) => item.name === 'description').content;
-  //       break;
-  //     }
-  //     default:
-  //       break;
-  //   }
-  //   setNewPages(_pages);
-  //   savePages(_pages);
-  // };
-
   function addProduct(a) {
-    let _products = JSON.parse(JSON.stringify(products));
-    productList.addItem(_products, a);
-    dispatch(updateProducts(_products));
+    const [pr, pg, id] = productList.addItem(products, pages, a);
+    dispatch(updateProducts(pr));
+    dispatch(updatePages(pg));
+    dispatch(setCreatedProducts(id));
     dispatch(setSave(true));
   }
 
-  function deleteProduct(id) {
-    let _products = [...products];
-    _products = productList.deleteItem(_products, id);
-    dispatch(preDeleteProduct(id));
+  function deleteProduct(a) {
+    dispatch(setToDeleteProducts(a));
     dispatch(setSave(true));
   }
 
   function handleSave() {
-    if (preDeleted.length !== 0 || preDeletedProducts !== 0) {
-      const pr_pos = null;
-      const _products = JSON.parse(JSON.stringify(products));
+    if (toDeleteOptions.length !== 0 || toDeleteProducts.length !== 0) {
+      let _products = JSON.parse(JSON.stringify(products));
+      let _pages = JSON.parse(JSON.stringify(pages));
       Promise.all([
-        preDeleted.map((item) => {
-          const _product = _products.find((item_i, i) => {
+        toDeleteOptions.map((item) => {
+          let product_position = null;
+          let _product = _products.find((item_i, i) => {
             if (item_i.id === item.product_id) {
-              pr_pos = i;
+              product_position = i;
               return true;
             }
           });
           _product.options.splice(item.option_position, 1);
-          _products.splice(pr_pos, 1, _product);
+
+          _products.splice(product_position, 1, _product);
         }),
-        preDeletedProducts.map((item) => {
+        toDeleteProducts.map((item) => {
+          let product_position = null;
+          let page_position = null;
           _products.find((item_i, i) => {
             if (item_i.id === item) {
-              pr_pos = i;
+              product_position = i;
               return true;
             }
           });
-          _products.splice(pr_pos, 1);
+          _pages.find((item_ii, i) => {
+            if (item_ii.content.product_id === parseInt(item)) {
+              page_position = i;
+              return true;
+            }
+          });
+          _products.splice(product_position, 1);
+          _pages.splice(page_position, 1);
         }),
       ]).then(() => {
-        dispatch(clearToDelete([]));
-        dispatch(clearCreated([]));
+        dispatch(updateProducts(_products));
+        dispatch(updatePages(_pages));
+        dispatch(clearToDeleteOptions([]));
+        dispatch(clearToDeleteProducts([]));
       });
-      save(_products);
+      saveProducts(_products);
+      savePages(_pages);
     } else {
-      dispatch(clearCreated([]));
-      save(products);
+      dispatch(clearCreatedOptions([]));
+      dispatch(clearCreatedProducts([]));
+      saveProducts(products);
+      savePages(pages);
     }
     dispatch(setSave(false));
   }
@@ -229,11 +173,12 @@ export default function Products() {
       <AddProduct addProduct={addProduct} />
       {products.map((item, i) => {
         let highlight = false;
-        preDeletedProducts.map((item_i) => {
+        toDeleteProducts.map((item_i) => {
           if (item.id === item_i) {
             highlight = 'red';
           }
         });
+        // pages.find((page) => page.content.product_id === item.id)?.head
         return (
           <div className={`mb-2 shadow-md`} key={`lfjkh${i}`}>
             <Product
@@ -251,12 +196,13 @@ export default function Products() {
               {/* SETTINGS */}
               {settings === i ? (
                 <Settings
-                  meta={pages.find((item) => item.content.product_id === item.productId).head}
+                  meta={pages.find((page) => page.content.product_id === item.id)?.head}
                   deleteProduct={deleteProduct}
                   product={item}
                   pages={pages}
                   productList={productList}
-                  save={save}
+                  saveProducts={saveProducts}
+                  savePages={savePages}
                 />
               ) : (
                 <></>

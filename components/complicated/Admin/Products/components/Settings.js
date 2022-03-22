@@ -7,13 +7,12 @@ import { updatePages, selectProducts, updateProducts, setSave } from 'redux/slic
 export default function Settings(props) {
   const dispatch = useDispatch();
   const products = useSelector(selectProducts);
-  console.log('🚀 ~ file: Settings.js ~ line 10 ~ Settings ~ products', products);
   const { deleteProduct, productList, product, meta, pages, save } = props;
   const [values, setValues] = React.useState({
     meta: {
-      keywords: meta.meta.find(({ name }) => name === 'keywords').content,
-      description: meta.meta.find(({ name }) => name === 'description').content,
-      title: meta.title,
+      keywords: meta.meta.find(({ name }) => name === 'keywords').content || '',
+      description: meta.meta.find(({ name }) => name === 'description').content || '',
+      title: meta.title || '',
     },
     info: {
         userTitle: product.info?.userTitle || '' 

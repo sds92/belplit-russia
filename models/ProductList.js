@@ -1,5 +1,8 @@
+import { pagesInit } from './pages';
+
 class ProductList {
   constructor(config) {
+    this.pagesInit = pagesInit;
     this.cities = config.cities;
     this.product = {
       id: null,
@@ -28,10 +31,29 @@ class ProductList {
       density: null,
       prices: config.cities.map((item) => ({ city: item, value: null })),
     };
+    this.page = {
+      id: null,
+      path: '',
+      title: '',
+      content: { product_id: null },
+      head: {
+        title: '',
+        meta: [
+          {
+            name: 'keywords',
+            content: '',
+          },
+          {
+            name: 'description',
+            content: '',
+          },
+        ],
+      },
+    };
   }
 
-  getNewId(products) {
-    let ids = products.map((product) => product.id);
+  getNewId(arrOfObjs) {
+    let ids = arrOfObjs.map((obj) => obj.id);
     for (let index = 0; index < ids.length; index++) {
       if (ids[index + 1] - ids[index] !== 1) {
         return index + 1;
@@ -39,12 +61,43 @@ class ProductList {
     }
   }
 
-  addItem(productList, input) {
-    let newItem = JSON.parse(JSON.stringify(this.product));
-    newItem.id = this.getNewId(productList);
-    newItem.info.slug = input.slug;
-    newItem.info.title = input.title;
-    return productList.push(newItem);
+  addItem(products, pages, input) {
+    let _products = JSON.parse(JSON.stringify(products));
+    let _pages = JSON.parse(JSON.stringify(pages));
+    let newProduct = JSON.parse(JSON.stringify(this.product));
+    let newPage = JSON.parse(JSON.stringify(this.page));
+    newProduct.id = this.getNewId(_products);
+    newProduct.info.slug = input.slug;
+    newProduct.info.title = input.title;
+    newPage.id = this.getNewId(pages);
+    newPage.path = `/catalog/${input.slug}`;
+    newPage.title = `Белтермо ${input.slug}`;
+    newPage.content = { product_id: newProduct.id };
+    _products.push(newProduct);
+    _pages.push(newPage);
+    return [_products, _pages, newProduct.id];
+  }
+  deleteItem(products, pages, id) {
+    let _products = JSON.parse(JSON.stringify(products));
+    let _pages = JSON.parse(JSON.stringify(pages));
+    let product_position = null;
+    let page_position = null;
+    _products.find((item, i) => {
+      if (item.id === parseInt(id)) {
+        product_position = i;
+        return true;
+      }
+    });
+    _pages.find((item, i) => {
+      if (item.content.product_id === parseInt(id)) {
+        page_position = i;
+        return true;
+      }
+    });
+    _products.splice(product_position, 1);
+    _pages.splice(page_position, 1);
+    console.log("🚀 ~ file: ProductList.js ~ line 99 ~ ProductList ~ deleteItem ~ _pages", _pages, _pages.splice(page_position, 1))
+    return [_products, _pages, id];
   }
 
   setUserTitle(productList, input, id) {
@@ -110,18 +163,7 @@ class ProductList {
     return _products;
   }
 
-  deleteItem(productList, id) {
-    let _products = [...productList];
-    let product_position = null;
-    _products.find((item, i) => {
-      if (item.id === parseInt(id)) {
-        product_position = i;
-        return true;
-      }
-    });
-    _products.splice(product_position, 1);
-    return _products;
-  }
+  
 
   instance() {}
 }

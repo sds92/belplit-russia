@@ -17,9 +17,10 @@ const initialState = {
   productsInit: [],
   products: [],
   save: false,
-  toDelete: [],
+  toDeleteOptions: [],
   toDeleteProducts: [],
   createdOptions: [],
+  createdProducts: [],
   pages: [],
   pagesInit: [],
 };
@@ -87,28 +88,39 @@ export const productsSlice = createSlice({
       state.products = action.payload;
       state.save = true;
     },
-    preDeleteProduct: (state, action) => {
+    setToDeleteProducts: (state, action) => {
       state.toDeleteProducts.push(action.payload);
       state.save = true;
     },
-    preDeleteOption: (state, action) => {
+    setToDeleteOptions: (state, action) => {
       const { product_id, option_position } = action.payload;
-      state.toDelete.push({ product_id, option_position });
+      state.toDeleteOptions.push({ product_id, option_position });
       state.save = true;
     },
-    setCreated: (state, action) => {
+    setCreatedOptions: (state, action) => {
       const { product_id, option_position } = action.payload;
       state.createdOptions.push({ product_id, option_position });
       state.save = true;
     },
+    setCreatedProducts: (state, action) => {
+      const { product_id } = action.payload;
+      state.createdProducts.push( product_id );
+      state.save = true;
+    },
+    clearToDeleteOptions: (state, action) => {
+      state.toDeleteOptions = action.payload;
+    },
+    clearToDeleteProducts: (state, action) => {
+      state.toDeleteProducts = action.payload;
+    },
+    clearCreatedOptions: (state, action) => {
+      state.createdOptions = action.payload;
+    },
+    clearCreatedProducts: (state, action) => {
+      state.createdProducts = action.payload;
+    },
     deleteOptions: (state, action) => {
       state.products = action.payload;
-    },
-    clearToDelete: (state, action) => {
-      state.toDelete = action.payload;
-    },
-    clearCreated: (state, action) => {
-      state.createdOptions = action.payload;
     },
     importInitPages: (state, action) => {
       state.pages = action.payload;
@@ -121,19 +133,22 @@ export const productsSlice = createSlice({
 });
 
 export const {
-  preDeleteProduct,
-  setCreated,
+  setCreatedOptions,
+  setCreatedProducts,
+  setToDeleteOptions,
+  setToDeleteProducts,
+  clearToDeleteOptions,
+  clearToDeleteProducts,
+  clearCreatedOptions,
+  clearCreatedProducts,
+  setOption,
+  setPrices,
   updateStatus,
   updateProducts,
   updateProductsInit,
-  setOption,
-  setPrices,
-  preDeleteOption,
   addOption,
   importInitProducts,
   deleteOptions,
-  clearToDelete,
-  clearCreated,
   setSave,
   importInitPages,
   updatePages,
@@ -145,14 +160,17 @@ export const selectPages = (state) => {
 export const selectPagesInit = (state) => {
   return state.products.pagesInit;
 };
-export const selectCreated = (state) => {
+export const selectCreatedOptions = (state) => {
   return state.products.createdOptions;
 };
-export const selectPreDeleteProducts = (state) => {
+export const selectCreatedProducts = (state) => {
+  return state.products.createdProducts;
+};
+export const selectToDeleteProducts = (state) => {
   return state.products.toDeleteProducts;
 };
-export const selectPreDelete = (state) => {
-  return state.products.toDelete;
+export const selectToDeleteOptions = (state) => {
+  return state.products.toDeleteOptions;
 };
 export const selectProductList = (state) => {
   return state.products.productList;
