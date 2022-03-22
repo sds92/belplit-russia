@@ -10,6 +10,7 @@ export default function Catalog(props) {
 export async function getServerSideProps() {
 
   let products = v2(JSON.parse(fs.readFileSync('data/products2.json', 'utf8')));
+  console.log(products)
   return {
     props: {
       products: products,
