@@ -15,7 +15,7 @@ export default function InputPrice(props) {
         });
         setState((s) => ({ ...s, value: e.target.value }));
       }}
-      value={state}
+      value={state.value}
       placeholder={product.options[optionPosition]?.prices.find((item) => item.city === city)?.value}
       onFocus={() => {
         setState((s) => ({ ...s, focus: true }));

@@ -22,8 +22,8 @@ export default function AddProduct(props) {
   }
 
   return (
-    <tr>
-      <td colSpan={7} className={`rounded-sm border-t shadow-md`}>
+    <div>
+      <div className={``}>
         {!state.show ? (
           <div className={`flex justify-start items-center`}>
             <Icons.Plus
@@ -118,7 +118,7 @@ export default function AddProduct(props) {
             />
           </div>
         )}
-      </td>
-    </tr>
+      </div>
+    </div>
   );
 }
