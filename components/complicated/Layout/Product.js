@@ -119,7 +119,7 @@ export default function Product(props) {
                 <Select
                   defaultValue={region}
                   label={`Склады:`}
-                  items={cities.map((item, i) => ({ title: item[0], value: i }))}
+                  items={cities.map((item, i) => ({ title: item[0], _name: item[1], value: i }))}
                   id={'region'}
                   onChange={(e) => {
                     setRegion(e.target.value);
@@ -131,14 +131,14 @@ export default function Product(props) {
                 <p className={`text-gray-500 `}>плита:</p>
                 <p className={`font-bold text-xl`}>
                   {(
-                    product.options[option].prices.find((item, i) => item.city === cities[i][1]).value *
+                    product.options[option].prices.find((item, i) => item.city === cities[region][1])?.value *
                     product.options[option].coef
                   ).toFixed(2)}
                 </p>
                 <p className={`text-gray-500`}>руб. /</p>
                 <p className={`text-gray-500`}>кв.м:</p>
                 <p className={'font-bold text-xl text-red-600'}>
-                  {product.options[option].prices.find((item, i) => item.city === cities[i][1]).value}
+                  {product.options[option].prices.find((item, i) => item.city === cities[region][1])?.value}
                 </p>
                 <p className={`text-gray-500`}>руб.</p>
               </div>
