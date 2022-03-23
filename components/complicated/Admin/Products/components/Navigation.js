@@ -26,11 +26,11 @@ export default function Navigation(props) {
 
   return (
     <div
-      className={`fixed w-96 bg-white p-1 rounded-sm bg-opacity-95 border shadow-md border-zinc-100 bottom-3 flex items-center justify-start z-50`}
+      className={`fixed w-96 bg-white p-1 rounded-sm bg-opacity-95 border shadow-md border-zinc-100 bottom-3 flex items-center justify-start z-40`}
       style={{ left: '50%', marginLeft: '-12rem' }}
     >
       <div
-        className={`cursor-pointer z-50 shadow-md left-2 ${
+        className={`cursor-pointer z-40 shadow-md left-2 ${
           isChanged
             ? `bg-belplit_2 text-white hover:scale-105 transition-all duration-75`
             : `bg-zinc-200 border ${block ? 'text-red-800' : 'text-zinc-800'}`

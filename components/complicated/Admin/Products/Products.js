@@ -1,6 +1,5 @@
 import React from 'react';
 import { Icons } from '../..';
-import { validateName } from 'utils/validations';
 import { Layout, AddProduct, Product, Navigation, Settings } from './components';
 
 import { useSelector, useDispatch } from 'react-redux';
@@ -95,12 +94,31 @@ export default function Products() {
     dispatch(updateProducts(pr));
     dispatch(updatePages(pg));
     dispatch(setCreatedProducts(id));
-    dispatch(setIsChanged(true))
+    dispatch(setIsChanged(true));
   }
 
   function deleteProduct(id) {
-    dispatch(setToDeleteProducts(id));
-    dispatch(setIsChanged(true));
+    let _products = JSON.parse(JSON.stringify(products));
+    let _pages = JSON.parse(JSON.stringify(pages));
+    let product_position = null;
+    let page_position = null;
+    _products.find((item_i, i) => {
+      if (item_i.id === id) {
+        product_position = i;
+        return true;
+      }
+    });
+    _pages.find((item_ii, i) => {
+      if (item_ii.content.product_id === parseInt(id)) {
+        page_position = i;
+        return true;
+      }
+    });
+    _products.splice(product_position, 1);
+    _pages.splice(page_position, 1);
+    saveProducts(_products);
+    savePages(_pages);
+    dispatch(setIsChanged(false));
   }
 
   function handleSave() {
@@ -119,24 +137,6 @@ export default function Products() {
           _product.options.splice(item.option_position, 1);
 
           _products.splice(product_position, 1, _product);
-        }),
-        toDeleteProducts.map((item) => {
-          let product_position = null;
-          let page_position = null;
-          _products.find((item_i, i) => {
-            if (item_i.id === item) {
-              product_position = i;
-              return true;
-            }
-          });
-          _pages.find((item_ii, i) => {
-            if (item_ii.content.product_id === parseInt(item)) {
-              page_position = i;
-              return true;
-            }
-          });
-          _products.splice(product_position, 1);
-          _pages.splice(page_position, 1);
         }),
       ]).then(() => {
         dispatch(updateProducts(_products));
@@ -175,7 +175,7 @@ export default function Products() {
         return (
           <div className={`mb-2 shadow-md`} key={`lfjkh${i}`}>
             <Product
-              handleSettingsOpenState={() => {
+              handleSettingsOpenState={(a) => {
                 if (settings === i) {
                   setSettings(null);
                 } else {
@@ -185,12 +185,13 @@ export default function Products() {
               settings={settings === i}
               product={item}
               highlight={highlight}
+              deleteProduct={deleteProduct}
             >
               {/* SETTINGS */}
               {settings === i ? (
                 <Settings
                   meta={pages.find((page) => page.content.product_id === item.id)?.head}
-                  deleteProduct={deleteProduct}
+                  // deleteProduct={deleteProduct}
                   product={item}
                   pages={pages}
                   productList={productList}

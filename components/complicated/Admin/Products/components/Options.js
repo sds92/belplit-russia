@@ -18,7 +18,7 @@ import {
   setIsChanged,
 } from 'redux/slices/productsSlice';
 
-export default function Specs(props) {
+export default function Options(props) {
   const dispatch = useDispatch();
   const initProducts = useSelector(selectProductsInit);
   const products = useSelector(selectProducts);
