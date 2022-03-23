@@ -7,7 +7,7 @@ import { Text, Select } from '../../lib';
 
 export default function Product(props) {
   const { w, products, product } = props;
-  console.log('🚀 ~ file: Product.js ~ line 10 ~ Product ~ products', products);
+  // console.log('🚀 ~ file: Product.js ~ line 10 ~ Product ~ products', products);
   // const {
   //   id,
   //   title,
@@ -192,19 +192,23 @@ export default function Product(props) {
         </div>
       </div>
 
-      <div className={`max-w-7xl mx-auto text-5xl font-bold text-zinc-800 mt-10 pl-2`}>Калькулятор</div>
-      <div className={`w-full`}>
-        <div className={`mx-auto max-w-7xl`}>
-          <Calculator
-            initRegions={cities}
-            initValues={{ mark: product.info.id }}
-            products={[product]}
-            onClick={(a) => {
-              return openModal(a);
-            }}
-          />
-        </div>
-      </div>
+      {product.info.slug !== 'len' && (
+        <>
+          <div className={`max-w-7xl mx-auto text-5xl font-bold text-zinc-800 mt-10 pl-2`}>Калькулятор</div>
+          <div className={`w-full`}>
+            <div className={`mx-auto max-w-7xl`}>
+              <Calculator
+                initRegions={cities}
+                initValues={{ mark: product.info.id }}
+                products={[product]}
+                onClick={(a) => {
+                  return openModal(a);
+                }}
+              />
+            </div>
+          </div>
+        </>
+      )}
       {/* <div className={'bg-zinc-500 py-4'}>
         <Text className={`pl-1.5 uppercase font-bold text-belplit_2 text-5xl max-w-7xl text-left mx-auto`}>
           Информация
