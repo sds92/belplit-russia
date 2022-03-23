@@ -95,6 +95,7 @@ export default function Products() {
     dispatch(updateProducts(pr));
     dispatch(updatePages(pg));
     dispatch(setCreatedProducts(id));
+    dispatch(setIsChanged(true))
   }
 
   function deleteProduct(id) {
