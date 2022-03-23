@@ -96,7 +96,6 @@ class ProductList {
     });
     _products.splice(product_position, 1);
     _pages.splice(page_position, 1);
-    console.log("🚀 ~ file: ProductList.js ~ line 99 ~ ProductList ~ deleteItem ~ _pages", _pages, _pages.splice(page_position, 1))
     return [_products, _pages, id];
   }
 

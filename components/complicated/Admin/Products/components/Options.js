@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, InputPrice } from './';
+import { Layout, InputPrice } from '.';
 import { Icons } from '../../..';
 
 import { useSelector, useDispatch } from 'react-redux';
@@ -35,8 +35,9 @@ export default function Specs(props) {
     newOption: {},
     tip: {},
   });
+
   function handlePrices(input) {
-    dispatch(setSave(true));
+    dispatch(setIsChanged(true));
     let _products = JSON.parse(JSON.stringify(products));
     _products = productList.setPrices(_products, input);
     dispatch(setPrices(_products));
@@ -198,12 +199,11 @@ export default function Specs(props) {
                     setState((s) => ({ ...s, newOption: { ...s.newOption, connectionType: 'прямая' } }));
                   }
                   if (state.newOption.a && state.newOption.b && state.newOption.h && state.newOption.density) {
-                  console.log("🚀 ~ file: Specs.js ~ line 202 ~ Specs ~ state.newOption", state.newOption.connectionType)
                     
-                    dispatch(setCreated({ product_id: product.id, option_position: product.options.length }));
                     dispatch(
                       addOption({
                         product_id: product.id,
+                        option_position: product.options.length,
                         a: state.newOption.a,
                         b: state.newOption.b,
                         h: state.newOption.h,

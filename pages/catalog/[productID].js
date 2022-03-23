@@ -22,7 +22,6 @@ export async function getStaticProps({ params, ...props }) {
 
 export async function getStaticPaths() {
   let products = JSON.parse(fs.readFileSync('data/products3.json', 'utf8'));
-  // console.log("🚀 ~ file: [productID].js ~ line 25 ~ getStaticPaths ~ products", products)
   return {
     paths: products.map((product) => {
       const productID = product.info.slug;
@@ -32,6 +31,6 @@ export async function getStaticPaths() {
         },
       };
     }),
-    fallback: false,
+    fallback: true,
   };
 }

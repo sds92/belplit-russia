@@ -16,13 +16,13 @@ export default function Navigation(props) {
     }, 1000);
   }
 
-  React.useEffect(() => {
-    if (JSON.stringify(products) !== JSON.stringify(productsInit)) {
-     console.log("🚀 ~ file: Navigation.js ~ line 21 ~ React.useEffect ~ productsInit", productsInit)
-     console.log("🚀 ~ file: Navigation.js ~ line 21 ~ React.useEffect ~ products", products)
-     dispatch(setIsChanged(true))
-    }
-  }, [products]);
+  // React.useEffect(() => {
+  //   if (JSON.stringify(products) !== JSON.stringify(productsInit)) {
+  //    console.log("🚀 ~ file: Navigation.js ~ line 21 ~ React.useEffect ~ productsInit", productsInit)
+  //    console.log("🚀 ~ file: Navigation.js ~ line 21 ~ React.useEffect ~ products", products)
+  //    dispatch(setIsChanged(true))
+  //   }
+  // }, [products]);
 
   return (
     <div
@@ -39,8 +39,6 @@ export default function Navigation(props) {
       >
         сохранить
       </div>
-      <div className={`font-light uppercase`}>Страницы</div>
-      <div className={`font-light uppercase`}>Контакты</div>
     </div>
   );
 }

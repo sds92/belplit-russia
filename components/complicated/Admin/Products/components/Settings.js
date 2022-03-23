@@ -2,12 +2,12 @@ import React from 'react';
 import AddDesc from './AddDesc';
 import { Icons } from '../../..';
 import { useSelector, useDispatch } from 'react-redux';
-import { updatePages, selectProducts, updateProducts, setSave } from 'redux/slices/productsSlice';
+import { updatePages, selectProducts, updateProducts, setIsChanged } from 'redux/slices/productsSlice';
 
 export default function Settings(props) {
   const dispatch = useDispatch();
   const products = useSelector(selectProducts);
-  const { deleteProduct, productList, product, meta, pages, save } = props;
+  const { deleteProduct, productList, product, meta, pages, saveProducts, savePages } = props;
   const [values, setValues] = React.useState({
     meta: {
       keywords: meta.meta.find(({ name }) => name === 'keywords').content || '',
@@ -32,13 +32,15 @@ export default function Settings(props) {
   function addDesk(input) {
     let _products = productList.addDesk(products, input, product.id);
     dispatch(updateProducts(_products));
-    save(_products)
+    saveProducts(_products)
+    dispatch(setIsChanged(false))
   }
 
   function setUserTitle() {
     let _products = productList.setUserTitle(products, values.info.userTitle, product.id);
     dispatch(updateProducts(_products));
-    save(_products)
+    saveProducts(_products)
+    dispatch(setIsChanged(false))
   }
 
   function setMeta(input) {
@@ -69,8 +71,9 @@ export default function Settings(props) {
         break;
     }
     _pages.splice(pagePosition, 1, _page);
+    savePages(_pages);
     dispatch(updatePages(_pages));
-    setSave(true)
+    dispatch(setIsChanged(false))
   }
   return (
     <div className={`flex flex-col border-x border-zinc-500 `}>
