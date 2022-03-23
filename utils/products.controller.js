@@ -21,7 +21,7 @@ export const productsController = {
   },
   setDesc: (products, product_id, { title, value }) => {
     let product = productsController.getProductById(products, product_id);
-    if (product.desc.find((item) => item.title === title).value) {
+    if (product.desc.find((item) => item.title === title)) {
       product.desc.find((item) => item.title === title).value = value;
     } else {
       product.desc.push({ title, value });
