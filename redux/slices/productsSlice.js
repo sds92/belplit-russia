@@ -16,7 +16,7 @@ const initialState = {
   }),
   productsInit: [],
   products: [],
-  save: false,
+  isChanged: false,
   toDeleteOptions: [],
   toDeleteProducts: [],
   createdOptions: [],
@@ -29,8 +29,8 @@ export const productsSlice = createSlice({
   name: 'products',
   initialState,
   reducers: {
-    updateStatus: (state, action) => {
-      state.save = action.payload;
+    setIsChanged: (state, action) => {
+      state.isChanged = action.payload;
     },
     updateProducts: (state, action) => {
       state.products = action.payload;
@@ -80,9 +80,6 @@ export const productsSlice = createSlice({
       });
       state.products.splice(product_position, 1, _product);
       state.save = true;
-    },
-    setSave: (state, action) => {
-      state.save = action.payload;
     },
     setPrices: (state, action) => {
       state.products = action.payload;
@@ -143,7 +140,7 @@ export const {
   clearCreatedProducts,
   setOption,
   setPrices,
-  updateStatus,
+  setIsChanged,
   updateProducts,
   updateProductsInit,
   addOption,
@@ -181,7 +178,7 @@ export const selectProductsInit = (state) => {
 export const selectProducts = (state) => {
   return state.products.products;
 };
-export const selectStatus = (state) => {
-  return state.products.save;
+export const selectIsChanged = (state) => {
+  return state.products.isChanged;
 };
 export default productsSlice.reducer;
