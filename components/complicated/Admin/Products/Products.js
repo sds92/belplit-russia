@@ -12,32 +12,24 @@ import {
   clearToDeleteProducts,
   clearCreatedOptions,
   clearCreatedProducts,
-  setCreatedOptions,
   setCreatedProducts,
-  selectStatus,
   selectProducts,
   selectProductList,
-  selectProductsInit,
   importInitProducts,
   updateProducts,
-  setSave,
   selectPages,
-  selectPagesInit,
   importInitPages,
   updatePages,
+  setIsChanged,
 } from 'redux/slices/productsSlice';
 
 export default function Products() {
   const dispatch = useDispatch();
   const productList = useSelector(selectProductList);
   const products = useSelector(selectProducts);
-  const productsInit = useSelector(selectProductsInit);
   const toDeleteOptions = useSelector(selectToDeleteOptions);
   const toDeleteProducts = useSelector(selectToDeleteProducts);
   const pages = useSelector(selectPages);
-  console.log('🚀 ~line 38 ', pages, products);
-  const pagesInit = useSelector(selectPagesInit);
-  const statusSave = useSelector(selectStatus);
   const [settings, setSettings] = React.useState(null);
 
   const getProducts = () => {
@@ -84,6 +76,7 @@ export default function Products() {
     } else {
       _t = pages;
     }
+
     await fetch(`api/pages`, {
       method: 'POST',
       body: JSON.stringify(_t),
@@ -102,12 +95,11 @@ export default function Products() {
     dispatch(updateProducts(pr));
     dispatch(updatePages(pg));
     dispatch(setCreatedProducts(id));
-    dispatch(setSave(true));
   }
 
-  function deleteProduct(a) {
-    dispatch(setToDeleteProducts(a));
-    dispatch(setSave(true));
+  function deleteProduct(id) {
+    dispatch(setToDeleteProducts(id));
+    dispatch(setIsChanged(true));
   }
 
   function handleSave() {
@@ -159,7 +151,7 @@ export default function Products() {
       saveProducts(products);
       savePages(pages);
     }
-    dispatch(setSave(false));
+    dispatch(setIsChanged(false));
   }
 
   React.useEffect(() => {
@@ -169,7 +161,7 @@ export default function Products() {
 
   return (
     <div className={`font-rc px-2 relative`}>
-      <Navigation handleSave={handleSave} statusSave={statusSave} />
+      <Navigation handleSave={handleSave} />
       <AddProduct addProduct={addProduct} />
       {products.map((item, i) => {
         let highlight = false;

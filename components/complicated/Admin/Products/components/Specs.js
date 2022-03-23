@@ -9,15 +9,13 @@ import {
   selectProductsInit,
   setOption,
   setPrices,
-  preDeleteOption,
+  setToDeleteOptions,
   deleteOptions,
   addOption,
-  updateStatus,
   selectToDeleteOptions,
   setCreated,
   selectCreatedOptions,
-  selectStatus,
-  setSave,
+  setIsChanged,
 } from 'redux/slices/productsSlice';
 
 export default function Specs(props) {
@@ -27,8 +25,8 @@ export default function Specs(props) {
   const productList = useSelector(selectProductList);
   const toDeleteOptions = useSelector(selectToDeleteOptions);
   const createdOptions = useSelector(selectCreatedOptions);
-  const statusSave = useSelector(selectStatus);
-
+ 
+ 
   const { product } = props;
   const [state, setState] = React.useState({
     create: false,
@@ -125,7 +123,8 @@ export default function Specs(props) {
                   <Icons.Close
                     extraClasses={`bg-zinc-50 mx-auto h-6 w-6 shadow-md border border-red-900 text-zinc-800 rounded-md m-1 hover:scale-110 cursor-pointer transition-all duration-75`}
                     onClick={(e) => {
-                      dispatch(preDeleteOption({ product_id: product.id, option_position: i }));
+                      dispatch(setToDeleteOptions({ product_id: product.id, option_position: i }));
+                      dispatch(setIsChanged(true))
                     }}
                   />
                 )}
