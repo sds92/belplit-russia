@@ -56,6 +56,7 @@ export default function Product(props) {
     ['Астрахань', 'astrahan'],
     ['Крым', 'crimea'],
   ];
+  console.log("🚀) => title === 'main').value", product.desc.find(({ title }) => title === 'main').value)
 
   return (
     <>
@@ -155,9 +156,9 @@ export default function Product(props) {
           </div>
           <div className={`order-3 md:hidden px-4`}>
             {product.desc.find(({ title }) => title === 'main')?.value && (
-              <div className={`font-light p-2`}>
-                {product.desc.find(({ title }) => title === 'main')?.value}
-              </div>
+              <Text className={`font-light p-2`}>
+                {[product.desc.find(({ title }) => title === 'main')?.value]}
+              </Text>
             )}
           </div>
           <div className={`order-3 basis-1/3 zero:hidden md:block`}>
