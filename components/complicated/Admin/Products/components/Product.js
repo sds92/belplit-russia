@@ -1,5 +1,5 @@
 import React from 'react';
-import { Options } from '.';
+import { Options, InputSwitch } from '.';
 import { Icons } from '../../..';
 
 export default function Product(props) {
@@ -44,11 +44,8 @@ export default function Product(props) {
               setState((s) => ({ ...s, open: { ...s.open, options: !state.open.options } }));
             }}
           />
-          <div
-            className={`rounded-sm w-44 bg-zinc-50 border mx-0.5 my-1 pl-1 uppercase text-lg h-6 leading-snug`}
-          >
-            {product.info?.title}
-          </div>
+          <InputSwitch textClassName={`rounded-sm w-44 bg-zinc-50 border mx-0.5 uppercase text-lg h-6 leading-snug relative`} onSubmit={(a) => {}} initValue={product.info?.title} />
+          
           <Icons.Close
             extraClasses={`mx-0.5 text-red-700 bg-zinc-50 h-6 w-6 shadow-md text-zinc-800 rounded-sm hover:scale-110 cursor-pointer transition-all duration-75 active:bg-zinc-900`}
             onClick={() => {
