@@ -12,15 +12,14 @@ export default function Calculator(props) {
   const [region, setRegion] = React.useState(0);
   let productPosition = null;
   products.find((item, i) => {
-    if (item.info.id === (props.initValues?.mark !== 7 ? props.initValues?.mark || 0 : 0)) {
-      console.log("🚀 ~ file: Calculator.js ~ line 16 ~ products.find ~ item.info.id", item.info.id)
+    if (item.id === (props.initValues?.mark !== 7 ? props.initValues?.mark || 0 : 0)) {
       productPosition = i;
     }
   });
   const handleMarkSelect = (e) => {
     let _t = null;
     products.find((item, i) => {
-      if (item.info.id === parseInt(e.target.value)) {
+      if (item.id === parseInt(e.target.value)) {
         _t = i;
       }
     });
@@ -41,19 +40,19 @@ export default function Calculator(props) {
     setModalOpen(true);
   }
   const [state, setState] = React.useState({
-    mark: 0,
+    mark: products[productPosition].id,
     option: 0,
     size: 0,
     amount: 0,
   });
   const markSelect = products.map((item, index) => {
-    return { title: item.info.title, value: item.info.id, _name: item.info.slug };
+    return { title: item.info.title, value: item.id, _name: item.info.slug };
   });
-  const sizeSelect = products[state.mark].options // .find((item) => item.id.toString() === state.mark.toString())
+  const sizeSelect = products
+    .find((pr) => pr.id.toString() === state.mark.toString())
+    .options // .find((item) => item.id.toString() === state.mark.toString())
     .map((item, i) => ({
-      title: item.a + '*' + item.b + '*' + item.h + ' [мм] ' + products[state.mark].options[i].connectionType,
-
-      // products.find((item) => item.id.toString() === state.mark.toString()).connectionTypes[i],
+      title: item.a + '*' + item.b + '*' + item.h + ' [мм] ' + item.connectionType,
       value: i,
     }));
   // Regions
@@ -73,11 +72,11 @@ export default function Calculator(props) {
   //   return [cities[i], item[0], item[1]];
   // });
   // Показатели
-  const h = products[state.mark].options[state.option].h / 1000;
-  const a = products[state.mark].options[state.option].a / 1000;
-  const b = products[state.mark].options[state.option].b / 1000;
-  const price = products[state.mark].options[state.option].prices[region].value;
-  const density = products[state.mark].options[state.option].density;
+  const h = products.find((pr) => pr.id.toString() === state.mark.toString()).options[state.option].h / 1000;
+  const a = products.find((pr) => pr.id.toString() === state.mark.toString()).options[state.option].a / 1000;
+  const b = products.find((pr) => pr.id.toString() === state.mark.toString()).options[state.option].b / 1000;
+  const price = products.find((pr) => pr.id.toString() === state.mark.toString()).options[state.option].prices[region].value;
+  const density = products.find((pr) => pr.id.toString() === state.mark.toString()).options[state.option].density;
 
   // площадь одного листа в м2
   const s = () => (a * b).toFixed(2);

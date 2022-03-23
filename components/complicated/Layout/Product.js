@@ -7,20 +7,6 @@ import { Text, Select } from '../../lib';
 
 export default function Product(props) {
   const { w, products, product } = props;
-  // console.log('🚀 ~ file: Product.js ~ line 10 ~ Product ~ products', products);
-  // const {
-  //   id,
-  //   title,
-  //   name,
-  //   files,
-  //   sizes,
-  //   prices,
-  //   coef,
-  //   connectionTypes,
-  //   displayName,
-  //   desc: { consists, options, advantages, functions, installation, description, tech },
-  // } = props.product;
-
   const [option, setOption] = React.useState(0);
   const [modalOpen, setModalOpen] = React.useState(false);
   const [modalData, setModalData] = React.useState({
@@ -107,11 +93,11 @@ export default function Product(props) {
                 inset={w < 640}
                 title={<p className={`py-2 font-bold text-lg`}>Продукция:</p>}
                 listItems={products.map((item) => ({
-                  id: item.info.id,
+                  id: item.id,
                   name: item.info.slug,
                   title: item.info.displayName ? 'Белплит' + ' ' + item.info.displayName : item.info.title,
                 }))}
-                curProduct={props.product}
+                curProduct={product}
                 reset={() => setIndex(0)}
               />
             </div>
@@ -199,7 +185,7 @@ export default function Product(props) {
             <div className={`mx-auto max-w-7xl`}>
               <Calculator
                 initRegions={cities}
-                initValues={{ mark: product.info.id }}
+                initValues={{ mark: product.id }}
                 products={[product]}
                 onClick={(a) => {
                   return openModal(a);
