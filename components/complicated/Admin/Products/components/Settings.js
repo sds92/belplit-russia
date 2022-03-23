@@ -1,6 +1,7 @@
 import React from 'react';
 import AddDesc from './AddDesc';
 import { Icons } from '../../..';
+import { productsController } from 'utils/products.controller';
 import { useSelector, useDispatch } from 'react-redux';
 import { updatePages, selectProducts, updateProducts, setIsChanged } from 'redux/slices/productsSlice';
 
@@ -15,11 +16,11 @@ export default function Settings(props) {
       title: meta.title || '',
     },
     info: {
-        userTitle: product.info?.userTitle || '' 
+      userTitle: product.info?.userTitle || '',
     },
     desc: {
-        main: product.desc.find(item => item.title === 'main')?.value || ''
-    }
+      main: product.desc.find((item) => item.title === 'main')?.value || '',
+    },
   });
   const [state, setState] = React.useState({
     hover: {},
@@ -29,18 +30,19 @@ export default function Settings(props) {
     },
   });
 
-  function addDesk(input) {
-    let _products = productList.addDesk(products, input, product.id);
+  function addDesk() {
+    let _products = productsController.copy(products);
+    _products = productsController.setDesc(_products, product.id, { title: 'main', value: values.desc.main })
     dispatch(updateProducts(_products));
-    saveProducts(_products)
-    dispatch(setIsChanged(false))
+    saveProducts(_products);
+    dispatch(setIsChanged(false));
   }
 
   function setUserTitle() {
     let _products = productList.setUserTitle(products, values.info.userTitle, product.id);
     dispatch(updateProducts(_products));
-    saveProducts(_products)
-    dispatch(setIsChanged(false))
+    saveProducts(_products);
+    dispatch(setIsChanged(false));
   }
 
   function setMeta(input) {
@@ -73,7 +75,7 @@ export default function Settings(props) {
     _pages.splice(pagePosition, 1, _page);
     savePages(_pages);
     dispatch(updatePages(_pages));
-    dispatch(setIsChanged(false))
+    dispatch(setIsChanged(false));
   }
   return (
     <div className={`flex flex-col border-x border-zinc-500 `}>
@@ -182,7 +184,7 @@ export default function Settings(props) {
           ></input>
           <div
             onClick={() => {
-              setUserTitle()
+              setUserTitle();
             }}
             className={`text-center p-1 bg-belplit_2 rounded-sm text-white cursor-pointer`}
           >
@@ -202,7 +204,7 @@ export default function Settings(props) {
           ></textarea>
           <div
             onClick={() => {
-              addDesk({ title: 'main', value: values?.desc?.main })
+              addDesk({ title: 'main', value: values.desc.main });
             }}
             className={`text-center p-1 bg-belplit_2 rounded-sm text-white cursor-pointer`}
           >

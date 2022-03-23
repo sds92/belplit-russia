@@ -85,6 +85,7 @@ export default function Specs(props) {
                         option_value: !option.show,
                       })
                     );
+                    dispatch(setIsChanged(true))
                   }}
                 >
                   {option.show && <Icons.Ok />}

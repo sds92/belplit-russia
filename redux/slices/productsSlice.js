@@ -70,29 +70,6 @@ export const productsSlice = createSlice({
       state.products.splice(product_position, 1, _product);
       state.save = true;
     },
-    // addOption: (state, action) => {
-    //   const { product_id, a, b, h, show, connectionType, density } = action.payload;
-    //   const _products = JSON.parse(JSON.stringify(state.products));
-    //   const _product = _products[product_id];
-    //   const product_position = null;
-    //   _products.find((item, i) => {
-    //     if (item.id === parseInt(product_id)) {
-    //       product_position = i;
-    //     }
-    //   });
-    //   _product.options.push({
-    //     a: parseInt(a),
-    //     b: parseInt(b),
-    //     h: parseInt(h),
-    //     show: show || false,
-    //     coef: ((parseInt(a) / 1000) * parseInt(b)) / 1000,
-    //     connectionType: connectionType || ' - ',
-    //     density: parseInt(density) || null,
-    //     prices: state.productList.cities.map((item) => ({ city: item[1], value: null })),
-    //   });
-    //   state.products.splice(product_position, 1, _product);
-    //   state.save = true;
-    // },
     setPrices: (state, action) => {
       state.products = action.payload;
       state.save = true;
@@ -199,7 +176,7 @@ export const addOption =
   (dispatch, getState) => {
     let products = JSON.parse(JSON.stringify(selectProducts(getState())));
     let product = productsController.getProductById(products, product_id);
-    let product_position = productsController.getProductById(products, product_id);
+    let product_position = productsController.getProductPositionById(products, product_id);
     dispatch(setCreatedOptions({ product_id, option_position }));
     
     product.options.push({
