@@ -10,7 +10,7 @@ fontFamily['roboto'] = [
   // <-- you may provide more font fallbacks here
 ];
 fontFamily['fira'] = [
-  'Fira+Sans+Extra+Condensed',
+  'Fira+Sans+Extra',
   // <-- you may provide more font fallbacks here
 ];
 fontFamily['rc'] = [
