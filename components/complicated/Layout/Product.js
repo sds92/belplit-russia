@@ -14,10 +14,7 @@ export default function Product(props) {
     header: ['Отправить запрос'],
   });
 
-  const selectSizes = product.options.map((item, i) => {
-    // if (item[0]) {
-    //   return { title: item[0], value: i };
-    // }
+  const selectSizes = product.options.slice().filter(item => item.show).map((item, i) => {
     return {
       title: item.a + '*' + item.b + '*' + item.h + ' [мм]' + ' ' + item.connectionType,
       value: i,
@@ -56,7 +53,6 @@ export default function Product(props) {
     ['Астрахань', 'astrahan'],
     ['Крым', 'crimea'],
   ];
-  console.log("🚀) => title === 'main').value", product.desc.find(({ title }) => title === 'main').value)
 
   return (
     <>
