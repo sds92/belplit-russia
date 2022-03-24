@@ -20,7 +20,7 @@ export default function NavLGItem(props) {
   
   return (
     <div className={`relative zero:mx-1 lg:mx-4`}>
-      <div className={`flex hover:text-belplit text-zinc-800 font-light`}>
+      <div className={`flex hover:text-belplit text-zinc-800 font-normal`}>
         {show && activeLink && (
           <Link href={`/${name}`}>
             <a>{title.toUpperCase()}</a>
@@ -33,7 +33,7 @@ export default function NavLGItem(props) {
               return (
                 <MenuButton>
                   <div
-                    className={`flex text-zinc-800 font-light hover:text-belplit`}
+                    className={`flex text-zinc-800 hover:text-belplit`}
                     onMouseEnter={() => setStroke('#38a000')}
                     onMouseLeave={() => setStroke('#5d5e75')}
                   >

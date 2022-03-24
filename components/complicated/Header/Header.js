@@ -35,7 +35,7 @@ export default function Header(props) {
         }}
         className={`shadow-md z-40 fixed w-full bg-white transition-all duration-100`}
       >
-        <div className={`max-w-7xl mx-auto`}>
+        <div className={`max-w-7xl mx-auto tracking-tight`}>
           <Navbar w={props.w} mdView={props.mdView} lgView={lgView} scrolled={scrolled} isOnTop={isOnTop} />
         </div>
       </header>

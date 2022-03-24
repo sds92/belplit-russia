@@ -258,6 +258,7 @@ input {
 
 html {
   /* font-family: 'Oswald'; */
+  font-family: 'Fira Sans Condensed', sans-serif !important;
   scroll-behavior: smooth;
 }
 
@@ -8368,7 +8369,7 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 .font-fira{
-  font-family: Fira+Sans+Condensed;
+  font-family: Fira+Sans+Extra+Condensed;
 }
 
 .font-rc{
@@ -8442,6 +8443,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   font-weight: 600;
 }
 
+.font-normal{
+  font-weight: 400;
+}
+
 .font-medium{
   font-weight: 500;
 }
@@ -8490,6 +8495,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .leading-snug{
   line-height: 1.375;
+}
+
+.tracking-tight{
+  letter-spacing: -0.025em;
 }
 
 .tracking-normal{

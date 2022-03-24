@@ -201,6 +201,7 @@ input {
 }
 html {
   /* font-family: 'Oswald'; */
+  font-family: 'Fira Sans Condensed', sans-serif !important;
   scroll-behavior: smooth;
 }
 

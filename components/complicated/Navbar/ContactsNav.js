@@ -59,7 +59,7 @@ export default function ContactsNav(props) {
                     <React.Fragment key={`SOCIAL${index}`}>
                       <div className={`cursor-pointer`}>
                         <a
-                          className={`font-light flex items-center justify-center`}
+                          className={`font-normal flex items-center justify-center`}
                           target='_blank'
                           href={`${item[1]}`}
                           rel='noopener noreferrer'

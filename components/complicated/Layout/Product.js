@@ -64,7 +64,7 @@ export default function Product(props) {
           }`}
         >
           <div
-            className={` pl-1.5 font-light text-zinc-800 max-w-7xl ${
+            className={` pl-1.5 font-normal text-zinc-800 max-w-7xl ${
               props.lgView || props.mdView ? `text-xl` : `text-xl`
             } text-left mx-auto`}
           >
