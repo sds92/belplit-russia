@@ -159,7 +159,7 @@ export default function Product(props) {
           </div>
           <div className={`order-3 basis-1/3 zero:hidden md:block`}>
             {product.desc.find(({ title }) => title === 'main')?.value && (
-              <div className={`font-light p-4 flex flex-col`}>
+              <div className={`font-normal p-4 flex flex-col`}>
                 <div className={`font-bold py-2 uppercase mt-4`}>Описание</div>
                 <Text>{[product.desc.find(({ title }) => title === 'main').value]}</Text>
               </div>
