@@ -30,15 +30,17 @@ export default function Settings(props) {
     },
   });
 
-  function addDesk() {
+  function addDesk(a) {
+    setValues((s) => ({ ...s, desc: { main: a.value } }));
     let _products = productsController.copy(products);
-    _products = productsController.setDesc(_products, product.id, { title: 'main', value: values.desc.main });
+    _products = productsController.setDesc(_products, product.id, a);
     dispatch(updateProducts(_products));
     saveProducts(_products);
     dispatch(setIsChanged(false));
   }
 
   function setUserTitle(a) {
+    setValues((s) => ({ ...s, info: { userTitle: a } }));
     let _products = productList.setUserTitle(products, a, product.id);
     dispatch(updateProducts(_products));
     saveProducts(_products);

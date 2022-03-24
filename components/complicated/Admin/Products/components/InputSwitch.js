@@ -12,7 +12,7 @@ export default function InputSwitch(props) {
     <React.Fragment>
       {title && <div className={`ml-2 text-sm font-bold cursor-default`}>{title}</div>}
       {state.edit ? (
-        <div className={`flex h-6 ${type !== 'textarea' ? 'w-max' : ''} pl-0.5`}>
+        <div className={`flex ${type !== 'textarea' ? 'w-max h-6' : 'h-max'} pl-0.5`}>
           <Icons.Ok
             extraClasses={`bg-zinc-50 h-6 w-6 shadow-md border border-green-900 text-zinc-800 rounded-sm hover:scale-110 cursor-pointer transition-all duration-75`}
             onClick={() => {
@@ -27,9 +27,12 @@ export default function InputSwitch(props) {
           {type === 'textarea' ? (
             <textarea
             className={`w-full`}
-              onChange={(e) => {
-                setValues((s) => ({ ...s, desc: { ...s.desc, main: e.target.value } }));
-              }}
+            onChange={(e) => {
+              setState((s) => ({
+                ...s,
+                input: e.target.value,
+              }));
+            }}
               value={state.input}
               rows={5}
             />
