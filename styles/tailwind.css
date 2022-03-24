@@ -8443,12 +8443,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   font-weight: 600;
 }
 
-.font-normal{
-  font-weight: 400;
-}
-
 .font-medium{
   font-weight: 500;
+}
+
+.font-normal{
+  font-weight: 400;
 }
 
 .font-extralight{
