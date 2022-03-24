@@ -64,7 +64,7 @@ export default function Product(props) {
           }`}
         >
           <div
-            className={` pl-1.5 font-normal text-zinc-800 max-w-7xl ${
+            className={` pl-1.5 font-medium text-zinc-800 max-w-7xl ${
               props.lgView || props.mdView ? `text-xl` : `text-xl`
             } text-left mx-auto`}
           >
@@ -152,7 +152,7 @@ export default function Product(props) {
           </div>
           <div className={`order-3 md:hidden px-4`}>
             {product.desc.find(({ title }) => title === 'main')?.value && (
-              <Text className={`font-light p-2`}>
+              <Text className={`font-normal p-2`}>
                 {[product.desc.find(({ title }) => title === 'main')?.value]}
               </Text>
             )}
