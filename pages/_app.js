@@ -71,7 +71,7 @@ function MyApp({ Component, pageProps }) {
             <div>
               <Head app={app} head={newProps.data?.head} />
 
-              <div className={`font-oswald flex flex-col w-full min-h-screen overflow-hidden justify-between`}>
+              <div className={`font-rc tracking-tight flex flex-col w-full min-h-screen overflow-hidden justify-between`}>
                 <Header {...newProps} />
                 <LazyMotion features={domAnimation}>
                   <AnimatePresence exitBeforeEnter>

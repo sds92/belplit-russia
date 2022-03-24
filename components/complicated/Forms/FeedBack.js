@@ -118,6 +118,9 @@ export default function FeedBack(props) {
               }, 4000);
             })
             .catch((err) => {
+              try {
+                props.onFulfilled('error');
+              } catch (err) {}
               setFormStatus('error');
               setTimeout(() => {
                 setFormStatus('show');

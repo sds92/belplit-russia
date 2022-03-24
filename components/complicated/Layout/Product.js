@@ -146,7 +146,7 @@ export default function Product(props) {
               <div
                 className={`bg-belplit_2 text-xl active:scale-105 transition-all uppercase font-bold mx-4 my-4 rounded-md text-center text-white py-2 cursor-pointer hover:scale-105 hover:bg-belplit_dark`}
                 onClick={() => {
-                  const tempMsg = `Марка: ${title}\r\nРазмеры: ${selectSizes[index].title}\r\nСклад: ${cities[region]}\r\nКоличество:`;
+                  const tempMsg = `Марка: ${product.info.title}\r\nРазмеры: ${selectSizes[region].title}\r\nСклад: ${cities[region]}\r\nКоличество:`;
                   return openModal(tempMsg);
                 }}
               >
