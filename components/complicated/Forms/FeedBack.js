@@ -42,7 +42,6 @@ export default function FeedBack(props) {
             )
           );
     const values_1 = await Promise.all([a, b, c, d]);
-    console.log(values_1);
     res = true;
     values_1.map((item, index) => {
       if (!item) {
