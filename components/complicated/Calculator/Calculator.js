@@ -50,7 +50,8 @@ export default function Calculator(props) {
   });
   const sizeSelect = products
     .find((pr) => pr.id.toString() === state.mark.toString())
-    .options // .find((item) => item.id.toString() === state.mark.toString())
+    .options
+    .slice().filter(item => item.show) // .find((item) => item.id.toString() === state.mark.toString())
     .map((item, i) => ({
       title: item.a + '*' + item.b + '*' + item.h + ' [мм] ' + item.connectionType,
       value: i,
