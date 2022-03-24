@@ -10,11 +10,15 @@ fontFamily['roboto'] = [
   // <-- you may provide more font fallbacks here
 ];
 fontFamily['fira'] = [
-  'Fira Sans',
+  'Fira+Sans+Condensed',
   // <-- you may provide more font fallbacks here
 ];
 fontFamily['rc'] = [
-  'Roboto Condensed',
+  'Roboto+Condensed',
+  // <-- you may provide more font fallbacks here
+];
+fontFamily['montserrat'] = [
+  'Montserrat',
   // <-- you may provide more font fallbacks here
 ];
 module.exports = {

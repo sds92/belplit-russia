@@ -19,7 +19,7 @@ export default function ProductCardSM(props) {
             />
             <div className={`flex flex-col justify-between h-full relative w-full px-4 rounded-md`}>
               <div
-                className={`flex text-zinc-800 items-center h-10 cursor-pointer text-base transition-all font-bold `}
+                className={`flex text-zinc-800 items-center h-max cursor-pointer text-base transition-all font-bold `}
               >
                 <div className={` pb-1 text-zinc-900`}>
                   <span className={` font-bold uppercase`}>{product.info.displayName && `Белплит ${product.info.displayName}` || product.info.slug}</span>

@@ -8,7 +8,6 @@ import fetchJson from "lib/fetchJson";
 import { AppContext } from 'components/complicated/Context/AppContext';
 import { animations } from '../styles/animations';
 import { Header, Footer, Head } from '../components/complicated';
-import { v1 } from '../utils/functions';
 import '../styles/tailwind.css';
 
 import pages from '../data/pages.json';
@@ -71,7 +70,7 @@ function MyApp({ Component, pageProps }) {
             <div>
               <Head app={app} head={newProps.data?.head} />
 
-              <div className={`font-rc tracking-tight flex flex-col w-full min-h-screen overflow-hidden justify-between`}>
+              <div className={`font-fira flex flex-col w-full min-h-screen overflow-hidden justify-between`}>
                 <Header {...newProps} />
                 <LazyMotion features={domAnimation}>
                   <AnimatePresence exitBeforeEnter>

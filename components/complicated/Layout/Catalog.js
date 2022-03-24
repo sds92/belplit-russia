@@ -8,14 +8,14 @@ export default function Catalog({ data, products, ...props }) {
     <div className={props.lgView || props.mdView ? `pt-20`: `pt-10`}>
       <div className={`bg-belplit_2 ${props.lgView || props.mdView ? `py-4` : `py-1 fixed z-50 w-full shadow-md`}`}>
         
-          <Text className={` pl-1.5 font-bold text-zinc-800 max-w-7xl ${props.lgView || props.mdView ? `text-5xl` : `text-3xl`} text-left mx-auto`}>
+          <Text className={`uppercase pl-1.5 font-bold text-zinc-800 max-w-7xl ${props.lgView || props.mdView ? `text-3xl` : `text-3xl`} text-left mx-auto`}>
             {title}
           </Text>
         
       </div>
       <div className={`max-w-7xl mx-auto pt-20`}>
         <div className={`border-belplit rounded-lg`}>
-          <div className={`pb-20 flex flex-wrap items-center justify-center mx-auto`}>
+          <div className={`pb-20 flex flex-wrap items-start justify-center mx-auto`}>
             {products.sort((a, b) => a.info.position - b.info.position).map((product, index) => (
               <div
                 key={`P${index}`}

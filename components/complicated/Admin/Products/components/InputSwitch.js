@@ -26,13 +26,13 @@ export default function InputSwitch(props) {
           />
           {type === 'textarea' ? (
             <textarea
-            className={`w-full`}
-            onChange={(e) => {
-              setState((s) => ({
-                ...s,
-                input: e.target.value,
-              }));
-            }}
+              className={`w-full`}
+              onChange={(e) => {
+                setState((s) => ({
+                  ...s,
+                  input: e.target.value,
+                }));
+              }}
               value={state.input}
               rows={5}
             />
@@ -81,12 +81,16 @@ export default function InputSwitch(props) {
           }}
         >
           <Icons.Edit
-            extraClasses={`${
-              state.hover ? 'opacity-100' : 'opacity-0'
-            } flex-none bg-sky-900 bg-opacity-90 ${type !== 'textarea' ? 'w-max h-full' : 'w-5 h-5'} shadow-md border border-white text-zinc-100 rounded-sm hover:scale-110 cursor-pointer transition-all duration-300`}
+            extraClasses={`${state.hover ? 'opacity-100' : 'opacity-0'} flex-none bg-sky-900 bg-opacity-90 ${
+              type !== 'textarea' ? 'w-max h-full' : 'w-5 h-5'
+            } shadow-md border border-white text-zinc-100 rounded-sm hover:scale-110 cursor-pointer transition-all duration-300`}
           />
 
-          <div className={`${state.hover ? '' : '-ml-6 delay-200'} ${type !== 'textarea' ? '' : ''}  transition-all cursor-pointer`}>
+          <div
+            className={`${state.hover ? '' : '-ml-6 delay-200'} ${
+              type !== 'textarea' ? '' : ''
+            } whitespace-nowrap transition-all cursor-pointer`}
+          >
             {initValue}
           </div>
         </div>
