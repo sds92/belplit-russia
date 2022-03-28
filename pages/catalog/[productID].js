@@ -17,28 +17,30 @@ export default function ProductPage(props) {
 }
 
 export async function getStaticProps({ params, ...props }) {
-  // let products = JSON.parse(fs.readFileSync('data/products3.json', 'utf8'));
-  let products = [];
-  let product = {};
-  const getProducts = async () => {
-    await fetch('http://localhost:3000/api/productsfront')
-      .then((res) => res.json())
-      .then((res) => {
+  let products = JSON.parse(fs.readFileSync('data/products3.json', 'utf8'));
+  // let products = [];
+  // let product = {};
+  // const getProducts = async () => {
+  //   await fetch('http://localhost:3000/api/productsfront')
+  //     .then((res) => res.json())
+  //     .then((res) => {
         // console.log("🚀 ~ file: [productID].js ~ line 26 ~ .then ~ res", res)
-        products = res;
-      })
-      .catch((err) => console.log(err));
-  };
-  await getProducts();
-  const getProduct = async () => {
-    await fetch(`http://localhost:3000/api/productsfront?slug=${params.productID}`)
-      .then((res) => res.json())
-      .then((res) => {
-        product = res
-      })
-      .catch((err) => console.log(err));
-  };
-  await getProduct();
+  //       products = res;
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
+  // await getProducts();
+  // const getProduct = async () => {
+  //   await fetch(`http://localhost:3000/api/productsfront?slug=${params.productID}`)
+  //     .then((res) => res.json())
+  //     .then((res) => {
+  //       product = res
+  //     })
+  //     .catch((err) => console.log(err));
+  //   };
+  //   await getProduct();
+  let product = products.find((item) => item.info.slug === params.productID);
+  product.options = product.options.filter(o => o.show)
   return {
     props: {
       products: products,
