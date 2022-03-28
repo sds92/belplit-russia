@@ -14,7 +14,7 @@ export default function Product(props) {
     header: ['Отправить запрос'],
   });
 
-  const selectSizes = product.options.slice().filter(item => item.show).map((item, i) => {
+  const selectSizes = product.options.slice().map((item, i) => {
     return {
       title: item.a + '*' + item.b + '*' + item.h + ' [мм]' + ' ' + item.connectionType,
       value: i,

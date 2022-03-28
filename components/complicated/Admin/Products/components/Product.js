@@ -56,6 +56,12 @@ export default function Product(props) {
               setState((s) => ({ ...s, open: { ...s.open, modal: true } }));
             }}
           />
+          <div className={`ml-10 -mb-1.5 font-light text-white`}>№ в каталоге:</div>
+          <InputSwitch
+            textClassName={`rounded-sm w-10 bg-zinc-50 border mx-0.5 text-lg h-6 leading-snug relative`}
+            onSubmit={(a) => {}}
+            initValue={product.info?.position}
+          />
         </div>
       </div>
       {children && children}
