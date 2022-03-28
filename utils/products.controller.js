@@ -30,4 +30,18 @@ export const productsController = {
     products.splice(product_position, 1, product);
     return products;
   },
+  setTitle: (products, product_id, title) => {
+    let product = productsController.getProductById(products, product_id);
+    product.info.title = title;
+    let product_position = productsController.getProductPositionById(products, product_id);
+    products.splice(product_position, 1, product);
+    return products;
+  },
+  setPosition: (products, product_id, position) => {
+    let product = productsController.getProductById(products, product_id);
+    product.info.position = parseInt(position);
+    let product_position = productsController.getProductPositionById(products, product_id);
+    products.splice(product_position, 1, product);
+    return products;
+  },
 };

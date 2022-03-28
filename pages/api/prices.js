@@ -10,7 +10,6 @@ export default withIronSessionApiRoute(async (req, res) => {
 
   if (req.method === 'POST') {
     fs.writeFile(`data/products3.json`, req.body, (err) => {
-      console.log("🚀 ~ file: prices.js ~ line 13 ~ fs.writeFile ~ req.body", JSON.parse(req.body))
       if (err) throw err;
       res.json({ status: 'ok', products: JSON.parse(req.body) });
       console.log('The file has been saved!');

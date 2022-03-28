@@ -1,9 +1,14 @@
 import React from 'react';
 import { Options, InputSwitch } from '.';
 import { Icons } from '../../..';
+import { productsController } from 'utils/products.controller';
+import { useSelector, useDispatch } from 'react-redux';
+import { updatePages, selectProducts, updateProducts, setIsChanged } from 'redux/slices/productsSlice';
 
 export default function Product(props) {
-  const { product, deleteProduct, children, productList, handleSettingsOpenState, settings, highlight } =
+  const dispatch = useDispatch();
+  const products = useSelector(selectProducts);
+  const { product, deleteProduct, children, productList, handleSettingsOpenState, settings, highlight, saveProducts } =
     props;
 
   const [state, setState] = React.useState({
@@ -12,6 +17,24 @@ export default function Product(props) {
       modal: false,
     },
   });
+
+  function setTitle(a) {
+    
+    let _products = productsController.copy(products);
+    _products = productsController.setTitle(_products, product.id, a);
+    dispatch(updateProducts(_products));
+    saveProducts(_products);
+    dispatch(setIsChanged(false));
+  }
+
+  function setPosition(a) {
+    
+    let _products = productsController.copy(products);
+    _products = productsController.setPosition(_products, product.id, a);
+    dispatch(updateProducts(_products));
+    saveProducts(_products);
+    dispatch(setIsChanged(false));
+  }
 
   React.useEffect(() => {
     if (settings) {
@@ -46,7 +69,9 @@ export default function Product(props) {
           />
           <InputSwitch
             textClassName={`rounded-sm w-44 bg-zinc-50 border mx-0.5 uppercase text-lg h-6 leading-snug relative`}
-            onSubmit={(a) => {}}
+            onSubmit={(a) => {
+              setTitle(a)
+            }}
             initValue={product.info?.title}
           />
 
@@ -59,7 +84,9 @@ export default function Product(props) {
           <div className={`ml-10 -mb-1.5 font-light text-white`}>№ в каталоге:</div>
           <InputSwitch
             textClassName={`rounded-sm w-10 bg-zinc-50 border mx-0.5 text-lg h-6 leading-snug relative`}
-            onSubmit={(a) => {}}
+            onSubmit={(a) => {
+              setPosition(a)
+            }}
             initValue={product.info?.position}
           />
         </div>
