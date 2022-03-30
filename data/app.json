@@ -1,0 +1,74 @@
+[
+  {
+    "title": "БЕЛТЕРМО",
+    "copyright": [
+      "© 2021 Сайт создан с помощью <a href=\"https://roboweb.site/\"><strong>RoboWeb</strong></a>"
+    ],
+    "url": "beltermo-russia.ru",
+    "api": {
+      "ym": "87548826",
+      "gtm": "GTM-NP9FQ74",
+      "email": "https://xn--j1ano.com/sendmail",
+      "serv": "https://xn--j1ano.com/"
+    },
+    "contacts": {
+      "phones": ["+7 499 110-34-94"],
+      "emails": ["stroyoptplit@mail.ru"],
+      "addresses": [
+        {
+          "title": "Офис",
+          "value": "Россия, Московская область, Одинцово, улица Молодежная, 46"
+        },
+        {
+          "title": "Склад №1",
+          "value": "Москва, пос. Мосрентген, проектируемый проезд 134, вл. 4"
+        },
+        {
+          "title": "Склад №2",
+          "value": "Московская область, Рузский городской округ, д. Берёзкино 69"
+        }
+      ],
+      "socials": [["Whatsapp", "https://wa.me/+79257392159?text=Здравствуйте..."]]
+    },
+    "workingHoars": {
+      "title": "Время работы",
+      "value": ["Ежедневно: <span class=\"text-bold\">8:00–20:00</span>"]
+    }
+  },
+  {
+    "title": "БЕЛТЕРМО",
+    "copyright": [
+      "© 2021 Сайт создан с помощью <a href=\"https://roboweb.site/\"><strong>RoboWeb</strong></a>"
+    ],
+    "url": "белтермо.com",
+    "api": {
+      "ym": "87552277",
+      "gtm": "GTM-PNMWMTQ",
+      "email": "https://xn--j1ano.com/sendmail",
+      "serv": "https://xn--j1ano.com/"
+    },
+    "contacts": {
+      "phones":  ["+7 915 101-29-13", "+7 495 120-27-35"],
+      "emails": ["stroyoptplit@mail.ru"],
+      "addresses": [
+        {
+          "title": "Офис",
+          "value": "Россия, Московская область, Одинцово, улица Молодежная, 46"
+        },
+        {
+          "title": "Склад №1",
+          "value": "Москва, пос. Мосрентген, проектируемый проезд 134, вл. 4"
+        },
+        {
+          "title": "Склад №2",
+          "value": "Московская область, Рузский городской округ, д. Берёзкино 69"
+        }
+      ],
+      "socials": [["Whatsapp", "https://wa.me/+79151012913?text=Здравствуйте..."]]
+    },
+    "workingHoars": {
+      "title": "Время работы",
+      "value": ["Ежедневно: <span class=\"text-bold\">8:00–20:00</span>"]
+    }
+  }
+]
