@@ -26,13 +26,14 @@ export default function Products() {
   const dispatch = useDispatch();
   const productList = useSelector(selectProductList);
   const products = useSelector(selectProducts);
+  console.log("🚀 ~ file: Products.js ~ line 29 ~ Products ~ products", products)
   const toDeleteOptions = useSelector(selectToDeleteOptions);
   const toDeleteProducts = useSelector(selectToDeleteProducts);
   const pages = useSelector(selectPages);
   const [settings, setSettings] = React.useState(null);
 
   const getProducts = () => {
-    fetch('api/products')
+    fetch('api/prices')
       .then((res) => res.json())
       .then((res) => {
         dispatch(importInitProducts(res));
