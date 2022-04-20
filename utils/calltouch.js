@@ -1,7 +1,5 @@
-const mongoose = require('mongoose');
+
 const axios = require('axios').default;
-const Conditions = require('../models/conditions');
-const Orders = require('../models/orders');
 const qs = require('qs')
 
 
@@ -48,88 +46,6 @@ async function post(options) {
 }
 
 const calltouch = {
-  date: (inputDate) => {
-    let date = new Date(inputDate);
-    let day = date.getDate().toString();
-    let month = (date.getMonth() + 1).toString();
-    let year = date.getFullYear().toString();
-    let hoars = date.getHours().toString();
-    let minutes = date.getMinutes().toString();
-    let seconds = date.getSeconds().toString();
-
-    if (day.length !== 2) {
-      day = '0' + day;
-    }
-    if (month.length !== 2) {
-      month = '0' + month;
-    }
-    if (hoars.length !== 2) {
-      hoars = '0' + hoars;
-    }
-    if (minutes.length !== 2) {
-      minutes = '0' + minutes;
-    }
-    if (seconds.length !== 2) {
-      seconds = '0' + seconds;
-    }
-
-    return `${day}-${month}-${year} ${hoars}:${minutes}:${seconds}`;
-  },
-  build: async (data, flag) => {
-    let _data = data.length ? data : [data];    
-    const statuses = await Conditions.find().lean();
-    switch (flag) {
-      case 'new': {
-        return {
-          crm: 'csk',
-          orders: _data.map((order) => ({
-            matching: [{ type: 'withoutSource' }],
-            orderNumber: order.number,
-            status: statuses.find((item) => item._id.toString() === order.status.toString()).value,
-            statusDate: calltouch.date(order.updatedAt),
-            orderDate: calltouch.date(order.created),
-            currency: `rub`,
-            revenue: order.sum,
-            margin: order.profit,
-            manager:
-              order.manager[0]?.surname + ' ' + order.manager[0]?.name + ' ' + order.manager[0]?.lastname,
-            comment: { text: order?.manager_comment || 'нет комментария' },
-            products: order.products.map((p) => ({
-              name: p.title,
-              price: p.cost,
-              quantity: p.quantity,
-            })),
-          })),
-        };
-      }
-      case 'upd': {
-        return {
-          orders: _data.map((order) => ({
-            matching: [{ type: 'withoutSource' }],
-            orderNumber: order.number,
-            status: statuses.find(({ _id }) => _id.toString() === order.status.toString()).value,
-            statusDate: calltouch.date(order.updatedAt),
-            orderDate: calltouch.date(order.created),
-            updateDate: calltouch.date(order.updatedAt),
-            currency: `rub`,
-            revenue: order.sum,
-            margin: order.profit,
-            manager:
-              order.manager[0]?.surname + ' ' + order.manager[0]?.name + ' ' + order.manager[0]?.lastname,
-            comment: { text: order?.manager_comment || 'нет комментария' },
-            products: order.products.map((p) => ({
-              name: p.title,
-              price: p.cost,
-              quantity: p.quantity,
-            })),
-          })),
-        };
-      }
-
-      default:
-        break;
-    }
-  },
   buildFormData: async (props) => {
     return qs.stringify({
       fio: props.fio,
@@ -143,29 +59,8 @@ const calltouch = {
 };
 
 module.exports = {
-  newOrder: async (data) => {
-    return await calltouch
-      .build(data, 'new')
-      .then((res) => post(ctAPIOptions(CT_CREATE_URL, res)))
-      .catch((err) => console.log(err));
-  },
-  updOrder: async (data) => {
-    return calltouch
-      .build(data, 'upd')
-      .then((res) => post(ctAPIOptions(CT_UPDATE_URL, res)))
-      .catch((err) => console.log(err));
-  },
-  delOrder: async (data) => {
-    const _ids = data.map((_id) => mongoose.Types.ObjectId(_id));
-    const _ordersToDel = await Orders.aggregate([
-      {
-        $match: {
-          _id: { $in: _ids },
-        },
-      },
-    ]);
-    return post(ctAPIOptions(CT_DELETE_URL, { orderNumbers: _ordersToDel.map((o) => o.number.toString()) }));
-  },
+  
+  
   sendFormData: async (data) => {
     return await calltouch
       .buildFormData(data)
