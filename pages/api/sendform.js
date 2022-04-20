@@ -1,6 +1,21 @@
+const calltouch = require('../../utils/calltouch')
 export default function (req, res) {
   require('dotenv').config();
   let nodemailer = require('nodemailer');
+  try {
+    calltouch
+      .sendFormData({
+        fio: `${req.body.clientName}`,
+        phoneNumber: `${req.body.clientPhone}`,
+        email: `${req.body.clientEmail}`,
+        subject: `${req.body.body}`,
+        tags: `feedback`,
+        requestUrl: `${req.body?.fromSite} ${req.body?.path}`,
+      })
+      .catch((err) => console.log(err));
+  } catch (error) {
+    console.log('🚀 ~ file: sendMail.js ~ line 31 ~ exports.sendMail= ~ error', error);
+  }
   const transporter = nodemailer.createTransport({
     port: parseInt(req.body.EMAIL_PORT || process.env.EMAIL_PORT),
     host: `${req.body.EMAIL_HOST || process.env.EMAIL_HOST}`,
