@@ -1,6 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useInView } from 'react-intersection-observer';
+
 // etc
 import { AppContext } from '../Context/AppContext';
 import { menu } from '../../../configs/menu';
@@ -15,13 +17,16 @@ export default function Footer(props) {
     contactsTitle: `cursor-default pl-2 border-b border-slate-300 w-full font-bold`,
     contactsValue: `mx-2 font-light zero:text-sm sm:text-base`,
   };
+  const { ref, inView, entry } = useInView({
+    threshold: 0,
+  });
   return (
     <AppContext.Consumer>
       {(app) => {
         return (
           <>
-            {router.asPath !== '/catalog' && (
-              <div className={`h-96 cursor-default`}>
+            {router.asPath !== '/catalog' && inView && (
+              <div ref={ref} className={`h-96 cursor-default`}>
                 <iframe
                   src={'https://api-maps.yandex.ru/frame/v1/-/CCUBEFtKWA'}
                   width='100%'
