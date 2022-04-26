@@ -25,18 +25,18 @@ export default function Footer(props) {
       {(app) => {
         return (
           <>
-            {router.asPath !== '/catalog' && inView && (
-              <div ref={ref} className={`h-96 cursor-default`}>
-                <iframe
-                  src={'https://api-maps.yandex.ru/frame/v1/-/CCUBEFtKWA'}
-                  width='100%'
-                  height='100%'
-                  frameBorder='1'
-                  // allowFullScreen='true'
-                ></iframe>
-              </div>
-            )}
-            <footer className={`bg-white `}>
+            <footer ref={ref} className={`bg-white `}>
+              {router.asPath !== '/catalog' && inView && (
+                <div className={`h-96 cursor-default`}>
+                  <iframe
+                    src={'https://api-maps.yandex.ru/frame/v1/-/CCUBEFtKWA'}
+                    width='100%'
+                    height='100%'
+                    frameBorder='1'
+                    // allowFullScreen='true'
+                  ></iframe>
+                </div>
+              )}
               <div className={`flex py-4 flex-col md:flex-row justify-between items-center h-full`}>
                 <div className={`flex py-2`}>
                   <div className={`flex justify-between`}>
