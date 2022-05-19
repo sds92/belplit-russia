@@ -128,11 +128,11 @@ export default function Footer(props) {
               <div className={`py-4 flex items-center bg-zinc-800 text-zinc-100 justify-center gap-2`}>
                 <p className={`text-center`}>
                   2022. Сайт создан с помощью{' '}
-                  <a className={`font-bold`} href='https://roboweb.team/'>
+                  <a className={`font-bold`} href='https://roboweb.team/' target={'_blank'}  rel="noreferrer">
                     RoboWeb
                   </a>
                 </p>
-                <a href='https://roboweb.team/'>
+                <a href='https://roboweb.team/' target={'_blank'}  rel="noreferrer">
                   <Icons.Roboweb fill={`#ffffff`} extraClasses={`w-10 h-10 hover:scale-105 transition-all`} />
                 </a>
               </div>
