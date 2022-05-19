@@ -5,7 +5,7 @@ export default function Home(props) {
   return <Layout.Main {...props} />;
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps({ params, ...props }) {
   let products = JSON.parse(fs.readFileSync('data/products3.json', 'utf8'));
 
   return {

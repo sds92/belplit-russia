@@ -8,6 +8,7 @@ export default function main(props) {
 export async function getServerSideProps() {
 
   let products = JSON.parse(fs.readFileSync('data/products3.json', 'utf8'));
+  // console.log(products)
   return {
     props: {
       products: products,
