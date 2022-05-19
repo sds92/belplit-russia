@@ -8,7 +8,7 @@ import { updatePages, selectProducts, updateProducts, setIsChanged } from 'redux
 export default function Settings(props) {
   const dispatch = useDispatch();
   const products = useSelector(selectProducts);
-  const { productList, product, meta, pages, saveProducts, savePages } = props;
+  const { product, meta, pages, saveProducts, savePages } = props;
   const [values, setValues] = React.useState({
     meta: {
       keywords: meta.meta.find(({ name }) => name === 'keywords').content || '',
@@ -41,7 +41,7 @@ export default function Settings(props) {
 
   function setUserTitle(a) {
     setValues((s) => ({ ...s, info: { userTitle: a } }));
-    let _products = productList.setUserTitle(products, a, product.id);
+    let _products = productsController.setUserTitle(products, a, product.id);
     dispatch(updateProducts(_products));
     saveProducts(_products);
     dispatch(setIsChanged(false));

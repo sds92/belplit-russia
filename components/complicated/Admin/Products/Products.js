@@ -1,6 +1,7 @@
 import React from 'react';
 import { Icons } from '../..';
 import { Layout, AddProduct, Product, Navigation, Settings } from './components';
+import { productsController } from 'utils/products.controller';
 
 import { useSelector, useDispatch } from 'react-redux';
 import {
@@ -12,23 +13,23 @@ import {
   clearCreatedOptions,
   clearCreatedProducts,
   setCreatedProducts,
-  selectProducts,
-  selectProductList,
   importInitProducts,
   updateProducts,
   selectPages,
   importInitPages,
   updatePages,
   setIsChanged,
+  selectProductsInit,
+  selectProducts,
 } from 'redux/slices/productsSlice';
 
 export default function Products() {
   const dispatch = useDispatch();
-  const productList = useSelector(selectProductList);
-  const products = useSelector(selectProducts);
+  const products = useSelector(selectProductsInit);
   const toDeleteOptions = useSelector(selectToDeleteOptions);
   const toDeleteProducts = useSelector(selectToDeleteProducts);
   const pages = useSelector(selectPages);
+  // const curProducts = useSelector(selectProducts);
   const [settings, setSettings] = React.useState(null);
 
   const getProducts = () => {
@@ -49,20 +50,22 @@ export default function Products() {
   };
 
   const saveProducts = async (input) => {
-    let _t = [];
-    if (input) {
-      _t = input;
-    } else {
-      _t = products;
-    }
+  console.log("🚀 ~ file: Products.js ~ line 53 ~ saveProducts ~ input", input)
+    // let _t = [];
+    // if (input) {
+    //   _t = input;
+    // } else {
+    //   _t = curProducts;
+    // }
 
-    await fetch(`api/prices`, {
+    await fetch(`api/products`, {
       method: 'POST',
-      body: JSON.stringify(_t),
+      body: JSON.stringify(input),
     })
       .then((res) => res.json())
       .then((res) => {
         if (res.status === 'ok') {
+          console.log("🚀 ~ file: Products.js ~ line 67 ~ .then ~ res", JSON.parse(res.data))
           getProducts();
         }
       })
@@ -90,7 +93,7 @@ export default function Products() {
   };
 
   function addProduct(a) {
-    const [pr, pg, id] = productList.addItem(products, pages, a);
+    const [pr, pg, id] = productsController.addProduct(products, pages, a);
     dispatch(updateProducts(pr));
     dispatch(updatePages(pg));
     dispatch(setCreatedProducts(id));
@@ -121,9 +124,9 @@ export default function Products() {
     dispatch(setIsChanged(false));
   }
 
-  function handleSave() {
+  function handleSave(curProducts) {
     if (toDeleteOptions.length !== 0 || toDeleteProducts.length !== 0) {
-      let _products = JSON.parse(JSON.stringify(products));
+      let _products = JSON.parse(JSON.stringify(curProducts));
       let _pages = JSON.parse(JSON.stringify(pages));
       Promise.all([
         toDeleteOptions.map((item) => {
@@ -149,7 +152,7 @@ export default function Products() {
     } else {
       dispatch(clearCreatedOptions([]));
       dispatch(clearCreatedProducts([]));
-      saveProducts(products);
+      saveProducts(curProducts);
       savePages(pages);
     }
     dispatch(setIsChanged(false));
@@ -172,7 +175,7 @@ export default function Products() {
           }
         });
         return (
-          <div className={`mb-2 shadow-md`} key={`lfjkh${i}`}>
+          <div className={`mb-2 shadow-md`} key={`lfjkh${Math.random()}`}>
             <Product
               handleSettingsOpenState={(a) => {
                 if (settings === i) {
@@ -186,22 +189,9 @@ export default function Products() {
               highlight={highlight}
               deleteProduct={deleteProduct}
               saveProducts={saveProducts}
-            >
-              {/* SETTINGS */}
-              {settings === i ? (
-                <Settings
-                  meta={pages.find((page) => page.content.product_id === item.id)?.head}
-                  // deleteProduct={deleteProduct}
-                  product={item}
-                  pages={pages}
-                  productList={productList}
-                  saveProducts={saveProducts}
-                  savePages={savePages}
-                />
-              ) : (
-                <></>
-              )}
-            </Product>
+              meta={pages.find((page) => page.content.product_id === item.id)}
+              savePages={savePages}
+            />
           </div>
         );
       })}

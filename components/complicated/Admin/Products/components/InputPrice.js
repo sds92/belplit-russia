@@ -1,30 +1,50 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  setPrices,
+  setIsChanged,
+  selectProducts
+} from 'redux/slices/productsSlice';
+import { productsController } from 'utils/products.controller';
 
 export default function InputPrice(props) {
-  const { onChange, product, city, optionPosition } = props;
-  const [state, setState] = React.useState({});
+  const { product, city, optionPosition } = props;
+  const dispatch = useDispatch();
+  const products = useSelector(selectProducts);
+  // console.log("🚀 ~ file: InputPrice.js ~ line 14 ~ InputPrice ~ products", products)
+  const [price, setPrice] = React.useState(
+    ''
+  );
+  const [focus, setFocus] = React.useState(false);
+
+  function handlePrices(input) {
+    dispatch(setIsChanged(true));
+    let _products = productsController.setPrices(products, input)
+    dispatch(setPrices(_products));
+  }
+
   return (
     <input
       type={'number'}
       onChange={(e) => {
-        onChange({
+        handlePrices({
           product_id: product.id,
           option_position: optionPosition,
           option_city: city,
           option_value: e.target.value,
         });
-        setState((s) => ({ ...s, value: e.target.value }));
+        setPrice(e.target.value);
       }}
-      value={state.value}
-      placeholder={product.options[optionPosition]?.prices.find((item) => item.city === city)?.value}
+      value={price}
+      placeholder={price}
       onFocus={() => {
-        setState((s) => ({ ...s, focus: true }));
+        setFocus(true);
       }}
       onBlur={() => {
-        setState((s) => ({ ...s, focus: false }));
+        setFocus(false);
       }}
       className={`w-12 border ${
-        state?.focus ? `border-opacity-95` : `border-opacity-50 `
+        focus ? `border-opacity-95` : `border-opacity-50 `
       } border-zinc-600 rounded-sm shadow-inner`}
     />
   );

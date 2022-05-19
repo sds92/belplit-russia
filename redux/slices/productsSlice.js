@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import ProductList from 'models/ProductList';
 import { productsController } from 'utils/products.controller';
 
 const cities = [
@@ -11,21 +10,19 @@ const cities = [
   ['Волгоград', 'volvograd'],
   ['Астрахань', 'astrahan'],
   ['Крым', 'crimea'],
-]
-const initialState = {
+];
 
-  productList: new ProductList({
-    cities: [
-      ['Москва', 'square'],
-      ['СПБ', 'spb'],
-      ['Казань', 'kazan'],
-      ['Краснодар', 'krasnodar'],
-      ['Ростов', 'rostov'],
-      ['Волгоград', 'volvograd'],
-      ['Астрахань', 'astrahan'],
-      ['Крым', 'crimea'],
-    ],
-  }),
+const initialState = {
+  cities: [
+    ['Москва', 'square'],
+    ['СПБ', 'spb'],
+    ['Казань', 'kazan'],
+    ['Краснодар', 'krasnodar'],
+    ['Ростов', 'rostov'],
+    ['Волгоград', 'volvograd'],
+    ['Астрахань', 'astrahan'],
+    ['Крым', 'crimea'],
+  ],
   productsInit: [],
   products: [],
   isChanged: false,
@@ -35,12 +32,20 @@ const initialState = {
   createdProducts: [],
   pages: [],
   pagesInit: [],
+  optionsOpen: false,
+  settingsOpen: false,
 };
 
 export const productsSlice = createSlice({
   name: 'products',
   initialState,
   reducers: {
+    setOptionsOpen: (state, action) => {
+      state.optionsOpen = action.payload;
+    },
+    setSettingsOpen: (state, action) => {
+      state.settingsOpen = action.payload;
+    },
     setIsChanged: (state, action) => {
       state.isChanged = action.payload;
     },
@@ -84,8 +89,8 @@ export const productsSlice = createSlice({
       state.save = true;
     },
     setCreatedOptions: (state, action) => {
-      const { product_id, option_position } = action.payload;
-      state.createdOptions.push({ product_id, option_position });
+      const { product_id, option_position, option } = action.payload;
+      state.createdOptions.push({ product_id, option_position, option });
       state.save = true;
     },
     setCreatedProducts: (state, action) => {
@@ -119,6 +124,8 @@ export const productsSlice = createSlice({
 });
 
 export const {
+  setOptionsOpen,
+  setSettingsOpen,
   setCreatedOptions,
   setCreatedProducts,
   setToDeleteOptions,
@@ -139,7 +146,12 @@ export const {
   importInitPages,
   updatePages,
 } = productsSlice.actions;
-
+export const selectOptionsOpen = (state) => {
+  return state.products.optionsOpen;
+};
+export const selectSettingsOpen = (state) => {
+  return state.products.settingsOpen;
+};
 export const selectPages = (state) => {
   return state.products.pages;
 };
@@ -158,9 +170,6 @@ export const selectToDeleteProducts = (state) => {
 export const selectToDeleteOptions = (state) => {
   return state.products.toDeleteOptions;
 };
-export const selectProductList = (state) => {
-  return state.products.productList;
-};
 export const selectProductsInit = (state) => {
   return state.products.productsInit;
 };
@@ -170,6 +179,9 @@ export const selectProducts = (state) => {
 export const selectIsChanged = (state) => {
   return state.products.isChanged;
 };
+export const selectCities = (state) => {
+  return state.products.cities;
+};
 
 export const addOption =
   ({ product_id, option_position, a, b, h, show, connectionType, density }) =>
@@ -177,9 +189,7 @@ export const addOption =
     let products = JSON.parse(JSON.stringify(selectProducts(getState())));
     let product = productsController.getProductById(products, product_id);
     let product_position = productsController.getProductPositionById(products, product_id);
-    dispatch(setCreatedOptions({ product_id, option_position }));
-    
-    product.options.push({
+    let option = {
       a: parseInt(a),
       b: parseInt(b),
       h: parseInt(h),
@@ -187,11 +197,24 @@ export const addOption =
       coef: ((parseInt(a) / 1000) * parseInt(b)) / 1000,
       connectionType: connectionType || ' - ',
       density: parseInt(density) || null,
-      prices: productsController.getInitPrices(cities)
-    });
+      prices: productsController.getInitPrices(cities),
+    };
+    dispatch(
+      setCreatedOptions({
+        product_id,
+        option_position,
+        option: {
+          option,
+        },
+      })
+    );
+    let asd = selectCreatedOptions(getState())
+    console.log("🚀 ~ file: productsSlice.js ~ line 212 ~ asd", asd)
+
+    product.options.push(option);
     products.splice(product_position, 1, product);
-    dispatch(updateProducts(products))
-    dispatch(setIsChanged(true))
+    dispatch(updateProducts(products));
+    dispatch(setIsChanged(true));
   };
 
 export default productsSlice.reducer;

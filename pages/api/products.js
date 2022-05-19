@@ -7,11 +7,12 @@ export default withIronSessionApiRoute(async (req, res) => {
   if (req.session.user.pass !== process.env.PASS) {
     res.status(500).json({ message: 'AUTH FAILED' });
   }
-
+  
   if (req.method === 'POST') {
     fs.writeFile(`data/products3.json`, req.body, (err) => {
+      // console.log("🚀 ~ file: Products.js ~ line 53 ~ saveProducts ~ input", req.body)
       if (err) throw err;
-      res.json({ status: 'ok' });
+      res.json({ status: 'ok', data: req.body });
       console.log('The file has been saved!');
     });
   }

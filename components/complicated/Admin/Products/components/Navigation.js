@@ -4,9 +4,7 @@ import { selectProducts, selectProductsInit, selectIsChanged, setIsChanged } fro
 
 export default function Navigation(props) {
   const { handleSave } = props;
-  const dispatch = useDispatch();
-  const products = useSelector(selectProducts);
-  const productsInit = useSelector(selectProductsInit);
+  const curProducts = useSelector(selectProducts);
   const isChanged = useSelector(selectIsChanged);
   const [block, setBlock] = React.useState(false);
   function handleBlock() {
@@ -35,7 +33,7 @@ export default function Navigation(props) {
             ? `bg-belplit_2 text-white hover:scale-105 transition-all duration-75`
             : `bg-zinc-200 border ${block ? 'text-red-800' : 'text-zinc-800'}`
         }  text-sm font-light rounded-sm px-2 py-1 `}
-        onClick={isChanged ? handleSave : handleBlock}
+        onClick={isChanged ? () => handleSave(curProducts) : handleBlock}
       >
         сохранить
       </div>

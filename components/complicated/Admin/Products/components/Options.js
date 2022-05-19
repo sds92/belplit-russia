@@ -1,33 +1,28 @@
 import React from 'react';
 import { Layout, InputPrice } from '.';
 import { Icons } from '../../..';
+import {productsController} from '../../../../../utils/products.controller'
 
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  selectProducts,
-  selectProductList,
   selectProductsInit,
   setOption,
-  setPrices,
   setToDeleteOptions,
-  deleteOptions,
   addOption,
   selectToDeleteOptions,
-  setCreated,
   selectCreatedOptions,
   setIsChanged,
+  selectCities,
 } from 'redux/slices/productsSlice';
 
 export default function Options(props) {
+  const { product } = props;
   const dispatch = useDispatch();
-  const initProducts = useSelector(selectProductsInit);
-  const products = useSelector(selectProducts);
-  const productList = useSelector(selectProductList);
+  
   const toDeleteOptions = useSelector(selectToDeleteOptions);
   const createdOptions = useSelector(selectCreatedOptions);
- 
- 
-  const { product } = props;
+  const cities = useSelector(selectCities);
+  
   const [state, setState] = React.useState({
     create: false,
     options: {},
@@ -35,18 +30,13 @@ export default function Options(props) {
     newOption: {},
     tip: {},
   });
-
-  function handlePrices(input) {
-    dispatch(setIsChanged(true));
-    let _products = JSON.parse(JSON.stringify(products));
-    _products = productList.setPrices(_products, input);
-    dispatch(setPrices(_products));
-  }
-
+  
+  let options = createdOptions.find(({product_id}) => product_id === product.id)?.option ? product.options.concat(createdOptions.find(({product_id}) => product_id === product.id).option.option) : product.options
+  
   return (
     <Layout.Specs>
       {product &&
-        product.options.map((option, i) => {
+        options.map((option, i) => {
           let highlight = false;
           toDeleteOptions.map((item) => {
             if (product.id === item.product_id && i === item.option_position) {
@@ -62,10 +52,10 @@ export default function Options(props) {
             highlight === 'red'
               ? 'bg-red-200'
               : highlight === 'gold'
-                ? 'bg-yellow-500 bg-opacity-40'
-                : i % 2 != 0
-                  ? 'bg-sky-900 bg-opacity-30'
-                  : 'bg-slate-200 bg-opacity-10';
+              ? 'bg-yellow-500 bg-opacity-40'
+              : i % 2 != 0
+              ? 'bg-sky-900 bg-opacity-30'
+              : 'bg-slate-200 bg-opacity-10';
           return (
             <div
               key={`sdjkfhs${i}`}
@@ -85,7 +75,7 @@ export default function Options(props) {
                         option_value: !option.show,
                       })
                     );
-                    dispatch(setIsChanged(true))
+                    dispatch(setIsChanged(true));
                   }}
                 >
                   {option.show && <Icons.Ok />}
@@ -101,20 +91,20 @@ export default function Options(props) {
               >
                 {option.connectionType}
               </div>
-              {productList.cities.map((city, ii) => {
+              {cities.map((city, ii) => {
                 return (
                   <div
-                    key={`sdfjksd${i}`}
+                    key={`sdfjksd${Math.random()}`}
                     className={`h-8 px-1 w-32 flex-none flex items-center justify-between border-r border-zinc-500 ${bg}`}
                   >
                     <div className={`font-light flex items-center`}>
                       <span className={`font-semibold text-lg`}>
-                        {initProducts[product.id]?.options[i]?.prices.find((item) => item.city === city[1])
+                        {product?.options[i]?.prices.find((item) => item.city === city[1])
                           ?.value || ' - '}{' '}
                       </span>
                       <p className={`ml-0.5 -mb-0.5 italic text-xs`}>руб.</p>
                     </div>
-                    <InputPrice optionPosition={i} city={city[1]} onChange={handlePrices} product={product} />
+                    <InputPrice optionPosition={i} city={city[1]} product={product} />
                   </div>
                 );
               })}
@@ -124,9 +114,9 @@ export default function Options(props) {
                 {!highlight && (
                   <Icons.Close
                     extraClasses={`bg-zinc-50 mx-auto h-6 w-6 shadow-md border border-red-900 text-zinc-800 rounded-md m-1 hover:scale-110 cursor-pointer transition-all duration-75`}
-                    onClick={(e) => {
+                    onClick={() => {
                       dispatch(setToDeleteOptions({ product_id: product.id, option_position: i }));
-                      dispatch(setIsChanged(true))
+                      dispatch(setIsChanged(true));
                     }}
                   />
                 )}
@@ -176,8 +166,11 @@ export default function Options(props) {
             <select
               className={`shadow-inner border border-zinc-500 rounded-sm w-32 h-6 font-extralight mx-1 cursor-pointer `}
               onChange={(e) => {
-                console.log("🚀 ~ file: Specs.js ~ line 179 ~ Specs ~ e", e)
-                setState((s) => ({ ...s, newOption: { ...s.newOption, connectionType: e.target.value || 'прямая' } }));
+                console.log('🚀 ~ file: Specs.js ~ line 179 ~ Specs ~ e', e);
+                setState((s) => ({
+                  ...s,
+                  newOption: { ...s.newOption, connectionType: e.target.value || 'прямая' },
+                }));
               }}
               defaultValue={'прямая'}
             >
@@ -199,8 +192,12 @@ export default function Options(props) {
                   if (!state.newOption.connectionType) {
                     setState((s) => ({ ...s, newOption: { ...s.newOption, connectionType: 'прямая' } }));
                   }
-                  if (state.newOption.a && state.newOption.b && state.newOption.h && state.newOption.density) {
-                    
+                  if (
+                    state.newOption.a &&
+                    state.newOption.b &&
+                    state.newOption.h &&
+                    state.newOption.density
+                  ) {
                     dispatch(
                       addOption({
                         product_id: product.id,
@@ -209,7 +206,9 @@ export default function Options(props) {
                         b: state.newOption.b,
                         h: state.newOption.h,
                         show: state.newOption.show,
-                        connectionType: !state.newOption.connectionType ? 'прямая' : state.newOption.connectionType,
+                        connectionType: !state.newOption.connectionType
+                          ? 'прямая'
+                          : state.newOption.connectionType,
                         density: state.newOption.density,
                       })
                     );
