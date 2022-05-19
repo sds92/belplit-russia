@@ -68,12 +68,12 @@ export const productsController = {
     return cities.map((item) => ({ city: item[1], value: null }));
   },
   getNewId: (arr) => {
-    let ids = arr.map((obj) => obj.id);
-    for (let index = 0; index < ids.length; index++) {
-      if (ids[index + 1] - ids[index] !== 1) {
-        return index + 1;
-      }
+    let ids = new Set(arr.map((obj) => obj.id));
+    let i = 0;
+    while (ids.has(i)) {
+      i += 1
     }
+    return i
   },
   setDesc: (products, product_id, { title, value }) => {
     let product = productsController.getProductById(products, product_id);

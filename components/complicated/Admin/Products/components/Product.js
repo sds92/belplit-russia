@@ -95,7 +95,7 @@ export default function Product(props) {
           <Icons.Close
             extraClasses={`mx-0.5 text-red-700 bg-zinc-50 h-6 w-6 shadow-md text-zinc-800 rounded-sm hover:scale-110 cursor-pointer transition-all duration-75 active:bg-zinc-900`}
             onClick={() => {
-              setState(() => setOpenModal(true));
+              setOpenModal(true);
             }}
           />
           <div className={`ml-10 -mb-1.5 font-light text-white`}>№ в каталоге:</div>
@@ -127,14 +127,14 @@ export default function Product(props) {
             <div className={`flex items-center justify-center gap-1 my-1`}>
               <Icons.Ok
                 onClick={() => {
-                  setState(() => setOpenModal(false));
+                  setOpenModal(false);
                   deleteProduct(product.id);
                 }}
                 extraClasses={`w-6 h-6 rounded-sm text-green-700 bg-zinc-50 hover:scale-110 cursor-pointer transition-all duration-75`}
               />
               <Icons.Close
                 onClick={() => {
-                  setState((s) => setOpenModal(false));
+                  setOpenModal(false);
                 }}
                 extraClasses={`w-6 h-6 rounded-sm text-red-700 bg-zinc-50 hover:scale-110 cursor-pointer transition-all duration-75`}
               />

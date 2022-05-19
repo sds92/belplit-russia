@@ -1,11 +1,9 @@
 import React from 'react';
-import { Icons } from '../..';
-import { Layout, AddProduct, Product, Navigation, Settings } from './components';
+import { AddProduct, Product, Navigation, Settings } from './components';
 import { productsController } from 'utils/products.controller';
 
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  setToDeleteProducts,
   selectToDeleteOptions,
   selectToDeleteProducts,
   clearToDeleteOptions,
@@ -20,7 +18,6 @@ import {
   updatePages,
   setIsChanged,
   selectProductsInit,
-  selectProducts,
 } from 'redux/slices/productsSlice';
 
 export default function Products() {
@@ -50,14 +47,6 @@ export default function Products() {
   };
 
   const saveProducts = async (input) => {
-  console.log("🚀 ~ file: Products.js ~ line 53 ~ saveProducts ~ input", input)
-    // let _t = [];
-    // if (input) {
-    //   _t = input;
-    // } else {
-    //   _t = curProducts;
-    // }
-
     await fetch(`api/products`, {
       method: 'POST',
       body: JSON.stringify(input),
@@ -65,7 +54,6 @@ export default function Products() {
       .then((res) => res.json())
       .then((res) => {
         if (res.status === 'ok') {
-          console.log("🚀 ~ file: Products.js ~ line 67 ~ .then ~ res", JSON.parse(res.data))
           getProducts();
         }
       })
