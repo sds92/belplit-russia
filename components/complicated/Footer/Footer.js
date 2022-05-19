@@ -29,7 +29,7 @@ export default function Footer(props) {
               {router.asPath !== '/catalog' && inView && (
                 <div className={`h-96 cursor-default`}>
                   <iframe
-                    src={'https://api-maps.yandex.ru/frame/v1/-/CCUBEFtKWA'}
+                    src={'https://api-maps.yandex.ru/frame/v1/-/CCUFqFv7sA'}
                     width='100%'
                     height='100%'
                     frameBorder='1'
@@ -128,11 +128,11 @@ export default function Footer(props) {
               <div className={`py-4 flex items-center bg-zinc-800 text-zinc-100 justify-center gap-2`}>
                 <p className={`text-center`}>
                   2022. Сайт создан с помощью{' '}
-                  <a className={`font-bold`} href='https://roboweb.team/' target={'_blank'}  rel="noreferrer">
+                  <a className={`font-bold`} href='https://roboweb.team/'>
                     RoboWeb
                   </a>
                 </p>
-                <a href='https://roboweb.team/' target={'_blank'}  rel="noreferrer">
+                <a href='https://roboweb.team/'>
                   <Icons.Roboweb fill={`#ffffff`} extraClasses={`w-10 h-10 hover:scale-105 transition-all`} />
                 </a>
               </div>
