@@ -124,7 +124,7 @@ export default function Product(props) {
                 />
               </div>
               <p className={`ml-2 pt-2 px-2 font-bold text-xl`}>Цена:</p>
-              <div className={`flex items-end mx-4 px-4 gap-1 whitespace-nowrap py-2 bg-white border-b `}>
+              <div className={`flex flex-wrap items-end mx-4 px-4 gap-1 whitespace-nowrap py-2 bg-white border-b `}>
                 <p className={`text-gray-500 `}>плита:</p>
                 <p className={`font-bold text-xl`}>
                   {(
@@ -138,6 +138,18 @@ export default function Product(props) {
                   {product.options[option].prices.find((item, i) => item.city === cities[region][1])?.value}
                 </p>
                 <p className={`text-gray-500`}>руб.</p>
+                {product.info.pack && (
+                  <>
+                  <p className={`text-gray-500 `}>/ упаковка:</p>
+                    <p className={'font-bold text-xl text-zinc-900'}>
+                      {
+                        product.options[option].prices.find((item, i) => item.city === cities[region][1])
+                          ?.value * product.info.pack
+                      }
+                    </p>
+                    <p className={`text-gray-500`}>руб.</p>
+                  </>
+                )}
               </div>
               <div
                 className={`bg-belplit_2 text-xl active:scale-105 transition-all uppercase font-bold mx-4 my-4 rounded-md text-center text-white py-2 cursor-pointer hover:scale-105 hover:bg-belplit_dark`}

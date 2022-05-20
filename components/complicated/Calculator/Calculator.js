@@ -50,8 +50,8 @@ export default function Calculator(props) {
   });
   const sizeSelect = products
     .find((pr) => pr.id.toString() === state.mark.toString())
-    .options
-    .slice().filter(item => item.show) // .find((item) => item.id.toString() === state.mark.toString())
+    .options.slice()
+    .filter((item) => item.show) // .find((item) => item.id.toString() === state.mark.toString())
     .map((item, i) => ({
       title: item.a + '*' + item.b + '*' + item.h + ' [мм] ' + item.connectionType,
       value: i,
@@ -76,8 +76,10 @@ export default function Calculator(props) {
   const h = products.find((pr) => pr.id.toString() === state.mark.toString()).options[state.option].h / 1000;
   const a = products.find((pr) => pr.id.toString() === state.mark.toString()).options[state.option].a / 1000;
   const b = products.find((pr) => pr.id.toString() === state.mark.toString()).options[state.option].b / 1000;
-  const price = products.find((pr) => pr.id.toString() === state.mark.toString()).options[state.option].prices[region].value;
-  const density = products.find((pr) => pr.id.toString() === state.mark.toString()).options[state.option].density;
+  const price = products.find((pr) => pr.id.toString() === state.mark.toString()).options[state.option]
+    .prices[region].value;
+  const density = products.find((pr) => pr.id.toString() === state.mark.toString()).options[state.option]
+    .density;
 
   // площадь одного листа в м2
   const s = () => (a * b).toFixed(2);
@@ -164,8 +166,17 @@ export default function Calculator(props) {
             <div className={`flex flex-col`}>
               <div className={`w-full`}>количество</div>
               <div className={`w-full font-bold text-5xl inline-flex items-end`}>
-                {Math.ceil(am())}
-                <span className={`text-lg`}> шт.</span>{' '}
+                {products.find((pr) => pr.id.toString() === state.mark.toString()).info.pack ? (
+                  <>
+                    {state.amount /
+                      products.find((pr) => pr.id.toString() === state.mark.toString()).info.pack}
+                      <span className={`text-lg`}> уп.</span>{' '}
+                  </>
+                ) : (
+                  <>
+                    {Math.ceil(am())} <span className={`text-lg`}> шт.</span>{' '}
+                  </>
+                )}
               </div>
             </div>
             <div className={`flex flex-col`}>
