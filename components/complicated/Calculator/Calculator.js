@@ -168,8 +168,8 @@ export default function Calculator(props) {
               <div className={`w-full font-bold text-5xl inline-flex items-end`}>
                 {products.find((pr) => pr.id.toString() === state.mark.toString()).info.pack ? (
                   <>
-                    {state.amount /
-                      products.find((pr) => pr.id.toString() === state.mark.toString()).info.pack}
+                    {Math.ceil(state.amount /
+                      products.find((pr) => pr.id.toString() === state.mark.toString()).info.pack)}
                       <span className={`text-lg`}> уп.</span>{' '}
                   </>
                 ) : (
